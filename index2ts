@@ -1,0 +1,24 @@
+#!/bin/sh
+
+hflg=0
+while getopts h opt
+do
+	case $opt in
+		h)hflg=1;;
+	esac
+done
+
+if [ $hflg -eq 1 ]; then
+	echo 'Usage: index2ts [index.m3u8_file]'
+	exit 0
+fi
+
+cat $1 | sed -E 's/.*(http.*)\n/\1/' > index
+i=1
+cat index | while read var ;do echo $var | sed -E 's@(([0-9]|[a-z]|[A-Z]|\.|\/|\_|\:|\-)*).*@wget -O '${i}'.ts "\1"@' >> configure ; i=$((${i}+1)) ;done
+chmod +x configure
+./configure
+
+rm index configure
+
+exit 0

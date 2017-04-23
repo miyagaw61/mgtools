@@ -1,0 +1,17 @@
+#!/bin/sh
+
+hflg=0
+
+while getopts h opt ;do
+	case $opt in
+		h)hflg=1;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+if test $hflg -eq 1 ;then
+	echo "Usage: kp \$prscess_name"
+	exit 0
+fi
+
+kill -9 $(pgrep $1)

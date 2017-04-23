@@ -1,0 +1,8 @@
+#!/bin/sh
+
+for arg in $@ ;do
+	if test -f $arg ;then
+		mv $arg ./
+	fi
+done
+

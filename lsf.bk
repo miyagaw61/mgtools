@@ -1,0 +1,318 @@
+#!/bin/sh
+
+usedFile='lsf.tmp'
+allrm $usedFile
+
+hflg=0
+dflg=0
+xflg=0
+oflg=0
+nflg=1
+aflg=0
+gflg=0
+
+while getopts hdxoag: opt ;do
+	case $opt in
+		h)hflg=1;nflg=0;;
+		d)dflg=1;nflg=0;;
+		x)xflg=1;nflg=0;;
+		o)oflg=1;nflg=0;;
+		a)aflg=1;;
+		g)gflg=1;garg=$OPTARG;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+if test $hflg -eq 1 ;then
+	echo "Usage: lsf [option]
+[+]Usage options:
+   h: help
+   d: dir
+   x: exe
+   o: others"
+	allrm $usedFile
+	exit 0
+fi
+
+count=1
+args=$@
+
+if test $aflg -eq 1 -a $nflg -eq 1 ;then
+	if test $gflg -eq 0 ;then
+		lsf -ad
+		lsf -ax
+		lsf -ao
+		allrm $usedFile
+		exit 0
+	else
+		lsf -adg $garg
+		lsf -axg $garg
+		lsf -aog $garg
+		allrm $usedFile
+		exit 0
+	fi
+fi
+
+if test $nflg -eq 1 ;then
+	if test $# -eq 0 ;then
+		if test $gflg -eq 0 ;then
+			lsf -d
+			lsf -x
+			lsf -o
+			allrm $usedFile
+			exit 0
+		else 
+			lsf -dg $garg
+			lsf -xg $garg
+			lsf -og $garg
+			allrm $usedFile
+			exit 0
+		fi
+	fi
+fi
+
+if test $dflg -eq 1 ;then
+	dir=$(ls -1F | egrep '\/$' | perl -pe 's@\/@@g')
+	if test $aflg -eq 1 ;then
+		dir=$(ls -a1F | egrep '\/$' | perl -pe 's@\/@@g')
+	fi
+	###
+	i=1
+	max=1
+	for var in $dir ;do
+		tmp=$(echo -n $var | wc -m)
+		if test $tmp -gt $max ;then
+			max=$tmp
+		fi
+	done
+	max=$((${max}*4))
+	max=$((${max}+4*4))
+	tab=$((${max}/4))
+	if test $gflg -eq 1 ;then
+		for var in $dir ;do
+			if test $((${i}%5)) -eq 0 ;then
+				i=0
+				cecho -b -f $var | grep $garg
+			else
+				cecho -b -f -n $var | grep $garg
+			fi
+			i=$((${i}+1))
+			count=$((${count}+1))
+		done
+	else
+		for var in $dir ;do
+			if test $((${i}%5)) -eq 0 ;then
+				i=0
+				echo -n "\033[1000D"
+				echo -n "\033["$((${tab}*4))"C"
+				cecho -r -f -n "[+]"
+				cecho -b -f $var
+			else
+				#echo -n "\033["${count}";"${space}"H"
+				echo -n "\033[1000D"
+				if test $((${i}%5)) -eq 2 ;then
+					echo -n "\033["$((${tab}*1))"C"
+				elif test $((${i}%5)) -eq 3 ;then
+					echo -n "\033["$((${tab}*2))"C"
+				elif test $((${i}%5)) -eq 4 ;then
+					echo -n "\033["$((${tab}*3))"C"
+				fi
+				cecho -r -f -n "[+]"
+				cecho -b -f -n $var
+			fi
+			i=$((${i}+1))
+			count=$((${count}+1))
+		#	if test $((${i}%10)) -eq 0 ;then
+		#		i=0
+		#		cecho -b -f $var
+		#	else
+		#		space=$(((${i}%3)*20))
+		#		#echo -n "\033["${count}";"${space}"H"
+		#		echo -n "\033[100D"
+		#		echo -n "\033["${space}"C"
+		#		cecho -b -f -n $var" "
+		#	fi
+		#	i=$((${i}+1))
+		#	count=$((${count}+1))
+		done
+		if test ! $(((${i})%5)) -eq 1 ;then
+			echo ''
+		fi
+	fi
+	###
+fi
+
+if test $xflg -eq 1 ;then
+	dir=$(ls -1F | egrep '\/$')
+	if test $aflg -eq 1 ;then
+		dir=$(ls -a1F | egrep '\/$')
+	fi
+	others=$(ls -1F | egrep -v '\*$' | egrep -v '\/$' | perl -pe 's/.*\ (.*)/\1/g')
+	if test $aflg -eq 1 ;then
+		others=$(ls -a1F | egrep -v '\*$' | egrep -v '\/$' | perl -pe 's/.*\ (.*)/\1/g')
+	fi
+	allrm lsf.tmp
+	for arg in $dir ;do
+		echo $arg >> lsf.tmp
+	done
+	for arg in $others ;do
+		echo $arg >> lsf.tmp
+	done
+	exe=$(ls -1F | perl -pe 's/\*//g' | grep -w -v -f lsf.tmp | perl -pe 's/.*lsf.tmp.*//g')
+	###
+	i=1
+	max=1
+	for var in $exe ;do
+		tmp=$(echo -n $var | wc -m)
+		if test $tmp -gt $max ;then
+			max=$tmp
+		fi
+	done
+	max=$((${max}*4))
+	max=$((${max}+4*4))
+	tab=$((${max}/4))
+	if test $gflg -eq 1 ;then
+		for var in $exe ;do
+			if test $((${i}%3)) -eq 0 ;then
+				i=0
+				cecho -g -f $var | grep $garg
+			else
+				cecho -g -f -n $var | grep $garg
+			fi
+			i=$((${i}+1))
+			count=$((${count}+1))
+		done
+	else
+		for var in $exe ;do
+			if test $((${i}%5)) -eq 0 ;then
+				i=0
+				echo -n "\033[1000D"
+				echo -n "\033["$((${tab}*4))"C"
+				cecho -r -f -n "[+]"
+				cecho -g -f $var
+			else
+				#echo -n "\033["${count}";"${space}"H"
+				echo -n "\033[1000D"
+				if test $((${i}%5)) -eq 2 ;then
+					echo -n "\033["$((${tab}*1))"C"
+				elif test $((${i}%5)) -eq 3 ;then
+					echo -n "\033["$((${tab}*2))"C"
+				elif test $((${i}%5)) -eq 4 ;then
+					echo -n "\033["$((${tab}*3))"C"
+				fi
+				cecho -r -f -n "[+]"
+				cecho -g -f -n $var
+			fi
+			i=$((${i}+1))
+			count=$((${count}+1))
+		done
+		if test ! $(((${i})%5)) -eq 1 ;then
+			echo ''
+		fi
+	fi
+	###
+	allrm $usedFileList
+fi
+
+if test $oflg -eq 1 ;then
+	others=$(ls -1F | egrep -v '\*$' | egrep -v '\/$' | perl -pe 's/.*\ (.*)/\1/g')
+	if test $aflg -eq 1 ;then
+	others=$(ls -a1F | egrep -v '\*$' | egrep -v '\/$' | perl -pe 's/.*\ (.*)/\1/g')
+	fi
+
+#	if test $gflg -eq 1 ;then
+#		for arg in $others ;do
+#			echo $arg | grep $garg
+#		done
+#	else
+#		for arg in $others ;do
+#			echo $arg
+#		done
+#	fi
+
+	###
+	i=1
+	max=1
+	for var in $others ;do
+		tmp=$(echo -n $var | wc -m)
+		if test $tmp -gt $max ;then
+			max=$tmp
+		fi
+	done
+	max=$((${max}*4))
+	max=$((${max}+4*4))
+	tab=$((${max}/4))
+	if test $gflg -eq 1 ;then
+		for var in $others ;do
+			if test $((${i}%5)) -eq 0 ;then
+				i=0
+				echo $var | grep $garg
+			else
+				echo -n $var | grep $garg
+			fi
+			i=$((${i}+1))
+			count=$((${count}+1))
+	#		if test $((${i}%10)) -eq 0 ;then
+	#			i=0
+	#			if test "$(echo $var | grep $garg)" ;then
+	#				echo $var
+	#			fi
+	#		else
+	#			if test "$(echo $var | grep $garg)" ;then
+	#				space=$(((${i}%3)*20))
+	#				#echo -n "\033["${count}";"${space}"H"
+	#				echo -n "\033[100D"
+	#				echo -n "\033["${space}"C"
+	#				echo -n $var" "
+	#			fi
+	#		fi
+	#		i=$((${i}+1))
+	#		count=$((${count}+1))
+		done
+		#if test ! $(((${i})%5)) -eq 1 ;then
+		#	echo ''
+		#fi
+	else
+		for var in $others ;do
+			if test $((${i}%5)) -eq 0 ;then
+				i=0
+				echo -n "\033[1000D"
+				echo -n "\033["$((${tab}*4))"C"
+				cecho -r -f -n "[+]"
+				echo $var
+			else
+				#echo -n "\033["${count}";"${space}"H"
+				echo -n "\033[1000D"
+				if test $((${i}%5)) -eq 2 ;then
+					echo -n "\033["$((${tab}*1))"C"
+				elif test $((${i}%5)) -eq 3 ;then
+					echo -n "\033["$((${tab}*2))"C"
+				elif test $((${i}%5)) -eq 4 ;then
+					echo -n "\033["$((${tab}*3))"C"
+				fi
+				cecho -r -f -n "[+]"
+				echo -n $var
+			fi
+			i=$((${i}+1))
+			count=$((${count}+1))
+		#	if test $((${i}%10)) -eq 0 ;then
+		#		i=0
+		#		echo $var
+		#	else
+		#		space=$(((${i}%3)*20))
+		#		#echo -n "\033["${count}";"${space}"H"
+		#		echo -n "\033[100D"
+		#		echo -n "\033["${space}"C"
+		#		echo -n $var" "
+		#	fi
+		#	i=$((${i}+1))
+		#	count=$((${count}+1))
+		done
+		if test ! $(((${i})%5)) -eq 1 ;then
+			echo ''
+		fi
+	fi
+	###
+fi
+
+allrm $usedFile

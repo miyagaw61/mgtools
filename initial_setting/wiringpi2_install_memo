@@ -1,0 +1,19 @@
+
+___MEMO___
+
+apt-get -y install python-pip python-dev python-setuptools
+git clone git://git.drogon.net/wiringPi ~/Downloads/WiringPi
+cd ~/Downloads/WiringPi
+./build
+git clone https://github.com/Gadgetoid/WiringPi2-Python.git ~/Downloads/WiringPi2-Python
+cd ~/Downloads/WiringPi2-Python
+
+####wiringpi_wrap.c : KAKIKAE####
+
+ #define PyString_FromString(x) PyUnicode_FromString(x)
++#define PyString_FromStringAndSize(x, len) PyUnicode_FromStringAndSize(x, len)
+ #define PyString_Format(fmt, args)  PyUnicode_Format(fmt, args)
+
+####
+
+python setup.py install

@@ -1,0 +1,27 @@
+#!/bin/sh
+
+hflg=0
+
+while getopts h opt ;do
+	case $opt in 
+		h) hflg=1;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+if [ $hflg -eq 1 ]; then
+echo 'Usage: whileline $filename $command
+[+] UsageVar: var
+
+EXAMPLE:
+echo aaa > file_A
+echo bbb > file_B
+ls -1 | grep file_* > argFile
+whileline argFile "cat var"'
+	exit 0
+fi
+
+before=$(echo $2 | perl -pe "s/(.*)var.*/\1/g")
+after=$(echo $2 | perl -pe "s/.*var(.*)/\1/g")
+cat $1 | while read var ;do echo '\n##########################################\n[+] '$before$var$after'\n##########################################\n'; $before$var$after ;done
+echo ''

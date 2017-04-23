@@ -1,0 +1,40 @@
+#!/bin/sh
+
+hflg=0
+
+#if test $# -eq 0 ;then
+#	hflg=1
+#fi
+
+while getopts h opt ;do
+	case $opt in
+		h)hflg=1;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+if test $hflg -eq 1 ;then
+	echo "Usage: "
+	exit 0
+fi
+
+if test $# -eq 1 ;then
+	echo -n "$1"
+	sleep 0.1
+	echo -n "\033[2K"
+	echo -n "\033[G"
+fi
+
+if test $# -eq 2 ;then
+	echo -n "$1""$2"
+	sleep 0.1
+	echo -n "\033[2K"
+	echo -n "\033[G"
+fi
+
+if test $# -eq 3 ;then
+	echo -n "$1""$2""$3"
+	sleep 0.1
+	echo -n "\033[2K"
+	echo -n "\033[G"
+fi

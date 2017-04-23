@@ -1,0 +1,161 @@
+#!/bin/sh
+
+init(){
+usedFile='gauge.tmp gauge2.tmp'
+allrm $usedFile
+
+echo "[                    ]" > gauge.tmp
+echo "[>                   ]" >> gauge.tmp
+echo "[=>                  ]" >> gauge.tmp
+echo "[==>                 ]" >> gauge.tmp
+echo "[===>                ]" >> gauge.tmp
+echo "[====>               ]" >> gauge.tmp
+echo "[=====>              ]" >> gauge.tmp
+echo "[======>             ]" >> gauge.tmp
+echo "[=======>            ]" >> gauge.tmp
+echo "[========>           ]" >> gauge.tmp
+echo "[=========>          ]" >> gauge.tmp
+echo "[==========>         ]" >> gauge.tmp
+echo "[===========>        ]" >> gauge.tmp
+echo "[============>       ]" >> gauge.tmp
+echo "[=============>      ]" >> gauge.tmp
+echo "[==============>     ]" >> gauge.tmp
+echo "[===============>    ]" >> gauge.tmp
+echo "[================>   ]" >> gauge.tmp
+echo "[=================>  ]" >> gauge.tmp
+echo "[==================> ]" >> gauge.tmp
+echo "[===================>]" >> gauge.tmp
+
+echo "[                    ]" > gauge2.tmp
+
+i=1
+}
+
+init
+
+conf(){
+	sleep 0.3
+	i=$((${i}+1))
+	if test -f gauge.tmp -a -f gauge2.tmp ;then
+		cat gauge.tmp | sed -n ${i}P > gauge2.tmp
+	fi
+}
+
+conf5(){
+	conf;sleep 0.01;conf;sleep 0.01;conf;sleep 0.01;conf;sleep 0.01;conf
+}
+
+second5(){
+	sleep 5
+	conf5
+}
+
+second10(){
+	sleep 5
+	conf5
+	sleep 5
+	conf5
+}
+
+second15(){
+	sleep 5
+	conf5
+	sleep 5
+	conf5
+	sleep 5
+	conf5
+}
+
+if test $# -eq 0 ;then
+###
+conf
+rm -rf /mnt/windows/bk.bk/;conf;sleep 0.3;conf
+cp -a /mnt/windows/bk/ /mnt/windows/bk.bk/;conf
+rm -rf /bk.bk/;conf
+cp -a /bk/ /bk.bk/;conf
+rm -r /bk/;conf
+rm -r /mnt/windows/bk/;conf
+mkdir /bk/
+mkdir /bk/rc/
+mkdir /bk/neosnippets/
+cp -a ~/bin/ /bk/;conf
+cp -a ~/ctf/ /bk/;conf
+cp -a ~/Desktop/ /bk/;conf
+cp -a ~/Documents/ /bk/;conf
+cp -a ~/bin/ /bk/;conf
+cp -a ~/tmp/ /bk/;conf
+cat /etc/vim/vimrc > /bk/rc/vimrc;conf
+cp -a ~/.bashrc /bk/rc/bashrc;conf
+cp -a ~/.gdbinit /bk/rc/gdbinit;conf
+cp -a ~/peda/ /bk/;conf
+cp -a ~/.vim/bundle/neosnippet-snippets/neosnippets/* /bk/neosnippets/;conf
+cp -a /bk/ /mnt/windows/;conf
+
+allrm $usedFile
+exit 0
+###
+fi
+
+if test ! $# -eq 0 ;then
+	for arg in $@ ;do
+		if test $arg = "bin" ;then
+			if test ! -e /mnt/windows/bk/bin ;then
+				mkdir /mnt/windows/bk/bin
+			fi
+			init
+			conf5;conf5
+			cp -a ~/bin/* /mnt/windows/bk/bin/
+			conf5;conf5
+			sleep 0.3
+		elif test $arg = "ctf" ;then
+			if test ! -e /mnt/windows/bk/ctf/ ;then
+				mkdir /mnt/windows/bk/ctf/
+			fi
+			init
+			second15 &
+			cp -a ~/ctf/* /mnt/windows/bk/ctf/
+			i=16
+			conf5
+			sleep 0.3
+		elif test $arg = "dc" ;then
+			if test ! -e /mnt/windows/bk/Documents/ ;then
+				mkdir /mnt/windows/bk/Documents/
+			fi
+			init
+			conf5;conf5
+			cp -a ~/Documents/* /mnt/windows/bk/Documents/
+			conf5;conf5
+			sleep 0.3
+		elif test $arg = "tmp" ;then
+			if test ! -e /mnt/windows/bk/tmp ;then
+				mkdir /mnt/windows/bk/tmp/
+			fi
+			init
+			conf5;conf5
+			cp -a ~/tmp/* /mnt/windows/bk/tmp/
+			conf5;conf5
+			sleep 0.3
+		elif test $arg = "bashrc" ;then
+			init
+			conf5;conf5
+			cp -a ~/.bashrc /mnt/windows/bk/rc/bashrc
+			conf5;conf5
+			sleep 0.3
+		else
+			now=$(pwd)
+			if test "$(echo $now | grep bin)" ;then
+				simple_bk bin
+			elif test "$(echo $now | grep dc)" ;then
+				simple_bk dc
+			elif test "$(echo $now | grep tmp)" ;then
+				simple_bk tmp
+			elif test "$(echo $now | grep ctf)" ;then
+				simple_bk ctf
+			else 
+				echo You can use \[bin/ctf/dc/tmp\].
+			fi
+		fi
+	done
+fi
+allrm $usedFile
+

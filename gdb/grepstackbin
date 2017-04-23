@@ -1,0 +1,10 @@
+define grepstackbin
+	printf "#----START ESP----#\n"
+	shell echo $arg0 > /tmp/arg0
+	shell cat /tmp/stacklog | grep 'var i = ' | sed -E 's/var i = [^\s]*\s=\s([0-9]*).*/\1/' > /tmp/i
+	shell echo $(($(cat /tmp/i) + 1)) > /tmp/i1
+	shell echo $(($(cat /tmp/i) + 2)) > /tmp/i2
+	shell middle /tmp/stacklog 2 $(cat /tmp/i1) | grep -n -e '0x' | grep -E '\\' | grep -v -E 'Cannot access' | grep -v -E '<.*>' 
+	printf "#----UNDER EBP----#\n"
+	shell middle /tmp/stacklog $(cat /tmp/i2) $(($(cat /tmp/arg0) + $(cat /tmp/i1))) | grep -n -e '0x' | grep -E '\\' |  grep -v -E 'Cannot access' | grep -v -E '<.*>'
+end

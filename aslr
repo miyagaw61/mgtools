@@ -1,0 +1,21 @@
+#!/bin/sh
+if test $# -ne 1
+then
+	now=$(cat /proc/sys/kernel/randomize_va_space)
+	if test $now -eq 2 ;then
+		echo ' now : on'
+	fi
+	if test $now -eq 0 ;then
+		echo ' now : off'
+	fi
+	echo ' usage : aslr [on / off]'
+	exit 0
+fi
+case $1 in
+	off) sysctl -w kernel.randomize_va_space=0
+	;;
+	on) sysctl -w kernel.randomize_va_space=2
+	;;
+	*) echo "[on/off]"
+	;;
+esac

@@ -1,0 +1,292 @@
+#!/bin/sh
+hflg=0
+per_avg='26.95'
+kg_avg='22.0'
+
+if test $# -eq 0 ;then
+	hflg=1
+fi
+
+while getopts h opt  ;do
+	case $opt in
+		h)hflg=1;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+if test $hflg -eq 1 ;then
+	echo 'Usage: styleis $sex(man/woman) $height $weight $per'
+	exit 0
+fi
+
+sex=$1
+height=$2
+weight=$3
+per=$4
+
+bmi=$(calc -f $weight'/(('$height'/100)**2)')
+
+#if test $(calc -f $bmi'-25.0' | grep '-') ;then
+#	if test $sex = 'man' ;then
+#		normal_massle_kg='22.0'
+#	else
+#		normal_massle_kg='14.0'
+#	fi
+#else
+#	if test $sex = 'man' ;then
+#		normal_massle_kg='24.0'
+#	else
+#		normal_massle_kg='17.0'
+#	fi
+#fi
+
+step1=$(calc -f $weight'*'$per'/100')
+step2=$(calc -f $weight'-'$step1)
+massle_kg=$(calc -f $step2'/2')
+massle_per=$(calc -f $massle_kg'/'$weight'*100')
+
+#kg_flg='normal'
+#if test $sex = 'man' ;then
+#	if test $(calc -f $massle_kg'-22.0' | grep '-') ;then
+#		kg_flg='low'
+#	elif test $(calc -f '24.0-'$massle_kg | grep '-') ;then
+#		kg_flg='high'
+#	fi
+#else 
+#	if test $(calc -f $massle_kg'-14.0' | grep '-') ;then
+#		kg_flg='low'
+#	elif test $(calc -f '17.0-'$massle_kg | grep '-') ;then
+#		kg_flg='high'
+#	fi
+#fi
+
+#per_flg='normal'
+#if test $sex = 'man' ;then
+#	if test $(calc -f $massle_per'-30.9' | grep '-') ;then
+#		per_flg='low'
+#	elif test $(calc -f '39.0-'$massle_per | grep '-') ;then
+#		per_flg='high'
+#	elif test $(calc -f '35.0-'$massle_per | grep '-') ;then
+#		per_flg='few_high'
+#	fi
+#else
+#	if test $(calc -f $massle_per'-25.9' | grep '-') ;then
+#		per_flg='low'
+#	elif test $(calc -f '30.0-'$massle_per | grep '-') ;then
+#		per_flg='high'
+#	elif test $(calc -f '28.0-'$massle_per | grep '-') ;then
+#		per_flg='few_high'
+#	fi
+#fi
+
+#echo '[+] bmi_list: '
+#echo '      low: ... to 18.5'
+#echo '   normal: 18.5 to 25'
+#echo ' high.Lv1: 25 to 30'
+#echo ' high.Lv2: 30 to 35'
+#echo ' high.Lv3: 35 to 40'
+#echo ' high.Lv4: 40 to ...'
+#echo '[+] your_bmi: '$bmi'\n'
+
+#bmi_flg='normal'
+#if test $(calc -f $bmi'-18.5' | grep '-') ;then
+#	bmi_flg='low'
+#elif test $(calc -f '30-'$bmi | grep '-') ;then
+#	bmi_flg='high'
+#elif test $(calc -f '25-'$bmi | grep '-') ;then
+#	bmi_flg='few_high'
+#fi
+#
+#echo -n '[+] normal_massle_kg: '
+#if test $sex = 'man' ;then
+#	echo '22.0 to 24.0'
+#else
+#	echo '14.0 to 17.0'
+#fi
+#echo '[+] your_massle_kg  : '$massle_kg'kg\n'
+#echo '[+] massle_percent_list: '
+#if test $sex = 'man' ;then
+#	echo '      low: ... to 30.9'
+#	echo '   normal: 31.0 to 34.0'
+#	echo ' few_high: 35.0 to 38.9'
+#	echo '     high: 39.0 to ...'
+#else
+#	echo '     low: ... to 25.9'
+#	echo '   normal: 26.0 to 27.9'
+#	echo ' few_high: 28.0 to 29.9'
+#	echo '     high: 30.0 to ...'
+#fi
+#echo '[+] your_massle_per  : '$massle_per'%\n'
+#
+#echo '[+]        bmi_flg: '$bmi_flg
+#echo '[+]  massle_kg_flg: '$kg_flg
+#echo '[+] massle_per_flg: '$per_flg
+
+bmi_flg=''
+per_flg=''
+echo '[+] your_per: '$per
+if test $sex = 'man' ;then
+	if test $(calc -f '7.9-'$per | grep '-') ;then
+		if test $(calc -f $per'-14.1' | grep '-') ;then
+			echo '[+] per is 8 to 14: Yes!SoGood!!!!'
+			per_flg='good'
+		else
+			if test $(calc -f $per'-15.1' | grep '-') ;then
+				echo '[+] per is 8 to 14: No...YouAreFewFat...'
+				per_flg='fewfat'
+			else
+				echo '[+] per is 8 to 14: No!YouAreFat!!!!'
+				per_flg='fat'
+			fi
+		fi
+	else
+		if test $(calc -f '6.9-'$per | grep '-') ;then
+			echo '[+] per is 8 to 14: No...YouAreFewBorn...'
+			per_flg='fewborn'
+		else
+			echo '[+] per is 8 to 14: No!YouAreBorn!!!!'
+			per_flg='born'
+		fi
+	fi
+fi
+if test $sex = 'woman' ;then
+	if test $(calc -f '19.9-'$per | grep '-') ;then
+		if test $(calc -f $per'-24.1' | grep '-') ;then
+			echo '[+] per is 20 to 24: Yes!SoGood!!!!'
+			per_flg='good'
+		else
+			if test $(calc -f $per'-25.1' | grep '-') ;then
+				echo '[+] per is 20 to 24: No...YouAreFewFat...'
+				per_flg='fewfat'
+			else
+				echo '[+] per is 20 to 24: No!YouAreFat!!!!'
+				per_flg='fat'
+			fi
+		fi
+	else
+		if test $(calc -f '16.9-'$per | grep '-') ;then
+			echo '[+] per is 20 to 24: No...YouAreFewBorn...'
+			per_flg='fewborn'
+		else
+			echo '[+] per is 20 to 24: No!YouAreBorn!!!!'
+			per_flg='born'
+		fi
+	fi
+fi
+
+echo '[+] your_bmi: '$bmi
+if test $sex = 'man' ;then
+	if test $(calc -f '18.9-'$bmi | grep '-') ;then
+		if test $(calc -f $bmi'-23.1' | grep '-') ;then
+			echo '[+] bmi is 19 to 23: Yes!SoGood!!!!'
+			bmi_flg='good'
+		else
+			if test $(calc -f $bmi'-25.1' | grep '-') ;then
+				echo '[+] bmi is 19 to 23: No...YouAreFewFat...'
+				bmi_flg='fewfat'
+			else
+				echo '[+] bmi is 19 to 23: No!YouAreFat!!!!'
+				bmi_flg='fat'
+			fi
+		fi
+	else
+		if test $(calc -f '17.9-'$bmi | grep '-') ;then
+			echo '[+] bmi is 19 to 23: No...YouAreFewBorn...'
+			bmi_flg='fowborn'
+		else
+			echo '[+] bmi is 19 to 23: No!YouAreBorn!!!!'
+			bmi_flg='born'
+		fi
+	fi
+fi
+if test $sex = 'woman' ;then
+	if test $(calc -f '18.9-'$bmi | grep '-') ;then
+		if test $(calc -f $bmi'-23.1' | grep '-') ;then
+			echo '[+] bmi is 19 to 23: Yes!SoGood!!!!'
+			bmi_flg='good'
+		else
+			if test $(calc -f $bmi'-25.1' | grep '-') ;then
+				echo '[+] bmi is 19 to 23: No...YouAreFewFat...'
+				bmi_flg='fewfat'
+			else
+				echo '[+] bmi is 19 to 23: No!YouAreFat!!!!'
+				bmi_flg='fat'
+			fi
+		fi
+	else
+		if test $(calc -f '17.9-'$bmi | grep '-') ;then
+			echo '[+] bmi is 19 to 23: No...YouAreFewBorn...'
+			bmi_flg='fewborn'
+		else
+			echo '[+] bmi is 19 to 23: No!YouAreBorn!!!!'
+			bmi_flg='born'
+		fi
+	fi
+fi
+
+if test $bmi_flg = 'good' ;then
+	if test $per_flg = 'good' ;then
+		echo '\n[+] You Are Very Good!!!!'
+	elif test $per_flg = 'fewfat' ;then
+		echo '\n[+] You Are Normal'
+	elif test $per_flg = 'fat' ;then
+		echo '\n[+] You Are Few Fat...'
+	fi
+	if test $per_flg = 'fewborn' ;then
+		echo '\n[+] You Are Few HosoMaccho'
+	elif test $per_flg = 'born' ;then
+		echo '\n[+] You Are HosoMaccho!!!'
+	fi
+elif test $bmi_flg = 'fewfat' ;then
+	if test $per_flg = 'good' ;then
+		echo '\n[+] You Are Few HosoMaccho'
+	elif test $per_flg = 'fewfat' ;then
+		echo '\n[+] You Are Fat...!'
+	elif test $per_flg = 'fat' ;then
+		echo '\n[+] You Are Fat...!'
+	fi
+	if test $per_flg = 'fewborn' ;then
+		echo '\n[+] You Are Few Maccho!!!!'
+	elif test $per_flg = 'born' ;then
+		echo '\n[+] You Are HosoMaccho!!!'
+	fi
+elif test $bmi_flg = 'fat' ;then
+	if test $per_flg = 'good' ;then
+		echo '\n[+] You Are Few Maccho!!!!'
+	elif test $per_flg = 'fewfat' ;then
+		echo '\n[+] You Are Fat...!'
+	elif test $per_flg = 'fat' ;then
+		echo '\n[+] You Are Very Fat...!!!'
+	fi
+	if test $per_flg = 'fewborn' ;then
+		echo '\n[+] You Are Maccho!!!'
+	elif test $per_flg = 'born' ;then
+		echo '\n[+] You Are Very Maccho!!!!'
+	fi
+elif test $bmi_flg = 'fewborn' ;then
+	if test $per_flg = 'good' ;then
+		echo '\n[+] You Are Few Born'
+	elif test $per_flg = 'fewfat' ;then
+		echo '\n[+] You Are Normal'
+	elif test $per_flg = 'fat' ;then
+		echo '\n[+] You Should KinTore!'
+	fi
+	if test $per_flg = 'fewborn' ;then
+		echo '\n[+] You Should KinTore!'
+	elif test $per_flg = 'born' ;then
+		echo '\n[+] You Are Born...!'
+	fi
+elif test $bmi_flg = 'born' ;then
+	if test $per_flg = 'good' ;then
+		echo '\n[+] You Are Few Born'
+	elif test $per_flg = 'fewfat' ;then
+		echo '\n[+] You Should KinTore!'
+	elif test $per_flg = 'fat' ;then
+		echo '\n[+] You Should KinTore!'
+	fi
+	if test $per_flg = 'fewborn' ;then
+		echo '\n[+] You Are Born...!'
+	elif test $per_flg = 'born' ;then
+		echo '\n[+] You Are Very Born...!!!!'
+	fi
+fi

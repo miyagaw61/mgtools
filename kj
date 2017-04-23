@@ -1,0 +1,21 @@
+#!/bin/sh 
+
+hflg=0
+
+while getopts h opt ;do
+	case $opt in
+		h)hflg=1;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+if test $hflg -eq 1 ;then
+	echo "Usage: kj \$job_number *** CAN NOT USE ***"
+	exit 0
+fi
+
+#jobs | grep -e "\["$1"\]"
+
+echo jobs | sh
+
+

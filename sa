@@ -1,0 +1,4 @@
+#!/bin/sh
+location=`pwd`
+echo ${location} > ~/bin/save
+

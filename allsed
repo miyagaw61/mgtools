@@ -1,0 +1,17 @@
+#!/bin/sh
+
+hflg=0
+
+while getopts h opt ;do
+	case $opt in
+		h)hflg=1;;
+	esac
+done
+
+if test $hflg -eq 1 ;then
+	echo 'Usage: allsed [dir] [before] [after]'
+	exit 0
+fi
+
+find $1 | while read var ;do echo $var | xargs grep -l $2 | xargs sed -E 's@'$2'@'$3'@g' -i $var ;done 
+

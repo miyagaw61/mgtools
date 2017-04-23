@@ -1,0 +1,28 @@
+#!/bin/sh
+hflg=0
+sflg=0
+sarg=''
+while getopts hs: opt ;do
+	case $opt in
+		h)hflg=1;;
+	s)sflg=1; sarg=$OPTARG;;
+	esac
+done
+
+if [ $hflg -eq 1 ]; then
+	echo 'Usage: gc [option] $file_name\n -s[nodep/norelro/nossp/nopie]: set_option'
+	exit 0
+fi
+
+if [ $sflg -eq 1 ]; then
+	if [ $sarg = 'nodep' ]; then
+		shift $(($OPTIND - 1))
+		out=$(echo $1 | sed -E 's/(.*).c/\1/')
+		gcc -I ~/bin/include/ -fno-stack-protector -o $out $1
+		exit 0
+	fi
+fi
+
+out=$(echo $1 | sed -E 's/(.*).c/\1/')
+gcc -I ~/bin/include/ -o $out $1
+

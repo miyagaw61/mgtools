@@ -1,0 +1,27 @@
+#!/bin/sh
+hflg=0
+fflg=0
+
+while getopts hf: opt
+do
+	case $opt in
+		h)hflg=1 ;;
+		f)fflg=1 ; farg=$OPTARG ;;
+	esac
+done
+
+if test $hflg -eq 1 ;then
+	echo 'Usage: sym [option] pattern\n -f : file_name\n no_use_option : default_libc'
+fi
+
+if test $fflg -eq 1 ;then
+	shift $(($OPTIND - 1))
+	nm -D $farg |  grep -E -e $1
+	exit 0
+fi
+
+#readelf -a '/lib/i386-linux-gnu/libc.so.6' |  grep -E -e ' [_]*'$1'@'
+nm -D '/lib/i386-linux-gnu/libc.so.6' |  grep -E -e $1
+
+
+#opts mo sansho

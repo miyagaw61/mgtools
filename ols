@@ -1,0 +1,354 @@
+#!/bin/sh
+hflg=0
+dflg=0
+xflg=0
+oflg=0
+gflg=0
+vflg=0
+
+while getopts hdxo1g:v: opt ;do
+	case $opt in
+		h)hflg=1;;
+		d)dflg=1;;
+		x)xflg=1;;
+		o)oflg=1;;
+		1)$HOME/bin/olsone; exit 0;;
+		g)gflg=1;garg=$OPTARG;;
+		v)vflg=1;varg=$OPTARG;;
+	esac
+done
+
+allrm 'ols.first ols1.out ols1.out.1 ols1.out.2 ols1.out.3 ols1.out.4 ols1.out.f ols2.out ols2.out.1 ols2.out.2 ols2.out.3 ols2.out.4 ols2.out.f ols3.out ols3.out.1 ols3.out.2 ols3.out.3 ols3.out.4 ols3.out.f'
+
+if test $hflg -eq 1 ;then
+	echo 'Usage: ols [option]\n-d: dir\n-x: ex\n-n: others\n-g [pattern]: grep\n-v [pattern]: grep -v'
+	exit 0
+fi
+
+if test $dflg -eq 1 ;then
+	ls -CF1 | grep -E '\/$' | sed -E 's/^(.*)./\1/g' > ols.first
+	cat ols.first | while read var ;do echo '\033[01;34m'${var}'\033[0;39m' >> ols1.out ;done
+	if test -f ols1.out ;then
+		ols1line=$(cat ols1.out | wc -l)
+		if test $ols1line -gt 15 ;then
+			cat ols1.out | sed -ne '1,15p' | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.1
+			cat ols1.out | sed -ne '16,$p' | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.f
+		fi
+		if test $ols1line -gt 30 ;then
+			#cat ols1.out | head -30 | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.1
+			cat ols1.out | sed -ne '16,30p' | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.2
+			cat ols1.out | sed -ne '31,$p' | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.f
+		fi
+		if test $ols1line -gt 45 ;then
+			#cat ols1.out | head -30 | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.1
+			cat ols1.out | sed -ne '31,45p' | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.3
+			cat ols1.out | sed -ne '46,$p' | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.f
+		fi
+		if test $ols1line -gt 60 ;then
+			#cat ols1.out | head -30 | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.1
+			cat ols1.out | sed -ne '46,60p' | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.4
+			cat ols1.out | sed -ne '61,$p' | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.f
+		fi
+	fi
+	if test -f ols1.out.1 -a ! -f ols1.out.2 ;then
+		paste ols1.out.1 ols1.out.f | column -t > ols1.out
+	fi
+	if test -f ols1.out.2 -a ! -f ols1.out.3 ;then
+		paste ols1.out.1 ols1.out.2 | column -t > ols1.out
+		paste ols1.out ols1.out.f | column -t > ols1.out.bk
+		mv ols1.out.bk ols1.out
+	fi
+	if test -f ols1.out.3 -a ! -f ols1.out.4 ;then
+		paste ols1.out.1 ols1.out.2 | column -t > ols1.out
+		paste ols1.out ols1.out.3 | column -t > ols1.out.bk
+		paste ols1.out.bk ols1.out.f | column -t > ols1.out
+	fi
+	if test -f ols1.out.4 ;then
+		paste ols1.out.1 ols1.out.2 | column -t > ols1.out
+		paste ols1.out ols1.out.3 | column -t > ols1.out.bk
+		paste ols1.out.bk ols1.out.4 | column -t > ols1.out
+		paste ols1.out ols1.out.f | column -t > ols1.out.bk
+		mv ols1.out.bk ols1.out
+	fi
+	cat ols1.out
+	allrm 'ols.first ols1.out ols1.out.1 ols1.out.2 ols1.out.3 ols1.out.4 ols1.out.f ols2.out ols2.out.1 ols2.out.2 ols2.out.3 ols2.out.4 ols2.out.f ols3.out ols3.out.1 ols3.out.2 ols3.out.3 ols3.out.4 ols3.out.f'
+	exit 0
+fi
+
+if test $xflg -eq 1 ;then
+	ls -CF1 | grep -E '\*$' | sed -E 's/^(.*)./\1/g' > ols.first
+	cat ols.first | while read var ;do echo '\033[01;32m'$var'\033[0;39m' | grep -E -e '.*' >> ols2.out ;done
+	if test -f ols2.out ;then
+		ols2line=$(cat ols2.out | wc -l)
+		if test $ols2line -gt 15 ;then
+			cat ols2.out | sed -ne '1,15p' | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.1
+			cat ols2.out | sed -ne '16,$p' | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.f
+		fi
+		if test $ols2line -gt 30 ;then
+			#cat ols2.out | head -30 | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.1
+			cat ols2.out | sed -ne '16,30p' | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.2
+			cat ols2.out | sed -ne '31,$p' | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.f
+		fi
+		if test $ols2line -gt 45 ;then
+			#cat ols2.out | head -30 | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.1
+			cat ols2.out | sed -ne '31,45p' | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.3
+			cat ols2.out | sed -ne '46,$p' | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.f
+		fi
+		if test $ols2line -gt 60 ;then
+			#cat ols2.out | head -30 | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.1
+			cat ols2.out | sed -ne '46,60p' | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.4
+			cat ols2.out | sed -ne '61,$p' | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.f
+		fi
+	fi
+	if test -f ols2.out.1 -a ! -f ols2.out.2 ;then
+		paste ols2.out.1 ols2.out.f | column -t > ols2.out
+	fi
+	if test -f ols2.out.2 -a ! -f ols2.out.3 ;then
+		paste ols2.out.1 ols2.out.2 | column -t > ols2.out
+		paste ols2.out ols2.out.f | column -t > ols2.out.bk
+		mv ols2.out.bk ols2.out
+	fi
+	if test -f ols2.out.3 -a ! -f ols2.out.4 ;then
+		paste ols2.out.1 ols2.out.2 | column -t > ols2.out
+		paste ols2.out ols2.out.3 | column -t > ols2.out.bk
+		paste ols2.out.bk ols2.out.f | column -t > ols2.out
+	fi
+	if test -f ols2.out.4 ;then
+		paste ols2.out.1 ols2.out.2 | column -t > ols2.out
+		paste ols2.out ols2.out.3 | column -t > ols2.out.bk
+		paste ols2.out.bk ols2.out.4 | column -t > ols2.out
+		paste ols2.out ols2.out.f | column -t > ols2.out.bk
+		mv ols2.out.bk ols2.out
+	fi
+	cat ols2.out
+	allrm 'ols.first ols1.out ols1.out.1 ols1.out.2 ols1.out.3 ols1.out.4 ols1.out.f ols2.out ols2.out.1 ols2.out.2 ols2.out.3 ols2.out.4 ols2.out.f ols3.out ols3.out.1 ols3.out.2 ols3.out.3 ols3.out.4 ols3.out.f'
+	exit 0
+fi
+
+if test $oflg -eq 1 ;then
+	ls -CF1 | grep -E -v '\*$' | grep -E -v '\/$' > ols.first
+	cat ols.first | while read var ;do echo $var | grep -E -e '.*' ;done >> ols3.out
+	cat ols3.out | sed -E '/.*ols.*/d' > ols3.out.bk
+	mv ols3.out.bk ols3.out
+	if test -f ols3.out ;then
+		ols3line=$(cat ols3.out | wc -l)
+		if test $ols3line -gt 15 ;then
+			cat ols3.out | sed -ne '1,15p' | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.1
+			cat ols3.out | sed -ne '16,$p' | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.f
+		fi
+		if test $ols3line -gt 30 ;then
+			#cat ols3.out | head -30 | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.1
+			cat ols3.out | sed -ne '16,30p' | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.2
+			cat ols3.out | sed -ne '31,$p' | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.f
+		fi
+		if test $ols3line -gt 45 ;then
+			#cat ols3.out | head -30 | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.1
+			cat ols3.out | sed -ne '31,45p' | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.3
+			cat ols3.out | sed -ne '46,$p' | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.f
+		fi
+		if test $ols3line -gt 60 ;then
+			#cat ols3.out | head -30 | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.1
+			cat ols3.out | sed -ne '46,60p' | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.4
+			cat ols3.out | sed -ne '61,$p' | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.f
+		fi
+	fi
+	if test -f ols3.out.1 -a ! -f ols3.out.2 ;then
+		paste ols3.out.1 ols3.out.f | column -t > ols3.out
+	fi
+	if test -f ols3.out.2 -a ! -f ols3.out.3 ;then
+		paste ols3.out.1 ols3.out.2 | column -t > ols3.out
+		paste ols3.out ols3.out.f | column -t > ols3.out.bk
+		mv ols3.out.bk ols3.out
+	fi
+	if test -f ols3.out.3 -a ! -f ols3.out.4 ;then
+		paste ols3.out.1 ols3.out.2 | column -t > ols3.out
+		paste ols3.out ols3.out.3 | column -t > ols3.out.bk
+		paste ols3.out.bk ols3.out.f | column -t > ols3.out
+	fi
+	if test -f ols3.out.4 ;then
+		paste ols3.out.1 ols3.out.2 | column -t > ols3.out
+		paste ols3.out ols3.out.3 | column -t > ols3.out.bk
+		paste ols3.out.bk ols3.out.4 | column -t > ols3.out
+		paste ols3.out ols3.out.f | column -t > ols3.out.bk
+		mv ols3.out.bk ols3.out
+	fi
+	cat ols3.out
+	allrm 'ols.first ols1.out ols1.out.1 ols1.out.2 ols1.out.3 ols1.out.4 ols1.out.f ols2.out ols2.out.1 ols2.out.2 ols2.out.3 ols2.out.4 ols2.out.f ols3.out ols3.out.1 ols3.out.2 ols3.out.3 ols3.out.4 ols3.out.f'
+	exit 0
+fi
+
+ls -CF1 | grep -E '\/$' | sed -E 's/^(.*)./\1/g' > ols.first
+if test $gflg -eq 1 ;then
+	cat ols.first | grep -E $garg > ols.first.tmp
+	mv ols.first.tmp ols.first
+fi
+if test $vflg -eq 1 ;then
+	cat ols.first | grep -E -v $varg > ols.first.tmp
+	mv ols.first.tmp ols.first
+fi
+cat ols.first | while read var ;do echo '\033[01;34m'${var}'\033[0;39m' >> ols1.out ;done
+if test -f ols1.out ;then
+	ols1line=$(cat ols1.out | wc -l)
+	if test $ols1line -gt 15 ;then
+		cat ols1.out | sed -ne '1,15p' | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.1
+		cat ols1.out | sed -ne '16,$p' | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.f
+	fi
+	if test $ols1line -gt 30 ;then
+		#cat ols1.out | head -30 | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.1
+		cat ols1.out | sed -ne '16,30p' | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.2
+		cat ols1.out | sed -ne '31,$p' | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.f
+	fi
+	if test $ols1line -gt 45 ;then
+		#cat ols1.out | head -30 | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.1
+		cat ols1.out | sed -ne '31,45p' | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.3
+		cat ols1.out | sed -ne '46,$p' | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.f
+	fi
+	if test $ols1line -gt 60 ;then
+		#cat ols1.out | head -30 | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.1
+		cat ols1.out | sed -ne '46,60p' | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.4
+		cat ols1.out | sed -ne '61,$p' | while read var ;do echo '\033[01;34m'$var'\033[0;39m' ;done > ols1.out.f
+	fi
+fi
+
+ls -CF1 | grep -E '\*$' | sed -E 's/^(.*)./\1/g' > ols.first
+if test $gflg -eq 1 ;then
+	cat ols.first | grep -E $garg > ols.first.tmp
+	mv ols.first.tmp ols.first
+fi
+if test $vflg -eq 1 ;then
+	cat ols.first | grep -E -v $varg > ols.first.tmp
+	mv ols.first.tmp ols.first
+fi
+cat ols.first | while read var ;do echo '\033[01;32m'$var'\033[0;39m' | grep -E -e '.*' >> ols2.out ;done
+if test -f ols2.out ;then
+	ols2line=$(cat ols2.out | wc -l)
+	if test $ols2line -gt 15 ;then
+		cat ols2.out | sed -ne '1,15p' | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.1
+		cat ols2.out | sed -ne '16,$p' | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.f
+	fi
+	if test $ols2line -gt 30 ;then
+		#cat ols2.out | head -30 | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.1
+		cat ols2.out | sed -ne '16,30p' | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.2
+		cat ols2.out | sed -ne '31,$p' | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.f
+	fi
+	if test $ols2line -gt 45 ;then
+		#cat ols2.out | head -30 | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.1
+		cat ols2.out | sed -ne '31,45p' | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.3
+		cat ols2.out | sed -ne '46,$p' | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.f
+	fi
+	if test $ols2line -gt 60 ;then
+		#cat ols2.out | head -30 | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.1
+		cat ols2.out | sed -ne '46,60p' | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.4
+		cat ols2.out | sed -ne '61,$p' | while read var ;do echo '\033[01;32m'$var'\033[0;39m' ;done > ols2.out.f
+	fi
+fi
+
+ls -CF1 | grep -E -v '\*$' | grep -E -v '\/$' > ols.first
+if test $gflg -eq 1 ;then
+	cat ols.first | grep -E $garg > ols.first.tmp
+	mv ols.first.tmp ols.first
+fi
+if test $vflg -eq 1 ;then
+	cat ols.first | grep -E -v $varg > ols.first.tmp
+	mv ols.first.tmp ols.first
+fi
+cat ols.first | while read var ;do echo $var | grep -E -e '.*' ;done >> ols3.out
+cat ols3.out | sed -E '/.*ols.*/d' > ols3.out.bk
+mv ols3.out.bk ols3.out
+if test -f ols3.out ;then
+	ols3line=$(cat ols3.out | wc -l)
+	if test $ols3line -gt 15 ;then
+		cat ols3.out | sed -ne '1,15p' | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.1
+		cat ols3.out | sed -ne '16,$p' | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.f
+	fi
+	if test $ols3line -gt 30 ;then
+		#cat ols3.out | head -30 | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.1
+		cat ols3.out | sed -ne '16,30p' | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.2
+		cat ols3.out | sed -ne '31,$p' | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.f
+	fi
+	if test $ols3line -gt 45 ;then
+		#cat ols3.out | head -30 | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.1
+		cat ols3.out | sed -ne '31,45p' | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.3
+		cat ols3.out | sed -ne '46,$p' | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.f
+	fi
+	if test $ols3line -gt 60 ;then
+		#cat ols3.out | head -30 | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.1
+		cat ols3.out | sed -ne '46,60p' | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.4
+		cat ols3.out | sed -ne '61,$p' | while read var ;do echo '\033[01;00m'$var'\033[0;39m' ;done > ols3.out.f
+	fi
+fi
+
+if test -f ols1.out.1 -a ! -f ols1.out.2 ;then
+	paste ols1.out.1 ols1.out.f | column -t > ols1.out
+fi
+if test -f ols1.out.2 -a ! -f ols1.out.3 ;then
+	paste ols1.out.1 ols1.out.2 | column -t > ols1.out
+	paste ols1.out ols1.out.f | column -t > ols1.out.bk
+	mv ols1.out.bk ols1.out
+fi
+if test -f ols1.out.3 -a ! -f ols1.out.4 ;then
+	paste ols1.out.1 ols1.out.2 | column -t > ols1.out
+	paste ols1.out ols1.out.3 | column -t > ols1.out.bk
+	paste ols1.out.bk ols1.out.f | column -t > ols1.out
+fi
+if test -f ols1.out.4 ;then
+	paste ols1.out.1 ols1.out.2 | column -t > ols1.out
+	paste ols1.out ols1.out.3 | column -t > ols1.out.bk
+	paste ols1.out.bk ols1.out.4 | column -t > ols1.out
+	paste ols1.out ols1.out.f | column -t > ols1.out.bk
+	mv ols1.out.bk ols1.out
+fi
+
+if test -f ols2.out.1 -a ! -f ols2.out.2 ;then
+	paste ols2.out.1 ols2.out.f | column -t > ols2.out
+fi
+if test -f ols2.out.2 -a ! -f ols2.out.3 ;then
+	paste ols2.out.1 ols2.out.2 | column -t > ols2.out
+	paste ols2.out ols2.out.f | column -t > ols2.out.bk
+	mv ols2.out.bk ols2.out
+fi
+if test -f ols2.out.3 -a ! -f ols2.out.4 ;then
+	paste ols2.out.1 ols2.out.2 | column -t > ols2.out
+	paste ols2.out ols2.out.3 | column -t > ols2.out.bk
+	paste ols2.out.bk ols2.out.f | column -t > ols2.out
+fi
+if test -f ols2.out.4 ;then
+	paste ols2.out.1 ols2.out.2 | column -t > ols2.out
+	paste ols2.out ols2.out.3 | column -t > ols2.out.bk
+	paste ols2.out.bk ols2.out.4 | column -t > ols2.out
+	paste ols2.out ols2.out.f | column -t > ols2.out.bk
+	mv ols2.out.bk ols2.out
+fi
+
+if test -f ols3.out.1 -a ! -f ols3.out.2 ;then
+	paste ols3.out.1 ols3.out.f | column -t > ols3.out
+fi
+if test -f ols3.out.2 -a ! -f ols3.out.3 ;then
+	paste ols3.out.1 ols3.out.2 | column -t > ols3.out
+	paste ols3.out ols3.out.f | column -t > ols3.out.bk
+	mv ols3.out.bk ols3.out
+fi
+if test -f ols3.out.3 -a ! -f ols3.out.4 ;then
+	paste ols3.out.1 ols3.out.2 | column -t > ols3.out
+	paste ols3.out ols3.out.3 | column -t > ols3.out.bk
+	paste ols3.out.bk ols3.out.f | column -t > ols3.out
+fi
+if test -f ols3.out.4 ;then
+	paste ols3.out.1 ols3.out.2 | column -t > ols3.out
+	paste ols3.out ols3.out.3 | column -t > ols3.out.bk
+	paste ols3.out.bk ols3.out.4 | column -t > ols3.out
+	paste ols3.out ols3.out.f | column -t > ols3.out.bk
+	mv ols3.out.bk ols3.out
+fi
+
+if test -f ols1.out ;then
+	cat ols1.out
+fi
+if test -f ols2.out ;then
+	cat ols2.out
+fi
+if test -f ols3.out ;then
+	cat ols3.out
+fi
+
+allrm 'ols.first ols1.out ols1.out.1 ols1.out.2 ols1.out.3 ols1.out.4 ols1.out.f ols2.out ols2.out.1 ols2.out.2 ols2.out.3 ols2.out.4 ols2.out.f ols3.out ols3.out.1 ols3.out.2 ols3.out.3 ols3.out.4 ols3.out.f'

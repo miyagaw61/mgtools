@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if test $# -eq 1 ;then
+	cat $1 | perl -pe 's/.*?\d\dm(.*).\[/\1/g' | perl -pe 's/(.*)\d.\d\dm/\1/g'
+	exit 0
+fi
+
+for arg in $@ ;do
+	echo $arg | perl -pe 's/.*?\d\dm(.*).\[/\1/g' | perl -pe 's/(.*)\d.\d\dm/\1/g'
+done
+

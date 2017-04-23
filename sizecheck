@@ -1,0 +1,20 @@
+#!/bin/sh
+hflg=0
+while getopts h opt ;do
+	case $opt in
+		h)hflg=1;;
+	esac
+done
+
+if [ $hflg -eq 1 ]; then
+	echo 'Usage: sizecheck $check_path $out_file'
+	exit 0
+fi
+
+du -h --max-depth 1 $1 > $2
+cat $2 | grep -E '^([0-9]|.){1,5}G' | sort -r -n > ~/G.t
+cat $2 | grep -E '^([0-9]|.){1,5}M' | sort -r -n > ~/M.t
+cat $2 | grep -E '^([0-9]|.){1,5}K' | sort -r -n > ~/K.t
+cat ~/G.t > $2
+cat ~/M.t >> $2
+cat ~/K.t >> $2

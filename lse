@@ -1,0 +1,423 @@
+#!/bin/sh
+
+usedFile='lse.tmp'
+allrm $usedFile
+
+hflg=0
+dflg=0
+xflg=0
+oflg=0
+nflg=1
+aflg=0
+gflg=0
+
+while getopts hdxoag: opt ;do
+	case $opt in
+		h)hflg=1;nflg=0;;
+		d)dflg=1;nflg=0;;
+		x)xflg=1;nflg=0;;
+		o)oflg=1;nflg=0;;
+		a)aflg=1;;
+		g)gflg=1;garg=$OPTARG;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+if test $hflg -eq 1 ;then
+	echo "Usage: lse [option] [clm_num(default: 3)]
+[+]UsageOptions:
+   h: help
+   d: dir
+   x: exe
+   o: others
+   a: all
+   g: grep [\$1: arg]"
+	allrm $usedFile
+	exit 0
+fi
+
+
+args=$@
+if test $# -eq 0 ;then
+	maxclm=3
+else
+	maxclm=$1
+	if test "$(echo $1 | grep '/')" ;then
+		cd $1
+		maxclm=3
+	fi
+fi
+
+if test $nflg -eq 0 ;then
+	count=1
+fi
+
+allrm ~/bin/numcd
+
+if test $aflg -eq 1 -a $nflg -eq 1 ;then
+	count=1
+	allrm ~/bin/numcd
+	if test $gflg -eq 0 ;then
+		aflg=1
+		dflg=1
+		xflg=1
+		oflg=1
+		allrm $usedFile
+	else
+		aflg=1
+		dflg=1
+		xflg=1
+		oflg=1
+		allrm $usedFile
+	fi
+fi
+
+if test $nflg -eq 1 ;then
+	count=1
+	allrm ~/bin/numcd
+	if test $gflg -eq 0 ;then
+		dflg=1
+		xflg=1
+		oflg=1
+		allrm $usedFile
+	else 
+		dflg=1
+		xflg=1
+		oflg=1
+		allrm $usedFile
+	fi
+fi
+
+if test $dflg -eq 1 ;then
+	dir=$(ls -1F | egrep '\/$' | perl -pe 's@\/@@g')
+	if test $aflg -eq 1 ;then
+		dir=$(ls -a1F | egrep '\/$' | perl -pe 's@\/@@g')
+	fi
+	###
+	i=1
+	max=1
+	for var in $dir ;do
+		tmp=$(echo -n $var | wc -m)
+		if test $tmp -gt $max ;then
+			max=$tmp
+		fi
+	done
+	max=$((${max}*4))
+	max=$((${max}+4*6))
+	tab=$((${max}/4))
+	if test $gflg -eq 1 ;then
+		for var in $dir ;do
+			if test $((${i} % ${maxclm})) -eq 0 ;then
+				if test "$(echo $var | grep $garg)" ;then
+					i=0
+					if test ! $maxclm -eq 1 ;then
+						echo -n "\033[1000D"
+					fi
+					tmp=$((${tab}*(${maxclm}-1)))
+					if test ! $maxclm -eq 1 ;then
+						echo -n "\033["${tmp}"C"
+					fi
+						if test ! $maxclm -eq 1 ;then
+							cecho -r -f -n "[${count}]"
+							echo "${count}: cd $(pwd)/${var}" >> ~/bin/numcd
+						fi
+					cecho -b -f $var | grep $garg
+				fi
+			else
+				if test "$(echo $var | grep $garg)" ;then
+					if test ! $maxclm -eq 1 ;then
+						echo -n "\033[1000D"
+					fi
+					if test ! $maxclm -eq 1 ;then
+						if test $((${i}%${maxclm})) -ge 2 ;then
+							echo -n "\033["$((${tab}*(${i}%${maxclm}-1)))"C"
+						fi
+					fi
+						if test ! $maxclm -eq 1 ;then
+							cecho -r -f -n "[${count}]"
+							echo "${count}: cd $(pwd)/${var}" >> ~/bin/numcd
+						fi
+					cecho -b -f -n $var | grep $garg | perl -pe 's@\n@@g'
+				fi
+			fi
+			if test "$(echo $var | grep $garg)" ;then
+				i=$((${i}+1))
+				count=$((${count}+1))
+			fi
+		done
+		if test ! $((${i}%${maxclm})) -eq 1 ;then
+			if test ! $maxclm -eq 1 ;then
+				echo ''
+			fi
+		fi
+	else
+		for var in $dir ;do
+			if test $((${i} % ${maxclm})) -eq 0 ;then
+				i=0
+				if test ! $maxclm -eq 1 ;then
+					echo -n "\033[1000D"
+				fi
+				tmp=$((${tab}*(${maxclm}-1)))
+				if test ! $maxclm -eq 1 ;then
+					echo -n "\033["${tmp}"C"
+				fi
+				if test ! $maxclm -eq 1 ;then
+					cecho -r -f -n "[${count}]"
+					echo "${count}: cd $(pwd)/${var}" >> ~/bin/numcd
+				fi
+				cecho -b -f $var
+			else
+				if test ! $maxclm -eq 1 ;then
+					echo -n "\033[1000D"
+				fi
+				if test $((${i}%${maxclm})) -ge 2 ;then
+					if test ! $maxclm -eq 1 ;then
+						echo -n "\033["$((${tab}*(${i}%${maxclm}-1)))"C"
+					fi
+				fi
+				if test ! $maxclm -eq 1 ;then
+					cecho -r -f -n "[${count}]"
+					echo "${count}: cd $(pwd)/${var}" >> ~/bin/numcd
+				fi
+				cecho -b -f -n $var
+			fi
+			i=$((${i}+1))
+			count=$((${count}+1))
+		done
+		if test ! $((${i}%${maxclm})) -eq 1 ;then
+			if test ! $maxclm -eq 1 ;then
+				echo ''
+			fi
+		fi
+	fi
+	###
+fi
+
+if test $xflg -eq 1 ;then
+	dir=$(ls -1F | egrep '\/$')
+	if test $aflg -eq 1 ;then
+		dir=$(ls -a1F | egrep '\/$')
+	fi
+	others=$(ls -1F | egrep -v '\*$' | egrep -v '\/$' | perl -pe 's/.*\ (.*)/\1/g')
+	if test $aflg -eq 1 ;then
+		others=$(ls -a1F | egrep -v '\*$' | egrep -v '\/$' | perl -pe 's/.*\ (.*)/\1/g')
+	fi
+	allrm lse.tmp
+	for arg in $dir ;do
+		echo $arg >> lse.tmp
+	done
+	for arg in $others ;do
+		echo $arg >> lse.tmp
+	done
+	if test -e lse.tmp ;then
+		exe=$(ls -1F | perl -pe 's/\*//g' | grep -w -v -f lse.tmp | perl -pe 's/.*lse.tmp.*//g')
+	else
+		exe=$(ls -1)
+	fi
+	###
+	i=1
+	max=1
+	for var in $exe ;do
+		tmp=$(echo -n $var | wc -m)
+		if test $tmp -gt $max ;then
+			max=$tmp
+		fi
+	done
+	max=$((${max}*4))
+	max=$((${max}+4*6))
+	tab=$((${max}/4))
+	if test $gflg -eq 1 ;then
+		for var in $exe ;do
+			if test $((${i} % ${maxclm})) -eq 0 ;then
+				if test "$(echo $var | grep $garg)" ;then
+					i=0
+					if test ! $maxclm -eq 1 ;then
+						echo -n "\033[1000D"
+					fi
+					tmp=$((${tab}*(${maxclm}-1)))
+					if test ! $maxclm -eq 1 ;then
+						echo -n "\033["${tmp}"C"
+					fi
+						if test ! $maxclm -eq 1 ;then
+							cecho -r -f -n "[${count}]"
+							echo "${count}: $(pwd)/${var}" >> ~/bin/numcd
+						fi
+					cecho -g -f $var | grep $garg
+				fi
+			else
+				if test "$(echo $var | grep $garg)" ;then
+					if test ! $maxclm -eq 1 ;then
+						echo -n "\033[1000D"
+					fi
+					if test ! $maxclm -eq 1 ;then
+						if test $((${i}%${maxclm})) -ge 2 ;then
+							echo -n "\033["$((${tab}*(${i}%${maxclm}-1)))"C"
+						fi
+					fi
+						if test ! $maxclm -eq 1 ;then
+							cecho -r -f -n "[${count}]"
+							echo "${count}: $(pwd)/${var}" >> ~/bin/numcd
+						fi
+					cecho -g -f -n $var | grep $garg | perl -pe 's@\n@@g'
+				fi
+			fi
+			if test "$(echo $var | grep $garg)" ;then
+				i=$((${i}+1))
+				count=$((${count}+1))
+			fi
+		done
+		if test ! $((${i}%${maxclm})) -eq 1 ;then
+			if test ! $maxclm -eq 1 ;then
+				echo ''
+			fi
+		fi
+	else
+		for var in $exe ;do
+			if test $((${i} % ${maxclm})) -eq 0 ;then
+				i=0
+				if test ! $maxclm -eq 1 ;then
+					echo -n "\033[1000D"
+				fi
+				tmp=$((${tab}*(${maxclm}-1)))
+				if test ! $maxclm -eq 1 ;then
+					echo -n "\033["${tmp}"C"
+				fi
+				if test ! $maxclm -eq 1 ;then
+					cecho -r -f -n "[${count}]"
+					echo "${count}: $(pwd)/${var}" >> ~/bin/numcd
+				fi
+				cecho -g -f $var
+			else
+				if test ! $maxclm -eq 1 ;then
+					echo -n "\033[1000D"
+				fi
+				if test $((${i}%${maxclm})) -ge 2 ;then
+					if test ! $maxclm -eq 1 ;then
+						echo -n "\033["$((${tab}*(${i}%${maxclm}-1)))"C"
+					fi
+				fi
+				if test ! $maxclm -eq 1 ;then
+					cecho -r -f -n "[${count}]"
+					echo "${count}: $(pwd)/${var}" >> ~/bin/numcd
+				fi
+				cecho -g -f -n $var
+			fi
+			i=$((${i}+1))
+			count=$((${count}+1))
+		done
+		if test ! $((${i}%${maxclm})) -eq 1 ;then
+			if test ! $maxclm -eq 1 ;then
+				echo ''
+			fi
+		fi
+	fi
+	###
+	allrm $usedFileList
+fi
+
+if test $oflg -eq 1 ;then
+	others=$(ls -1F | egrep -v '\*$' | egrep -v '\/$' | perl -pe 's/.*\ (.*)/\1/g' | perl -pe 's@.*lse\.tmp.*@@g')
+	if test $aflg -eq 1 ;then
+		others=$(ls -a1F | egrep -v '\*$' | egrep -v '\/$' | perl -pe 's/.*\ (.*)/\1/g' | perl -pe 's@.*lse\.tmp.*@@g')
+	fi
+	###
+	i=1
+	max=1
+	for var in $others ;do
+		tmp=$(echo -n $var | wc -m)
+		if test $tmp -gt $max ;then
+			max=$tmp
+		fi
+	done
+	max=$((${max}*4))
+	max=$((${max}+4*6))
+	tab=$((${max}/4))
+	if test $gflg -eq 1 ;then
+		for var in $others ;do
+			if test $((${i} % ${maxclm})) -eq 0 ;then
+				if test "$(echo $var | grep $garg)" ;then
+					i=0
+					if test ! $maxclm -eq 1 ;then
+						echo -n "\033[1000D"
+					fi
+					tmp=$((${tab}*(${maxclm}-1)))
+				    if test ! $maxclm -eq 1 ;then
+				    	echo -n "\033["${tmp}"C"
+				    fi
+						if test ! $maxclm -eq 1 ;then
+							cecho -r -f -n "[${count}]"
+							echo "${count}: cat $(pwd)/${var}" >> ~/bin/numcd
+						fi
+					echo $var | grep $garg
+				fi
+			else
+				if test "$(echo $var | grep $garg)" ;then
+					if test ! $maxclm -eq 1 ;then
+						echo -n "\033[1000D"
+					fi
+					if test ! $maxclm -eq 1 ;then
+						if test $((${i}%${maxclm})) -ge 2 ;then
+							echo -n "\033["$((${tab}*(${i}%${maxclm}-1)))"C"
+						fi
+					fi
+						if test ! $maxclm -eq 1 ;then
+							cecho -r -f -n "[${count}]"
+							echo "${count}: cat $(pwd)/${var}" >> ~/bin/numcd
+						fi
+					echo -n $var | grep $garg | perl -pe 's@\n@@g'
+				fi
+			fi
+			if test "$(echo $var | grep $garg)" ;then
+				i=$((${i}+1))
+				count=$((${count}+1))
+			fi
+		done
+		if test ! $((${i}%${maxclm})) -eq 1 ;then
+			if test ! $maxclm -eq 1 ;then
+				echo ''
+			fi
+		fi
+	else
+		for var in $others ;do
+			if test $((${i} % ${maxclm})) -eq 0 ;then
+				i=0
+				if test ! $maxclm -eq 1 ;then
+					echo -n "\033[1000D"
+				fi
+				tmp=$((${tab}*(${maxclm}-1)))
+				if test ! $maxclm -eq 1 ;then
+					echo -n "\033["${tmp}"C"
+				fi
+				if test ! $maxclm -eq 1 ;then
+					cecho -r -f -n "[${count}]"
+					echo "${count}: cat $(pwd)/${var}" >> ~/bin/numcd
+				fi
+				echo $var
+			else
+				if test ! $maxclm -eq 1 ;then
+					echo -n "\033[1000D"
+				fi
+				if test $((${i}%${maxclm})) -ge 2 ;then
+					if test ! $maxclm -eq 1 ;then
+						echo -n "\033["$((${tab}*(${i}%${maxclm}-1)))"C"
+					fi
+				fi
+				if test ! $maxclm -eq 1 ;then
+					cecho -r -f -n "[${count}]"
+					echo "${count}: cat $(pwd)/${var}" >> ~/bin/numcd
+				fi
+				echo -n $var
+			fi
+			i=$((${i}+1))
+			count=$((${count}+1))
+		done
+		if test ! $((${i}%${maxclm})) -eq 1 ;then
+			if test ! $maxclm -eq 1 ;then
+				echo ''
+			fi
+		fi
+	fi
+	###
+fi
+
+allrm $usedFile

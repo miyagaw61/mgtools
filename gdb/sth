@@ -1,0 +1,10 @@
+define sth
+	printf "stack length : "
+	p $ebp-$esp
+	printf "         int : "
+	p/d $
+	printf "      wx Num : "
+	p/d 1 + $/4
+	set $i = $+10
+end
+

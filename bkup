@@ -1,0 +1,78 @@
+#!/bin/sh
+
+usedFile='nowbackuping.tmp gauge.tmp gauge2.tmp'
+allrm $usedFile
+
+echo '[/]now backing up ... ' > nowbackuping.tmp
+echo '[-]now backing up ... ' > nowbackuping.tmp
+echo '[\\\]now backing up ... ' > nowbackuping.tmp
+echo '[|]now backing up ... ' > nowbackuping.tmp
+echo '[/]now backing up ... ' > nowbackuping.tmp
+echo '[-]now backing up ... ' >> nowbackuping.tmp
+echo '[\\\]Now backing up ... ' >> nowbackuping.tmp
+echo '[|]nOw backing up ... ' >> nowbackuping.tmp
+echo '[/]noW backing up ... ' >> nowbackuping.tmp
+echo '[-]now backing up ... ' >> nowbackuping.tmp
+echo '[\\\]now Backing up ... ' >> nowbackuping.tmp
+echo '[|]now bAcking up ... ' >> nowbackuping.tmp
+echo '[/]now baCking up ... ' >> nowbackuping.tmp
+echo '[-]now bacKing up ... ' >> nowbackuping.tmp
+echo '[\\\]now backIng up ... ' >> nowbackuping.tmp
+echo '[|]now backiNg up ... ' >> nowbackuping.tmp
+echo '[/]now backinG up ... ' >> nowbackuping.tmp
+echo '[-]now backing up ... ' >> nowbackuping.tmp
+echo '[\\\]now backing Up ... ' >> nowbackuping.tmp
+echo '[|]now backing uP ... ' >> nowbackuping.tmp
+
+#echo '[                    ]' > gauge.tmp
+#echo '[>                   ]' >> gauge.tmp
+#echo '[=>                  ]' >> gauge.tmp
+#echo '[==>                 ]' >> gauge.tmp
+#echo '[===>                ]' >> gauge.tmp
+#echo '[====>               ]' >> gauge.tmp
+#echo '[=====>              ]' >> gauge.tmp
+#echo '[======>             ]' >> gauge.tmp
+#echo '[=======>            ]' >> gauge.tmp
+#echo '[========>           ]' >> gauge.tmp
+#echo '[=========>          ]' >> gauge.tmp
+#echo '[==========>         ]' >> gauge.tmp
+#echo '[===========>        ]' >> gauge.tmp
+#echo '[============>       ]' >> gauge.tmp
+#echo '[=============>      ]' >> gauge.tmp
+#echo '[==============>     ]' >> gauge.tmp
+#echo '[===============>    ]' >> gauge.tmp
+#echo '[================>   ]' >> gauge.tmp
+#echo '[=================>  ]' >> gauge.tmp
+#echo '[==================> ]' >> gauge.tmp
+#echo '[===================>]' >> gauge.tmp
+
+if test $# -eq 0 ;then
+	simple_bk &
+fi
+
+if test ! $# -eq 0 ;then
+	for arg in $@ ;do
+		if test $arg = "./" ;then
+			arg=$(pwd)
+		fi
+		if test "$(echo $arg | grep -e bin -e ctf -e dc -e tmp -e bashrc)" ;then
+			simple_bk "$arg" &
+		else
+			echo You can use \[bin/ctf/dc/tmp/bashrc\].
+			exit 0
+		fi
+	done
+fi
+
+while test "$(ps x | grep /bin/simple_bk | perl -pe 's/.*grep.*//g')" ;do
+	cat nowbackuping.tmp | while read var ;do
+		if test -e gauge2.tmp ;then
+			writedel "$var" "$(cat gauge2.tmp)"
+		fi
+	done
+done
+del
+echo '[+]BACKING UP FINISHED.'
+
+allrm $usedFile
+

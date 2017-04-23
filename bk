@@ -1,0 +1,67 @@
+#!/bin/sh
+echo -n "BackUp"
+perl -MTime::HiRes -e 'Time::HiRes::sleep(0.1)'
+echo -n '.'
+perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
+echo -n '.'
+perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
+echo -n '.'
+rm -rf /mnt/windows/bk.bk/
+cp -a /mnt/windows/bk/ /mnt/windows/bk.bk/
+echo -n '.'
+perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
+echo -n '.'
+rm -rf /bk.bk/
+cp -a /bk/ /bk.bk/
+echo -n '.'
+perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
+echo -n '.'
+rm -r /bk/
+rm -r /mnt/windows/bk/
+mkdir /bk/
+echo -n '.'
+perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
+echo -n '.'
+mkdir /bk/rc/
+mkdir /bk/neosnippets/
+cp -a ~/bin/ /bk/
+echo -n '.'
+perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
+echo -n '.'
+cp -a ~/ctf/ /bk/
+echo -n '.'
+perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
+echo -n '.'
+cp -a ~/Desktop/ /bk/
+cp -a ~/Documents/ /bk/
+cp -a ~/bin/ /bk/
+echo -n '.'
+perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
+echo -n '.'
+cp -a ~/tmp/ /bk/
+echo -n '.'
+perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
+echo -n '.'
+cat /etc/vim/vimrc > /bk/rc/vimrc
+echo -n '.'
+perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
+echo -n '.'
+cp -a ~/.bashrc /bk/rc/bashrc
+echo -n '.'
+perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
+echo -n '.'
+cp -a ~/.gdbinit /bk/rc/gdbinit
+cp -a ~/peda/ /bk/
+echo -n '.'
+perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
+echo -n '.'
+cp -a ~/.vim/bundle/neosnippet-snippets/neosnippets/* /bk/neosnippets/
+echo -n '.'
+perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
+echo -n '.'
+cp -a /bk/ /mnt/windows/
+echo -n '.'
+perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
+echo -n '.'
+
+echo FINISH!!!

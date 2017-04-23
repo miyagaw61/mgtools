@@ -1,0 +1,24 @@
+#!/bin/sh
+
+hflg=0
+fflg=0
+
+while getopts hf: opt ;do
+	case $opt in
+		h)hflg=1;;
+		f)fflg=1;farg=$OPTARG;;
+esac
+done
+shift $(($OPTIND - 1))
+
+if test $hflg -eq 1 ;then
+	echo 'Usage: libcstrings [option] [strings]\ndefault: defalut_libc\n-f [libc_name]: use_notDefault_libc\n'
+	exit 0
+fi
+
+if test $fflg -eq 1 ;then
+	strings -tx $farg | grep $1
+	exit 0
+fi
+
+strings -tx /lib/i386-linux-gnu/libc.so.6 | grep $1

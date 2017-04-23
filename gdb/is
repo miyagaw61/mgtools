@@ -1,0 +1,3 @@
+define is
+	set $i = $arg0
+end

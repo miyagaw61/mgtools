@@ -1,0 +1,15 @@
+#!/bin/bash
+
+hflg=0
+while getopts h opt ;do
+	case $opt in
+		h)hflg=1;;
+	esac
+done
+
+if [ $hflg -eq 1 ]; then
+	echo 'Usage: middle [file_name] [start_line] [end_line]'
+	exit 0
+fi
+
+head -n $3 $1 | tail -n $(($3 - $2 + 1))

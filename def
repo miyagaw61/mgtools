@@ -1,0 +1,18 @@
+#!/bin/sh
+
+hflg=0
+
+while getopts h opt ;do
+	case $opt in
+		h)hflg=1;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+if test $hflg -eq 1 ;then
+	echo "Usage: def \$script_name"
+	exit 0
+fi
+
+cp -a ~/bin/default.sh ./$1
+

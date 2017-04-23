@@ -1,0 +1,84 @@
+#!/bin/sh
+
+allrm 'calc.arg calc.b calc.result calc.result.bk'
+
+xflg=0
+bflg=0
+fflg=0
+
+while getopts hxbif opt ;do
+	case $opt in
+		h)echo 'Usage: calc [option] [expr]\ndefault: to_int\n-x: to_hex\n-b: to_bin\n-i: intaractive_mode'; exit 0;;
+		x)xflg=1;;
+		b)bflg=1;;
+		i)python ~/bin/calc2.py -i ; exit 0 ;;
+		f)fflg=1;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+echo $1 > calc.arg
+
+xnum=$(cat calc.arg | grep -o '0x' | wc -l)
+i=0
+while test $xnum -gt $i ;do
+	arg=$(cat calc.arg | sed -E 's/.*(0x[a-z0-9]*).*/\1/g')
+	after=$(rax2 $arg)
+	sed -E 's/'$arg'/'$after'/g' -i calc.arg
+	i=$(($i+1))
+done
+
+bnum=$(cat calc.arg | grep -E -o '[^x](0|1)+b' | wc -l)
+i=0
+while test $bnum -gt $i ;do
+	cat calc.arg | grep -E -o '[0-1]+b' > calc.b
+	cat calc.b | while read var ;do 
+		after=$(rax2 $var)
+		after=$(rax2 $after)
+		sed -E 's/'$var'/'$after'/g' -i calc.arg 
+	done
+	i=$(($i+1))
+done
+
+if test $(cat calc.arg | grep -P '[^(\+|\-|\*|\/)]*(\||\^|\&)[^(\+|\-|\*|\/)]*') ;then
+	cat calc.arg | grep -P -o '[^(\+|\-|\*|\/)]*(\||\^|\&)[^(\+|\-|\*|\/)]*' | while read var ;do
+		after=$(($var))
+		var=$(echo $var | sed -E 's@\|@\\|@g')
+		var=$(echo $var | sed -E 's@\^@\\^@g')
+		var=$(echo $var | sed -E 's@\&@\\&@g')
+		sed -E 's/'$var'/'$after'/g' -i calc.arg
+	done
+fi
+
+if test $fflg -eq 1 ;then
+	python ~/bin/calc.py $(cat calc.arg) > calc.result
+else
+	python ~/bin/calcint.py $(cat calc.arg) > calc.result
+fi
+
+if test $xflg -eq 1 ;then
+	rax2 $(cat calc.result) > calc.result.bk
+	mv calc.result.bk calc.result
+	cat calc.result
+	allrm 'calc.arg calc.b calc.result calc.result.bk'
+	exit 0
+fi
+
+if test $bflg -eq 1 ;then
+	rax2 'b'$(cat calc.result) > calc.result.bk
+	mv calc.result.bk calc.result
+	cat calc.result
+	allrm 'calc.arg calc.b calc.result calc.result.bk'
+	exit 0
+fi
+
+#if test $(echo $1 | grep -E '\.') ;then
+#	python ~/bin/calc.py $(cat calc.arg) > calc.result
+#	cat calc.result
+#	exit 0
+#fi
+
+cat calc.result
+
+allrm 'calc.arg calc.b calc.result calc.result.bk'
+

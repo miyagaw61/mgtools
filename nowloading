@@ -1,0 +1,26 @@
+#!/bin/sh
+
+allrm $usedFile
+file='nowloading.tmp'
+usedFile=$file
+echo '[/]nowloading...' > nowloading.tmp
+echo '[-]nowloading...' >> nowloading.tmp
+echo '[\\\]Nowloading...' >> nowloading.tmp
+echo '[|]nOwloading...' >> nowloading.tmp
+echo '[/]noWloading...' >> nowloading.tmp
+echo '[-]nowLoading...' >> nowloading.tmp
+echo '[\\\]nowlOading...' >> nowloading.tmp
+echo '[|]nowloAding...' >> nowloading.tmp
+echo '[/]nowloaDing...' >> nowloading.tmp
+echo '[-]nowloadIng...' >> nowloading.tmp
+echo '[\\\]nowloadiNg...' >> nowloading.tmp
+echo '[|]nowloadinG...' >> nowloading.tmp
+
+i=5
+while test ! $i -eq 0 ;do
+	cat $file | while read var ;do
+		writedel $var
+	done
+	i=$((${i}-1))
+done
+allrm $usedFile

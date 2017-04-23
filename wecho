@@ -1,0 +1,40 @@
+#!/bin/sh
+
+hflg=0
+nflg=0
+
+if test $# -eq 0 ;then
+	hflg=1
+fi
+
+while getopts hn opt ;do
+	case $opt in
+		h)hflg=1;;
+		n)nflg=1;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+if test $hflg -eq 1 ;then
+	echo "Usage: wecho [option] [arg]
+[+]Usage Option:
+   n: not enter"
+	exit 0
+fi
+
+n='\n'
+if test $nflg -eq 1 ;then
+	n=''
+fi
+
+if test "$n" ;then
+	for arg in "$@" ;do
+		echo -n "$arg" | perl -pe 's@\033\[\d+;\d+m@@g' | perl -pe 's@\033\[39m@@g' | perl -pe 's@\033\[\d+[A-Z]@@g';echo ''
+	done
+elif test -z "$n" ;then
+	for arg in "$@" ;do
+		echo -n "$arg" | perl -pe 's@\033\[\d+;\d+m@@g' | perl -pe 's@\033\[39m@@g' | perl -pe 's@\033\[\d+[A-Z]@@g'
+	done
+fi
+
+

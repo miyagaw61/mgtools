@@ -1,0 +1,11 @@
+#!/bin/sh
+
+while getopts h opt ;do
+	case $opt in
+		h)echo 'Usage: nsed [input_file] [sed_pattern]'; exit 0 ;;
+	esac
+done
+
+sed -E 's!s@.*#!'$2' #!g' -i ~/bin/nsed.sh
+cat $1 | sed -f ~/bin/nsed.sh
+

@@ -1,0 +1,3 @@
+define logoff
+	set logging off
+end

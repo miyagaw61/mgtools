@@ -1,0 +1,11 @@
+define sti
+	set $count = $i
+	if $i == 0
+		set $count = $i+1
+	end
+	set $c = 0
+	while $c < $count
+		x/i ($esp+$arg0*4-4+$c*4)
+		set $c = $c + 1
+	end
+end

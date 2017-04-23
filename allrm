@@ -1,0 +1,9 @@
+#!/bin/sh
+
+for arg in $@ ;do
+	if test -f $arg ;then
+		rm -rf $arg
+	fi
+done
+
+

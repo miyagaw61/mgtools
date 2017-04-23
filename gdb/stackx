@@ -1,0 +1,22 @@
+define stackx
+	printf "stack length : "
+	p $ebp-$esp
+	printf "         int : "
+	p/d $
+	printf "      wx Num : "
+	p/d 1 + $/4
+	set $i = $
+	set $tmpi = 10000
+	set logging overwrite on
+	set logging on /tmp/stacklog
+	
+	printf "var i = "
+	p/d $i
+
+	set $c = 0
+	while $c < $tmpi
+		x/wx ($esp+$c*4)
+		set $c = $c + 1
+	end
+
+end

@@ -1,0 +1,17 @@
+#!/bin/sh
+for arg in $@ ;do
+	now=`pwd`
+	if test `echo $arg | grep '/'` ;then
+		location=${arg}
+		echo ue
+		arg=`basename ${arg}`
+		num=`grep -e ${now} -n ~/bin/cdir | sed -e 's/:.*//g' | tail -1`
+		sed -e ${num}d -i ~/bin/cdir
+	else
+		location=$now'/'$arg
+		num=`grep -e ${now} -n ~/bin/cdir | sed -e 's/:.*//g' | tail -1`
+		sed -e ${num}d -i ~/bin/cdir
+	fi
+done
+rm -r $location
+. ~/.bashrc

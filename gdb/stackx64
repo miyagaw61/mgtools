@@ -1,0 +1,13 @@
+define stackx64
+	printf "stack length : "
+	p $rbp-$rsp
+	printf "         int : "
+	p/d $
+	printf "      wx Num : "
+	p/d 1 + $/4
+	set $i = $+10
+	set logging overwrite on
+	set logging on /tmp/stacklog64
+	stx 1
+end
+

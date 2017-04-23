@@ -1,0 +1,13 @@
+#!/bin/sh
+hflg=0
+while getopts h opt ;do
+	case $opt in
+		h)hflg=1 ;;
+	esac
+done
+
+if test $hflg -eq 1 ;then
+	echo 'Usage: objd $file_name $pattern'
+	exit 0 
+fi
+objdump -M intel -d $1 | sed -E -n '/.*'$2'.*/,/^$/p'  

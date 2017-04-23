@@ -1,0 +1,180 @@
+alias a='. ~/bin/a'
+alias i='. ~/bin/i'
+alias bin='cd ~/bin'
+alias c='cd ~/ctf'
+alias ho='cd ~/hoge'
+alias ve='. ve'
+alias save='cat ~/bin/save'
+alias dt='cd ~/Desktop'
+alias dl='cd ~/Downloads'
+alias dc='cd ~/Documents'
+alias u='cd ~/'
+alias ro='cd /'
+alias momo='cd ~/ctf/momo'
+
+#add by aliasMkdir
+
+alias tmp='cd ~/tmp/'
+alias school='cd ~/hoge/school/'
+alias testabc='cd ~/hoge/tmp/testabc/'
+alias quqx='cd ~/hoge/tmp/quqx/'
+alias senkyo='cd ~/hoge/tmp/quqx/senkyo/'
+alias baz='cd ~/hoge/tmp/baz/'
+alias qux='cd ~/hoge/tmp/qux/'
+alias quux='cd ~/hoge/tmp/quux/'
+alias school='cd ~/hoge/tmp/school/'
+alias libcropgadget='cd ~/ctf/libcropgadget/'
+alias memolist='cd ~/memolist'
+alias snippets='cd ~/.vim/bundle/neosnippet-snippets/neosnippets'
+
+
+
+
+
+
+
+
+
+
+alias tmp='cd /home/miyagaw/tmp/'
+
+
+
+alias os='cd /home/miyagaw/bin/os/'
+alias c_lang='cd /home/miyagaw/bin/os/c_lang/'
+alias myprogram='cd /home/miyagaw/Documents/myprogram/'
+alias cLang='cd /home/miyagaw/bin/myprogram/cLang/'
+alias win='cd /mnt/windows/'
+alias clib='cd /home/miyagaw/bin/clib/'
+alias import='cd /home/miyagaw/bin/import/'
+alias os='cd /home/miyagaw/Documents/os/'
+alias mmactf2nd2016='cd /home/miyagaw/ctf/mmactf2nd2016/'
+alias alexctf='cd /home/miyagaw/ctf/alexctf/'
+alias trash='cd /home/miyagaw/trash/'
+alias evacuate='cd /home/miyagaw/evacuate'
+alias rasp='cd /home/miyagaw/tmp/rasp/'
+
+alias codegate2017='cd /home/miyagaw/ctf/codegate2017/'
+alias ipwiki='cd /home/miyagaw/ctf/momo/ipwiki/'
+
+alias trash='cd /home/miyagaw/trash/'
+alias typing='cd /home/miyagaw/Documents/typing'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+alias 1='cat /home/miyagaw/bin/cdir'
+alias 2='cat /home/miyagaw/bin/howtoVim.txt'
+alias 3='cat /home/miyagaw/bin/out'
+alias 4='cat /home/miyagaw/bin/shared'
+alias 5='cat /home/miyagaw/bin/tmp'
+alias 6='cat /home/miyagaw/bin/tmp2.code'
+alias 7='cat /home/miyagaw/bin/tmp2.sh'
+alias 8='cat /home/miyagaw/bin/tmp.txt'
+alias 9='cat /home/miyagaw/bin/txt01.tmp'
+alias 10='cat /home/miyagaw/bin/txt02.tmp'
+alias picoctf='cd /home/miyagaw/ctf/picoctf/'

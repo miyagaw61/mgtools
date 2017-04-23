@@ -1,0 +1,39 @@
+#!/bin/sh
+
+hflg=0
+fflg=0
+farg=0
+
+while getopts hf: opt ;do
+	case $opt in
+		h)hflg=1;;
+		f)fflg=1; farg=$OPTARG;;
+esac
+done
+
+if test $hflg -eq 1 ;then
+	echo 'Usage: tosc [option] expr\n -f [file_name]: use addr list'
+	exit 0
+fi
+
+if test $fflg -eq 1 ;then
+	cat $farg | while read var ;do echo $var | xargs tosc ;done | tr -d '\n'	
+	exit 0
+fi
+
+for i in $@; do
+if [ $(echo $i | grep -E '0x') ]; then
+	i=$(calc -x $i)
+
+	no1=$(echo $i | sed -E 's/^0x(..).*/\1/g')
+	no2=$(echo $i | sed -E 's/^0x..(..).*/\1/g')
+	no3=$(echo $i | sed -E 's/^0x....(..).*/\1/g')
+	no4=$(echo $i | sed -E 's/^0x......(..)/\1/g')
+	var='\x'$no4'\x'$no3'\x'$no2'\x'$no1
+	echo -n $var
+else
+	objdump -M intel -d $i | grep '^ ' | cut -f2 | perl -pe 's/(\w{2})\s+/\\x\1/g'
+fi
+done
+echo ''
+

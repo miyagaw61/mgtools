@@ -1,0 +1,54 @@
+#!/bin/sh
+
+hflg=0
+dflg=0
+xflg=0
+oflg=0
+aflg=0
+nflg=0
+
+while getopts hdxoa opt ;do
+	case $opt in
+		h)hflg=1;;
+		d)dflg=1;nflg=0;;
+		x)xflg=1;nflg=0;;
+		o)oflg=1;nflg=0;;
+		a)aflg=1;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+if test $hflg -eq 1 ;then
+	echo "Usage: lsr [option]
+[+]UsageOption:
+   d: dir
+   x: exe
+   o: others
+   a: all"
+	exit 0
+fi
+
+if test $dflg -eq 1 ;then
+	dir=$(getfile -d)
+fi
+
+if test $xflg -eq 1 ;then
+	exe=$(getfile -x)
+fi
+
+if test $oflg -eq 1 ;then
+	others=$(getfile -o)
+fi
+
+snecho ${dir}' '${exe}' '${others} | percol > ans.tmp
+if test "$(echo $dir | grep $(cat ans.tmp))" ;then
+	cd $(cat ans.tmp)
+	exec /bin/bash
+fi
+if test "$(echo $exe | grep $(cat ans.tmp))" ;then
+	cat ans.tmp | /bin/bash
+fi
+if test "$(echo $others | grep $(cat ans.tmp))" ;then
+	cat $(cat ans.tmp)
+fi
+

@@ -1,0 +1,23 @@
+#!/bin/sh
+
+hflg=0
+fflg=0
+
+while getopts hf: opt ;do
+	case $opt in
+		h)hflg=1;;
+		f)fflg=1;farg=$OPTARG;;
+	esac
+done
+
+if test $hflg -eq 1 ;then
+	echo 'Usage: pack [addr] / [-f file_name]'
+	exit 0
+fi
+
+if test $fflg -eq 1 ;then
+	cat $farg | while read var ;do echo $var | xargs pack ;done | tr -d '\n'
+	exit 0
+fi
+
+python ~/bin/pack.py $1

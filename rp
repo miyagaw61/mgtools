@@ -1,0 +1,37 @@
+#!/bin/sh
+
+while getopts h opt
+do
+	case ${opt} in
+		h)
+		echo ' $1 : filename\n $2 : pop_count\n a  : show_allropgadget'
+		exit 0 ;;
+	esac
+done
+
+rp++ -r 6 -f $1 --unique > fullropgadget
+
+if test $2 = '-a' ;then
+	echo '\033[0;34m#----popret----#\033[0;39m'
+	cat fullropgadget | while read var;do echo -e $var | grep -o -E 'pop' | wc -l  ;done | grep -n 1 | sed -E 's/^([0-9]*):.*/\1/' > num
+	cat num | while read var;do sed -n ${var}P fullropgadget ;done 
+	echo '\033[0;34m#----pop2ret----#\033[0;39m'
+	cat fullropgadget | while read var;do echo -e $var | grep -o -E 'pop' | wc -l  ;done | grep -n 2 | sed -E 's/^([0-9]*):.*/\1/' > num
+	cat num | while read var;do sed -n ${var}P fullropgadget ;done 
+	echo '\033[0;34m#----pop3ret----#\033[0;39m'
+	cat fullropgadget | while read var;do echo -e $var | grep -o -E 'pop' | wc -l  ;done | grep -n 3 | sed -E 's/^([0-9]*):.*/\1/' > num
+	cat num | while read var;do sed -n ${var}P fullropgadget ;done 
+	echo '\033[0;34m#----pop4ret----#\033[0;39m'
+	cat fullropgadget | while read var;do echo -e $var | grep -o -E 'pop' | wc -l  ;done | grep -n 4 | sed -E 's/^([0-9]*):.*/\1/' > num
+	cat num | while read var;do sed -n ${var}P fullropgadget ;done 
+	rm fullropgadget
+	rm num
+else
+	echo '\033[0;34m#----pop'$2'ret----#\033[0;39m'
+	rp++ -r 20 -f $1 > fullropgadget
+	cat fullropgadget | while read var;do echo $var | grep -o -E 'pop' | wc -l  ;done | grep -n $2 | sed -E 's/^([0-9]*):.*/\1/' > num
+	cat num | while read var;do sed -n ${var}P fullropgadget ;done 
+	rm fullropgadget
+	rm num
+fi
+

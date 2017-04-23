@@ -1,0 +1,15 @@
+#!/bin/sh
+hflg=0
+while getopts h opt ;do
+	case $opt in
+		h)hflg=1 ;;
+	esac
+done
+
+if [ $hflg -eq 1 ]; then
+	echo 'Usage: binsed [file_name] [before] [after] '
+	exit 0
+fi
+
+xxd -p $1 | sed -E -e 's/'$2'/'$3'/g' | xxd -r -p
+

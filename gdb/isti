@@ -1,0 +1,11 @@
+define isti
+	set $count = $i
+	if $i == 0
+		set $count = $i+1
+	end
+	set $i = 0
+	while $i < $count
+		x/i {int}($esp+$arg0*4-4+$i*4)
+		set $i = $i + 1
+	end
+end
