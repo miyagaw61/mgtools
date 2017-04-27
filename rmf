@@ -18,4 +18,4 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-rm $(f $1)
+rm -rf $(f $1)
