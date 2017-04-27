@@ -1,3 +1,0 @@
-#!/bin/sh
-rm ~/bin/shared
-shutdown -h now
