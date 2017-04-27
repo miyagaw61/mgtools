@@ -71,7 +71,7 @@ if test $fflg -eq 1 ;then
 	now=$(pwd)
 	arg=$(basename ${now})
 	git remote rm origin
-	git remote add origin https://github.com/miyagaw61/${arg}
+	git remote add origin https://github.com/miyagaw61/${arg}.git
 	sleep 0.5
 	git push origin master
 	exit 0
