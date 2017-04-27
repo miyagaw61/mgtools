@@ -1,0 +1,70 @@
+#!/bin/sh
+
+hflg=0
+aflg=0
+fflg=0
+mflg=0
+rflg=0
+pflg=0
+
+if test $# -eq 0 ;then
+	hflg=1
+fi
+
+while getopts haf:m:r:p opt ;do
+	case $opt in
+		h)hflg=1;;
+		a)aflg=1;;
+		f)fflg=1;farg=$OPTARG;;
+		m)mflg=1;marg=$OPTARG;;
+		r)rflg=1;rarg=$OPTARG;;
+		p)pflg=1;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+if test $hflg -eq 1 ;then
+	echo "Usage: egit [option]
+[+]UsageOption:
+   f [file]: git add [file]
+   m [comment]: git commit -m [comment]
+   r [tag/URI]: git remote add origin [tag/URI]
+   p: git push origin master"
+	exit 0
+fi
+
+if test $aflg -eq 1 ;then
+	git add .
+	git status
+	exit 0
+fi
+
+if test $fflg -eq 1 ;then
+	git add $farg
+	git status
+	exit 0
+fi
+
+if test $mflg -eq 1 ;then
+	git commit -m $marg
+	exit 0
+fi
+
+if test $rflg -eq 1 ;then
+	if test $rarg = "io" ;then
+		arg="https://github.com/miyagaw61/miyagaw61.github.io.git"
+	elif test $rarg = "miyagawtools" ;then
+		arg="https://github.com/miyagaw61/miyagawtools.git"
+	else
+		arg=$rarg
+	fi
+	git remote rm origin
+	git remote add origin $arg
+	exit 0
+fi
+
+if test $pflg -eq 1 ;then
+	git push origin master
+	exit 0
+fi
+
