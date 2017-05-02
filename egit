@@ -7,12 +7,13 @@ mflg=0
 rflg=0
 pflg=0
 fflg=0
+cflg=0
 
 if test $# -eq 0 ;then
 	hflg=1
 fi
 
-while getopts ham:rpf: opt ;do
+while getopts ham:rpf:c: opt ;do
 	case $opt in
 		h)hflg=1;;
 		a)aflg=1;;
@@ -20,6 +21,7 @@ while getopts ham:rpf: opt ;do
 		r)rflg=1;;
 		p)pflg=1;;
 		f)fflg=1;farg=$OPTARG;;
+		c)cflg=1;carg=$OPTARG;;
 	esac
 done
 shift $(($OPTIND - 1))
@@ -42,6 +44,13 @@ fi
 
 if test $mflg -eq 1 ;then
 	git commit -m $marg
+	exit 0
+fi
+
+if test $cflg -eq 1 ;then
+	git add .
+	git status
+	git commit -m $carg
 	exit 0
 fi
 
