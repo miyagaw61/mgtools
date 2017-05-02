@@ -15,8 +15,12 @@ echo '[/]nowloaDing...' >> nowloading.tmp
 echo '[-]nowloadIng...' >> nowloading.tmp
 echo '[\\\]nowloadiNg...' >> nowloading.tmp
 echo '[|]nowloadinG...' >> nowloading.tmp
+echo '[/]nowloading...' >> nowloading.tmp
+echo '[-]nowloading...' >> nowloading.tmp
+echo '[\\\]nowloading...' >> nowloading.tmp
+echo '[|]nowloading...' >> nowloading.tmp
 
-i=5
+i=1
 while test ! $i -eq 0 ;do
 	cat $file | while read var ;do
 		writedel $var
