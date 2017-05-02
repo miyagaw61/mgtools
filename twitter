@@ -1,0 +1,44 @@
+#!/bin/sh
+
+nflg=1
+hflg=0
+aflg=0
+
+#if test $# -eq 0 ;then
+#	hflg=1
+#fi
+
+while getopts ha opt ;do
+	case $opt in
+		h)hflg=1;;
+		a)aflg=1;nflg=0;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+if test $hflg -eq 1 ;then
+	echo "Usage: twitter [option]
+[+]UsageOption:
+   a: add_tl
+   no_use_option: output"
+	exit 0
+fi
+
+if test $nflg -eq 1 ;then
+	python ~/bin/twitter.py 1000 >> ~/Documents/tl &
+	while test "$(ps aux | grep -P 'python.*/bin/twitter.py 1000' | grep -v 'grep')" ;do
+		nowloading
+	done
+	cat ~/Documents/tl | less -MRi
+	allrm ~/Documents/tl
+	exit 0
+fi
+
+if test $aflg -eq 1 ;then
+	python ~/bin/twitter.py 1000 >> ~/Documents/tl &
+	while test "$(ps aux | grep -P 'python.*/bin/twitter.py 1000' | grep -v 'grep')" ;do
+		nowloading
+	done
+	echo Finish!
+	exit 0
+fi
