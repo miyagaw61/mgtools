@@ -1,0 +1,44 @@
+#!/bin/sh
+
+hflg=0
+
+if test $# -eq 0 ;then
+	hflg=1
+fi
+
+while getopts h opt ;do
+	case $opt in
+		h)hflg=1;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+if test $hflg -eq 1 ;then
+	echo "Usage: chkbmap [kbmap_symbol]
+[+]UsageSymbol:
+   jp: Japan
+   us: USA
+   dv: Dvorak"
+	exit 0
+fi
+
+if test ! -e ~/.xkb/symbols ;then
+	mkdir -p ~/.xkb/keymap ~/.xkb/symbols
+fi
+if test ! -e ~/.xkb/keymap/mykbd ;then
+	cat ~/bin/mykbd.txt > ~/.xkb/keymap/mykbd
+fi
+
+if test ! "$(cat ~/.bashrc | grep xkbcomp | grep DISPLAY | grep /dev/null)" ;then
+	echo "xkbcomp -I\$HOME/.xkb ~/.xkb/keymap/mykbd \$DISPLAY 2> /dev/null" >> ~/.bashrc
+fi
+
+if test $1 = "us" ;then
+	cat ~/bin/mykbd.txt > ~/.xkb/keymap/mykbd
+elif test $1 = "jp" ;then
+	cat ~/bin/mykbd.txt | perl -pe 's/us/jp/g' > ~/.xkb/keymap/mykbd
+elif test $1 = "dv" ;then
+	cat ~/bin/mykbd.txt | perl -pe 's/us/us(dvorak)/g' > ~/.xkb/keymap/mykbd
+fi
+
+xkbcomp -I$HOME/.xkb ~/.xkb/keymap/mykbd $DISPLAY 2> /dev/null
