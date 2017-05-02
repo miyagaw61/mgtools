@@ -36,45 +36,6 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-if test $1 = "miyagawtools" -o $1 = "mt" ;then
-	sa
-	if test $# -eq 2 ;then
-		cp -a $2 ~/git/miyagawtools/
-	fi
-	cd ~/git/miyagawtools/
-	exec /bin/bash
-	exit 0
-fi
-
-if test $1 = "tmp" ;then
-	sa
-	if test $# -eq 2 ;then
-		cp -a $2 ~/git/tmp/
-	fi
-	cd ~/git/tmp/
-	exec /bin/bash
-	exit 0
-fi
-
-if test $1 = "miyagawpeda" -o $1 = "mp" ;then
-	sa
-	if test $# -eq 2 ;then
-		cp -a $2 ~/git/miyagawpeda/
-	fi
-	cd ~/git/tmp/miyagawpeda/
-	exec /bin/bash
-	exit 0
-fi
-
-if test $1 = "miyagaw61.github.io" -o $1 = "github.io" -o $1 = "io" ;then
-	sa
-	if test $# -eq 2 ;then
-		cp -a $2 ~/git/miyagaw61.github.io/
-	fi
-	cd ~/git/miyagaw61.github.io/
-	exec /bin/bash
-	exit 0
-fi
 
 if test $aflg -eq 1 ;then
 	git add .
@@ -123,5 +84,61 @@ if test $fflg -eq 1 ;then
 	git remote add origin https://github.com/miyagaw61/${arg}.git
 	sleep 0.5
 	git push origin master
+	exit 0
+fi
+
+if test $1 = "miyagawtools" -o $1 = "mt" ;then
+	sa
+	args=$@
+	args=$(echo $args | perl -pe 's/'$1'//g')
+	if test $# -ge 2 ;then
+		for var in $args ;do
+			cp -a $var ~/git/miyagawtools/
+		done
+	fi
+	cd ~/git/miyagawtools/
+	exec /bin/bash
+	exit 0
+fi
+
+if test $1 = "tmp" ;then
+	sa
+	args=$@
+	args=$(echo $args | perl -pe 's/'$1'//g')
+	if test $# -ge 2 ;then
+		for var in $args ;do
+			cp -a $var ~/git/tmp/
+		done
+	fi
+	cd ~/git/tmp/
+	exec /bin/bash
+	exit 0
+fi
+
+if test $1 = "miyagawpeda" -o $1 = "mp" ;then
+	sa
+	args=$@
+	args=$(echo $args | perl -pe 's/'$1'//g')
+	if test $# -ge 2 ;then
+		for var in $args ;do
+			cp -a $var ~/git/miyagawpeda/
+		done
+	fi
+	cd ~/git/tmp/miyagawpeda/
+	exec /bin/bash
+	exit 0
+fi
+
+if test $1 = "miyagaw61.github.io" -o $1 = "github.io" -o $1 = "io" ;then
+	sa
+	args=$@
+	args=$(echo $args | perl -pe 's/'$1'//g')
+	if test $# -ge 2 ;then
+		for var in $args ;do
+			cp -a $var ~/git/miyagaw61.github.io/
+		done
+	fi
+	cd ~/git/miyagaw61.github.io/
+	exec /bin/bash
 	exit 0
 fi
