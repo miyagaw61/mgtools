@@ -36,6 +36,46 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
+if test $1 = "miyagawtools" -o $1 = "mt" ;then
+	sa
+	if test $# -eq 2 ;then
+		cp -a $2 ~/git/miyagawtools/
+	fi
+	cd ~/git/miyagawtools/
+	exec /bin/bash
+	exit 0
+fi
+
+if test $1 = "tmp" ;then
+	sa
+	if test $# -eq 2 ;then
+		cp -a $2 ~/git/tmp/
+	fi
+	cd ~/git/tmp/
+	exec /bin/bash
+	exit 0
+fi
+
+if test $1 = "miyagawpeda" -o $1 = "mp" ;then
+	sa
+	if test $# -eq 2 ;then
+		cp -a $2 ~/git/miyagawpeda/
+	fi
+	cd ~/git/tmp/miyagawpeda/
+	exec /bin/bash
+	exit 0
+fi
+
+if test $1 = "miyagaw61.github.io" -o $1 = "github.io" -o $1 = "io" ;then
+	sa
+	if test $# -eq 2 ;then
+		cp -a $2 ~/git/miyagaw61.github.io/
+	fi
+	cd ~/git/miyagaw61.github.io/
+	exec /bin/bash
+	exit 0
+fi
+
 if test $aflg -eq 1 ;then
 	git add .
 	git status
