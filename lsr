@@ -41,7 +41,10 @@ if test $oflg -eq 1 ;then
 fi
 
 if test $nflg -eq 1 ;then
-	snecho $(ls -1) | percol > ans.tmp
+	dir=$(getfile -d)
+	exe=$(getfile -x)
+	others=$(getfile -o)
+	snecho '\n[+]DIR:\n##########\n'${dir}'\n##########\n\n[+]EXE:\n##########\n'${exe}'\n##########\n\n[+]OTHERS:\n##########\n'${others}'\n##########' | percol > ans.tmp
 else
 	snecho ${dir}' '${exe}' '${others} | percol > ans.tmp
 fi
