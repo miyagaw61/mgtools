@@ -124,7 +124,7 @@ if test $1 = "miyagawpeda" -o $1 = "mp" ;then
 			cp -a $var ~/git/miyagawpeda/
 		done
 	fi
-	cd ~/git/tmp/miyagawpeda/
+	cd ~/git/miyagawpeda/
 	exec /bin/bash
 	exit 0
 fi
