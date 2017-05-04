@@ -56,9 +56,13 @@ fi
 #	cat $(cat ans.tmp)
 #fi
 
-echo -n '[+]command:'
-read ans
-$ans $(cat ans.tmp)
+if test ! $(cat ans.tmp) ;then
+	exit 0
+else
+	echo -n '[+]command:'
+	read ans
+	$ans $(cat ans.tmp)
+fi
 
 allrm ans.tmp
 
