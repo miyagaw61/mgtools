@@ -5,7 +5,7 @@ dflg=0
 xflg=0
 oflg=0
 aflg=0
-nflg=0
+nflg=1
 
 while getopts hdxoa opt ;do
 	case $opt in
@@ -40,15 +40,26 @@ if test $oflg -eq 1 ;then
 	others=$(getfile -o)
 fi
 
-snecho ${dir}' '${exe}' '${others} | percol > ans.tmp
-if test "$(echo $dir | grep $(cat ans.tmp))" ;then
-	cd $(cat ans.tmp)
-	exec /bin/bash
+if test $nflg -eq 1 ;then
+	snecho $(ls -1) | percol > ans.tmp
+else
+	snecho ${dir}' '${exe}' '${others} | percol > ans.tmp
 fi
-if test "$(echo $exe | grep $(cat ans.tmp))" ;then
-	cat ans.tmp | /bin/bash
-fi
-if test "$(echo $others | grep $(cat ans.tmp))" ;then
-	cat $(cat ans.tmp)
-fi
+#if test "$(echo $dir | grep $(cat ans.tmp))" ;then
+#	cd $(cat ans.tmp)
+#	exec /bin/bash
+#fi
+#if test "$(echo $exe | grep $(cat ans.tmp))" ;then
+#	cat ans.tmp | /bin/bash
+#fi
+#if test "$(echo $others | grep $(cat ans.tmp))" ;then
+#	cat $(cat ans.tmp)
+#fi
+
+echo -n '[+]command:'
+read ans
+$ans $(cat ans.tmp)
+
+allrm ans.tmp
+
 
