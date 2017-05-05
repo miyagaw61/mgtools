@@ -44,6 +44,7 @@ if test $nflg -eq 1 ;then
 	dir=$(getfile -d)
 	exe=$(getfile -x)
 	others=$(getfile -o)
+	others=$(echo $others | perl -pe 's/all.tmp//g' | perl -pe 's/ans.tmp//g')
 	snecho '\n[+]DIR:\n##########\n'${dir}'\n##########\n\n[+]EXE:\n##########\n'${exe}'\n##########\n\n[+]OTHERS:\n##########\n'${others}'\n##########' | percol > ans.tmp
 else
 	snecho ${dir}' '${exe}' '${others} | percol > ans.tmp
@@ -64,7 +65,9 @@ if test ! $(cat ans.tmp) ;then
 else
 	echo -n '[+]command:'
 	read ans
-	${ans} $(cat ans.tmp)
+	arg1=$(echo ${ans} | perl -pe 's/([^\s]*).*/\1/g')
+	arg2=$(echo ${ans} | perl -pe 's/[^\s]*(.*)/\1/g')
+	${arg1} $(cat ans.tmp) ${arg2}
 	if test "$(echo $ans | grep cd)" ;then
 		allrm ans.tmp
 		exec /bin/bash
