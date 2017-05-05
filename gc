@@ -24,5 +24,6 @@ if [ $sflg -eq 1 ]; then
 fi
 
 out=$(echo $1 | sed -E 's/(.*).c/\1/')
+allrm $out
 gcc -I ~/bin/include/ -o $out $1
 
