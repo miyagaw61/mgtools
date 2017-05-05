@@ -16,6 +16,7 @@ cp -a ~/rc/bashrc ~/.bashrc
 apt-get -y install vim
 cp -a ~/rc/vimrc /etc/vim/vimrc
 cp -a ~/neosnippets/* ~/.vim/bundle/neosnippet-snippets/neosnippets/ 
+cp -a ~/bin/rc.py ~/.percol.d/rc.py
 
 #apt
 
