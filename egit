@@ -155,6 +155,6 @@ if test $1 = "clone" ;then
 		read repository
 		echo -n "Directory: "
 		read directory
-		git clone "http://github.com/"$username"/"$repository".git "$directory
+		git clone "http://github.com/"$username"/"$repository".git" $directory
 	fi
 fi
