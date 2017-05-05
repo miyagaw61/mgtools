@@ -29,6 +29,10 @@ if test ! -e ~/.xkb/keymap/mykbd ;then
 	cat ~/bin/mykbd.txt > ~/.xkb/keymap/mykbd
 fi
 
+if test ! -e ~/.xkb/symbols/myswap ;then
+	cp -a ~/bin/myswap.txt ~/.xkb/symbols/myswap
+fi
+
 if test ! "$(cat ~/.bashrc | grep xkbcomp | grep DISPLAY | grep /dev/null)" ;then
 	echo "xkbcomp -I\$HOME/.xkb ~/.xkb/keymap/mykbd \$DISPLAY 2> /dev/null" >> ~/.bashrc
 fi
