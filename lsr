@@ -64,7 +64,7 @@ if test ! $(cat ans.tmp) ;then
 else
 	echo -n '[+]command:'
 	read ans
-	$ans $(cat ans.tmp)
+	${ans}$(cat ans.tmp)
 fi
 
 allrm ans.tmp
