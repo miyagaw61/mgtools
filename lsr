@@ -67,7 +67,7 @@ else
 	read ans
 	arg1=$(echo ${ans} | perl -pe 's/([^\s]*).*/\1/g')
 	arg2=$(echo ${ans} | perl -pe 's/[^\s]*(.*)/\1/g')
-	${arg1} $(cat ans.tmp) ${arg2}
+	${arg1} ./$(cat ans.tmp) ${arg2}
 	if test "$(echo $ans | grep cd)" ;then
 		allrm ans.tmp
 		exec /bin/bash
