@@ -142,3 +142,19 @@ if test $1 = "miyagaw61.github.io" -o $1 = "github.io" -o $1 = "io" ;then
 	exec /bin/bash
 	exit 0
 fi
+
+if test $1 = "clone" ;then
+	if test $# -eq 3 ;then
+		git clone "http://github.com/"$2"/"$3".git"
+	elif test $# -eq 4 ;then
+		git clone "http://github.com/"$2"/"$3".git "$4
+	elif test $# -eq 1 ;then
+		echo -n "UserName: "
+		read username
+		echo -n "Repository: "
+		read repository
+		echo -n "Directory: "
+		read directory
+		git clone "http://github.com/"$username"/"$repository".git "$directory
+	fi
+fi
