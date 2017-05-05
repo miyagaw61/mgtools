@@ -7,8 +7,8 @@ case $ans in
 
 #first
 
-#apt-get -y update
-#apt-get -y upgrade
+apt-get -y update
+apt-get -y upgrade
 
 #add by me
 
@@ -94,6 +94,7 @@ pip install numpy
 pip install scapy
 pip install tweepy
 pip install matplotlib
+pip install percol
 
 #git
 
