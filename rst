@@ -18,12 +18,12 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-rsync -auv /mnt/windows/bk/bin/         bin/  
-rsync -auv /mnt/windows/bk/ctf/         ctf/  
-rsync -auv /mnt/windows/bk/Desktop/     Desktop/  
-rsync -auv /mnt/windows/bk/Documents/   Documents/  
-rsync -auv /mnt/windows/bk/Downloads/   Downloads/  
-rsync -auv /mnt/windows/bk/neosnippets/ neosnippets/  
-rsync -auv /mnt/windows/bk/peda/        peda/  
-rsync -auv /mnt/windows/bk/rc/          rc/  
-rsync -auv /mnt/windows/bk/tmp/         tmp/  
+rsync -rlpgoDuv /mnt/windows/bk/bin/         bin/  
+rsync -rlpgoDuv /mnt/windows/bk/ctf/         ctf/  
+rsync -rlpgoDuv /mnt/windows/bk/Desktop/     Desktop/  
+rsync -rlpgoDuv /mnt/windows/bk/Documents/   Documents/  
+rsync -rlpgoDuv /mnt/windows/bk/Downloads/   Downloads/  
+rsync -rlpgoDuv /mnt/windows/bk/neosnippets/ neosnippets/  
+rsync -rlpgoDuv /mnt/windows/bk/peda/        peda/  
+rsync -rlpgoDuv /mnt/windows/bk/rc/          rc/  
+rsync -rlpgoDuv /mnt/windows/bk/tmp/         tmp/  
