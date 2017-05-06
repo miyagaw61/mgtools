@@ -18,12 +18,31 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-rsync -urlpgov ~/bin/ /mnt/windows/bk/bin/
-rsync -urlpgov ~/ctf/ /mnt/windows/bk/ctf/
-rsync -urlpgov ~/esktop/ /mnt/windows/bk/esktop/
-rsync -urlpgov ~/ocuments/ /mnt/windows/bk/ocuments/
-rsync -urlpgov ~/ownloads/ /mnt/windows/bk/ownloads/
-rsync -urlpgov ~/neosnippets/ /mnt/windows/bk/neosnippets/
-rsync -urlpgov ~/peda/ /mnt/windows/bk/peda/
-rsync -urlpgov ~/rc/ /mnt/windows/bk/rc/
-rsync -urlpgov ~/tmp/ /mnt/windows/bk/tmp/
+if test $# -eq 0 ;then
+	rsync -auv ~/bin/ /mnt/windows/bk/bin/
+	rsync -auv ~/ctf/ /mnt/windows/bk/ctf/
+	rsync -auv ~/esktop/ /mnt/windows/bk/esktop/
+	rsync -auv ~/ocuments/ /mnt/windows/bk/ocuments/
+	rsync -auv ~/ownloads/ /mnt/windows/bk/ownloads/
+	rsync -auv ~/neosnippets/ /mnt/windows/bk/neosnippets/
+	rsync -auv ~/peda/ /mnt/windows/bk/peda/
+	rsync -auv ~/rc/ /mnt/windows/bk/rc/
+	rsync -auv ~/tmp/ /mnt/windows/bk/tmp/
+	rsync -auv ~/.bashrc /mnt/windows/bk/rc/bashrc
+elif test $# -eq 1 ;then
+	rsync -auv ~/$1/ /mnt/windows/bk/$1/
+fi
+
+
+
+
+#rsync -urlpgov ~/bin/ /mnt/windows/bk/bin/
+#rsync -urlpgov ~/ctf/ /mnt/windows/bk/ctf/
+#rsync -urlpgov ~/esktop/ /mnt/windows/bk/esktop/
+#rsync -urlpgov ~/ocuments/ /mnt/windows/bk/ocuments/
+#rsync -urlpgov ~/ownloads/ /mnt/windows/bk/ownloads/
+#rsync -urlpgov ~/neosnippets/ /mnt/windows/bk/neosnippets/
+#rsync -urlpgov ~/peda/ /mnt/windows/bk/peda/
+#rsync -urlpgov ~/rc/ /mnt/windows/bk/rc/
+#rsync -urlpgov ~/tmp/ /mnt/windows/bk/tmp/
+#rsync -urlpgov ~/.bashrc /mnt/windows/bk/rc/bashrc
