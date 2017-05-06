@@ -4,10 +4,10 @@ def writefile(buf_arg,file_name):
     with open(file_name, 'wb') as f:
         f.write(buf_arg)
 
-CK = ''
-CS = ''
-AT = ''
-AS = ''
+CK = 'JaBCMafqgxW6g3ismku4NQpFf'
+CS = '2fJu5sU8ESQV08KiPyALFYTXVQkSnQTz9lizTDFnZSHdK8GPlZ'
+AT = '2473741867-QNEei8GMk2YCJMtgS1ZoKNYJbyLuBwpqSRzMTRQ'
+AS = 'gPrnZnKo7dgAnKNmRR64ncjfjqUrYdnLkh5L0x7zPARdR'
 
 auth = tweepy.OAuthHandler(CK, CS)
 auth.set_access_token(AT, AS)
@@ -57,20 +57,20 @@ for status in tl:
                     screenlist.reverse()
                     textlist.reverse()
                     print("\n" + "#"*100)
-                    print('### [-]' + namelist[0].encode('utf_8') + ' @' + screenlist[0].encode('utf_8'))
+                    print('[-]' + namelist[0].encode('utf_8') + ' @' + screenlist[0].encode('utf_8'))
                     print(textlist[0].encode('utf_8'))
                     i = 1
                     while(i < len(namelist)):
-                        print('### | \n' + '### -> [+]' + namelist[i].encode('utf_8') + ' @' +  screenlist[1].encode('utf_8'))
+                        print('| \n' + '### -> [+]' + namelist[i].encode('utf_8') + ' @' +  screenlist[1].encode('utf_8'))
                         print(textlist[i].encode('utf_8'))
                         i = i + 1
-                    print('### | \n' + '### -> [+]' + status.user.name.encode('utf_8') + ' @' +  status.user.screen_name.encode('utf_8'))
+                    print('| \n' + '-> [+]' + status.user.name.encode('utf_8') + ' @' +  status.user.screen_name.encode('utf_8'))
                     print(status.text.encode('utf_8'))
                     print("#"*100 + '\n')
                 else:
                     os.system('echo ' + str(status.id) + ' > ~/Documents/lastid')
-                    line = len('### [+]' + status.user.name.encode('utf_8') + ' @' +  status.user.screen_name.encode('utf_8'))
-                    print("\n" + "#"*100)
-                    print('### [+]' + status.user.name.encode('utf_8') + ' @' +  status.user.screen_name.encode('utf_8') + ' ' + '#'*(99-line))
-                    print("#"*100)
+                    line = len('[+]' + status.user.name.encode('utf_8') + ' @' +  status.user.screen_name.encode('utf_8'))
+                    print("\n" + "-"*100)
+                    print('[+]' + status.user.name.encode('utf_8') + ' @' +  status.user.screen_name.encode('utf_8'))
+                    print("-"*100)
                     print(status.text.encode('utf_8'))
