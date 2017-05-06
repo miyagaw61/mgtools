@@ -20,10 +20,10 @@ fi
 
 rsync -auv ~/bin/ /mnt/windows/bk/bin/
 rsync -auv ~/ctf/ /mnt/windows/bk/ctf/
-rsync -auv ~/bin/ /mnt/windows/bk/Desktop/
-rsync -auv ~/bin/ /mnt/windows/bk/Documents/
-rsync -auv ~/bin/ /mnt/windows/bk/Downloads/
-rsync -auv ~/bin/ /mnt/windows/bk/neosnippets/
-rsync -auv ~/bin/ /mnt/windows/bk/peda/
-rsync -auv ~/bin/ /mnt/windows/bk/rc/
-rsync -auv ~/bin/ /mnt/windows/bk/tmp/
+rsync -auv ~/Desktop/ /mnt/windows/bk/Desktop/
+rsync -auv ~/Documents/ /mnt/windows/bk/Documents/
+rsync -auv ~/Downloads/ /mnt/windows/bk/Downloads/
+rsync -auv ~/neosnippets/ /mnt/windows/bk/neosnippets/
+rsync -auv ~/peda/ /mnt/windows/bk/peda/
+rsync -auv ~/rc/ /mnt/windows/bk/rc/
+rsync -auv ~/tmp/ /mnt/windows/bk/tmp/
