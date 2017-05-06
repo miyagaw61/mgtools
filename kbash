@@ -18,6 +18,7 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
+sa
 pid=$(ps u | grep /bin/bash | grep -v 'grep' | perl -pe 's/[^\s]*\s*([^\s]*).*/ \1 /g')
 for var in $pid ;do
 	kill -9 $var
