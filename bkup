@@ -22,22 +22,54 @@ if test $hflg -eq 1 ;then
 fi
 
 if test $# -eq 0 ;then
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/bin/ -> /mnt/windows/bk/bin/'
 	rsync -auv ~/bin/ /mnt/windows/bk/bin/
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/ctf/ -> /mnt/windows/bk/ctf/'
 	rsync -auv ~/ctf/ /mnt/windows/bk/ctf/
-	rsync -auv ~/esktop/ /mnt/windows/bk/esktop/
-	rsync -auv ~/ocuments/ /mnt/windows/bk/ocuments/
-	rsync -auv ~/ownloads/ /mnt/windows/bk/ownloads/
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/Desktop/ -> /mnt/windows/bk/Desktop/'
+	rsync -auv ~/Desktop/ /mnt/windows/bk/Desktop/
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/Documents/ -> /mnt/windows/bk/Documents/'
+	rsync -auv ~/Documents/ /mnt/windows/bk/Documents/
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/Downloads/ -> /mnt/windows/bk/Downloads/'
+	rsync -auv ~/Downloads/ /mnt/windows/bk/Downloads/
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/neosnippets/ -> /mnt/windows/bk/neosnippets/'
 	rsync -auv ~/neosnippets/ /mnt/windows/bk/neosnippets/
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/peda/ -> /mnt/windows/bk/peda/'
 	rsync -auv ~/peda/ /mnt/windows/bk/peda/
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/rc/ -> /mnt/windows/bk/rc/'
 	rsync -auv ~/rc/ /mnt/windows/bk/rc/
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/tmp/ -> /mnt/windows/bk/tmp/'
 	rsync -auv ~/tmp/ /mnt/windows/bk/tmp/
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/.bashrc/ -> /mnt/windows/bk/rc/bashrc/'
+	rsync -auv ~/.bashrc ~/rc/bashrc
 	rsync -auv ~/.bashrc /mnt/windows/bk/rc/bashrc
+	cecho -rfn '[+]'
+	cecho -gf '/usr/share/vim/vimrc/ -> /mnt/windows/bk/rc/bashrc/'
 	rsync -auv /usr/share/vim/vimrc ~/rc/vimrc
+	rsync -auv /usr/share/vim/vimrc /mnt/windows/bk/rc/vimrc
 elif test $# -eq 1 ;then
 	if test $1 = "rc" ;then
+		cecho -rfn '[+]'
+		cecho -gf $HOME'/.bashrc/ -> /mnt/windows/bk/rc/bashrc/'
+		rsync -auv ~/.bashrc ~/rc/bashrc
 		rsync -auv ~/.bashrc /mnt/windows/bk/rc/bashrc
+		cecho -rfn '[+]'
+		cecho -gf '/usr/share/vim/vimrc/ -> /mnt/windows/bk/rc/bashrc/'
 		rsync -auv /usr/share/vim/vimrc ~/rc/vimrc
+		rsync -auv /usr/share/vim/vimrc /mnt/windows/bk/rc/vimrc
 	else
+		cecho -rfn '[+]'
+		cecho -gf $HOME'/'$1'/ -> /mnt/windows/bk/'$1'/'
 		rsync -auv ~/$1/ /mnt/windows/bk/$1/
 	fi
 fi
