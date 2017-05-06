@@ -2,6 +2,10 @@
 
 hflg=0
 
+#if test $# -eq 0 ;then
+#	hflg=1
+#fi
+
 while getopts h opt ;do
 	case $opt in
 		h)hflg=1;;
@@ -14,13 +18,12 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-cp -ar /mnt/bk/bin/ ~/bin/
-cp -ar /mnt/bk/ctf/ ~/ctf/
-cp -ar /mnt/bk/Desktop/ ~/Desktop/
-cp -ar /mnt/bk/Documents/ ~/Documents/
-cp -ar /mnt/bk/neosnippets/ ~/neosnippets/
-cp -ar /mnt/bk/peda/ ~/peda/
-cp -ar /mnt/bk/rc/ ~/rc/
-cp -ar /mnt/bk/tmp/ ~/tmp/
-
-
+rsync -auv /mnt/windows/bk/bin/         bin/  
+rsync -auv /mnt/windows/bk/ctf/         ctf/  
+rsync -auv /mnt/windows/bk/Desktop/     Desktop/  
+rsync -auv /mnt/windows/bk/Documents/   Documents/  
+rsync -auv /mnt/windows/bk/Downloads/   Downloads/  
+rsync -auv /mnt/windows/bk/neosnippets/ neosnippets/  
+rsync -auv /mnt/windows/bk/peda/        peda/  
+rsync -auv /mnt/windows/bk/rc/          rc/  
+rsync -auv /mnt/windows/bk/tmp/         tmp/  
