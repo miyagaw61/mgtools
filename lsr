@@ -61,6 +61,7 @@ fi
 #fi
 
 if test ! $(cat ans.tmp) ;then
+	allrm ans.tmp
 	exit 0
 else
 	echo -n '[+]command:'
@@ -69,7 +70,7 @@ else
 	arg2=$(echo ${ans} | perl -pe 's/[^\s]*(.*)/\1/g')
 	${arg1} ./$(cat ans.tmp) ${arg2}
 	if test "$(echo $ans | grep cd)" ;then
-		allrm ans.tmp
+		allrm ../ans.tmp
 		exec /bin/bash
 	fi
 fi
