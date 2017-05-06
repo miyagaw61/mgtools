@@ -47,7 +47,16 @@ echo '[|]now backing uP ... ' >> nowbackuping.tmp
 #echo '[===================>]' >> gauge.tmp
 
 if test $# -eq 0 ;then
-	simple_bk &
+	#simple_bk &
+	cp -a ~/bin/* /mnt/windows/bk/ 
+	cp -a ~/ctf/* /mnt/windows/bk/ 
+	cp -a ~/Desktop/* /mnt/windows/bk/ 
+	cp -a ~/Documents/* /mnt/windows/bk/ 
+	cp -a ~/Downloads/* /mnt/windows/bk/ 
+	cp -a ~/neosnippets/* /mnt/windows/bk/ 
+	cp -a ~/peda/* /mnt/windows/bk/ 
+	cp -a ~/rc/* /mnt/windows/bk/ 
+	cp -a ~/tmp/* /mnt/windows/bk/ 
 fi
 
 if test $# -eq 1 ;then
@@ -55,8 +64,8 @@ if test $# -eq 1 ;then
 	if test $1 = "./" ;then
 		arg=$(pwd)
 	fi
-	if test "$(echo $arg | grep -e bin -e ctf -e dc -e tmp -e bashrc)" ;then
-		simple_bk "$arg" &
+	if test "$(echo $arg | grep -e bin -e ctf -e Documents -e Downloads -e tmp)" ;then
+		cp -a ~/$1/* /mnt/windows/bk/$1/
 	else
 		echo You can use \[bin/ctf/dc/tmp/bashrc\].
 		exit 0
@@ -75,14 +84,15 @@ if test $# -eq 2 ;then
 	fi
 fi
 
-while test "$(ps x | grep /bin/simple_bk | perl -pe 's/.*grep.*//g')" ;do
-	cat nowbackuping.tmp | while read var ;do
-		if test -e gauge2.tmp ;then
-			writedel "$var" "$(cat gauge2.tmp)"
-		fi
-	done
-done
-del
+#while test "$(ps u | grep '.*:.*cp\ -a' | perl -pe 's/.*grep.*//g')" ;do
+#	#cat nowbackuping.tmp | while read var ;do
+#		#if test -e gauge2.tmp ;then
+#			#writedel "$var" "$(cat gauge2.tmp)"
+#			writedel "$(ps u | perl -pe 's/.*:\d\d\s(cp\s-a.*)/\1/g')"
+#		#fi
+#	#done
+#done
+#del
 echo '[+]BACKING UP FINISHED.'
 
 allrm $usedFile
