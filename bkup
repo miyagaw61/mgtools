@@ -1,99 +1,29 @@
 #!/bin/sh
 
-usedFile='nowbackuping.tmp gauge.tmp gauge2.tmp'
-allrm $usedFile
+hflg=0
 
-echo '[/]now backing up ... ' > nowbackuping.tmp
-echo '[-]now backing up ... ' > nowbackuping.tmp
-echo '[\\\]now backing up ... ' > nowbackuping.tmp
-echo '[|]now backing up ... ' > nowbackuping.tmp
-echo '[/]now backing up ... ' > nowbackuping.tmp
-echo '[-]now backing up ... ' >> nowbackuping.tmp
-echo '[\\\]Now backing up ... ' >> nowbackuping.tmp
-echo '[|]nOw backing up ... ' >> nowbackuping.tmp
-echo '[/]noW backing up ... ' >> nowbackuping.tmp
-echo '[-]now backing up ... ' >> nowbackuping.tmp
-echo '[\\\]now Backing up ... ' >> nowbackuping.tmp
-echo '[|]now bAcking up ... ' >> nowbackuping.tmp
-echo '[/]now baCking up ... ' >> nowbackuping.tmp
-echo '[-]now bacKing up ... ' >> nowbackuping.tmp
-echo '[\\\]now backIng up ... ' >> nowbackuping.tmp
-echo '[|]now backiNg up ... ' >> nowbackuping.tmp
-echo '[/]now backinG up ... ' >> nowbackuping.tmp
-echo '[-]now backing up ... ' >> nowbackuping.tmp
-echo '[\\\]now backing Up ... ' >> nowbackuping.tmp
-echo '[|]now backing uP ... ' >> nowbackuping.tmp
+#if test $# -eq 0 ;then
+#	hflg=1
+#fi
 
-#echo '[                    ]' > gauge.tmp
-#echo '[>                   ]' >> gauge.tmp
-#echo '[=>                  ]' >> gauge.tmp
-#echo '[==>                 ]' >> gauge.tmp
-#echo '[===>                ]' >> gauge.tmp
-#echo '[====>               ]' >> gauge.tmp
-#echo '[=====>              ]' >> gauge.tmp
-#echo '[======>             ]' >> gauge.tmp
-#echo '[=======>            ]' >> gauge.tmp
-#echo '[========>           ]' >> gauge.tmp
-#echo '[=========>          ]' >> gauge.tmp
-#echo '[==========>         ]' >> gauge.tmp
-#echo '[===========>        ]' >> gauge.tmp
-#echo '[============>       ]' >> gauge.tmp
-#echo '[=============>      ]' >> gauge.tmp
-#echo '[==============>     ]' >> gauge.tmp
-#echo '[===============>    ]' >> gauge.tmp
-#echo '[================>   ]' >> gauge.tmp
-#echo '[=================>  ]' >> gauge.tmp
-#echo '[==================> ]' >> gauge.tmp
-#echo '[===================>]' >> gauge.tmp
+while getopts h opt ;do
+	case $opt in
+		h)hflg=1;;
+	esac
+done
+shift $(($OPTIND - 1))
 
-if test $# -eq 0 ;then
-	#simple_bk &
-	cp -ar ~/bin/ /mnt/windows/bk/ 
-	cp -ar ~/ctf/ /mnt/windows/bk/ 
-	cp -ar ~/Desktop/ /mnt/windows/bk/ 
-	cp -ar ~/Documents/ /mnt/windows/bk/ 
-	cp -ar ~/Downloads/ /mnt/windows/bk/ 
-	cp -ar ~/neosnippets/ /mnt/windows/bk/ 
-	cp -ar ~/peda/ /mnt/windows/bk/ 
-	cp -ar ~/rc/ /mnt/windows/bk/ 
-	cp -ar ~/tmp/ /mnt/windows/bk/ 
+if test $hflg -eq 1 ;then
+	echo "Usage: bkup"
+	exit 0
 fi
 
-if test $# -eq 1 ;then
-	arg=$1
-	if test $1 = "./" ;then
-		arg=$(pwd)
-	fi
-	if test "$(echo $arg | grep -e bin -e ctf -e Documents -e Downloads -e tmp)" ;then
-		cp -ar ~/$1/ /mnt/windows/bk/$1/
-	else
-		echo You can use \[bin/ctf/Documents/Downloads/tmp\].
-		exit 0
-	fi
-fi
-
-if test $# -eq 2 ;then
-	if test $2 = "bin" ;then
-		cp -ar $1 /mnt/windows/bk/bin/
-	elif test $2 = "dc" ;then
-		cp -ar $1 /mnt/windows/bk/bin/
-	elif test $2 = "home" ;then
-		cp -ar $1 /mnt/windows/bk/
-	elif test $2 = "tmp" ;then
-		cp -ar $1 /mnt/windows/bk/tmp/
-	fi
-fi
-
-#while test "$(ps u | grep '.*:.*cp\ -a' | perl -pe 's/.*grep.*//g')" ;do
-#	#cat nowbackuping.tmp | while read var ;do
-#		#if test -e gauge2.tmp ;then
-#			#writedel "$var" "$(cat gauge2.tmp)"
-#			writedel "$(ps u | perl -pe 's/.*:\d\d\s(cp\s-a.*)/\1/g')"
-#		#fi
-#	#done
-#done
-#del
-echo '[+]BACKING UP FINISHED.'
-
-allrm $usedFile
-
+rsync -auv ~/bin/ /mnt/windows/bk/bin/
+rsync -auv ~/ctf/ /mnt/windows/bk/ctf/
+rsync -auv ~/bin/ /mnt/windows/bk/Desktop/
+rsync -auv ~/bin/ /mnt/windows/bk/Documents/
+rsync -auv ~/bin/ /mnt/windows/bk/Downloads/
+rsync -auv ~/bin/ /mnt/windows/bk/neosnippets/
+rsync -auv ~/bin/ /mnt/windows/bk/peda/
+rsync -auv ~/bin/ /mnt/windows/bk/rc/
+rsync -auv ~/bin/ /mnt/windows/bk/tmp/
