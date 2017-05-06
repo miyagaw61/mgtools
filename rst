@@ -18,12 +18,12 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-rsync -urlpgov /mnt/windows/bk/bin/         bin/  
-rsync -urlpgov /mnt/windows/bk/ctf/         ctf/  
-rsync -urlpgov /mnt/windows/bk/Desktop/     Desktop/  
-rsync -urlpgov /mnt/windows/bk/Documents/   Documents/  
-rsync -urlpgov /mnt/windows/bk/Downloads/   Downloads/  
-rsync -urlpgov /mnt/windows/bk/neosnippets/ neosnippets/  
-rsync -urlpgov /mnt/windows/bk/peda/        peda/  
-rsync -urlpgov /mnt/windows/bk/rc/          rc/  
-rsync -urlpgov /mnt/windows/bk/tmp/         tmp/  
+rsync -urlpgov /mnt/windows/bk/bin/         ~/bin/  
+rsync -urlpgov /mnt/windows/bk/ctf/         ~/ctf/  
+rsync -urlpgov /mnt/windows/bk/Desktop/     ~/Desktop/  
+rsync -urlpgov /mnt/windows/bk/Documents/   ~/Documents/  
+rsync -urlpgov /mnt/windows/bk/Downloads/   ~/Downloads/  
+rsync -urlpgov /mnt/windows/bk/neosnippets/ ~/neosnippets/  
+rsync -urlpgov /mnt/windows/bk/peda/        ~/peda/  
+rsync -urlpgov /mnt/windows/bk/rc/          ~/rc/  
+rsync -urlpgov /mnt/windows/bk/tmp/         ~/tmp/  
