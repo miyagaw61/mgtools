@@ -14,7 +14,10 @@ done
 shift $(($OPTIND - 1))
 
 if test $hflg -eq 1 ;then
-	echo "Usage: bkup"
+	echo "Usage: bkup [option]
+[+]UsageOption:
+   default: all
+        rc: rc_bkup"
 	exit 0
 fi
 
@@ -28,10 +31,15 @@ if test $# -eq 0 ;then
 	rsync -auv ~/peda/ /mnt/windows/bk/peda/
 	rsync -auv ~/rc/ /mnt/windows/bk/rc/
 	rsync -auv ~/tmp/ /mnt/windows/bk/tmp/
-	rsync -auv ~/.bashrc /mnt/windows/bk/rc/
-	rsync -auv /usr/share/vim/vimrc ~/rc/
+	rsync -auv ~/.bashrc /mnt/windows/bk/rc/bashrc
+	rsync -auv /usr/share/vim/vimrc ~/rc/vimrc
 elif test $# -eq 1 ;then
-	rsync -auv ~/$1/ /mnt/windows/bk/$1/
+	if test $1 = "rc" ;then
+		rsync -auv ~/.bashrc /mnt/windows/bk/rc/bashrc
+		rsync -auv /usr/share/vim/vimrc ~/rc/vimrc
+	else
+		rsync -auv ~/$1/ /mnt/windows/bk/$1/
+	fi
 fi
 
 
