@@ -65,7 +65,7 @@ if test $# -eq 1 ;then
 		arg=$(pwd)
 	fi
 	if test "$(echo $arg | grep -e bin -e ctf -e Documents -e Downloads -e tmp)" ;then
-		cp -ar ~/$1/* /mnt/windows/bk/$1/
+		cp -ar ~/$1/ /mnt/windows/bk/$1/
 	else
 		echo You can use \[bin/ctf/Documents/Downloads/tmp\].
 		exit 0
