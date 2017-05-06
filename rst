@@ -14,37 +14,13 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-echo -n "Now Restoreing ... "
+cp -a /mnt/bk/bin/* ~/bin/
+cp -a /mnt/bk/ctf/* ~/ctf/
+cp -a /mnt/bk/Desktop/* ~/Desktop/
+cp -a /mnt/bk/Documents/* ~/Documents/
+cp -a /mnt/bk/neosnippets/* ~/neosnippets/
+cp -a /mnt/bk/peda/* ~/peda/
+cp -a /mnt/bk/rc/* ~/rc/
+cp -a /mnt/bk/tmp/* ~/tmp/
 
-cp -a /mnt/windows/bk/* ~/
-echo -n .
-perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
-echo -n .
 
-cp -a ~/rc/bashrc ~/.bashrc
-echo -n .
-perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
-echo -n .
-
-cp -a ~/rc/vimrc /etc/vim/vimrc
-echo -n .
-perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
-echo -n .
-
-cp -a ~/neosnippets/* ~/.vim/bundle/neosnippet-snippets/neosnippets/
-echo -n .
-perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
-echo -n .
-
-cp -a ~/rc/gdbinit ~/.gdbinit
-echo -n .
-perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
-echo -n .
-
-cp -a ~/bk/peda/peda.py ~/peda/peda.py
-echo -n .
-perl -MTime::HiRes -e 'Time::HiRes::sleep(0.5)'
-echo -n .
-
-echo FINISH!
-sleep 0.5
