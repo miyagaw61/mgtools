@@ -48,15 +48,15 @@ echo '[|]now backing uP ... ' >> nowbackuping.tmp
 
 if test $# -eq 0 ;then
 	#simple_bk &
-	cp -a ~/bin/* /mnt/windows/bk/ 
-	cp -a ~/ctf/* /mnt/windows/bk/ 
-	cp -a ~/Desktop/* /mnt/windows/bk/ 
-	cp -a ~/Documents/* /mnt/windows/bk/ 
-	cp -a ~/Downloads/* /mnt/windows/bk/ 
-	cp -a ~/neosnippets/* /mnt/windows/bk/ 
-	cp -a ~/peda/* /mnt/windows/bk/ 
-	cp -a ~/rc/* /mnt/windows/bk/ 
-	cp -a ~/tmp/* /mnt/windows/bk/ 
+	cp -ar ~/bin/ /mnt/windows/bk/ 
+	cp -ar ~/ctf/ /mnt/windows/bk/ 
+	cp -ar ~/Desktop/ /mnt/windows/bk/ 
+	cp -ar ~/Documents/ /mnt/windows/bk/ 
+	cp -ar ~/Downloads/ /mnt/windows/bk/ 
+	cp -ar ~/neosnippets/ /mnt/windows/bk/ 
+	cp -ar ~/peda/ /mnt/windows/bk/ 
+	cp -ar ~/rc/ /mnt/windows/bk/ 
+	cp -ar ~/tmp/ /mnt/windows/bk/ 
 fi
 
 if test $# -eq 1 ;then
@@ -65,22 +65,22 @@ if test $# -eq 1 ;then
 		arg=$(pwd)
 	fi
 	if test "$(echo $arg | grep -e bin -e ctf -e Documents -e Downloads -e tmp)" ;then
-		cp -a ~/$1/* /mnt/windows/bk/$1/
+		cp -ar ~/$1/* /mnt/windows/bk/$1/
 	else
-		echo You can use \[bin/ctf/dc/tmp/bashrc\].
+		echo You can use \[bin/ctf/Documents/Downloads/tmp\].
 		exit 0
 	fi
 fi
 
 if test $# -eq 2 ;then
 	if test $2 = "bin" ;then
-		cp -a $1 /mnt/windows/bk/bin/
+		cp -ar $1 /mnt/windows/bk/bin/
 	elif test $2 = "dc" ;then
-		cp -a $1 /mnt/windows/bk/bin/
+		cp -ar $1 /mnt/windows/bk/bin/
 	elif test $2 = "home" ;then
-		cp -a $1 /mnt/windows/bk/
+		cp -ar $1 /mnt/windows/bk/
 	elif test $2 = "tmp" ;then
-		cp -a $1 /mnt/windows/bk/tmp/
+		cp -ar $1 /mnt/windows/bk/tmp/
 	fi
 fi
 
