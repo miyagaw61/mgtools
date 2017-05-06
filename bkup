@@ -28,7 +28,8 @@ if test $# -eq 0 ;then
 	rsync -auv ~/peda/ /mnt/windows/bk/peda/
 	rsync -auv ~/rc/ /mnt/windows/bk/rc/
 	rsync -auv ~/tmp/ /mnt/windows/bk/tmp/
-	rsync -auv ~/.bashrc /mnt/windows/bk/rc/bashrc
+	rsync -auv ~/.bashrc /mnt/windows/bk/rc/
+	rsync -auv /usr/share/vim/vimrc ~/rc/
 elif test $# -eq 1 ;then
 	rsync -auv ~/$1/ /mnt/windows/bk/$1/
 fi
