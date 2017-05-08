@@ -1,8 +1,8 @@
 #!/bin/sh
 if test $# -eq 0 ; then
-cp -a ~/ctf/x.py ./exploit.py
-cp -a ~/ctf/flag.txt ./
+cp -a ~/bin/x.py ./exploit.py
+cp -a ~/bin/flag.txt ./
 exit 0
 fi
-cp -a ~/ctf/x.py ./$1
-cp -a ~/ctf/flag.txt ./
+cp -a ~/bin/x.py ./$1
+cp -a ~/bin/flag.txt ./
