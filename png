@@ -29,7 +29,7 @@ if test $# -eq 0 ;then
 		fi
 	else
 		cecho -rfn '\n[+]'
-		cecho -rf 'Failed.\n'
+		cecho -gf 'Failed.\n'
 	fi
 elif test $# -eq 1 ;then
 	if test "$(ping -c 1 $1 | grep '1 received')" ;then
