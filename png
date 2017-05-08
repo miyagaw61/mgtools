@@ -14,19 +14,30 @@ done
 shift $(($OPTIND - 1))
 
 if test $hflg -eq 1 ;then
-	echo "Usage: "
+	echo "Usage: png [ip_addr(def:8.8.8.8)]"
 	exit 0
 fi
 
-if test "$(ping -c 1 8.8.8.8 | grep '1 received')" ;then
-	if test "$(ping -c 1 google.com | grep '1 received')" ;then
-		cecho -rfn '\n[+]'
-		cecho -gf 'OK.\n'
+if test $# -eq 0 ;then
+	if test "$(ping -c 1 8.8.8.8 | grep '1 received')" ;then
+		if test "$(ping -c 1 google.com | grep '1 received')" ;then
+			cecho -rfn '\n[+]'
+			cecho -gf 'OK.\n'
+		else
+			cecho -rfn '\n[+]'
+			cecho -rf 'Failed.\n'
+		fi
 	else
 		cecho -rfn '\n[+]'
 		cecho -rf 'Failed.\n'
 	fi
-else
-	cecho -rfn '\n[+]'
-	cecho -rf 'Failed.\n'
+elif test $# -eq 1 ;then
+	if test "$(ping -c 1 $1 | grep '1 received')" ;then
+		cecho -rfn '\n[+]'
+		cecho -gf 'OK.\n'
+	else
+		cecho -rfn '\n[+]'
+		cecho -gf 'Failed.\n'
+	fi
 fi
+
