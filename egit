@@ -143,6 +143,20 @@ if test $1 = "miyagaw61.github.io" -o $1 = "github.io" -o $1 = "io" ;then
 	exit 0
 fi
 
+if test $1 = "miyactf" -o $1 = "mc" ;then
+	sa
+	args=$@
+	args=$(echo $args | perl -pe 's/'$1'//g')
+	if test $# -ge 2 ;then
+		for var in $args ;do
+			cp -a $var ~/git/miyactf/
+		done
+	fi
+	cd ~/git/miyactf/
+	exec /bin/bash
+	exit 0
+fi
+
 if test $1 = "clone" ;then
 	if test $# -eq 3 ;then
 		git clone "http://github.com/"$2"/"$3".git"
