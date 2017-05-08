@@ -19,25 +19,25 @@ if test $hflg -eq 1 ;then
 fi
 
 if test $# -eq 0 ;then
-	if test "$(ping -c 1 8.8.8.8 | grep '1 received')" ;then
-		if test "$(ping -c 1 google.com | grep '1 received')" ;then
-			cecho -rfn '\n[+]'
+	if test "$(ping -c 1 -w 3 8.8.8.8 | grep '1 received')" ;then
+		if test "$(ping -c 1 -w 3 google.com | grep '1 received')" ;then
+			echo -n '\n[+]'
 			cecho -gf 'OK.\n'
 		else
-			cecho -rfn '\n[+]'
+			echo -n '\n[+]'
 			cecho -rf 'Failed.\n'
 		fi
 	else
-		cecho -rfn '\n[+]'
-		cecho -gf 'Failed.\n'
+		echo -n '\n[+]'
+		cecho -rf 'Failed.\n'
 	fi
 elif test $# -eq 1 ;then
-	if test "$(ping -c 1 $1 | grep '1 received')" ;then
-		cecho -rfn '\n[+]'
+	if test "$(ping -c 1 -w 3 $1 | grep '1 received')" ;then
+		echo -n '\n[+]'
 		cecho -gf 'OK.\n'
 	else
-		cecho -rfn '\n[+]'
-		cecho -gf 'Failed.\n'
+		echo -n '\n[+]'
+		cecho -rf 'Failed.\n'
 	fi
 fi
 
