@@ -34,4 +34,3 @@ gc $@
 
 cecho -gf '\n##### START #####\n'
 ./$file $argv 
-rm $file
