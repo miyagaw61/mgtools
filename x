@@ -1,40 +1,37 @@
 #!/bin/sh
+
 hflg=0
-sflg=0
-sarg=''
 
 if test -f ./a.out ;then
 	rm a.out
 fi
 
-while getopts hs: opt ;do
+if test $# -eq 0 ;then
+	hflg=1
+fi
+
+while getopts h opt ;do
 	case $opt in
 		h)hflg=1;;
-	s)sflg=1; sarg=$OPTARG;;
 	esac
 done
 
-if [ $hflg -eq 1 ]; then
-	echo 'Usage: x [option] $file_name\n -s[nodep/norelro/nossp/nopie]: set_option'
+if test $hflg -eq 1 ;then
+	gc -h | perl -pe 's/gc/x/g'
 	exit 0
 fi
 
-if [ $sflg -eq 1 ]; then
-	if [ $sarg = 'nodep' ]; then
-		shift $(($OPTIND - 1))
-		gcc -I ~/bin/include/ -fno-stack-protector $1
-		./a.out
-		rm a.out
-		exit 0
-	fi
-fi
-
-gcc -I ~/bin/include/ $1
-
 argv=''
-for arg in $@ ;do
-	argv=$argv' '$arg
+for var in $@ ;do
+	if test "$(echo $var | grep -P '.*\.c')" ;then
+		file="$(echo $var | perl -pe 's/(.*)\.c/\1/g')"
+	else
+		argv=$argv" "$var
+	fi
 done
 
-./a.out $argv 
-rm a.out
+gc $@
+
+cecho -gf '\n##### START #####\n'
+./$file $argv 
+rm $file
