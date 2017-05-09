@@ -10,20 +10,39 @@ while getopts hs: opt ;do
 done
 
 if [ $hflg -eq 1 ]; then
-	echo 'Usage: gc [option] $file_name\n -s[nodep/norelro/nossp/nopie]: set_option'
+	echo 'Usage: gc [C_file] [option]
+[+]UsageOptions:
+   nodep/nonx
+   norelro
+   nossp
+   onpie
+   [C_file]'
 	exit 0
 fi
 
-if [ $sflg -eq 1 ]; then
-	if [ $sarg = 'nodep' ]; then
-		shift $(($OPTIND - 1))
-		out=$(echo $1 | sed -E 's/(.*).c/\1/')
-		gcc -I ~/bin/include/ -fno-stack-protector -o $out $1
-		exit 0
-	fi
+options=""
+
+if test $# -ge 2 ;then
+	for var in $@ ;do
+		if test $var = "nodep" -o $var = "nonx" ;then
+			options=$options" -z execstack"
+		elif test $var = "norelro" ;then
+			options=$options" -Wl, -z, relro, -z, now"
+		elif test $var = "nossp" ;then
+			options=$options" -fno-stack-protector"
+		elif test $var = "onpie" ;then
+			options=$options" -fPIE -pie"
+		else
+			file=$var
+		fi
+	done
+fi
+
+if test $# -eq 1 ;then
+	file=$1
 fi
 
 out=$(echo $1 | sed -E 's/(.*).c/\1/')
 allrm $out
-gcc -I ~/bin/include/ -o $out $1
+gcc -I ~/bin/include/ $options -o $out $file
 
