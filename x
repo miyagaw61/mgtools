@@ -30,7 +30,13 @@ for var in $@ ;do
 	fi
 done
 
+if test ! $file ;then
+	cecho -gf '\n##### START #####\n'
+	./$@
+	exit 0
+fi
+
 gc $@
 
 cecho -gf '\n##### START #####\n'
-./$file $argv 
+./$file $argv
