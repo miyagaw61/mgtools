@@ -1,8 +1,6 @@
 #!/bin/sh
 if test $# -eq 0 ; then
 cp -a ~/bin/x.py ./exploit.py
-cp -a ~/bin/flag.txt ./
 exit 0
 fi
 cp -a ~/bin/x.py ./$1
-cp -a ~/bin/flag.txt ./
