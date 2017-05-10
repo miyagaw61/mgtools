@@ -4,10 +4,10 @@ def writefile(buf_arg,file_name):
     with open(file_name, 'wb') as f:
         f.write(buf_arg)
 
-CK = 'JaBCMafqgxW6g3ismku4NQpFf'
-CS = '2fJu5sU8ESQV08KiPyALFYTXVQkSnQTz9lizTDFnZSHdK8GPlZ'
-AT = '2473741867-QNEei8GMk2YCJMtgS1ZoKNYJbyLuBwpqSRzMTRQ'
-AS = 'gPrnZnKo7dgAnKNmRR64ncjfjqUrYdnLkh5L0x7zPARdR'
+CK = ''
+CS = ''
+AT = ''
+AS = ''
 
 auth = tweepy.OAuthHandler(CK, CS)
 auth.set_access_token(AT, AS)
