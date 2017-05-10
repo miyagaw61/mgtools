@@ -30,12 +30,20 @@ if test $# -ge 2 ;then
 	for var in $@ ;do
 		if test $var = "depoff" -o $var = "nxoff" ;then
 			options=$options" -z execstack"
+		elif test $var = "dep" -o $var = "nx" ;then
+			options=$options
 		elif test $var = "fullrelro" ;then
 			options=$options" -Wl,-z,relro,-z,now"
+		elif test $var = "relrooff" ;then
+			options=$options
 		elif test $var = "sspoff" -o $var = "canaryoff" ;then
 			options=$options" -fno-stack-protector"
+		elif test $var = "ssp" -o $var = "canary" ;then
+			options=$options
 		elif test $var = "pie" ;then
 			options=$options" -fPIE -pie"
+		elif test $var = "pieoff" ;then
+			options=$options
 		else
 			file=$var
 		fi
