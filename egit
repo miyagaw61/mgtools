@@ -13,10 +13,10 @@ if test $# -eq 0 ;then
 	hflg=1
 fi
 
-while getopts ham:rpf:c: opt ;do
+while getopts ha:m:rpf:c: opt ;do
 	case $opt in
 		h)hflg=1;;
-		a)aflg=1;;
+		a)aflg=1;aarg=$OPTARG;;
 		m)mflg=1;marg=$OPTARG;;
 		r)rflg=1;;
 		p)pflg=1;;
@@ -38,7 +38,11 @@ fi
 
 
 if test $aflg -eq 1 ;then
-	git add .
+	if test $# -eq 0 ;then
+		git add .
+	elif test $# -eq 1 ;then
+	 git add $aarg
+	fi
 	git status
 	exit 0
 fi
