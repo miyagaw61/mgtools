@@ -18,4 +18,5 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
+killall socat
 socat tcp-listen:4444,reuseaddr,fork exec:./$1 &
