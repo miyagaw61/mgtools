@@ -6,6 +6,6 @@ while getopts h opt ;do
 	esac
 done
 
-sed -E 's!s@.*#!'$2' #!g' -i ~/bin/nsed.sh
-cat $1 | sed -f ~/bin/nsed.sh
+sed -E 's!s@.*#!'$2' #!g' -i $HOME/miyagawtools/nsed.sh
+cat $1 | sed -f $HOME/miyagawtools/nsed.sh
 

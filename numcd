@@ -1,2 +1,90 @@
-1: /home/miyagaw/git/miyagawtools/numcd.alias
-2: /home/miyagaw/git/miyagawtools/numcd.alias.make
+1: cd /home/miyagaw61/miyagawtools/gdb
+2: cd /home/miyagaw61/miyagawtools/initial_setting
+3: /home/miyagaw61/miyagawtools/allmv
+4: /home/miyagaw61/miyagawtools/allrm
+5: /home/miyagaw61/miyagawtools/allsed
+6: /home/miyagaw61/miyagawtools/aslr
+7: /home/miyagaw61/miyagawtools/binsed
+8: /home/miyagaw61/miyagawtools/bkup
+9: /home/miyagaw61/miyagawtools/calc
+10: /home/miyagaw61/miyagawtools/calc2.py
+11: /home/miyagaw61/miyagawtools/calcint.py
+12: /home/miyagaw61/miyagawtools/calc.py
+13: /home/miyagaw61/miyagawtools/catf
+14: /home/miyagaw61/miyagawtools/cdir
+15: /home/miyagaw61/miyagawtools/cecho
+16: /home/miyagaw61/miyagawtools/checksec
+17: /home/miyagaw61/miyagawtools/chkbmap
+18: /home/miyagaw61/miyagawtools/def
+19: /home/miyagaw61/miyagawtools/default.sh
+20: /home/miyagaw61/miyagawtools/defc
+21: /home/miyagaw61/miyagawtools/del
+22: /home/miyagaw61/miyagawtools/depoff
+23: /home/miyagaw61/miyagawtools/dirmk
+24: /home/miyagaw61/miyagawtools/dirrm
+25: /home/miyagaw61/miyagawtools/dk
+26: /home/miyagaw61/miyagawtools/egit
+27: /home/miyagaw61/miyagawtools/f
+28: /home/miyagaw61/miyagawtools/gadget_search.py
+29: /home/miyagaw61/miyagawtools/gc
+30: /home/miyagaw61/miyagawtools/gcat
+31: /home/miyagaw61/miyagawtools/gdbrc
+32: /home/miyagaw61/miyagawtools/getfile
+33: /home/miyagaw61/miyagawtools/gettldata.py
+34: /home/miyagaw61/miyagawtools/gettweetdata.py
+35: /home/miyagaw61/miyagawtools/index2ts
+36: /home/miyagaw61/miyagawtools/kbash
+37: /home/miyagaw61/miyagawtools/kj
+38: /home/miyagaw61/miyagawtools/kp
+39: /home/miyagaw61/miyagawtools/libcstrings
+40: /home/miyagaw61/miyagawtools/lse
+41: /home/miyagaw61/miyagawtools/lsr
+42: /home/miyagaw61/miyagawtools/middle
+43: /home/miyagaw61/miyagawtools/mp4abduction
+44: /home/miyagaw61/miyagawtools/mvtrash
+45: /home/miyagaw61/miyagawtools/nowloading
+46: /home/miyagaw61/miyagawtools/nsed
+47: /home/miyagaw61/miyagawtools/nsed.sh
+48: /home/miyagaw61/miyagawtools/objd
+49: /home/miyagaw61/miyagawtools/ol
+50: /home/miyagaw61/miyagawtools/ols
+51: /home/miyagaw61/miyagawtools/olsone
+52: /home/miyagaw61/miyagawtools/pack
+53: /home/miyagaw61/miyagawtools/pack.py
+54: /home/miyagaw61/miyagawtools/pgdb
+55: /home/miyagaw61/miyagawtools/png
+56: /home/miyagaw61/miyagawtools/rmf
+57: /home/miyagaw61/miyagawtools/rmnoline
+58: /home/miyagaw61/miyagawtools/rp
+59: /home/miyagaw61/miyagawtools/rst
+60: /home/miyagaw61/miyagawtools/sa
+61: /home/miyagaw61/miyagawtools/save
+62: /home/miyagaw61/miyagawtools/sedparag
+63: /home/miyagaw61/miyagawtools/sharemount
+64: /home/miyagaw61/miyagawtools/simple_bk
+65: /home/miyagaw61/miyagawtools/sizecheck
+66: /home/miyagaw61/miyagawtools/snecho
+67: /home/miyagaw61/miyagawtools/sock
+68: /home/miyagaw61/miyagawtools/strbyte
+69: /home/miyagaw61/miyagawtools/styleis
+70: /home/miyagaw61/miyagawtools/sym
+71: /home/miyagaw61/miyagawtools/tosc
+72: /home/miyagaw61/miyagawtools/twitter
+73: /home/miyagaw61/miyagawtools/twitter.py
+74: /home/miyagaw61/miyagawtools/ve
+75: /home/miyagaw61/miyagawtools/vif
+76: /home/miyagaw61/miyagawtools/wecho
+77: /home/miyagaw61/miyagawtools/whileline
+78: /home/miyagaw61/miyagawtools/whitecat
+79: /home/miyagaw61/miyagawtools/writedel
+80: /home/miyagaw61/miyagawtools/x
+81: /home/miyagaw61/miyagawtools/x.py
+82: /home/miyagaw61/miyagawtools/xready
+83: cat /home/miyagaw61/miyagawtools/bin.tmp
+84: cat /home/miyagaw61/miyagawtools/default.c
+85: cat /home/miyagaw61/miyagawtools/gdbrc.def
+86: cat /home/miyagaw61/miyagawtools/mykbd.txt
+87: cat /home/miyagaw61/miyagawtools/myswap.txt
+88: cat /home/miyagaw61/miyagawtools/numcd
+89: cat /home/miyagaw61/miyagawtools/rc.py
+90: cat /home/miyagaw61/miyagawtools/shared

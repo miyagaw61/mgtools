@@ -19,9 +19,9 @@ if test $hflg -eq 1 ;then
 fi
 
 for var in $@ ;do
-	if test "$(cat ~/bin/numcd | egrep ^${var}: | egrep -e ':\ cat' -e ':\ cd')" ;then
-		cat ~/bin/numcd | grep ^${var}: |  perl -pe 's@\d+:\ .*\ (.*)@\1@g'
+	if test "$(cat $HOME/miyagawtools/numcd | egrep ^${var}: | egrep -e ':\ cat' -e ':\ cd')" ;then
+		cat $HOME/miyagawtools/numcd | grep ^${var}: |  perl -pe 's@\d+:\ .*\ (.*)@\1@g'
 	else
-		cat ~/bin/numcd | grep ^${var}: |  perl -pe 's@\d+:\ (.*)@\1@g'
+		cat $HOME/miyagawtools/numcd | grep ^${var}: |  perl -pe 's@\d+:\ (.*)@\1@g'
 	fi
 done

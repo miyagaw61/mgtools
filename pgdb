@@ -2,6 +2,10 @@
 
 hflg=0
 
+if test $# -eq 0 ;then
+	hflg=1
+fi
+
 while getopts h opt ;do
 	case $opt in
 		h)hflg=1;;
@@ -10,9 +14,8 @@ done
 shift $(($OPTIND - 1))
 
 if test $hflg -eq 1 ;then
-	echo "Usage: def \$script_name"
+	echo "Usage: pgdb [file]"
 	exit 0
 fi
 
-cp -a $HOME/miyagawtools/default.sh ./$1
-
+gdb -q -x ~/bin/gdbrc -x gdbrc -p $(pgrep -n $1)

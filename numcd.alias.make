@@ -19,7 +19,7 @@ if test $hflg -eq 1 ;then
 fi
 
 for var in $(seq 1 500) ;do
-	echo 'alias '${var}'="cat ~/bin/numcd | grep '${var}' | perl -pe '$(echo "'")'s@\d+:\ (.*)@\1@g'$(echo "'")' | /bin/bash"'
+	echo 'alias '${var}'="cat $HOME/miyagawtools/numcd | grep '${var}' | perl -pe '$(echo "'")'s@\d+:\ (.*)@\1@g'$(echo "'")' | /bin/bash"'
 done
 
-#alias 1="cat ~/bin/numcd | grep 1 | perl -pe 's@.*:\ (.*)@\1@g'"
+#alias 1="cat $HOME/miyagawtools/numcd | grep 1 | perl -pe 's@.*:\ (.*)@\1@g'"

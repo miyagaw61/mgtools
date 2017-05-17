@@ -20,7 +20,7 @@ fi
 
 cecho -rfn '[+]'
 cecho -gf '/mnt/windows/bk/bin/ -> '$HOME'/bin/'
-rsync -auv /mnt/windows/bk/bin/         ~/bin/  
+rsync -auv /mnt/windows/bk/bin/         $HOME/miyagawtools/  
 cecho -rfn '[+]'
 cecho -gf '/mnt/windows/bk/ctf/ -> '$HOME'/ctf/'
 rsync -auv /mnt/windows/bk/ctf/         ~/ctf/  

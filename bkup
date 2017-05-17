@@ -24,7 +24,7 @@ fi
 if test $# -eq 0 ;then
 	cecho -rfn '[+]'
 	cecho -gf $HOME'/bin/ -> /mnt/windows/bk/bin/'
-	rsync -auv ~/bin/ /mnt/windows/bk/bin/
+	rsync -auv $HOME/miyagawtools/ /mnt/windows/bk/bin/
 	cecho -rfn '[+]'
 	cecho -gf $HOME'/ctf/ -> /mnt/windows/bk/ctf/'
 	rsync -auv ~/ctf/ /mnt/windows/bk/ctf/
@@ -77,7 +77,7 @@ fi
 
 
 
-#rsync -urlpgov ~/bin/ /mnt/windows/bk/bin/
+#rsync -urlpgov $HOME/miyagawtools/ /mnt/windows/bk/bin/
 #rsync -urlpgov ~/ctf/ /mnt/windows/bk/ctf/
 #rsync -urlpgov ~/esktop/ /mnt/windows/bk/esktop/
 #rsync -urlpgov ~/ocuments/ /mnt/windows/bk/ocuments/

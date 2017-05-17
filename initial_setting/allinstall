@@ -7,16 +7,16 @@ case $ans in
 
 #first
 
-apt-get -y update
+#apt-get -y update
 apt-get -y upgrade
 
 #add by me
 
-cp -a ~/rc/bashrc ~/.bashrc
-apt-get -y install vim
-cp -a ~/rc/vimrc /etc/vim/vimrc
-cp -a ~/neosnippets/* ~/.vim/bundle/neosnippet-snippets/neosnippets/ 
-cp -a ~/bin/rc.py ~/.percol.d/rc.py
+#cp -a ~/rc/bashrc ~/.bashrc
+##apt-get -y install vim
+#cp -a ~/rc/vimrc /etc/vim/vimrc
+#cp -a ~/neosnippets/* ~/.vim/bundle/neosnippet-snippets/neosnippets/ 
+#cp -a ~/bin/rc.py ~/.percol.d/rc.py
 
 #apt
 
@@ -83,11 +83,11 @@ apt-get -y install binwalk
 
 #curl
 
-curl -sSL https://get.docker.com/ | sh
-
-curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
-sh ./install.sh
-rm -rf install.sh
+#curl -sSL https://get.docker.com/ | sh
+#
+#curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
+#sh ./install.sh
+#rm -rf install.sh
 
 #pip
 
@@ -100,8 +100,8 @@ pip install percol
 #git
 
 apt-get -y install gdb
-git clone https://github.com/longld/peda.git ~/peda
-cp -a ~/rc/gdbinit ~/.gdbinit
+#git clone https://github.com/longld/peda.git ~/peda
+#cp -a ~/rc/gdbinit ~/.gdbinit
 #echo "source ~/peda/peda.py" >> ~/.gdbinit
 #echo "" >> ~/.gdbinit
 #echo "#add by me" >> ~/.gdbinit
@@ -159,7 +159,7 @@ mv checksec.sh-1.6/checksec ~/bin/checksec.sh
 #apt-get -y install libc6:i386 libncurses5:i386 libstdc++6:i386
 #apt-get -y install gcc-multilib g++-multilib
 
-beep.sh
+#beep.sh
 
 	;;
         N | NO | n | no) echo cansel install. ;;

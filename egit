@@ -38,11 +38,7 @@ fi
 
 
 if test $aflg -eq 1 ;then
-	if test $# -eq 0 ;then
-		git add .
-	elif test $# -eq 1 ;then
-	 git add $aarg
-	fi
+	git add $aarg
 	git status
 	exit 0
 fi

@@ -78,11 +78,11 @@ rm -r /mnt/windows/bk/;conf
 mkdir /bk/
 mkdir /bk/rc/
 mkdir /bk/neosnippets/
-cp -a ~/bin/ /bk/;conf
+cp -a $HOME/miyagawtools/ /bk/;conf
 cp -a ~/ctf/ /bk/;conf
 cp -a ~/Desktop/ /bk/;conf
 cp -a ~/Documents/ /bk/;conf
-cp -a ~/bin/ /bk/;conf
+cp -a $HOME/miyagawtools/ /bk/;conf
 cp -a ~/tmp/ /bk/;conf
 cat /etc/vim/vimrc > /bk/rc/vimrc;conf
 cp -a ~/.bashrc /bk/rc/bashrc;conf
@@ -104,7 +104,7 @@ if test ! $# -eq 0 ;then
 			fi
 			init
 			conf5;conf5
-			cp -a ~/bin/* /mnt/windows/bk/bin/
+			cp -a $HOME/miyagawtools/* /mnt/windows/bk/bin/
 			conf5;conf5
 			sleep 0.3
 		elif test $arg = "ctf" ;then

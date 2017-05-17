@@ -5,12 +5,12 @@ for arg in $@ ;do
 		location=${arg}
 		echo ue
 		arg=`basename ${arg}`
-		num=`grep -e ${now} -n ~/bin/cdir | sed -e 's/:.*//g' | tail -1`
-		sed -e ${num}d -i ~/bin/cdir
+		num=`grep -e ${now} -n $HOME/miyagawtools/cdir | sed -e 's/:.*//g' | tail -1`
+		sed -e ${num}d -i $HOME/miyagawtools/cdir
 	else
 		location=$now'/'$arg
-		num=`grep -e ${now} -n ~/bin/cdir | sed -e 's/:.*//g' | tail -1`
-		sed -e ${num}d -i ~/bin/cdir
+		num=`grep -e ${now} -n $HOME/miyagawtools/cdir | sed -e 's/:.*//g' | tail -1`
+		sed -e ${num}d -i $HOME/miyagawtools/cdir
 	fi
 done
 rm -r $location

@@ -9,9 +9,11 @@ while getopts h opt ;do
 done
 
 if test $hflg -eq 1 ;then
-	echo 'Usage: allsed [dir] [before] [after]'
+	echo 'Usage: You have to edit this.'
 	exit 0
 fi
 
-find $1 | while read var ;do echo $var | xargs grep -l $2 | xargs sed -E 's@'$2'@'$3'@g' -i $var ;done 
-
+list=$(ls -1)
+for var in $list ;do
+	sed -e 's@\~\/bin@$HOME\/miyagawtools@g' -i $var
+done

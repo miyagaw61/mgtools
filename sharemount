@@ -4,11 +4,11 @@ while getopts h,d opt
 do
 	case ${opt} in
 	h)
-	echo ' $1 : host_IP_addr\n d : default_IP_addr(192.168.11.9)'
+	echo ' $1 : host_IP_addr\n d : default_IP_addr(192.168.44.1)'
 	exit 0 ;;
 	d)
-	echo 'default_IP_addr is 192.168.11.9'
-	mount -t cifs -o username=user01,password=password_hoge //192.168.11.9/Share /mnt/windows
+	echo 'default_IP_addr is 192.168.44.1'
+	mount -t cifs -o username=user01,password=password_hoge //192.168.44.1/Share /mnt/windows
 	exit 0 ;;
 	esac
 done
@@ -19,4 +19,4 @@ if test $# -eq 0 ;then
 fi
 
 mount -t cifs -o username=user01,password=password_hoge //$1/Share /mnt/windows
-echo 'shared' > ~/bin/shared
+echo 'shared' > $HOME/miyagawtools/shared
