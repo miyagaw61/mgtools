@@ -122,14 +122,14 @@ if test $1 = 'r' ;then
    v: [mounted_path] [mount_path]'
 	elif test $2 = 'v' ;then
 		if test $# -eq 5 ;then
-			docker run -v $3 -it --name $4 $5 bash
+			docker run --privileged -v $3 -it --name $4 $5 bash
 		else
 			echo 'Usage: dk r [option] [name] [image_name]
 [+]option:
    v: [mounted_path] [mount_path]'
 	   	fi
 	elif test $# -eq 3 ;then
-		docker run -it --name $2 $3 bash
+		docker run --privileged -it --name $2 $3 bash
 	else 
 		echo 'Usage: dk r [option] [name] [image_name]
 [+]option:
@@ -144,7 +144,7 @@ if test $1 = 'd' ;then
    v: [mounted_path]:[mount_path]'
 	elif test $2 = 'v' ;then
 		if test $# -eq 5 ;then
-			docker run -v $3 --privileged -d -p 8080:80 --name $4 $5 /sbin/init
+			docker run --privileged -v $3 --privileged -d -p 8080:80 --name $4 $5 /sbin/init
 		else 
 			echo 'Usage: dk d [option] [name] [image_name]
 [+]option: 
