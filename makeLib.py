@@ -138,10 +138,6 @@ line = len(lst) - 1
 x = int(sys.argv[2])
 out = sys.argv[3]
 
-print('[+] lst: %s' % lst)
-print('[+] x: %d' % x)
-print('[+] line: %d' % line)
-
 i = 0
 j = 0
 n = 0
