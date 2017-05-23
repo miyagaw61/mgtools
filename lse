@@ -52,11 +52,11 @@ if test $nflg -eq 0 ;then
 	count=1
 fi
 
-allrm $HOME/miyagawtools/numcd
+allrm $HOME/Documents/numcd
 
 if test $aflg -eq 1 -a $nflg -eq 1 ;then
 	count=1
-	allrm $HOME/miyagawtools/numcd
+	allrm $HOME/Documents/numcd
 	if test $gflg -eq 0 ;then
 		aflg=1
 		dflg=1
@@ -74,7 +74,7 @@ fi
 
 if test $nflg -eq 1 ;then
 	count=1
-	allrm $HOME/miyagawtools/numcd
+	allrm $HOME/Documents/numcd
 	if test $gflg -eq 0 ;then
 		dflg=1
 		xflg=1
@@ -119,7 +119,7 @@ if test $dflg -eq 1 ;then
 					fi
 						if test ! $maxclm -eq 1 ;then
 							cecho -r -f -n "[${count}]"
-							echo "${count}: cd $(pwd)/${var}" >> $HOME/miyagawtools/numcd
+							echo "${count}: cd $(pwd)/${var}" >> $HOME/Documents/numcd
 						fi
 					cecho -b -f $var | grep $garg
 				fi
@@ -135,7 +135,7 @@ if test $dflg -eq 1 ;then
 					fi
 						if test ! $maxclm -eq 1 ;then
 							cecho -r -f -n "[${count}]"
-							echo "${count}: cd $(pwd)/${var}" >> $HOME/miyagawtools/numcd
+							echo "${count}: cd $(pwd)/${var}" >> $HOME/Documents/numcd
 						fi
 					cecho -b -f -n $var | grep $garg | perl -pe 's@\n@@g'
 				fi
@@ -163,7 +163,7 @@ if test $dflg -eq 1 ;then
 				fi
 				if test ! $maxclm -eq 1 ;then
 					cecho -r -f -n "[${count}]"
-					echo "${count}: cd $(pwd)/${var}" >> $HOME/miyagawtools/numcd
+					echo "${count}: cd $(pwd)/${var}" >> $HOME/Documents/numcd
 				fi
 				cecho -b -f $var
 			else
@@ -177,7 +177,7 @@ if test $dflg -eq 1 ;then
 				fi
 				if test ! $maxclm -eq 1 ;then
 					cecho -r -f -n "[${count}]"
-					echo "${count}: cd $(pwd)/${var}" >> $HOME/miyagawtools/numcd
+					echo "${count}: cd $(pwd)/${var}" >> $HOME/Documents/numcd
 				fi
 				cecho -b -f -n $var
 			fi
@@ -240,7 +240,7 @@ if test $xflg -eq 1 ;then
 					fi
 						if test ! $maxclm -eq 1 ;then
 							cecho -r -f -n "[${count}]"
-							echo "${count}: $(pwd)/${var}" >> $HOME/miyagawtools/numcd
+							echo "${count}: $(pwd)/${var}" >> $HOME/Documents/numcd
 						fi
 					cecho -g -f $var | grep $garg
 				fi
@@ -256,7 +256,7 @@ if test $xflg -eq 1 ;then
 					fi
 						if test ! $maxclm -eq 1 ;then
 							cecho -r -f -n "[${count}]"
-							echo "${count}: $(pwd)/${var}" >> $HOME/miyagawtools/numcd
+							echo "${count}: $(pwd)/${var}" >> $HOME/Documents/numcd
 						fi
 					cecho -g -f -n $var | grep $garg | perl -pe 's@\n@@g'
 				fi
@@ -284,7 +284,7 @@ if test $xflg -eq 1 ;then
 				fi
 				if test ! $maxclm -eq 1 ;then
 					cecho -r -f -n "[${count}]"
-					echo "${count}: $(pwd)/${var}" >> $HOME/miyagawtools/numcd
+					echo "${count}: $(pwd)/${var}" >> $HOME/Documents/numcd
 				fi
 				cecho -g -f $var
 			else
@@ -298,7 +298,7 @@ if test $xflg -eq 1 ;then
 				fi
 				if test ! $maxclm -eq 1 ;then
 					cecho -r -f -n "[${count}]"
-					echo "${count}: $(pwd)/${var}" >> $HOME/miyagawtools/numcd
+					echo "${count}: $(pwd)/${var}" >> $HOME/Documents/numcd
 				fi
 				cecho -g -f -n $var
 			fi
@@ -346,7 +346,7 @@ if test $oflg -eq 1 ;then
 				    fi
 						if test ! $maxclm -eq 1 ;then
 							cecho -r -f -n "[${count}]"
-							echo "${count}: cat $(pwd)/${var}" >> $HOME/miyagawtools/numcd
+							echo "${count}: cat $(pwd)/${var}" >> $HOME/Documents/numcd
 						fi
 					echo $var | grep $garg
 				fi
@@ -362,7 +362,7 @@ if test $oflg -eq 1 ;then
 					fi
 						if test ! $maxclm -eq 1 ;then
 							cecho -r -f -n "[${count}]"
-							echo "${count}: cat $(pwd)/${var}" >> $HOME/miyagawtools/numcd
+							echo "${count}: cat $(pwd)/${var}" >> $HOME/Documents/numcd
 						fi
 					echo -n $var | grep $garg | perl -pe 's@\n@@g'
 				fi
@@ -390,7 +390,7 @@ if test $oflg -eq 1 ;then
 				fi
 				if test ! $maxclm -eq 1 ;then
 					cecho -r -f -n "[${count}]"
-					echo "${count}: cat $(pwd)/${var}" >> $HOME/miyagawtools/numcd
+					echo "${count}: cat $(pwd)/${var}" >> $HOME/Documents/numcd
 				fi
 				echo $var
 			else
@@ -404,7 +404,7 @@ if test $oflg -eq 1 ;then
 				fi
 				if test ! $maxclm -eq 1 ;then
 					cecho -r -f -n "[${count}]"
-					echo "${count}: cat $(pwd)/${var}" >> $HOME/miyagawtools/numcd
+					echo "${count}: cat $(pwd)/${var}" >> $HOME/Documents/numcd
 				fi
 				echo -n $var
 			fi
