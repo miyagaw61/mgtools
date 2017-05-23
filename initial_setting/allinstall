@@ -8,18 +8,20 @@ case $ans in
 #first
 
 #apt-get -y update
-apt-get -y upgrade
+#apt-get -y upgrade
 
 #add by me
 
-#cp -a ~/rc/bashrc ~/.bashrc
-##apt-get -y install vim
-#cp -a ~/rc/vimrc /etc/vim/vimrc
-#cp -a ~/neosnippets/* ~/.vim/bundle/neosnippet-snippets/neosnippets/ 
-#cp -a ~/bin/rc.py ~/.percol.d/rc.py
+cp -a $HOME/rc/bashrc $HOME/.bashrc
+apt-get -y install vim
+cp -a $HOME/rc/vimrc /etc/vim/vimrc
+mkdir -p $HOME/.vim/bundle/neosnippet-snippets/neosnippets/
+cp -a $HOME/neosnippets/* $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ 
+#cp -a $HOME/miyagawtools/rc.py $HOME/.percol.d/rc.py
 
 #apt
 
+apt-get -y install rsync
 apt-get -y install python
 apt-get -y install python-pip python-dev
 apt-get -y install libboost-all-dev lib32z1-dev libbz2-dev
@@ -47,6 +49,7 @@ apt-get -y install libfreetype6-dev
 apt-get -y install libpng-dev
 apt-get -y install build-essential
 apt-get -y install binwalk
+apt-get -y install cifs-utils
 
 ###----for metasploit----#
 #apt-get -y install subversion
@@ -100,19 +103,19 @@ pip install percol
 #git
 
 apt-get -y install gdb
-#git clone https://github.com/longld/peda.git ~/peda
-#cp -a ~/rc/gdbinit ~/.gdbinit
-#echo "source ~/peda/peda.py" >> ~/.gdbinit
-#echo "" >> ~/.gdbinit
-#echo "#add by me" >> ~/.gdbinit
-#echo "" >> ~/.gdbinit
-#cat ~/bin/gdb/init/gdbinitadd >> ~/.gdbinit
+#git clone https://github.com/longld/peda.git $HOME/peda
+#cp -a $HOME/rc/gdbinit $HOME/.gdbinit
+#echo "source $HOME/peda/peda.py" >> $HOME/.gdbinit
+#echo "" >> $HOME/.gdbinit
+#echo "#add by me" >> $HOME/.gdbinit
+#echo "" >> $HOME/.gdbinit
+#cat $HOME/miyagawtools/gdb/init/gdmiyagawtoolsitadd >> $HOME/.gdmiyagawtoolsit
 
 ##----ruby----#
-#cd ~
+#cd $HOME
 #git clone git://github.com/sstephenson/rbenv.git .rbenv
-#git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-#git clone git://github.com/dcarley/rbenv-sudo.git ~/.rbenv/plugins/rbenv-sudo
+#git clone git://github.com/sstephenson/ruby-build.git $HOME/.rbenv/plugins/ruby-build
+#git clone git://github.com/dcarley/rbenv-sudo.git $HOME/.rbenv/plugins/rbenv-sudo
 #rbenv install 2.1.6
 #rbenv global 2.1.6
 #ruby -v
@@ -133,23 +136,22 @@ apt-get -y install gdb
 
 #wget
 
-cd ~/Downloads/
+cd $HOME/Downloads/
 
 wget https://github.com/downloads/0vercl0k/rp/rp-lin-x86
 chmod +x rp-lin-x86
-mv rp-lin-x86 /usr/local/bin
+mv rp-lin-x86 /usr/local/bin/
 
 wget https://github.com/slimm609/checksec.sh/archive/1.6.tar.gz
 tar zxvf 1.6.tar.gz
-mv checksec.sh-1.6/checksec ~/bin/checksec.sh
+mv checksec.sh-1.6/checksec $HOME/miyagawtools/checksec.sh
 
-#mkdir ext4magic
-#cd ext4magic
-#wget http://downloads.sourceforge.net/project/ext4magic/ext4magic-0.3.2.tar.gz
-#tar xzvf ext4magic-0.3.2.tar.gz
-#cd ext4magic-0.3.2
-#./configure
-
+mkdir ext4magic
+cd ext4magic
+wget http://downloads.sourceforge.net/project/ext4magic/ext4magic-0.3.2.tar.gz
+tar xzvf ext4magic-0.3.2.tar.gz
+cd ext4magic-0.3.2
+./configure
 
 #other
 
