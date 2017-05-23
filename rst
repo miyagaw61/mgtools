@@ -81,14 +81,14 @@ rsync -auv /mnt/windows/bk/rc/*          $HOME/rc/
 fi
 
 
-if test "$(diff -u /mnt/windows/bk/rc/bashrc/ $HOME/.bashrc/ | grep @@)" ;then
+if test "$(diff -u /mnt/windows/bk/rc/bashrc $HOME/.bashrc | grep @@)" ;then
 cecho -rfn '[+]'
 cecho -gf '/mnt/windows/bk/rc/bashrc/ -> '$HOME'/.bashrc/'
 rsync -auv /mnt/windows/bk/rc/bashrc    $HOME/.bashrc
 fi
 
 
-if test "$(diff -u /mnt/windows/bk/rc/vimrc/ /usr/share/vim/vimrc/ | grep @@)" ;then
+if test "$(diff -u /mnt/windows/bk/rc/vimrc /usr/share/vim/vimrc | grep @@)" ;then
 cecho -rfn '[+]'
 cecho -gf '/mnt/windows/bk/rc/vimrc/ -> /usr/share/vim/vimrc/'
 rsync -auv /mnt/windows/bk/rc/vimrc     /usr/share/vim/
