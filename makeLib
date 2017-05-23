@@ -1,0 +1,35 @@
+#!/bin/sh
+
+hflg=0
+
+if test $# -eq 0 ;then
+	hflg=1
+fi
+
+while getopts h opt ;do
+	case $opt in
+		h)hflg=1;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+if test $hflg -eq 1 ;then
+	echo "Usage: makeLib [min] [max] [src_file] [dst_file]"
+	exit 0
+fi
+
+min=$1
+max=$2
+src=$3
+dst=$4
+
+split -d -a 3 $src 'splited_'$src
+lst=$(ls -1 | grep splited)
+for var in $lst ;do
+	crunch $min $max -q $var -o ${var}'.lib'
+done
+lst=$(ls -1 | grep splited.*lib)
+for var in $lst ;do
+	cat $var >> $dst
+done
+allrm $(ls -1 | grep splited)
