@@ -21,8 +21,8 @@ if test $hflg -eq 1 ;then
 fi
 
 base=$(basename $1)
-find $1 -type d | sort | perl -pe 's@/home/.*?/@@g' | perl -pe 's@/mnt/windows/bk/@@g' | grep -v '\.git' > dir1.tmp
-find $2 -type d | sort | perl -pe 's@/home/.*?/@@g' | perl -pe 's@/mnt/windows/bk/@@g' | grep -v '\.git' > dir2.tmp
+find $1 -type d | sort | perl -pe 's@/.*?'${base}'@'${base}'@g' | grep -v '\.git' > dir1.tmp
+find $2 -type d | sort | perl -pe 's@/.*?'${base}'@'${base}'@g' | grep -v '\.git' > dir2.tmp
 rmnoline dir1.tmp > dir3.tmp
 rmnoline dir2.tmp > dir4.tmp
 mv dir3.tmp dir1.tmp
@@ -51,4 +51,6 @@ elif test $3 != "check" ;then
 	exit 0
 fi
 
-diff -u file1.tmp file2.tmp > diff.tmp
+diff -u dir1.tmp dir2.tmp > diff.tmp
+echo "" >> diff.tmp
+diff -u file1.tmp file2.tmp >> diff.tmp
