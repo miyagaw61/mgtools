@@ -4,10 +4,12 @@ def writefile(buf_arg,file_name):
     with open(file_name, 'wb') as f:
         f.write(buf_arg)
 
-CK = ''
-CS = ''
-AT = ''
-AS = ''
+HOME = '/home/miyagaw61'
+
+CK = open(HOME + '/Documents/twitter.CK', 'r').read()
+CS = open(HOME + '/Documents/twitter.CS', 'r').read()
+AT = open(HOME + '/Documents/twitter.AT', 'r').read()
+AS = open(HOME + '/Documents/twitter.AS', 'r').read()
 
 auth = tweepy.OAuthHandler(CK, CS)
 auth.set_access_token(AT, AS)

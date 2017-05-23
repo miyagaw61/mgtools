@@ -1,9 +1,11 @@
 import sys, tweepy
 
-CK = ''
-CS = ''
-AT = ''
-AS = ''
+HOME = '/home/miyagaw61'
+
+CK = open(HOME + '/Documents/twitter.CK', 'r').read()
+CS = open(HOME + '/Documents/twitter.CS', 'r').read()
+AT = open(HOME + '/Documents/twitter.AT', 'r').read()
+AS = open(HOME + '/Documents/twitter.AS', 'r').read()
 
 auth = tweepy.OAuthHandler(CK, CS)
 auth.set_access_token(AT, AS)
@@ -15,3 +17,4 @@ try:
 	print api.get_status(status_id)
 except:
 	print 'error'
+
