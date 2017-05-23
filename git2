@@ -30,20 +30,27 @@ shift $(($OPTIND - 1))
 
 if test $hflg -eq 1 ;then
 	echo "Usage: git2 [option]
-[+]UsageOption:
-   mt/mp/tmp/io/mc [file_name]: copy to repository and cd repository
-    (e.g) git2 mt gcc -> cp -a ./gcc $HOME/git/miyagawtools/; cd $HOME/git/miyagawtools/
-   add [file_name]: git add [file_name]
-    (e.g) git2 add .
-   commit/c: git commit
-    (e.g) git2 commit / git2 c
-   remote/r: git remote add origin https://github.com/[user_name]/[repository_name]
-    (e.g) git2 remote / git2 r
-   push/p: git push origin master ( *** Please Go To Repository Directory ***)
-    (e.g) git2 mt; git2 push / git2 mt; git2 p
-   all/a: add&commit&push.all_automation (git add . -> git commit -> git push origin master)
-    (e.g) git2 a / git2 all
-   clone: super git clone"
+ clone:          super git clone
+ [LABEL] [path]: copy to repository and cd repository ( Usage_LABEL: mt/mp/tmp/io/mc )
+ add [path]:     git add [path]
+ commit/c:       git commit
+ remote/r:       git remote add origin https://github.com/[user_name]/[repository_name]
+ push/p:         git push origin master
+ all/a:          add&commit&push.all_automation (git add . -> git commit -> git push origin master)
+
+ (EXAMPLE)
+ git2 mt --> cd $HOME/git/miyagawtools/
+ git2 mt gcc --> cp -a ./gcc $HOME/git/miyagawtools/; cd $HOME/git/miyagawtools/
+ git2 add .  ( *** You have to be in the repository directory ***)
+ git2 commit ( *** You have to be in the repository directory ***)
+ git2 c      ( *** You have to be in the repository directory ***)
+ git2 remote ( *** You have to be in the repository directory ***)
+ git2 r      ( *** You have to be in the repository directory ***)
+ git2 push   ( *** You have to be in the repository directory ***)
+ git2 p      ( *** You have to be in the repository directory ***)
+ git2 all    ( *** You have to be in the repository directory ***)
+ git2 a      ( *** You have to be in the repository directory ***)
+	"
 	exit 0
 fi
 
@@ -67,8 +74,10 @@ fi
 if test $1 = "remote"  -o $1 = "r" ;then
 	now=$(pwd)
 	arg=$(basename ${now})
+	echo -n username:
+	read user
 	git remote rm origin
-	git remote add origin https://github.com/miyagaw61/${arg}
+	git remote add origin https://github.com/${user}/${arg}
 	exit 0
 fi
 
@@ -94,7 +103,9 @@ if test $1 = "all" -o $1 = "a" ;then
 	#now=$(pwd)
 	#arg=$(basename ${now})
 	#git remote rm origin
-	#git remote add origin https://github.com/miyagaw61/${arg}.git
+	#echo -n username:
+	#read user
+	#git remote add origin https://github.com/${user}/${arg}.git
 	sleep 0.5
 	git push origin master
 	exit 0
@@ -106,10 +117,10 @@ if test $1 = "miyagawtools" -o $1 = "mt" ;then
 	args=$(echo $args | perl -pe 's/'$1'//g')
 	if test $# -ge 2 ;then
 		for var in $args ;do
-			cp -a $var ~/git/miyagawtools/
+			cp -a $var $HOME/git/miyagawtools/
 		done
 	fi
-	cd ~/git/miyagawtools/
+	cd $HOME/git/miyagawtools/
 	exec /bin/bash
 	exit 0
 fi
@@ -120,10 +131,10 @@ if test $1 = "tmp" ;then
 	args=$(echo $args | perl -pe 's/'$1'//g')
 	if test $# -ge 2 ;then
 		for var in $args ;do
-			cp -a $var ~/git/tmp/
+			cp -a $var $HOME/git/tmp/
 		done
 	fi
-	cd ~/git/tmp/
+	cd $HOME/git/tmp/
 	exec /bin/bash
 	exit 0
 fi
@@ -134,10 +145,10 @@ if test $1 = "miyagawpeda" -o $1 = "mp" ;then
 	args=$(echo $args | perl -pe 's/'$1'//g')
 	if test $# -ge 2 ;then
 		for var in $args ;do
-			cp -a $var ~/git/miyagawpeda/
+			cp -a $var $HOME/git/miyagawpeda/
 		done
 	fi
-	cd ~/git/miyagawpeda/
+	cd $HOME/git/miyagawpeda/
 	exec /bin/bash
 	exit 0
 fi
@@ -148,10 +159,10 @@ if test $1 = "miyagaw61.github.io" -o $1 = "github.io" -o $1 = "io" ;then
 	args=$(echo $args | perl -pe 's/'$1'//g')
 	if test $# -ge 2 ;then
 		for var in $args ;do
-			cp -a $var ~/git/miyagaw61.github.io/
+			cp -a $var $HOME/git/miyagaw61.github.io/
 		done
 	fi
-	cd ~/git/miyagaw61.github.io/
+	cd $HOME/git/miyagaw61.github.io/
 	exec /bin/bash
 	exit 0
 fi
@@ -162,10 +173,10 @@ if test $1 = "miyactf" -o $1 = "mc" ;then
 	args=$(echo $args | perl -pe 's/'$1'//g')
 	if test $# -ge 2 ;then
 		for var in $args ;do
-			cp -a $var ~/git/miyactf/
+			cp -a $var $HOME/git/miyactf/
 		done
 	fi
-	cd ~/git/miyactf/
+	cd $HOME/git/miyactf/
 	exec /bin/bash
 	exit 0
 fi
