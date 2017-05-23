@@ -18,4 +18,4 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-gdb -q -x ~/bin/gdbrc -x gdbrc -p $(pgrep -n $1)
+gdb -q -x $HOME/miyagawtools/gdbrc -x gdbrc -p $(pgrep -n $1)
