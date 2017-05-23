@@ -21,11 +21,15 @@ if test $hflg -eq 1 ;then
 fi
 
 base=$(basename $1)
-find $1 -type d | sort | perl -pe 's@/home/.*?/@@g' | perl -pe 's@/mnt/windows/bk/@@g' > dir1.tmp
-find $2 -type d | sort | perl -pe 's@/home/.*?/@@g' | perl -pe 's@/mnt/windows/bk/@@g' > dir2.tmp
+find $1 -type d | sort | perl -pe 's@/home/.*?/@@g' | perl -pe 's@/mnt/windows/bk/@@g' | grep -v '\.git' > dir1.tmp
+find $2 -type d | sort | perl -pe 's@/home/.*?/@@g' | perl -pe 's@/mnt/windows/bk/@@g' | grep -v '\.git' > dir2.tmp
 #find $1 -type f | sort | while read var ;do md5sum  -b $var ;done | perl -pe 's@/home/.*?/@@g' | perl -pe 's@/mnt/windows/bk/@@g' | perl -pe 's@/home/.*?/git/@@g' > file1.tmp
-find $1 -type f | sort | while read var ;do md5sum  -b $var ;done | perl -pe 's@/.*?'${base}'@'${base}'@g' > file1.tmp
-find $2 -type f | sort | while read var ;do md5sum  -b $var ;done | perl -pe 's@/.*?'${base}'@'${base}'@g' > file2.tmp
+find $1 -type f | sort | while read var ;do md5sum  -b $var ;done | perl -pe 's@/.*?'${base}'@'${base}'@g' | grep -v '\.git' > file1.tmp
+find $2 -type f | sort | while read var ;do md5sum  -b $var ;done | perl -pe 's@/.*?'${base}'@'${base}'@g' | grep -v '\.git' > file2.tmp
+rmnoline file1.tmp > file3.tmp
+rmnoline file2.tmp > file4.tmp
+mv file3.tmp file1.tmp
+mv file4.tmp file2.tmp
 flg="True"
 if test "$(diff -q dir1.tmp dir2.tmp)" ;then
 	flg="False"
