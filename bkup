@@ -18,37 +18,72 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-cecho -rfn '[+]'
-cecho -gf $HOME'/miyagawtools/ -> /mnt/windows/bk/miyagawtools/'
-rsync -auv $HOME/miyagawtools/* /mnt/windows/bk/miyagawtools/
-cecho -rfn '[+]'
-cecho -gf $HOME'/ctf/ -> /mnt/windows/bk/ctf/'
-rsync -auv $HOME/ctf/* /mnt/windows/bk/ctf/
-cecho -rfn '[+]'
-cecho -gf $HOME'/Desktop/ -> /mnt/windows/bk/Desktop/'
-rsync -auv $HOME/Desktop/* /mnt/windows/bk/Desktop/
-cecho -rfn '[+]'
-cecho -gf $HOME'/Documents/ -> /mnt/windows/bk/Documents/'
-rsync -auv $HOME/Documents/* /mnt/windows/bk/Documents/
-cecho -rfn '[+]'
-cecho -gf $HOME'/Downloads/ -> /mnt/windows/bk/Downloads/'
-rsync -auv $HOME/Downloads/* /mnt/windows/bk/Downloads/
-cecho -rfn '[+]'
-cecho -gf $HOME'/neosnippets/ -> /mnt/windows/bk/neosnippets/'
-rsync -auv $HOME/neosnippets/* /mnt/windows/bk/neosnippets/
-cecho -rfn '[+]'
-cecho -gf $HOME'/tmp/ -> /mnt/windows/bk/tmp/'
-rsync -auv $HOME/tmp/* /mnt/windows/bk/tmp/
-cecho -rfn '[+]'
-cecho -gf $HOME'/peda/ -> /mnt/windows/bk/peda/'
-rsync -auv $HOME/peda/* /mnt/windows/bk/peda/
-cecho -rfn '[+]'
-cecho -gf $HOME'/.bashrc -> /mnt/windows/bk/rc/bashrc'
-rsync -auv $HOME/.bashrc $HOME/rc/
-cecho -rfn '[+]'
-cecho -gf '/usr/share/vim/vimrc -> /mnt/windows/bk/rc/vimrc'
-rsync -auv /usr/share/vim/vimrc $HOME/rc/
-cecho -rfn '[+]'
-cecho -gf $HOME'/rc/ -> /mnt/windows/bk/rc/'
-rsync -auv $HOME/rc/* /mnt/windows/bk/rc/
+
+if test "$(diff -u $HOME/miyagawtools/ /mnt/windows/bk/miyagawtools/ | grep @@)" ;then
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/miyagawtools/ -> /mnt/windows/bk/miyagawtools/'
+	rsync -auv $HOME/miyagawtools/* /mnt/windows/bk/miyagawtools/
+fi
+
+if test "$(diff -u $HOME/ctf/ /mnt/windows/bk/ctf/ | grep @@)" ;then
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/ctf/ -> /mnt/windows/bk/ctf/'
+	rsync -auv $HOME/ctf/* /mnt/windows/bk/ctf/
+fi
+
+if test "$(diff -u $HOME/Desktop/ /mnt/windows/bk/Desktop/ | grep @@)" ;then
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/Desktop/ -> /mnt/windows/bk/Desktop/'
+	rsync -auv $HOME/Desktop/* /mnt/windows/bk/Desktop/
+fi
+
+if test "$(diff -u $HOME/Documents/ /mnt/windows/bk/Documents/ | grep @@)" ;then
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/Documents/ -> /mnt/windows/bk/Documents/'
+	rsync -auv $HOME/Documents/* /mnt/windows/bk/Documents/
+fi
+
+if test "$(diff -u $HOME/Downloads/ /mnt/windows/bk/Downloads/ | grep @@)" ;then
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/Downloads/ -> /mnt/windows/bk/Downloads/'
+	rsync -auv $HOME/Downloads/* /mnt/windows/bk/Downloads/
+fi
+
+if test "$(diff -u $HOME/neosnippets/ /mnt/windows/bk/neosnippets/ | grep @@)" ;then
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/neosnippets/ -> /mnt/windows/bk/neosnippets/'
+	rsync -auv $HOME/neosnippets/* /mnt/windows/bk/neosnippets/
+fi
+
+if test "$(diff -u $HOME/tmp/ /mnt/windows/bk/tmp/ | grep @@)" ;then
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/tmp/ -> /mnt/windows/bk/tmp/'
+	rsync -auv $HOME/tmp/* /mnt/windows/bk/tmp/
+fi
+
+if test "$(diff -u $HOME/peda/ /mnt/windows/bk/peda/ | grep @@)" ;then
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/peda/ -> /mnt/windows/bk/peda/'
+	rsync -auv $HOME/peda/* /mnt/windows/bk/peda/
+fi
+
+if test "$(diff -u $HOME/.bashrc /mnt/windows/bk/rc/bashrc | grep @@)" ;then
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/.bashrc -> /mnt/windows/bk/rc/bashrc'
+	rsync -auv $HOME/.bashrc $HOME/rc/
+fi
+
+
+if test "$(diff -u /usr/share/vim/vimrc /mnt/windows/bk/rc/vimrc | grep @@)" ;then
+	cecho -rfn '[+]'
+	cecho -gf '/usr/share/vim/vimrc -> /mnt/windows/bk/rc/vimrc'
+	rsync -auv /usr/share/vim/vimrc $HOME/rc/
+fi
+
+if test "$(diff -u $HOME/rc/ /mnt/windows/bk/rc/ | grep @@)" ;then
+	cecho -rfn '[+]'
+	cecho -gf $HOME'/rc/ -> /mnt/windows/bk/rc/'
+	rsync -auv $HOME/rc/* /mnt/windows/bk/rc/
+fi
+
 
