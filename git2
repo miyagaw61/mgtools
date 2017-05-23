@@ -31,18 +31,18 @@ shift $(($OPTIND - 1))
 if test $hflg -eq 1 ;then
 	echo "Usage: git2 [option]
 [+]UsageOption:
+   mt/mp/tmp/io/mc [file_name]: copy to repository and cd repository
+    (e.g) git2 mt gcc -> cp -a ./gcc $HOME/git/miyagawtools/; cd $HOME/git/miyagawtools/
    add [file_name]: git add [file_name]
     (e.g) git2 add .
    commit/c: git commit
     (e.g) git2 commit / git2 c
    remote/r: git remote add origin https://github.com/[user_name]/[repository_name]
     (e.g) git2 remote / git2 r
-   push/p: git push origin master
-    (e.g) git2 push / git2 p
+   push/p: git push origin master ( *** Please Go To Repository Directory ***)
+    (e.g) git2 mt; git2 push / git2 mt; git2 p
    all/a: add&commit&push.all_automation (git add . -> git commit -> git push origin master)
     (e.g) git2 a / git2 all
-   mt/mp/tmp/io/mc [file_name]: copy to repository and cd repository
-    (e.g) git2 mt gcc -> cp -a ./gcc $HOME/git/miyagawtools/; cd $HOME/git/miyagawtools/
    clone: super git clone"
 	exit 0
 fi
