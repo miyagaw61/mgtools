@@ -24,6 +24,16 @@ def splitn(data, n):
     length = len(data)
     return [data[i:i+n] for i in range(0, length, n)]
 
+argc = len(sys.argv)
+
+if(argc == 1):
+    print("Usage: ipcalc [option]\n\
+[+]UsageOption: \n\
+   ip [int_ip]: ip_addr\n\
+   ipb [bin_ip]: ip_addr\n\
+   mask [int_mask]: subnetmask")
+    exit()
+
 args = sys.argv
 ip = ""
 mask = ""
@@ -33,6 +43,10 @@ for arg in args:
         ip = args[i+1].split(".")
     elif(arg == "mask"):
         mask = args[i+1].split(".")
+    elif(arg == "ipb"):
+        ip = args[i+1].split(".")
+        for i in range(0, 3):
+            ip[i] = str(int(ip[i], 2))
     i = i + 1
 
 ip10 = ['']*4
@@ -41,7 +55,7 @@ if(ip):
     i = 0
     for var in ip:
         ip[i] = format(int(var), '08b')
-        ip10[i] = str(var)
+        ip10[i] = str(int(var, 10))
         i = i + 1
     ip = '.'.join(ip)
     ip10 = '.'.join(ip10)
