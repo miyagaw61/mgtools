@@ -14,16 +14,18 @@ done
 shift $(($OPTIND - 1))
 
 if test $hflg -eq 1 ;then
-	echo "Usage: "
+	echo "Usage: hashdiff [path1] [path2] [option]
+[+]UsageOption:
+   check: check_diff_file"
 	exit 0
 fi
 
+base=$(basename $1)
 find $1 -type d | sort | perl -pe 's@/home/.*?/@@g' | perl -pe 's@/mnt/windows/bk/@@g' > dir1.tmp
 find $2 -type d | sort | perl -pe 's@/home/.*?/@@g' | perl -pe 's@/mnt/windows/bk/@@g' > dir2.tmp
-find $1 -type f | sort | while read var ;do md5sum  -b $var ;done > file1.tmp
-find $2 -type f | sort | while read var ;do md5sum  -b $var ;done > file2.tmp
-sed  -E 's@(.*) .*@\1@g' -i file1.tmp 
-sed  -E 's@(.*) .*@\1@g' -i file2.tmp 
+#find $1 -type f | sort | while read var ;do md5sum  -b $var ;done | perl -pe 's@/home/.*?/@@g' | perl -pe 's@/mnt/windows/bk/@@g' | perl -pe 's@/home/.*?/git/@@g' > file1.tmp
+find $1 -type f | sort | while read var ;do md5sum  -b $var ;done | perl -pe 's@/.*?'${base}'@'${base}'@g' > file1.tmp
+find $2 -type f | sort | while read var ;do md5sum  -b $var ;done | perl -pe 's@/.*?'${base}'@'${base}'@g' > file2.tmp
 flg="True"
 if test "$(diff -q dir1.tmp dir2.tmp)" ;then
 	flg="False"
@@ -32,5 +34,13 @@ if test "$(diff -q file1.tmp file2.tmp)" ;then
 	flg="False"
 fi
 echo $flg
-allrm dir1.tmp dir2.tmp file1.tmp file2.tmp
 
+if test ! $# -eq 3 ;then
+	rmtmp
+	exit 0
+elif test $3 != "check" ;then
+	rmtmp	
+	exit 0
+fi
+
+diff -u file1.tmp file2.tmp > diff.tmp
