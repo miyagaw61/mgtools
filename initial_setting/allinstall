@@ -106,6 +106,8 @@ cp -a $HOME/miyagawtools/rc.py $HOME/.percol.d/rc.py
 
 #git
 
+git clone https://github.com/radare/radare2.git $HOME/Downloads/radare2
+sh $HOME/Downloads/radare2/sys/install.sh
 #git clone https://github.com/longld/peda.git $HOME/peda
 #cp -a $HOME/rc/gdbinit $HOME/.gdbinit
 #echo "source $HOME/peda/peda.py" >> $HOME/.gdbinit

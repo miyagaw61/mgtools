@@ -18,70 +18,70 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-if test "$(hashdiff $HOME/miyagawtools/ /mnt/windows/bk/miyagawtools/)" = "False" ;then
+#if test "$(hashdiff $HOME/miyagawtools/ /mnt/windows/bk/miyagawtools/)" = "False" ;then
 	cecho -rfn '[+]'
 	cecho -gf $HOME'/miyagawtools/ -> /mnt/windows/bk/miyagawtools/'
 	rsync -auv $HOME/miyagawtools/* /mnt/windows/bk/miyagawtools/
-fi
+#fi
 
-#if test "$(hashdiff $HOME/ctf/ /mnt/windows/bk/ctf/)" ;then
+#if test "$(hashdiff $HOME/ctf/ /mnt/windows/bk/ctf/)" = "False" ;then
 	cecho -rfn '[+]'
 	cecho -gf $HOME'/ctf/ -> /mnt/windows/bk/ctf/'
 	rsync -auv $HOME/ctf/* /mnt/windows/bk/ctf/
 #fi
 
-if test "$(hashdiff $HOME/Desktop/ /mnt/windows/bk/Desktop/)" = "False" ;then
+#if test "$(hashdiff $HOME/Desktop/ /mnt/windows/bk/Desktop/)" = "False" ;then
 	cecho -rfn '[+]'
 	cecho -gf $HOME'/Desktop/ -> /mnt/windows/bk/Desktop/'
 	rsync -auv $HOME/Desktop/* /mnt/windows/bk/Desktop/
-fi
+#fi
 
-if test "$(hashdiff $HOME/Documents/ /mnt/windows/bk/Documents/)" = "False" ;then
+#if test "$(hashdiff $HOME/Documents/ /mnt/windows/bk/Documents/)" = "False" ;then
 	cecho -rfn '[+]'
 	cecho -gf $HOME'/Documents/ -> /mnt/windows/bk/Documents/'
 	rsync -auv $HOME/Documents/* /mnt/windows/bk/Documents/
-fi
+#fi
 
-if test "$(hashdiff $HOME/Downloads/ /mnt/windows/bk/Downloads/)" = "False" ;then
+#if test "$(hashdiff $HOME/Downloads/ /mnt/windows/bk/Downloads/)" = "False" ;then
 	cecho -rfn '[+]'
 	cecho -gf $HOME'/Downloads/ -> /mnt/windows/bk/Downloads/'
 	rsync -auv $HOME/Downloads/* /mnt/windows/bk/Downloads/
-fi
+#fi
 
-if test "$(hashdiff $HOME/neosnippets/ /mnt/windows/bk/neosnippets/)" = "False" ;then
+#if test "$(hashdiff $HOME/neosnippets/ /mnt/windows/bk/neosnippets/)" = "False" ;then
 	cecho -rfn '[+]'
 	cecho -gf $HOME'/neosnippets/ -> /mnt/windows/bk/neosnippets/'
 	rsync -auv $HOME/neosnippets/* /mnt/windows/bk/neosnippets/
-fi
+#fi
 
-if test "$(hashdiff $HOME/tmp/ /mnt/windows/bk/tmp/)" = "False" ;then
+#if test "$(hashdiff $HOME/tmp/ /mnt/windows/bk/tmp/)" = "False" ;then
 	cecho -rfn '[+]'
 	cecho -gf $HOME'/tmp/ -> /mnt/windows/bk/tmp/'
 	rsync -auv $HOME/tmp/* /mnt/windows/bk/tmp/
-fi
+#fi
 
-if test "$(hashdiff $HOME/peda/ /mnt/windows/bk/peda/)" = "False" ;then
+#if test "$(hashdiff $HOME/peda/ /mnt/windows/bk/peda/)" = "False" ;then
 	cecho -rfn '[+]'
 	cecho -gf $HOME'/peda/ -> /mnt/windows/bk/peda/'
 	rsync -auv $HOME/peda/* /mnt/windows/bk/peda/
-fi
+#fi
 
-if test "$(diff -q $HOME/.bashrc $HOME/rc/bashrc)" ;then
+#if test "$(diff -q $HOME/.bashrc $HOME/rc/bashrc)" ;then
 	cecho -rfn '[+]'
 	cecho -gf $HOME'/.bashrc -> '$HOME'/rc/bashrc'
 	rsync -auv $HOME/.bashrc $HOME/rc/bashrc
-fi
+#fi
 
-if test "$(diff -q /usr/share/vim/vimrc /mnt/windows/bk/rc/vimrc)" ;then
+#if test "$(diff -q /usr/share/vim/vimrc /mnt/windows/bk/rc/vimrc)" ;then
 	cecho -rfn '[+]'
 	cecho -gf '/usr/share/vim/vimrc -> /mnt/windows/bk/rc/vimrc'
 	rsync -auv /usr/share/vim/vimrc $HOME/rc/
-fi
+#fi
 
-if test "$(hashdiff $HOME/rc/ /mnt/windows/bk/rc/)" = "False" ;then
+#if test "$(hashdiff $HOME/rc/ /mnt/windows/bk/rc/)" = "False" ;then
 	cecho -rfn '[+]'
 	cecho -gf $HOME'/rc/ -> /mnt/windows/bk/rc/'
 	rsync -auv $HOME/rc/* /mnt/windows/bk/rc/
-fi
+#fi
 
 
