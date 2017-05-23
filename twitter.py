@@ -15,9 +15,9 @@ api = tweepy.API(auth)
 
 tl = api.home_timeline(count=sys.argv[1])
 tl.reverse()
-nglist = open('/home/miyagaw/Documents/nglist' , 'r').read()
+nglist = open('/home/miyagaw61/Documents/nglist' , 'r').read()
 nglist = nglist.split('\n')
-oklist = open('/home/miyagaw/Documents/oklist' , 'r').read()
+oklist = open('/home/miyagaw61/Documents/oklist' , 'r').read()
 oklist = oklist.split('\n')
 #print('hoge\nnglist: ' + str(nglist) + '\noklist: ' + str(oklist))
 for status in tl:
@@ -36,7 +36,7 @@ for status in tl:
             okflg = 1
         i = i + 1
     if(status.favorite_count > 0 or status.retweet_count > 0 or okflg > 0):
-        lastid = int(open('/home/miyagaw/Documents/lastid', 'r').read())
+        lastid = int(open('/home/miyagaw61/Documents/lastid', 'r').read())
         if(status.id > lastid):
             if(ngflg == 0):
                 if(status.in_reply_to_status_id != None):
@@ -74,3 +74,4 @@ for status in tl:
                     print('[+]' + status.user.name.encode('utf_8') + ' @' +  status.user.screen_name.encode('utf_8'))
                     print("-"*100)
                     print(status.text.encode('utf_8'))
+
