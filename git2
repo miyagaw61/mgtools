@@ -11,6 +11,8 @@ cflg=0
 
 if test $# -eq 0 ;then
 	hflg=1
+elif test $1 = "help" ;then
+	hflg=1
 fi
 
 while getopts ha:m:rpf:c: opt ;do
@@ -27,15 +29,23 @@ done
 shift $(($OPTIND - 1))
 
 if test $hflg -eq 1 ;then
-	echo "Usage: egit [option]
+	echo "Usage: git2 [option]
 [+]UsageOption:
-   f [file]: git add [file]
-   m [comment]: git commit -m [comment]
-   r [tag/URI]: git remote add origin [tag/URI]
-   p: git push origin master"
+   add [file_name]: git add [file_name]
+    (e.g) git2 add .
+   commit/c: git commit
+    (e.g) git2 commit / git2 c
+   remote/r: git remote add origin https://github.com/[user_name]/[repository_name]
+    (e.g) git2 remote / git2 r
+   push/p: git push origin master
+    (e.g) git2 push / git2 p
+   all/a: add&commit&push.all_automation (git add . -> git commit -> git push origin master)
+    (e.g) git2 a / git2 all
+   mt/mp/tmp/io/mc [file_name]: copy to repository and cd repository
+    (e.g) git2 mt gcc -> cp -a ./gcc $HOME/git/miyagawtools/; cd $HOME/git/miyagawtools/
+   clone: super git clone"
 	exit 0
 fi
-
 
 if test $1 = "add" ;then
 	git add $2
@@ -174,4 +184,19 @@ if test $1 = "clone" ;then
 		read directory
 		git clone "http://github.com/"$username"/"$repository".git" $directory
 	fi
+fi
+
+if test $1 = "cp" ;then
+	if test $3 = "mt" ;then
+		dst="$HOME/git/miyagawtools/"
+	elif test $3 = "mp" ;then
+		dst="$HOME/git/miyagawpeda"
+	elif test $3 = "tmp" ;then
+		dst="$HOME/git/tmp"
+	elif test $3 = "io" ;then
+		dst="$HOME/git/miyagaw61.github.io"
+	elif test $3 = "mc" ;then
+		dst="$HOME/git/miyactf"
+	fi
+	cp -a $2 $dst
 fi
