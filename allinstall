@@ -1,0 +1,171 @@
+#! /bin/sh
+
+echo -n 'all install , OK? [Y/n] '
+read ans
+case $ans in
+        Y | YES | y | yes)
+
+#first
+
+#apt-get -y update
+#apt-get -y upgrade
+
+#add by me
+
+cp -a $HOME/rc/bashrc $HOME/.bashrc
+apt-get -y install vim
+cp -a $HOME/rc/vimrc /etc/vim/vimrc
+mkdir -p $HOME/.vim/bundle/neosnippet-snippets/neosnippets/
+cp -a $HOME/neosnippets/* $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ 
+#cp -a $HOME/miyagawtools/rc.py $HOME/.percol.d/rc.py
+
+#apt
+
+apt-get -y install rsync
+apt-get -y install python
+apt-get -y install python-pip python-dev
+apt-get -y install libboost-all-dev lib32z1-dev libbz2-dev
+apt-get -y install git
+apt-get -y install curl
+apt-get -y install gcc
+apt-get -y install socat
+apt-get -y install binutils
+apt-get -y install bsdmainutils
+apt-get -y install perl
+apt-get -y install nasm
+apt-get -y install tree
+apt-get -y install vim-gtk vim-athena vim-gnome
+apt-get -y install nmap
+apt-get -y install traceroute
+apt-get -y install gdbserver
+apt-get -y install autoconf
+apt-get -y install libtool
+apt-get -y install make
+apt-get -y install openssh-server
+apt-get -y install radare2
+apt-get -y install terminator 
+apt-get -y install ext4magic 
+apt-get -y install libfreetype6-dev
+apt-get -y install libpng-dev
+apt-get -y install build-essential
+apt-get -y install binwalk
+apt-get -y install cifs-utils
+
+###----for metasploit----#
+#apt-get -y install subversion
+#apt-get -y install libreadline-dev
+#apt-get -y install libssl-dev
+#apt-get -y install libpq5
+#apt-get -y install libpq-dev
+#apt-get -y install libreadline5
+#apt-get -y install libsqlite3-dev
+#apt-get -y install libpcap-dev
+#apt-get -y install git-core
+#apt-get -y install postgresql
+#apt-get -y install pgadmin3
+#apt-get -y install zlib1g-dev
+#apt-get -y install libxml2-dev
+#apt-get -y install libxslt1-dev
+#apt-get -y install vncviewer
+#apt-get -y install libyaml-dev
+#apt-get -y install openjdk-8-jre
+#apt-get -y install gem
+#apt-get -y install gem2deb gemanx-gtk2 gem-dev gemdropx gem-extra gem-plugin-dc1394 gem-plugin-dv4l gem-plugin-gmerlin
+#apt-get -y install rbenv
+#apt-get -y install libffi-dev
+#	#openjdk-8-jre error
+#	  #add-apt-repository ppa:openjdk-r/ppa
+#	  #apt-get update
+#	  #apt-get install openjdk-8-jre
+##----------------------#
+
+
+
+
+
+
+#curl
+
+#curl -sSL https://get.docker.com/ | sh
+#
+#curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
+#sh ./install.sh
+#rm -rf install.sh
+
+#pip
+
+pip install numpy
+pip install scapy
+pip install tweepy
+pip install matplotlib
+pip install percol
+
+#git
+
+apt-get -y install gdb
+#git clone https://github.com/longld/peda.git $HOME/peda
+#cp -a $HOME/rc/gdbinit $HOME/.gdbinit
+#echo "source $HOME/peda/peda.py" >> $HOME/.gdbinit
+#echo "" >> $HOME/.gdbinit
+#echo "#add by me" >> $HOME/.gdbinit
+#echo "" >> $HOME/.gdbinit
+#cat $HOME/miyagawtools/gdb/init/gdmiyagawtoolsitadd >> $HOME/.gdmiyagawtoolsit
+
+##----ruby----#
+#cd $HOME
+#git clone git://github.com/sstephenson/rbenv.git .rbenv
+#git clone git://github.com/sstephenson/ruby-build.git $HOME/.rbenv/plugins/ruby-build
+#git clone git://github.com/dcarley/rbenv-sudo.git $HOME/.rbenv/plugins/rbenv-sudo
+#rbenv install 2.1.6
+#rbenv global 2.1.6
+#ruby -v
+##------------#
+
+##----metasploit----#
+#cd /opt/
+#git clone https://github.com/rapid7/metasploit-framework.git
+#chown -R `whoami` /opt/metasploit-framework
+#cd metasploit-framework
+#gem install bundler
+#gem install json -v '1.8.3'
+#gempath=$(find / -name Gemfile | grep bundler | sed -E 's/^(.*)Gemfile/\1/g') 
+#cd $gempath
+#bundle install
+#bash -c 'for MSF in $(ls msf*); do ln -s /opt/metasploit-framework/$MSF /usr/local/bin/$MSF;done'
+##------------------#
+
+#wget
+
+cd $HOME/Downloads/
+
+wget https://github.com/downloads/0vercl0k/rp/rp-lin-x86
+chmod +x rp-lin-x86
+mv rp-lin-x86 /usr/local/bin/
+
+wget https://github.com/slimm609/checksec.sh/archive/1.6.tar.gz
+tar zxvf 1.6.tar.gz
+mv checksec.sh-1.6/checksec $HOME/miyagawtools/checksec.sh
+
+mkdir ext4magic
+cd ext4magic
+wget http://downloads.sourceforge.net/project/ext4magic/ext4magic-0.3.2.tar.gz
+tar xzvf ext4magic-0.3.2.tar.gz
+cd ext4magic-0.3.2
+./configure
+
+#other
+
+#64bit_only
+#dpkg --add-architecture i386
+#apt-get -y update
+#apt-get -y install libc6:i386 libncurses5:i386 libstdc++6:i386
+#apt-get -y install gcc-multilib g++-multilib
+
+#beep.sh
+
+	;;
+        N | NO | n | no) echo cansel install. ;;
+
+        *) echo error ;;
+
+esac
