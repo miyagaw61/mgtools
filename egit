@@ -37,25 +37,24 @@ if test $hflg -eq 1 ;then
 fi
 
 
-if test $aflg -eq 1 ;then
+if test $aflg -eq 1 -o $1 = "add" -o $1 = "a" ;then
 	git add $aarg
 	git status
 	exit 0
 fi
 
-if test $mflg -eq 1 ;then
-	git commit -m $marg
-	exit 0
-fi
-
-if test $cflg -eq 1 ;then
+if test $cflg -eq 1 -o $1 = "commit" -o $1 = "c" ;then
 	git add .
 	git status
-	git commit -m $carg
+	if test "$(git status | grep 'Changes to be committed')" ;then
+		echo -n "comment: "
+		read msg
+		git commit -m $msg
+	fi
 	exit 0
 fi
 
-if test $rflg -eq 1 ;then
+if test $rflg -eq 1 -o $1 = "remote" ;then
 	now=$(pwd)
 	arg=$(basename ${now})
 	git remote rm origin
@@ -63,16 +62,16 @@ if test $rflg -eq 1 ;then
 	exit 0
 fi
 
-if test $pflg -eq 1 ;then
+if test $pflg -eq 1 -o $1 = "push" ;then
 	git push origin master
 	exit 0
 fi
 
-if test $fflg -eq 1 ;then
-	cecho -g    '#######################################'
+if test $fflg -eq 1 -o $1 = "all" ;then
+	cecho -g    '##########################'
 	cecho -r -f -n '[+]'
-	cecho -g -f ' add -> commit -> remote add -> push'
-	cecho -g    '#######################################'
+	cecho -g -f ' add -> commit -> push'
+	cecho -g    '##########################'
 	git add .
 	git status
 	sleep 0.5
@@ -80,8 +79,8 @@ if test $fflg -eq 1 ;then
 	sleep 0.5
 	now=$(pwd)
 	arg=$(basename ${now})
-	git remote rm origin
-	git remote add origin https://github.com/miyagaw61/${arg}.git
+	#git remote rm origin
+	#git remote add origin https://github.com/miyagaw61/${arg}.git
 	sleep 0.5
 	git push origin master
 	exit 0
