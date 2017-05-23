@@ -67,10 +67,10 @@ if test "$(diff -u $HOME/peda/ /mnt/windows/bk/peda/ | grep @@)" ;then
 	rsync -auv $HOME/peda/* /mnt/windows/bk/peda/
 fi
 
-if test "$(diff -u $HOME/.bashrc /mnt/windows/bk/rc/bashrc | grep @@)" ;then
+if test "$(diff -u $HOME/.bashrc $HOME/rc/bashrc | grep @@)" ;then
 	cecho -rfn '[+]'
-	cecho -gf $HOME'/.bashrc -> /mnt/windows/bk/rc/bashrc'
-	rsync -auv $HOME/.bashrc $HOME/rc/
+	cecho -gf $HOME'/.bashrc -> '$HOME'/rc/bashrc'
+	rsync -auv $HOME/.bashrc $HOME/rc/bashrc
 fi
 
 
