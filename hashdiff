@@ -18,17 +18,18 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-find $1  -type d  | sort  | perl -pe 's@.*(/ctf/.*)@\1@g' > dir1.tmp
-find $2   -type d  | sort | perl -pe 's@.*(/ctf/.*)@\1@g' > dir2.tmp
-find $1  -type f | sort | while read var ;do md5sum  -b $var ;done > file1.tmp
-find $2   -type f | sort | while read var ;do md5sum  -b $var ;done > file2.tmp
+find $1 -type d | sort | perl -pe 's@/home/.*?/@@g' | perl -pe 's@/mnt/windows/bk/@@g' > dir1.tmp
+find $2 -type d | sort | perl -pe 's@/home/.*?/@@g' | perl -pe 's@/mnt/windows/bk/@@g' > dir2.tmp
+find $1 -type f | sort | while read var ;do md5sum  -b $var ;done > file1.tmp
+find $2 -type f | sort | while read var ;do md5sum  -b $var ;done > file2.tmp
 sed  -E 's@(.*) .*@\1@g' -i file1.tmp 
 sed  -E 's@(.*) .*@\1@g' -i file2.tmp 
 flg="True"
 if test "$(diff -q dir1.tmp dir2.tmp)" ;then
-	if test "$(diff -q file1.tmp file2.tmp)" ;then
-		flg="False"
-	fi
+	flg="False"
+fi
+if test "$(diff -q file1.tmp file2.tmp)" ;then
+	flg="False"
 fi
 echo $flg
 allrm dir1.tmp dir2.tmp file1.tmp file2.tmp
