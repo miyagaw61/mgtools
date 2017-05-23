@@ -16,7 +16,7 @@ echo 'Usage: whileline $filename $command
 EXAMPLE:
 echo aaa > file_A
 echo bbb > file_B
-ls -1 | grep file_* > argFile
+ls -1 | grep file_.* > argFile
 whileline argFile "cat var"'
 	exit 0
 fi
