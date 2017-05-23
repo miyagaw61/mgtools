@@ -15,5 +15,5 @@ fi
 
 list=$(ls -1)
 for var in $list ;do
-	sed -e 's@\~\/bin@$HOME\/miyagawtools@g' -i $var
+	sed -e 's@#.*@@g' -i $var
 done
