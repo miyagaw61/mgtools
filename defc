@@ -18,4 +18,4 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-cp -a $HOME/bin/default.c ./$1
+cp -a $HOME/miyagawtools/default.c ./$1
