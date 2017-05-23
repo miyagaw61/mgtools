@@ -15,9 +15,11 @@ case $ans in
 cp -a $HOME/rc/bashrc $HOME/.bashrc
 apt-get -y install vim
 cp -a $HOME/rc/vimrc /etc/vim/vimrc
-mkdir -p $HOME/.vim/bundle/neosnippet-snippets/neosnippets/
+cp -a $HOME/rc/vimrc /usr/share/vim/vimrc
+if ! -e $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ ;then
+	mkdir -p $HOME/.vim/bundle/neosnippet-snippets/neosnippets/
+fi
 cp -a $HOME/neosnippets/* $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ 
-#cp -a $HOME/miyagawtools/rc.py $HOME/.percol.d/rc.py
 
 #apt
 
@@ -37,6 +39,7 @@ apt-get -y install tree
 apt-get -y install vim-gtk vim-athena vim-gnome
 apt-get -y install nmap
 apt-get -y install traceroute
+apt-get -y install gdb
 apt-get -y install gdbserver
 apt-get -y install autoconf
 apt-get -y install libtool
@@ -99,10 +102,10 @@ pip install scapy
 pip install tweepy
 pip install matplotlib
 pip install percol
+cp -a $HOME/miyagawtools/rc.py $HOME/.percol.d/rc.py
 
 #git
 
-apt-get -y install gdb
 #git clone https://github.com/longld/peda.git $HOME/peda
 #cp -a $HOME/rc/gdbinit $HOME/.gdbinit
 #echo "source $HOME/peda/peda.py" >> $HOME/.gdbinit
