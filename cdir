@@ -37,29 +37,28 @@ alias mt='cd $HOME/miyagawtools/'
 
 
 
-alias tmp='cd /home/miyagaw/tmp/'
 
 
 
-alias os='cd /home/miyagaw/bin/os/'
-alias c_lang='cd /home/miyagaw/bin/os/c_lang/'
-alias myprogram='cd /home/miyagaw/Documents/myprogram/'
-alias cLang='cd /home/miyagaw/bin/myprogram/cLang/'
+alias os='cd /home/miyagaw61/miyagawtools/os/'
+alias c_lang='cd /home/miyagaw61/miyagawtools/os/c_lang/'
+alias myprogram='cd /home/miyagaw61/Documents/myprogram/'
+alias cLang='cd /home/miyagaw61/miyagawtools/myprogram/cLang/'
 alias win='cd /mnt/windows/'
-alias clib='cd /home/miyagaw/bin/clib/'
-alias import='cd /home/miyagaw/bin/import/'
-alias os='cd /home/miyagaw/Documents/os/'
-alias mmactf2nd2016='cd /home/miyagaw/ctf/mmactf2nd2016/'
-alias alexctf='cd /home/miyagaw/ctf/alexctf/'
-alias trash='cd /home/miyagaw/trash/'
-alias evacuate='cd /home/miyagaw/evacuate'
-alias rasp='cd /home/miyagaw/tmp/rasp/'
+alias clib='cd /home/miyagaw61/miyagawtools/clib/'
+alias import='cd /home/miyagaw61/miyagawtools/import/'
+alias os='cd /home/miyagaw61/Documents/os/'
+alias mmactf2nd2016='cd /home/miyagaw61/ctf/mmactf2nd2016/'
+alias alexctf='cd /home/miyagaw61/ctf/alexctf/'
+alias trash='cd /home/miyagaw61/trash/'
+alias evacuate='cd /home/miyagaw61/evacuate'
+alias rasp='cd /home/miyagaw61/tmp/rasp/'
 
-alias codegate2017='cd /home/miyagaw/ctf/codegate2017/'
-alias ipwiki='cd /home/miyagaw/ctf/momo/ipwiki/'
+alias codegate2017='cd /home/miyagaw61/ctf/codegate2017/'
+alias ipwiki='cd /home/miyagaw61/ctf/momo/ipwiki/'
 
-alias trash='cd /home/miyagaw/trash/'
-alias typing='cd /home/miyagaw/Documents/typing'
+alias trash='cd /home/miyagaw61/trash/'
+alias typing='cd /home/miyagaw61/Documents/typing'
 
 
 
@@ -168,14 +167,14 @@ alias typing='cd /home/miyagaw/Documents/typing'
 
 
 
-alias 1='cat /home/miyagaw/bin/cdir'
-alias 2='cat /home/miyagaw/bin/howtoVim.txt'
-alias 3='cat /home/miyagaw/bin/out'
-alias 4='cat /home/miyagaw/bin/shared'
-alias 5='cat /home/miyagaw/bin/tmp'
-alias 6='cat /home/miyagaw/bin/tmp2.code'
-alias 7='cat /home/miyagaw/bin/tmp2.sh'
-alias 8='cat /home/miyagaw/bin/tmp.txt'
-alias 9='cat /home/miyagaw/bin/txt01.tmp'
-alias 10='cat /home/miyagaw/bin/txt02.tmp'
-alias picoctf='cd /home/miyagaw/ctf/picoctf/'
+alias 1='cat /home/miyagaw61/miyagawtools/cdir'
+alias 2='cat /home/miyagaw61/miyagawtools/howtoVim.txt'
+alias 3='cat /home/miyagaw61/miyagawtools/out'
+alias 4='cat /home/miyagaw61/miyagawtools/shared'
+alias 5='cat /home/miyagaw61/miyagawtools/tmp'
+alias 6='cat /home/miyagaw61/miyagawtools/tmp2.code'
+alias 7='cat /home/miyagaw61/miyagawtools/tmp2.sh'
+alias 8='cat /home/miyagaw61/miyagawtools/tmp.txt'
+alias 9='cat /home/miyagaw61/miyagawtools/txt01.tmp'
+alias 10='cat /home/miyagaw61/miyagawtools/txt02.tmp'
+alias picoctf='cd /home/miyagaw61/ctf/picoctf/'
