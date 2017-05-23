@@ -119,21 +119,21 @@ if test $1 = 'r' ;then
 	if test $# -eq 1 ;then
 		echo 'Usage: dk r [option] [name] [image_name]
 [+]option:
-   v: [mounted_path] [mount_path]'
+   v: [mounted_path]:[mount_path]'
 	elif test $2 = 'v' ;then
 		if test $# -eq 5 ;then
 			docker run --privileged -v $3 -it --name $4 $5 bash
 		else
 			echo 'Usage: dk r [option] [name] [image_name]
 [+]option:
-   v: [mounted_path] [mount_path]'
+   v: [mounted_path]:[mount_path]'
 	   	fi
 	elif test $# -eq 3 ;then
 		docker run --privileged -it --name $2 $3 bash
 	else 
 		echo 'Usage: dk r [option] [name] [image_name]
 [+]option:
-   v: [mounted_path] [mount_path]'
+   v: [mounted_path]:[mount_path]'
 	fi
 fi
 
