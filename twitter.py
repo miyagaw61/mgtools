@@ -21,9 +21,7 @@ nglist = open('/home/miyagaw61/Documents/twitter/nglist' , 'r').read()
 nglist = nglist.split('\n')
 oklist = open('/home/miyagaw61/Documents/twitter/oklist' , 'r').read()
 oklist = oklist.split('\n')
-#print('hoge\nnglist: ' + str(nglist) + '\noklist: ' + str(oklist))
 for status in tl:
-    #if(status.favorite_count > 0 or status.retweet_count > 0 or len(re.findall(oklist[i], status.text.encode('utf_8'))) > 0):
     i = 0
     ngflg = 0
     okflg = 0
