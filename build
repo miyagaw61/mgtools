@@ -47,6 +47,8 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-cat Dockerfile.def | perl -pe 's/IMAGE/'$src'/g' > Dockerfile
+cat $HOME/Documents/Dockerfile.def | perl -pe 's/IMAGE/'$src'/g' > Dockerfile
 cat cmd.tmp >> Dockerfile
 docker build -t $dst .
+rmtmp
+allrm Dockerfile
