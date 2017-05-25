@@ -1,4 +1,4 @@
 #!/bin/sh
 location=`pwd`
-echo ${location} > $HOME/Documents/save
+echo ${location} > $HOME/Documents/save/save
 

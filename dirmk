@@ -5,10 +5,10 @@ for arg in $@ ;do
 	if test `echo $arg | grep '/'` ;then
 		location=$arg
 		arg=`basename ${arg}`
-		echo "alias "${arg}"='cd "${location}"'" >> $HOME/Documents/cdir
+		echo "alias "${arg}"='cd "${location}"'" >> $HOME/Documents/cdir/cdir
 	else
 		location=${now}'/'${arg}'/'
-		echo "alias "${arg}"='cd "${location}"'" >> $HOME/Documents/cdir
+		echo "alias "${arg}"='cd "${location}"'" >> $HOME/Documents/cdir/cdir
 	fi
 done
 exec /bin/bash

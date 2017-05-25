@@ -105,7 +105,7 @@ if test $1 = 'pl' ;then
 	fi
 fi
 
-if test $1 = 'x' ;then
+if test $1 = "x" ;then
 	if test $# -eq 2 ;then
 		docker exec -it $2 bash
 	elif test $# -eq 1 ;then

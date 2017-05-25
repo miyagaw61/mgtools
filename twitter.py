@@ -6,10 +6,10 @@ def writefile(buf_arg,file_name):
 
 HOME = '/home/miyagaw61'
 
-CK = open(HOME + '/Documents/twitter.CK', 'r').read()
-CS = open(HOME + '/Documents/twitter.CS', 'r').read()
-AT = open(HOME + '/Documents/twitter.AT', 'r').read()
-AS = open(HOME + '/Documents/twitter.AS', 'r').read()
+CK = open(HOME + '/Documents/twitter/twitter.CK', 'r').read()
+CS = open(HOME + '/Documents/twitter/twitter.CS', 'r').read()
+AT = open(HOME + '/Documents/twitter/twitter.AT', 'r').read()
+AS = open(HOME + '/Documents/twitter/twitter.AS', 'r').read()
 
 auth = tweepy.OAuthHandler(CK, CS)
 auth.set_access_token(AT, AS)
@@ -17,9 +17,9 @@ api = tweepy.API(auth)
 
 tl = api.home_timeline(count=sys.argv[1])
 tl.reverse()
-nglist = open('/home/miyagaw61/Documents/nglist' , 'r').read()
+nglist = open('/home/miyagaw61/Documents/twitter/nglist' , 'r').read()
 nglist = nglist.split('\n')
-oklist = open('/home/miyagaw61/Documents/oklist' , 'r').read()
+oklist = open('/home/miyagaw61/Documents/twitter/oklist' , 'r').read()
 oklist = oklist.split('\n')
 #print('hoge\nnglist: ' + str(nglist) + '\noklist: ' + str(oklist))
 for status in tl:
@@ -38,14 +38,14 @@ for status in tl:
             okflg = 1
         i = i + 1
     if(status.favorite_count > 0 or status.retweet_count > 0 or okflg > 0):
-        lastid = int(open('/home/miyagaw61/Documents/lastid', 'r').read())
+        lastid = int(open('/home/miyagaw61/Documents/twitter/lastid', 'r').read())
         if(status.id > lastid):
             if(ngflg == 0):
                 if(status.in_reply_to_status_id != None):
                     namelist   = []
                     screenlist = []
                     textlist   = []
-                    os.system('echo ' + str(status.id) + ' > ~/Documents/lastid')
+                    os.system('echo ' + str(status.id) + ' > ~/Documents/twitter/lastid')
                     rep = api.get_status(status.in_reply_to_status_id)
                     namelist.append(rep.user.name)
                     screenlist.append(rep.user.screen_name)
@@ -70,7 +70,7 @@ for status in tl:
                     print(status.text.encode('utf_8'))
                     print("#"*100 + '\n')
                 else:
-                    os.system('echo ' + str(status.id) + ' > ~/Documents/lastid')
+                    os.system('echo ' + str(status.id) + ' > ~/Documents/twitter/lastid')
                     line = len('[+]' + status.user.name.encode('utf_8') + ' @' +  status.user.screen_name.encode('utf_8'))
                     print("\n" + "-"*100)
                     print('[+]' + status.user.name.encode('utf_8') + ' @' +  status.user.screen_name.encode('utf_8'))

@@ -6,10 +6,10 @@ def writefile(buf_arg,file_name):
 
 HOME = '/home/miyagaw61'
 
-CK = open(HOME + '/Documents/twitter.CK', 'r').read()
-CS = open(HOME + '/Documents/twitter.CS', 'r').read()
-AT = open(HOME + '/Documents/twitter.AT', 'r').read()
-AS = open(HOME + '/Documents/twitter.AS', 'r').read()
+CK = open(HOME + '/Documents/twitter/twitter.CK', 'r').read()
+CS = open(HOME + '/Documents/twitter/twitter.CS', 'r').read()
+AT = open(HOME + '/Documents/twitter/twitter.AT', 'r').read()
+AS = open(HOME + '/Documents/twitter/twitter.AS', 'r').read()
 
 auth = tweepy.OAuthHandler(CK, CS)
 auth.set_access_token(AT, AS)
