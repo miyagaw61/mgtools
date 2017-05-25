@@ -18,52 +18,58 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-#if test "$(hashdiff $HOME/miyagawtools/ /mnt/windows/bk/miyagawtools/)" = "False" ;then
+if test $# -eq 1 ;then
+	dstPath=$1
+elif test $# -eq 0 ;then
+	dstPath="/mnt/windows/bk"
+fi
+
+#if test "$(hashdiff $HOME/miyagawtools/ ${dstPath}/miyagawtools/)" = "False" ;then
 	cecho -rfn '[+]'
-	cecho -gf $HOME'/miyagawtools/ -> /mnt/windows/bk/miyagawtools/'
-	rsync -auv $HOME/miyagawtools/* /mnt/windows/bk/miyagawtools/
+	cecho -gf $HOME'/miyagawtools/ -> '${dstPath}'/miyagawtools/'
+	rsync -auv $HOME/miyagawtools/* ${dstPath}/miyagawtools/
 #fi
 
-#if test "$(hashdiff $HOME/ctf/ /mnt/windows/bk/ctf/)" = "False" ;then
+#if test "$(hashdiff $HOME/ctf/ ${dstPath}/ctf/)" = "False" ;then
 	cecho -rfn '[+]'
-	cecho -gf $HOME'/ctf/ -> /mnt/windows/bk/ctf/'
-	rsync -auv $HOME/ctf/* /mnt/windows/bk/ctf/
+	cecho -gf $HOME'/ctf/ -> '${dstPath}'/ctf/'
+	rsync -auv $HOME/ctf/* ${dstPath}/ctf/
 #fi
 
-#if test "$(hashdiff $HOME/Desktop/ /mnt/windows/bk/Desktop/)" = "False" ;then
+#if test "$(hashdiff $HOME/Desktop/ ${dstPath}/Desktop/)" = "False" ;then
 	cecho -rfn '[+]'
-	cecho -gf $HOME'/Desktop/ -> /mnt/windows/bk/Desktop/'
-	rsync -auv $HOME/Desktop/* /mnt/windows/bk/Desktop/
+	cecho -gf $HOME'/Desktop/ -> '${dstPath}'/Desktop/'
+	rsync -auv $HOME/Desktop/* ${dstPath}/Desktop/
 #fi
 
-#if test "$(hashdiff $HOME/Documents/ /mnt/windows/bk/Documents/)" = "False" ;then
+#if test "$(hashdiff $HOME/Documents/ ${dstPath}/Documents/)" = "False" ;then
 	cecho -rfn '[+]'
-	cecho -gf $HOME'/Documents/ -> /mnt/windows/bk/Documents/'
-	rsync -auv $HOME/Documents/* /mnt/windows/bk/Documents/
+	cecho -gf $HOME'/Documents/ -> '${dstPath}'/Documents/'
+	rsync -auv $HOME/Documents/* ${dstPath}/Documents/
 #fi
 
-#if test "$(hashdiff $HOME/Downloads/ /mnt/windows/bk/Downloads/)" = "False" ;then
+#if test "$(hashdiff $HOME/Downloads/ ${dstPath}/Downloads/)" = "False" ;then
 	cecho -rfn '[+]'
-	cecho -gf $HOME'/Downloads/ -> /mnt/windows/bk/Downloads/'
-	rsync -auv $HOME/Downloads/* /mnt/windows/bk/Downloads/
+	cecho -gf $HOME'/Downloads/ -> '${dstPath}'/Downloads/'
+	rsync -auv $HOME/Downloads/* ${dstPath}/Downloads/
 #fi
 
-#if test "$(hashdiff $HOME/neosnippets/ /mnt/windows/bk/neosnippets/)" = "False" ;then
+#if test "$(hashdiff $HOME/neosnippets/ ${dstPath}/neosnippets/)" = "False" ;then
 	cecho -rfn '[+]'
-	cecho -gf $HOME'/neosnippets/ -> /mnt/windows/bk/neosnippets/'
-	rsync -auv $HOME/neosnippets/* /mnt/windows/bk/neosnippets/
+	cecho -gf $HOME'/neosnippets/ -> '${dstPath}'/neosnippets/'
+	rsync -auv $HOME/neosnippets/* ${dstPath}/neosnippets/
 #fi
 
-#if test "$(hashdiff $HOME/tmp/ /mnt/windows/bk/tmp/)" = "False" ;then
+#if test "$(hashdiff $HOME/tmp/ ${dstPath}/tmp/)" = "False" ;then
 	cecho -rfn '[+]'
-	cecho -gf $HOME'/tmp/ -> /mnt/windows/bk/tmp/'
-	rsync -auv $HOME/tmp/* /mnt/windows/bk/tmp/
+	cecho -gf $HOME'/tmp/ -> '${dstPath}'/tmp/'
+	rsync -auv $HOME/tmp/* ${dstPath}/tmp/
 #fi
 
-#if test "$(hashdiff $HOME/peda/ /mnt/windows/bk/peda/)" = "False" ;then
+#if test "$(hashdiff $HOME/peda/ ${dstPath}/peda/)" = "False" ;then
 	cecho -rfn '[+]'
-	cecho -gf $HOME'/peda/ -> /mnt/windows/bk/peda/'
-	rsync -auv $HOME/peda/* /mnt/windows/bk/peda/
+	cecho -gf $HOME'/peda/ -> '${dstPath}'/peda/'
+	rsync -auv $HOME/peda/* ${dstPath}/peda/
 #fi
 
 #if test "$(diff -q $HOME/.bashrc $HOME/rc/bashrc)" ;then
@@ -72,16 +78,16 @@ fi
 	rsync -auv $HOME/.bashrc $HOME/rc/bashrc
 #fi
 
-#if test "$(diff -q /usr/share/vim/vimrc /mnt/windows/bk/rc/vimrc)" ;then
+#if test "$(diff -q /usr/share/vim/vimrc ${dstPath}/rc/vimrc)" ;then
 	cecho -rfn '[+]'
-	cecho -gf '/usr/share/vim/vimrc -> /mnt/windows/bk/rc/vimrc'
+	cecho -gf '/usr/share/vim/vimrc -> '${dstPath}'/rc/vimrc'
 	rsync -auv /usr/share/vim/vimrc $HOME/rc/
 #fi
 
-#if test "$(hashdiff $HOME/rc/ /mnt/windows/bk/rc/)" = "False" ;then
+#if test "$(hashdiff $HOME/rc/ ${dstPath}/rc/)" = "False" ;then
 	cecho -rfn '[+]'
-	cecho -gf $HOME'/rc/ -> /mnt/windows/bk/rc/'
-	rsync -auv $HOME/rc/* /mnt/windows/bk/rc/
+	cecho -gf $HOME'/rc/ -> '${dstPath}'/rc/'
+	rsync -auv $HOME/rc/* ${dstPath}/rc/
 #fi
 
 
