@@ -1,0 +1,26 @@
+#!/bin/sh
+
+hflg=0
+if test $# -eq 0 ;then
+	hflg=1
+fi
+
+for arg in "$@" ;do
+	if test "$arg" = "-h" -o "$arg" = "--help" -o "$arg" = "help" ;then
+		hflg=1
+	else
+		file=$arg
+	fi
+done
+
+if test $hflg -eq 1 ;then
+	echo "Usage: ./"$(basename $0)" [-h] -a argA [-b argB] [-c argC] expr...
+ -h        show help
+ -a [argA] set arg1
+ -b [argB] set arg2
+ -c [argC] set arg3
+ expr      set expr"
+	exit 0
+fi
+
+cat $file | grep -e '\-' -e '\+'
