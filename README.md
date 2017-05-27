@@ -491,7 +491,7 @@ age: ./watchdiff [-h] -a argA [-b argB] [-c argC] expr...
 Usage: wecho [option] [arg]
 [+]Usage Option:
    n: not enter
-<pre>
+</pre>
 
 * whileline
 
