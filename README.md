@@ -19,3 +19,19 @@ tutorial
 Usage: allmv src...
  src : src file path
 </pre>
+
+* allrm
+
+<pre>
+Usage: allrm file...
+ file : file name that you want to remove
+</pre>
+
+* aslr
+
+<pre>
+Usage: aslr [option]
+ NoUseOptions : check now aslr
+ on           : aslr on
+ off          : aslr off
+</pre>
