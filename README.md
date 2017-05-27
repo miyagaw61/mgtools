@@ -584,7 +584,7 @@ Usage: whileline file command
 EXAMPLE:
 echo aaa > file_A
 echo bbb > file_B
-ls -1 | grep file\_.\* > argFile
+ls -1 | grep file_.* > argFile
 whileline argFile "cat var"
 </pre>
 
