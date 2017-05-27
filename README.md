@@ -1,7 +1,7 @@
 miyagawtools
 ============
 
-miyagawtools is many scripts for bash that has been written by @miyagaw61.
+miyagawtools is many scripts for bash that has been written by @miyagaw61.  
 @miyagaw61によって作成された、bash上で使用可能なスクリプト群です。
 
 install
@@ -33,7 +33,7 @@ Usage: allmv [-h] src... -d dst
 </pre>
 
 * allrm
-file...に記述した全ファイルを削除。
+file...に記述した全ファイルを削除。  
 （存在しなくてもエラーを吐かないため、shellscriptでの使用に便利）
 <pre>
 Usage: allrm file...
@@ -56,27 +56,27 @@ Usage: binsed [file_name] [before] [after]
 </pre>
 
 * bkup
-バックアップコマンド。
+バックアップコマンド。  
 バックアップ元、バックアップ先のディレクトリを変更したい場合は、コードの中のrsyncの文の引数を各自で書き換えてください。
 <pre>
 Usage: bkup
 </pre>
 
 * rst
-bkupコマンドの逆を行うコマンド。
-bkupとrstを使うことで、容易にバックアップとリストアを行う事が可能になる。
-bkupコマンドを書き換えた場合は、こちらも書き換えてください。
+bkupコマンドの逆を行うコマンド。  
+bkupとrstを使うことで、容易にバックアップとリストアを行う事が可能になる。  
+bkupコマンドを書き換えた場合は、こちらも書き換えてください。  
 <pre>
 Usage: rst
 </pre>
 
 * build
-自動Dockerファイル生成/自動buildを行う。
-$HOME/Documents/docker/dockerという名前で
-FROM IMAGE
-COPY /home/USER/ /home/USER/
-を保存してから使用してください。
-(e.g)
+自動Dockerファイル生成/自動buildを行う。  
+$HOME/Documents/docker/dockerという名前で  
+FROM IMAGE  
+COPY /home/USER/ /home/USER/  
+を保存してから使用してください。  
+(e.g)  
 build -s image01 -d image02 -u user01 "apt-get -y update" "apt-get -y upgrade" "apt-get -y insatll vim python socat"
 <pre>
 Usage: ./build -s src -d dst [-u user] [cmd...]
@@ -87,22 +87,22 @@ cmd       set RUN command
 </pre>
 
 * calc
-計算ツール。
-複数の進数表現を用いての計算/ビット演算を行うことができる。
-単独の数値を渡すことで進数変換用としても使用可能。
-(e.g)
-calc 1+2 -> 3
-calc 2*3 -> 6
-calc 2*(1+3) -> 8
-calc -x 10 -> 0xa
-calc 0xa -> 10
-calc -b 10 -> 1010b
-calc 1010b -> 10
-calc 2+0xa -> 12
-calc 0x2+0xa -> 12
-calc 2+0xa+0xa -> 22
-calc 2+0xa+1010b -> 22
-calc -b "1100b&1010b" -> 1000b
+計算ツール。  
+複数の進数表現を用いての計算/ビット演算を行うことができる。  
+単独の数値を渡すことで進数変換用としても使用可能。  
+(e.g)  
+calc 1+2 -> 3  
+calc 2*3 -> 6  
+calc 2*(1+3) -> 8  
+calc -x 10 -> 0xa  
+calc 0xa -> 10  
+calc -b 10 -> 1010b  
+calc 1010b -> 10  
+calc 2+0xa -> 12  
+calc 0x2+0xa -> 12  
+calc 2+0xa+0xa -> 22  
+calc 2+0xa+1010b -> 22  
+calc -b "1100b&1010b" -> 1000b  
 <pre>
 Usage: calc [option] [expr]
 default: to_int
