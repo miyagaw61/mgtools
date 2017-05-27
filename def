@@ -16,3 +16,6 @@ fi
 
 cp -a $HOME/miyagawtools/default.sh ./$1
 
+echo hoge
+echo fuga
+echo piyo
