@@ -618,5 +618,3 @@ Usage: writedel str...
 <pre>
 Usage: xready [file(def:exploit.py)]
 </pre>
-
-
