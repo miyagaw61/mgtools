@@ -383,7 +383,7 @@ number : lsenumber
 * lsr  
 lsコマンドの結果をpercolに渡す。  
 エンター後のreadでそのファイルに対して行うコマンドを入力できる。  
-このコマンドを使用するにはpercolを導入してください。（inisial_settingのallinstall内部に導入コマンドが書いてある。）  
+このコマンドを使用するにはpercolの導入が必要。（inisial_settingのallinstall内部に導入コマンドが書いてある。）  
 <pre>
 Usage: lsr [option]
 [+]UsageOption:
@@ -584,7 +584,7 @@ Usage: whileline file command
 EXAMPLE:
 echo aaa > file_A
 echo bbb > file_B
-ls -1 | grep file\_.\* > argFile
+ls -1 | grep file_.* > argFile
 whileline argFile "cat var"
 </pre>
 
