@@ -13,10 +13,9 @@ git clone https://github.com/miyagaw61.git $HOME/miyagawtools/
 tutorial
 --------
 
-#allmv
+# allmv
 
 <pre>
-allmv -h
 Usage: allmv src...
  src : src file path
 </pre>
