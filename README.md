@@ -13,7 +13,7 @@ git clone https://github.com/miyagaw61.git $HOME/miyagawtools/
 tutorial
 --------
 
-# allmv
+* allmv
 
 <pre>
 Usage: allmv src...
