@@ -1,6 +1,12 @@
 #!/bin/sh
 
-if test $1 = "-h" ;then
+if test $# -eq 0 ;then
+	echo 'Usage: allrm file...
+ file : file name that you want to remove'
+	exit 0
+fi
+
+if test "$1" = "-h" ;then
 	echo 'Usage: allrm file...
  file : file name that you want to remove'
 	exit 0
