@@ -1,5 +1,11 @@
 #!/bin/sh
 
+if test $1 = "-h" ;then
+	echo 'Usage: allrm file...
+ file : file name that you want to remove'
+	exit 0
+fi
+
 for arg in $@ ;do
 	if test -f $arg ;then
 		rm -rf $arg
