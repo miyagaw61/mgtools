@@ -1,6 +1,14 @@
 #!/bin/sh
 
-if test $# -ne 1 -o "$1" = "-h" ;then
+if test "$1" = "-h" ;then
+	echo 'Usage: aslr [option]
+ NoUseOptions : check now aslr
+ on           : aslr on
+ off          : aslr off'
+	exit 0
+fi
+
+if test $# -ne 1 ;then
 	now=$(cat /proc/sys/kernel/randomize_va_space)
 	if test $now -eq 2 ;then
 		echo ' now : on'
