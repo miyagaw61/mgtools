@@ -1,14 +1,14 @@
 miyagawtools
 ============
 
-miyagawtools is many scripts for bash that has been written by @miyagaw61.  
+miyagawtools are many scripts for bash that has been written by @miyagaw61.  
 @miyagaw61によって作成された、bash上で使用可能なスクリプト群です。
 
 install
 -------
 
 <pre>
-git clone https://github.com/miyagaw61.git $HOME/miyagawtools/
+git clone https://github.com/miyagaw61/miyagawtools.git $HOME/miyagawtools/
 </pre>
 
 tutorial
