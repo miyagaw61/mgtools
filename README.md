@@ -111,3 +111,8 @@ Usage: ./cpall [-h] src... -d dst
 Usage: def file_name
 </pre>
 
+* defc
+
+<pre>
+Usage: def file_name
+</pre>
