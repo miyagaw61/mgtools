@@ -14,7 +14,11 @@ done
 shift $(($OPTIND - 1))
 
 if test $hflg -eq 1 ;then
-	echo "Usage: makeLib [min] [max] [src_file] [dst_file]"
+	echo "Usage: makeLib [min] [max] [src_file] [dst_file]
+ min      : min char num
+ max      : max char num
+ src_file : src word list name
+ dst_file : output library file name"
 	exit 0
 fi
 

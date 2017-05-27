@@ -4,13 +4,14 @@ dflg=0
 xflg=0
 oflg=0
 gflg=0
+nflg=0
 
 while getopts hdxog: opt ;do
 	case $opt in
 		h)hflg=1;;
-		d)dflg=1;;
-		x)xflg=1;;
-		o)oflg=1;;
+		d)dflg=1;nflg=1;;
+		x)xflg=1;nflg=1;;
+		o)oflg=1;nflg=1;;
 		g)gflg=1;garg=$OPTARG;; 
 	esac
 done
@@ -40,7 +41,7 @@ if test $oflg -eq 1 ;then
 	mv ols3.out.bk ols3.out
 fi
 
-if test $# -eq 0 ;then
+if test $nflg -eq 0 ;then
 	ls -CF1 | grep -E '\/$' | sed -E 's/^(.*)./\1/g' > ols.first
 	cat ols.first | while read var ;do echo '\033[01;34m'${var}'\033[0;39m' >> ols1.out ;done
 

@@ -14,7 +14,7 @@ done
 shift $(($OPTIND - 1))
 
 if test $hflg -eq 1 ;then
-	echo "Usage: sock [file]"
+	echo "Usage: sock file"
 	exit 0
 fi
 

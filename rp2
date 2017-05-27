@@ -4,14 +4,21 @@ while getopts h opt
 do
 	case ${opt} in
 		h)
-		echo ' $1 : filename\n $2 : pop_count\n a  : show_allropgadget'
+		echo "Usage: rp file count
+ file  : file name
+ count : pop count(-a/all: search 1-4 pop count)"
 		exit 0 ;;
 	esac
 done
 
-rp++ -r 6 -f $1 --unique > fullropgadget
+if test "$(uname -a | grep x86_64)" ;then
+	arch="x64"
+else
+	arch="x86"
+fi
 
-if test $2 = '-a' ;then
+if test "$2" = "-a" -o "$2" = "all" ;then
+	rp-lin-$arch -r 20 -f $1 --unique > fullropgadget
 	echo '\033[0;34m#----popret----#\033[0;39m'
 	cat fullropgadget | while read var;do echo -e $var | grep -o -E 'pop' | wc -l  ;done | grep -n 1 | sed -E 's/^([0-9]*):.*/\1/' > num
 	cat num | while read var;do sed -n ${var}P fullropgadget ;done 
@@ -28,7 +35,7 @@ if test $2 = '-a' ;then
 	rm num
 else
 	echo '\033[0;34m#----pop'$2'ret----#\033[0;39m'
-	rp++ -r 20 -f $1 > fullropgadget
+	rp-lin-$arch -r 20 -f $1 --unique > fullropgadget
 	cat fullropgadget | while read var;do echo $var | grep -o -E 'pop' | wc -l  ;done | grep -n $2 | sed -E 's/^([0-9]*):.*/\1/' > num
 	cat num | while read var;do sed -n ${var}P fullropgadget ;done 
 	rm fullropgadget

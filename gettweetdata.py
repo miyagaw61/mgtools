@@ -1,5 +1,10 @@
 import sys, tweepy
 
+if(sys.argv[1] == "-h"):
+    print("Usage: python gettweetdata.py statusid\n\
+ statusid : tweet's status id")
+    sys.exit(0)
+
 HOME = '/home/miyagaw61'
 
 CK = open(HOME + '/Documents/twitter/twitter.CK', 'r').read()

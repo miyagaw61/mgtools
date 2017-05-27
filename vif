@@ -2,9 +2,9 @@
 
 hflg=0
 
-#if test $# -eq 0 ;then
-#	hflg=1
-#fi
+if test $# -eq 0 ;then
+	hflg=1
+fi
 
 while getopts h opt ;do
 	case $opt in
@@ -14,7 +14,8 @@ done
 shift $(($OPTIND - 1))
 
 if test $hflg -eq 1 ;then
-	echo "Usage: "
+	echo "Usage: vif number
+ number : lse number"
 	exit 0
 fi
 

@@ -7,6 +7,11 @@ gflg=0
 vflg=0
 aflg=0
 
+if test ! $# -eq 0 -a "$1" = "--less" ;then
+	$HOME/miyagawtools/ol
+	exit 0
+fi
+
 while getopts hdxo1g:v:a opt ;do
 	case $opt in
 		h)hflg=1;;
@@ -23,7 +28,7 @@ done
 allrm 'ols.first ols1.out ols1.out.1 ols1.out.2 ols1.out.3 ols1.out.4 ols1.out.f ols2.out ols2.out.1 ols2.out.2 ols2.out.3 ols2.out.4 ols2.out.f ols3.out ols3.out.1 ols3.out.2 ols3.out.3 ols3.out.4 ols3.out.f'
 
 if test $hflg -eq 1 ;then
-	echo 'Usage: ols [option]\n-d: dir\n-x: ex\n-n: others\n-g [pattern]: grep\n-v [pattern]: grep -v'
+	echo 'Usage: ols [option]\n d: dir\n x: ex\n n: others\n 1: one line\n g [pattern]: grep\n v [pattern]: grep  v\n --less : show result by less'
 	exit 0
 fi
 

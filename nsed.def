@@ -1,0 +1,7 @@
+#!/bin/sh
+:a
+N
+s@ARG1@ARG2@g
+Ta
+P
+D

@@ -1,2 +1,7 @@
 #!/bin/sh
+
+if test "$1" = "-h" ;then
+	echo "Usage: sedparag word"
+	exit 0
+fi
 sed -E -n '/'$1'/,/^$/p'

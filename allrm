@@ -1,8 +1,6 @@
 #!/bin/sh
 
 if test $# -eq 0 ;then
-	echo 'Usage: allrm file...
- file : file name that you want to remove'
 	exit 0
 fi
 

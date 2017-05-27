@@ -3,21 +3,7 @@
 hflg=0
 
 if test $# -eq 0 ;then
-	echo "Usage: dk [command]
-[+]command:
-   pl: pull
-   ps: ps
-   psa: ps -a
-   i: images
-   rm: rm
-   rmi: rmi
-   1: start [container_name]
-   0: stop [container_name]
-   c: commit [container_name] [image_name]
-   r: run -it [image_name] bash
-   x: exec -it [container_name] bash
-   d: run --privileged -d -p 8080:80 --name [name] [image_name] /sbin/init"
-	exit 0
+	hflg=1
 fi
 
 while getopts h opt ;do
@@ -28,20 +14,20 @@ done
 shift $(($OPTIND - 1))
 
 if test $hflg -eq 1 ;then
-	echo "Usage: dk [command]
+	echo "Usage: docker2 [command]
 [+]command:
-   pl: pull
-   ps: ps
+   pl:  pull
+   ps:  ps
    psa: ps -a
-   i: images
-   rm: rm
+   i:   images
+   rm:  rm
    rmi: rmi
-   1: start [container_name]
-   0: stop [container_name]
-   c: commit [container_name] [image_name]
-   r: run -it [image_name] bash
-   x: exec -it [container_name] bash
-   d: run --privileged -d -p 8080:80 --name [name] [image_name] /sbin/init"
+   1:   start [container_name]
+   0:   stop [container_name]
+   c:   commit [container_name] [image_name]
+   r:   run -it [image_name] bash
+   x:   exec -it [container_name] bash
+   d:   run --privileged -d -p 8080:80 --name [name] [image_name] /sbin/init"
 	exit 0
 fi
 
@@ -61,7 +47,7 @@ if test $1 = 'c' ;then
 	if test $# -eq 3 ;then
 		docker commit $2 $3
 	else 
-		echo 'Usage: dk c [container_name] [image_name]'
+		echo 'Usage: docker2 c [container_name] [image_name]'
 	fi
 fi
 
@@ -69,7 +55,7 @@ if test $1 = 'rm' ;then
 	if test $# -eq 2 ;then
 		docker rm $2
 	else
-		echo 'Usage: dk rm [container_name]'
+		echo 'Usage: docker2 rm [container_name]'
 	fi
 fi
 
@@ -77,7 +63,7 @@ if test $1 = 'rmi' ;then
 	if test $# -eq 2 ;then
 		docker rmi $2
 	else
-		echo 'Usage: dk rmi [image_name]'
+		echo 'Usage: docker2 rmi [image_name]'
 	fi
 fi
 
@@ -85,7 +71,7 @@ if test $1 = '1' ;then
 	if test $# -eq 2 ;then
 		docker start $2
 	else 
-		echo 'Usage: dk 1 [stopping_container_name]'
+		echo 'Usage: docker2 1 [stopping_container_name]'
 	fi
 fi
 
@@ -93,7 +79,7 @@ if test $1 = '0' ;then
 	if test $# -eq 2 ;then
 		docker stop $2
 	else
-		echo 'Usage: dk 0 [running_container_name]'
+		echo 'Usage: docker2 0 [running_container_name]'
 	fi
 fi
 
@@ -101,7 +87,7 @@ if test $1 = 'pl' ;then
 	if test $# -eq 2 ;then
 		docker pull $2
 	else
-		echo 'Usage: dk pl [docker_image_name]'
+		echo 'Usage: docker2 pl [docker_image_name]'
 	fi
 fi
 
@@ -109,54 +95,53 @@ if test $1 = "x" ;then
 	if test $# -eq 2 ;then
 		docker exec -it $2 bash
 	elif test $# -eq 1 ;then
-		echo 'Usage: dk x [container_name]'
+		echo 'Usage: docker2 x [container_name]'
 	else
-		echo 'Usage: dk x [container_name]'
+		echo 'Usage: docker2 x [container_name]'
 	fi
 fi
 
 if test $1 = 'r' ;then
 	if test $# -eq 1 ;then
-		echo 'Usage: dk r [option] [name] [image_name]
+		echo 'Usage: docker2 r [option] [name] [image_name]
 [+]option:
-   v: [mounted_path]:[mount_path]'
+   v [mounted_path]:[mount_path]'
 	elif test $2 = 'v' ;then
 		if test $# -eq 5 ;then
 			docker run --privileged -v $3 -it --name $4 $5 bash
 		else
-			echo 'Usage: dk r [option] [name] [image_name]
+			echo 'Usage: docker2 r [option] [name] [image_name]
 [+]option:
-   v: [mounted_path]:[mount_path]'
+   v [mounted_path]:[mount_path]'
 	   	fi
 	elif test $# -eq 3 ;then
 		docker run --privileged -it --name $2 $3 bash
 	else 
-		echo 'Usage: dk r [option] [name] [image_name]
+		echo 'Usage: docker2 r [option] [name] [image_name]
 [+]option:
-   v: [mounted_path]:[mount_path]'
+   v [mounted_path]:[mount_path]'
 	fi
 fi
 
 if test $1 = 'd' ;then
 	if test $# -eq 1 ;then
-			echo 'Usage: dk d [option] [name] [image_name]
+			echo 'Usage: docker2 d [option] [name] [image_name]
 [+]option: 
-   v: [mounted_path]:[mount_path]'
+   v [mounted_path]:[mount_path]'
 	elif test $2 = 'v' ;then
 		if test $# -eq 5 ;then
 			docker run --privileged -v $3 --privileged -d -p 8080:80 --name $4 $5 /sbin/init
 		else 
-			echo 'Usage: dk d [option] [name] [image_name]
+			echo 'Usage: docker2 d [option] [name] [image_name]
 [+]option: 
-   v: [mounted_path]:[mount_path]'
+   v [mounted_path]:[mount_path]'
 	  	fi
 	elif test $# -eq 3 ;then
 		docker run --privileged -d -p 8080:80 --name $2 $3 /sbin/init
 	else
-		echo 'Usage: dk d [option] [name] [image_name]
+		echo 'Usage: docker2 d [option] [name] [image_name]
 [+]option: 
-   v: [mounted_path]:[mount_path]'
+   v [mounted_path]:[mount_path]'
 	fi
 fi
-
 

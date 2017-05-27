@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if test "$1" = "-h" ;then
+	echo "Usage: nowloading"
+	exit 0
+fi
+
 allrm $usedFile
 file='nowloading.tmp'
 usedFile=$file

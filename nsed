@@ -1,11 +1,21 @@
 #!/bin/sh
 
+if test $# -eq 0 ;then
+	echo 'Usage: nsed file before after
+ file   : input file name
+ before : before
+ after  : after'
+	exit 0
+fi
+
 while getopts h opt ;do
 	case $opt in
 		h)echo 'Usage: nsed [input_file] [sed_pattern]'; exit 0 ;;
 	esac
 done
 
-sed -E 's!s@.*#!'$2' #!g' -i $HOME/miyagawtools/nsed.sh
-cat $1 | sed -f $HOME/miyagawtools/nsed.sh
+cat $HOME/miyagawtools/nsed.def | perl -pe 's@ARG1@'$2'@g' > $HOME/miyagawtools/nsed.tmp.tmp
+cat $HOME/miyagawtools/nsed.tmp.tmp | perl -pe 's@ARG2@'$3'@g' > $HOME/miyagawtools/nsed.tmp
+cat $1 | sed -f $HOME/miyagawtools/nsed.tmp
+rmtmp
 

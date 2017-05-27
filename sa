@@ -1,4 +1,10 @@
 #!/bin/sh
+
+if test "$1" = "-h" ;then
+	echo "Usage: sa"
+	exit 0
+fi
+
 location=`pwd`
 echo ${location} > $HOME/Documents/save/save
 

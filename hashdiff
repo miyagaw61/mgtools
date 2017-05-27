@@ -2,9 +2,9 @@
 
 hflg=0
 
-#if test $# -eq 0 ;then
-#	hflg=1
-#fi
+if test $# -eq 0 ;then
+	hflg=1
+fi
 
 while getopts h opt ;do
 	case $opt in

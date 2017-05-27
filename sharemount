@@ -3,16 +3,10 @@
 username=$(cat $HOME/Documents/sharemount/sharemount.username)
 password=$(cat $HOME/Documents/sharemount/sharemount.password)
 
-while getopts h,d opt
+while getopts h opt
 do
 	case ${opt} in
-	h)
-	echo ' $1 : host_IP_addr\n d : default_IP_addr(192.168.44.1)'
-	exit 0 ;;
-	d)
-	echo 'default_IP_addr is 192.168.44.1'
-	mount -t cifs -o username=$username,password=$password //192.168.44.1/Share /mnt/windows
-	exit 0 ;;
+		h)echo "Usage: sharemount [ip(def:192.168.44.1)]"; exit 0 ;;
 	esac
 done
 

@@ -4,6 +4,12 @@ def writefile(buf_arg,file_name):
     with open(file_name, 'wb') as f:
         f.write(buf_arg)
 
+if(sys.argv[1] == "-h"):
+    print("Usage: python gettldata.py userid count\n\
+ userid : user id\n\
+ count  : tweet_count")
+    sys.exit(0)
+
 HOME = '/home/miyagaw61'
 
 CK = open(HOME + '/Documents/twitter/twitter.CK', 'r').read()

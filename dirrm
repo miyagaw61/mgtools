@@ -1,4 +1,10 @@
 #!/bin/sh
+
+if test "$1" = "-h" ;then
+	echo "Usage: dirrm file"
+	exit 0
+fi
+
 for arg in $@ ;do
 	now=`pwd`
 	if test `echo $arg | grep '/'` ;then

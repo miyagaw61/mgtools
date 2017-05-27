@@ -3,6 +3,10 @@
 hflg=0
 fflg=0
 
+if test $# -eq 0 ;then
+	hflg=1
+fi
+
 while getopts hf: opt ;do
 	case $opt in
 		h)hflg=1;;
@@ -12,7 +16,7 @@ done
 shift $(($OPTIND - 1))
 
 if test $hflg -eq 1 ;then
-	echo 'Usage: libcstrings [option] [strings]\ndefault: defalut_libc\n-f [libc_name]: use_notDefault_libc\n'
+	echo 'Usage: libcstrings [option] [strings]\ndefault: defalut_libc\n-f [libc_name]: use_notDefault_libc'
 	exit 0
 fi
 

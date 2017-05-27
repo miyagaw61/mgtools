@@ -1,6 +1,13 @@
 #!/bin/sh
+
+if test "$1" = "-h" ;then
+	echo "Usage: xready [file(def:exploit.py)]"
+	exit 0
+fi
+
 if test $# -eq 0 ; then
 cp -a $HOME/miyagawtools/x.py ./exploit.py
 exit 0
 fi
 cp -a $HOME/miyagawtools/x.py ./$1
+

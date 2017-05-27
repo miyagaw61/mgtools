@@ -1,4 +1,10 @@
 #!/bin/bash
+
+if test "$1" = "-h" ;then
+	echo "Usage: dirmk file"
+	exit 0
+fi
+
 for arg in $@ ;do
 	now=`pwd`
 	mkdir $arg

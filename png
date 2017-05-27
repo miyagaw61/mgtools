@@ -14,7 +14,7 @@ done
 shift $(($OPTIND - 1))
 
 if test $hflg -eq 1 ;then
-	echo "Usage: png [ip_addr(def:8.8.8.8)]"
+	echo "Usage: png [ip_addr(def:8.8.8.8 & google.com)]"
 	exit 0
 fi
 

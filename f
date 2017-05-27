@@ -14,7 +14,8 @@ done
 shift $(($OPTIND - 1))
 
 if test $hflg -eq 1 ;then
-	echo "Usage: "
+	echo "Usage: f number
+ number : lse number"
 	exit 0
 fi
 

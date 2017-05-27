@@ -13,7 +13,7 @@ while getopts h opt ;do
 done
 shift $(($OPTIND - 1))
 
-if test $hflg -eq 1  = "False" ;then
+if test $hflg -eq 1 ;then
 	echo "Usage: rst"
 	exit 0
 fi
