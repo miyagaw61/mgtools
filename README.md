@@ -239,8 +239,7 @@ a: all
 これ以降Twitter系のスクリプトが紹介されることがあるが、いずれも  
 $HOME/Documents/twitter内に  
 twitter.AS  twitter.AT  twitter.CK  twitter.CS  
-という4つのファイルが必要です。  
-その中には各自のAPIキー等を保存しておいてください。  
+という,APIキー等を保存した4つのファイルが必要。
 <pre>
 Usage: python gettldata.py userid count
 userid : user id
