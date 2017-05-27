@@ -1,1 +1,2 @@
 RUN echo RUN_START
+RUN echo now edit_cmd.tmp_now
