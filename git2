@@ -1,0 +1,219 @@
+#!/bin/sh
+
+hflg=0
+aflg=0
+fflg=0
+mflg=0
+rflg=0
+pflg=0
+fflg=0
+cflg=0
+
+if test $# -eq 0 ;then
+	hflg=1
+elif test $1 = "help" ;then
+	hflg=1
+fi
+
+while getopts ha:m:rpf:c: opt ;do
+	case $opt in
+		h)hflg=1;;
+		a)aflg=1;aarg=$OPTARG;;
+		m)mflg=1;marg=$OPTARG;;
+		r)rflg=1;;
+		p)pflg=1;;
+		f)fflg=1;farg=$OPTARG;;
+		c)cflg=1;carg=$OPTARG;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+if test $hflg -eq 1 ;then
+	echo "Usage: git2 [option]
+ clone:          super git clone
+ [LABEL] [path]: copy to repository and cd repository ( Usage_LABEL: mt/mp/tmp/io/mc )
+ add [path]:     git add [path]
+ commit/c:       git commit
+ remote/r:       git remote add origin https://github.com/[user_name]/[repository_name]
+ push/p:         git push origin master
+ all/a:          add&commit&push.all_automation (git add . -> git commit -> git push origin master)
+
+ (EXAMPLE)
+ git2 mt --> cd $HOME/git/miyagawtools/
+ git2 mt gcc --> cp -a ./gcc $HOME/git/miyagawtools/; cd $HOME/git/miyagawtools/
+ git2 add .  ( *** You have to be in the repository directory ***)
+ git2 commit ( *** You have to be in the repository directory ***)
+ git2 c      ( *** You have to be in the repository directory ***)
+ git2 remote ( *** You have to be in the repository directory ***)
+ git2 r      ( *** You have to be in the repository directory ***)
+ git2 push   ( *** You have to be in the repository directory ***)
+ git2 p      ( *** You have to be in the repository directory ***)
+ git2 all    ( *** You have to be in the repository directory ***)
+ git2 a      ( *** You have to be in the repository directory ***)
+	"
+	exit 0
+fi
+
+if test $1 = "add" -o $1 = "a" ;then
+	git add $2
+	git status
+	exit 0
+fi
+
+if test $1 = "status" -o $1 = "s" ;then
+	git status
+	exit 0
+fi
+
+if test $1 = "commit" -o $1 = "c" ;then
+	git status
+	if test "$(git status | grep 'Changes to be committed')" ;then
+		echo -n "comment: "
+		read msg
+		git commit -m $msg
+	fi
+	exit 0
+fi
+
+if test $1 = "remote"  -o $1 = "r" ;then
+	now=$(pwd)
+	arg=$(basename ${now})
+	echo -n username:
+	read user
+	git remote rm origin
+	git remote add origin https://github.com/${user}/${arg}
+	exit 0
+fi
+
+if test $1 = "push" -o $1 = "p" ;then
+	git push origin master
+	exit 0
+fi
+
+if test $1 = "all" ;then
+	cecho -g    '##########################'
+	cecho -r -f -n '[+]'
+	cecho -g -f ' add -> commit -> push'
+	cecho -g    '##########################'
+	git status
+	if test "$(git status | grep 'Changes to be committed')" ;then
+		echo -n "comment: "
+		read msg
+		git commit -m $msg
+	fi
+	sleep 0.5
+	#now=$(pwd)
+	#arg=$(basename ${now})
+	#git remote rm origin
+	#echo -n username:
+	#read user
+	#git remote add origin https://github.com/${user}/${arg}.git
+	git push origin master
+	exit 0
+fi
+
+if test $1 = "miyagawtools" -o $1 = "mt" ;then
+	sa
+	args=$@
+	args=$(echo $args | perl -pe 's/'$1'//g')
+	if test $# -ge 2 ;then
+		for var in $args ;do
+			cp -a $var $HOME/git/miyagawtools/
+		done
+	fi
+	cd $HOME/git/miyagawtools/
+	exec /bin/bash
+	exit 0
+fi
+
+if test $1 = "tmp" ;then
+	sa
+	args=$@
+	args=$(echo $args | perl -pe 's/'$1'//g')
+	if test $# -ge 2 ;then
+		for var in $args ;do
+			cp -a $var $HOME/git/tmp/
+		done
+	fi
+	cd $HOME/git/tmp/
+	exec /bin/bash
+	exit 0
+fi
+
+if test $1 = "miyagawpeda" -o $1 = "mp" ;then
+	sa
+	args=$@
+	args=$(echo $args | perl -pe 's/'$1'//g')
+	if test $# -ge 2 ;then
+		for var in $args ;do
+			cp -a $var $HOME/git/miyagawpeda/
+		done
+	fi
+	cd $HOME/git/miyagawpeda/
+	exec /bin/bash
+	exit 0
+fi
+
+if test $1 = "miyagaw61.github.io" -o $1 = "github.io" -o $1 = "io" ;then
+	sa
+	args=$@
+	args=$(echo $args | perl -pe 's/'$1'//g')
+	if test $# -ge 2 ;then
+		for var in $args ;do
+			cp -a $var $HOME/git/miyagaw61.github.io/
+		done
+	fi
+	cd $HOME/git/miyagaw61.github.io/
+	exec /bin/bash
+	exit 0
+fi
+
+if test $1 = "miyactf" -o $1 = "mc" ;then
+	sa
+	args=$@
+	args=$(echo $args | perl -pe 's/'$1'//g')
+	if test $# -ge 2 ;then
+		for var in $args ;do
+			cp -a $var $HOME/git/miyactf/
+		done
+	fi
+	cd $HOME/git/miyactf/
+	exec /bin/bash
+	exit 0
+fi
+
+if test $1 = "clone" ;then
+	if test $# -eq 3 ;then
+		git clone "http://github.com/"$2"/"$3".git"
+	elif test $# -eq 4 ;then
+		git clone "http://github.com/"$2"/"$3".git "$4
+	elif test $# -eq 1 ;then
+		echo -n "UserName: "
+		read username
+		echo -n "Repository: "
+		read repository
+		echo -n "Directory: "
+		read directory
+		git clone "http://github.com/"$username"/"$repository".git" $directory
+	fi
+fi
+
+if test $1 = "cp" ;then
+	if test $3 = "mt" ;then
+		dst="$HOME/git/miyagawtools/"
+	elif test $3 = "mp" ;then
+		dst="$HOME/git/miyagawpeda"
+	elif test $3 = "tmp" ;then
+		dst="$HOME/git/tmp"
+	elif test $3 = "io" ;then
+		dst="$HOME/git/miyagaw61.github.io"
+	elif test $3 = "mc" ;then
+		dst="$HOME/git/miyactf"
+	fi
+	cp -a $2 $dst
+fi
+
+if test $1 = "rmindex" ;then
+	git rm --cache $2
+	exit 0
+fi
