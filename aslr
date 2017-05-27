@@ -1,6 +1,6 @@
 #!/bin/sh
-if test $# -ne 1
-then
+
+if test $# -ne 1 -o "$1" = "-h" ;then
 	now=$(cat /proc/sys/kernel/randomize_va_space)
 	if test $now -eq 2 ;then
 		echo ' now : on'
