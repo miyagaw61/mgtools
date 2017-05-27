@@ -14,7 +14,7 @@ git clone https://github.com/miyagaw61.git $HOME/miyagawtools/
 tutorial
 --------
 
-* allcp
+* allcp  
 src...に記述した全ファイルを-dオプションに与えたパスへコピーする。
 <pre>
 Usage: cpall [-h] src... -d dst
@@ -23,7 +23,7 @@ Usage: cpall [-h] src... -d dst
 src	  src file/dir path
 </pre>
 
-* allmv
+* allmv  
 src...に記述した全ファイルを-dオプションに与えたパスへ移動する。
 <pre>
 Usage: allmv [-h] src... -d dst
@@ -32,7 +32,7 @@ Usage: allmv [-h] src... -d dst
  src	  src file/dir path
 </pre>
 
-* allrm
+* allrm  
 file...に記述した全ファイルを削除。  
 （存在しなくてもエラーを吐かないため、shellscriptでの使用に便利）
 <pre>
@@ -40,7 +40,7 @@ Usage: allrm file...
 file : file name that you want to remove
 </pre>
 
-* aslr
+* aslr  
 現在のaslrをチェック、変更。
 <pre>
 Usage: aslr [option]
@@ -49,20 +49,20 @@ on           : aslr on
 off          : aslr off
 </pre>
 
-* binsed
+* binsed  
 バイナリレベルでの置換。
 <pre>
 Usage: binsed [file_name] [before] [after] 
 </pre>
 
-* bkup
+* bkup  
 バックアップコマンド。  
 バックアップ元、バックアップ先のディレクトリを変更したい場合は、コードの中のrsyncの文の引数を各自で書き換えてください。
 <pre>
 Usage: bkup
 </pre>
 
-* rst
+* rst  
 bkupコマンドの逆を行うコマンド。  
 bkupとrstを使うことで、容易にバックアップとリストアを行う事が可能になる。  
 bkupコマンドを書き換えた場合は、こちらも書き換えてください。  
@@ -70,7 +70,7 @@ bkupコマンドを書き換えた場合は、こちらも書き換えてくだ�
 Usage: rst
 </pre>
 
-* build
+* build  
 自動Dockerファイル生成/自動buildを行う。  
 $HOME/Documents/docker/dockerという名前で  
 FROM IMAGE  
@@ -86,7 +86,7 @@ Usage: ./build -s src -d dst [-u user] [cmd...]
 cmd       set RUN command
 </pre>
 
-* calc
+* calc  
 計算ツール。  
 複数の進数表現を用いての計算/ビット演算を行うことができる。  
 単独の数値を渡すことで進数変換用としても使用可能。  
@@ -111,10 +111,10 @@ default: to_int
 -i: intaractive_mode
 </pre>
 
-* cecho
-引数に与えられた文字列に色を付けて出力する。
-青と黒が両方とも頭文字bで泣く泣く黒をkuroにした。
-fをつけるとファイル用になる。（正確には太字らしい）
+* cecho  
+引数に与えられた文字列に色を付けて出力する。  
+青と黒が両方とも頭文字bで泣く泣く黒をkuroにした。  
+fをつけるとファイル用になる。（正確には太字らしい）  
 <pre>
 Usage: cecho [option] [arg]
 [+]UsageOptions:
@@ -131,10 +131,10 @@ y: yellow
 k: kuro
 </pre>
 
-* chkbmap
-キーボード配列を変更する。
-jp配列,us配列,Dvorak配列に対応。
-リクエストして頂ければバリエーションを増やします。
+* chkbmap  
+キーボード配列を変更する。  
+jp配列,us配列,Dvorak配列に対応。  
+リクエストして頂ければバリエーションを増やします。  
 <pre>
 Usage: chkbmap [kbmap_symbol]
 [+]UsageSymbol:
@@ -143,43 +143,43 @@ us: USA
 dv: Dvorak
 </pre>
 
-* def
-シェルスクリプトのテンプレートを引数に与えたファイル名で生成。
+* def  
+シェルスクリプトのテンプレートを引数に与えたファイル名で生成。  
 <pre>
 Usage: def file_name
 </pre>
 
-* defc
-C言語のテンプレートを引数に与えたファイル名で生成。
+* defc  
+C言語のテンプレートを引数に与えたファイル名で生成。  
 <pre>
 Usage: def file_name
 </pre>
 
-* dirmk
-dirmkコマンドで作成したディレクトリは、パスのベースネームを入力するだけでそこへ飛べるようになる。
-（内部的にはcdirファイルに追加するだけ。このコマンドを使わなくてもcdirファイルに追記すればベースネームで飛べるようになる。）
-使用するにはbashrcに
-source $HOME/miyagawtools/cdir
-を追記する必要がある。
+* dirmk  
+dirmkコマンドで作成したディレクトリは、パスのベースネームを入力するだけでそこへ飛べるようになる。  
+（内部的にはcdirファイルに追加するだけ。このコマンドを使わなくてもcdirファイルに追記すればベースネームで飛べるようになる。）  
+使用するにはbashrcに  
+source $HOME/miyagawtools/cdir  
+を追記する必要がある。  
 <pre>
 Usage: dirmk file
 </pre>
 
-* dirrm
-dirmkコマンドで作成したディレクトリを削除するときはこのコマンドを使用する。
-（このコマンドを使用せずに普通にrm -rfコマンドで削除しても問題は無い（cdirが汚なくなるだけ））
+* dirrm  
+dirmkコマンドで作成したディレクトリを削除するときはこのコマンドを使用する。  
+（このコマンドを使用せずに普通にrm -rfコマンドで削除しても問題は無い（cdirが汚なくなるだけ））  
 <pre>
 usage: dirrm file
 </pre>
 
-* docker2
-dockerのラッパーコマンド。
-alias d="docker2"とエイリアスをかけてあげると便利。
-d 1　で停止しているコンテナの起動
-d 0　で起動しているコンテナの停止
-d x　で起動中のコンテナのterminalを起動
-d r　でrun（d rだけでコマンド実行すると、run専用のヘルプが見れる。）
-d d　でデーモン起動（d dだけでコマンド実行すると、デーモン起動専用のヘルプが見れる。）
+* docker2  
+dockerのラッパーコマンド。  
+alias d="docker2"とエイリアスをかけてあげると便利。  
+d 1　で停止しているコンテナの起動  
+d 0　で起動しているコンテナの停止  
+d x　で起動中のコンテナのterminalを起動  
+d r　でrun（d rだけでコマンド実行すると、run専用のヘルプが見れる。）  
+d d　でデーモン起動（d dだけでコマンド実行すると、デーモン起動専用のヘルプが見れる。）  
 <pre>
 Usage: docker2 [command]
 [+]command:
@@ -197,10 +197,10 @@ x:   exec -it [container_name] bash
 d:   run --privileged -d -p 8080:80 --name [name] [image_name] /sbin/init
 </pre>
 
-* gc
-gccのラッパーコマンド。
-デフォルトの出力ファイルがa.outではなく、拡張子の.cを取り除いたファイル名になる。
-また、オプションでセキュリティ機構を容易に設定してコンパイルを行うことが可能。
+* gc  
+gccのラッパーコマンド。  
+デフォルトの出力ファイルがa.outではなく、拡張子の.cを取り除いたファイル名になる。  
+また、オプションでセキュリティ機構を容易に設定してコンパイルを行うことが可能。  
 <pre>
 Usage: gc [options] [C_file]
 [+]UsageOptions:
@@ -210,9 +210,9 @@ pie
 fullrelro
 </pre>
 
-* x
-コンパイル->実行というフローを自動で行う。
-また、cファイルではなく実行可能ファイルを引数に与えた場合、コンパイルなしで実行。（./a.outと同じ挙動）
+* x  
+コンパイル->実行というフローを自動で行う。  
+また、cファイルではなく実行可能ファイルを引数に与えた場合、コンパイルなしで実行。（./a.outと同じ挙動）  
 <pre>
 Usage: x [options] [C_file]
 [+]UsageOptions:
@@ -222,9 +222,9 @@ Usage: x [options] [C_file]
    fullrelro
 </pre>
 
-* getfile
-オプションでファイルの種類を種別して表示することが可能。
-主にシェルスクリプト作成用のコマンドで、普段のlsの代わりには後述のols/lse/lsrコマンドを用いる。
+* getfile  
+オプションでファイルの種類を種別して表示することが可能。  
+主にシェルスクリプト作成用のコマンドで、普段のlsの代わりには後述のols/lse/lsrコマンドを用いる。  
 <pre>
 Usage: getfile [option]
 [+]UsageOption:
@@ -234,30 +234,30 @@ o: others
 a: all
 </pre>
 
-* gettldata.py
-引数にユーザー名/ツイート数を与えることで、そのユーザーのタイムラインを取得。
-これ以降Twitter系のスクリプトが紹介されることがあるが、いずれも
-$HOME/Documents/twitter内に
-twitter.AS  twitter.AT  twitter.CK  twitter.CS
-という4つのファイルが必要です。
-その中には各自のAPIキー等を保存しておいてください。
+* gettldata.py  
+引数にユーザー名/ツイート数を与えることで、そのユーザーのタイムラインを取得。  
+これ以降Twitter系のスクリプトが紹介されることがあるが、いずれも  
+$HOME/Documents/twitter内に  
+twitter.AS  twitter.AT  twitter.CK  twitter.CS  
+という4つのファイルが必要です。  
+その中には各自のAPIキー等を保存しておいてください。  
 <pre>
 Usage: python gettldata.py userid count
 userid : user id
 count  : tweet_county
 </pre>
 
-* gettweetdata.py
-引数にツイートの固有のID（URLに書いてある）を与えることで、そのツイートのJSONデータを取得。
+* gettweetdata.py  
+引数にツイートの固有のID（URLに書いてある）を与えることで、そのツイートのJSONデータを取得。  
 <pre>
 Usage: python gettweetdata.py statusid
 statusid : tweet's status id
 </pre>
 
-* git2
-gitのラッパーコマンド。
-alias g="git2"などとエイリアスをかけておくと便利。
-g cloneでは、clone先のURLを自動生成。
+* git2  
+gitのラッパーコマンド。  
+alias g="git2"などとエイリアスをかけておくと便利。  
+g cloneでは、clone先のURLを自動生成。  
 <pre>
 Usage: git2 [option]
 clone:          super git clone
@@ -282,18 +282,18 @@ git2 all    ( \*\*\* You have to be in the repository directory \*\*\*)
 git2 a      ( \*\*\* You have to be in the repository directory \*\*\*)
 </pre>
 
-* hashdiff
-ディレクトリAとディレクトリBの内部を再帰的にハッシュ比較し、一致すればTrueを、一致しなければFalseを文字列として返す。
-最後にオプションとしてcheckを追加することで、ファイルとして比較結果を出力。
-今回はただのパスの羅列で、上下の行に関連性が無いため、後述のwatchdiffコマンドを用いると見やすい。
+* hashdiff  
+ディレクトリAとディレクトリBの内部を再帰的にハッシュ比較し、一致すればTrueを、一致しなければFalseを文字列として返す。  
+最後にオプションとしてcheckを追加することで、ファイルとして比較結果を出力。  
+今回はただのパスの羅列で、上下の行に関連性が無いため、後述のwatchdiffコマンドを用いると見やすい。  
 <pre>
 Usage: hashdiff [path1] [path2] [option]
 [+]UsageOption:
 check: check_diff_file
 </pre>
 
-* watchdiff
-diffの結果として吐かれたファイルの不一致の部分だけが見れるようになる。（-U 0オプションをつけてdiffした場合と同じになる）
+* watchdiff  
+diffの結果として吐かれたファイルの不一致の部分だけが見れるようになる。（-U 0オプションをつけてdiffした場合と同じになる）  
 <pre>
 age: ./watchdiff [-h] -a argA [-b argB] [-c argC] expr...
  -h        show help
