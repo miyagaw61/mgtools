@@ -1,8 +1,15 @@
 #!/bin/sh
 
+if test $1 = "-h" ;then
+	echo 'Usage: allmv src...
+ src : src file path'
+	exit 0
+fi
+
 for arg in $@ ;do
 	if test -f $arg ;then
 		mv $arg ./
 	fi
 done
+
 
