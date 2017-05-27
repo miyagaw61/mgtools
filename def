@@ -10,7 +10,7 @@ done
 shift $(($OPTIND - 1))
 
 if test $hflg -eq 1 ;then
-	echo "Usage: def \$script_name"
+	echo "Usage: def file_name"
 	exit 0
 fi
 
