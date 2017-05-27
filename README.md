@@ -39,21 +39,5 @@ Usage: aslr [option]
 * binsed
 
 <pre>
-Usage: binsed [file_name] [before] [after]
-</pre>
-
-* bkup
-
-<pre>
-Usage: bkup
-</pre>
-
-* build
-
-<pre>
-Usage: ./build -s src -d dst [-u user] [cmd...]
- -s [src]  set source image name
- -d [dst]  set destination image name
- -u [user] set your user name (default: miyagaw61)
- cmd       set RUN command
+Usage: binsed [file_name] [before] [after] 
 </pre>
