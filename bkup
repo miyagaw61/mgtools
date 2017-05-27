@@ -24,70 +24,70 @@ elif test $# -eq 0 ;then
 	dstPath="/mnt/windows/bk"
 fi
 
-#if test "$(hashdiff $HOME/miyagawtools/ ${dstPath}/miyagawtools/)" = "False" ;then
-	cecho -rfn '[+]'
-	cecho -gf $HOME'/miyagawtools/ -> '${dstPath}'/miyagawtools/'
-	rsync -auv $HOME/miyagawtools/* ${dstPath}/miyagawtools/
-#fi
 
-#if test "$(hashdiff $HOME/ctf/ ${dstPath}/ctf/)" = "False" ;then
-	cecho -rfn '[+]'
-	cecho -gf $HOME'/ctf/ -> '${dstPath}'/ctf/'
-	rsync -auv $HOME/ctf/* ${dstPath}/ctf/
-#fi
+cecho -rfn '[+]'
+cecho -gf $HOME'/miyagawtools/ -> '${dstPath}'/miyagawtools/'
+rsync -auv $HOME/miyagawtools/* ${dstPath}/miyagawtools/
 
-#if test "$(hashdiff $HOME/Desktop/ ${dstPath}/Desktop/)" = "False" ;then
-	cecho -rfn '[+]'
-	cecho -gf $HOME'/Desktop/ -> '${dstPath}'/Desktop/'
-	rsync -auv $HOME/Desktop/* ${dstPath}/Desktop/
-#fi
 
-#if test "$(hashdiff $HOME/Documents/ ${dstPath}/Documents/)" = "False" ;then
-	cecho -rfn '[+]'
-	cecho -gf $HOME'/Documents/ -> '${dstPath}'/Documents/'
-	rsync -auv $HOME/Documents/* ${dstPath}/Documents/
-#fi
 
-#if test "$(hashdiff $HOME/Downloads/ ${dstPath}/Downloads/)" = "False" ;then
-	cecho -rfn '[+]'
-	cecho -gf $HOME'/Downloads/ -> '${dstPath}'/Downloads/'
-	rsync -auv $HOME/Downloads/* ${dstPath}/Downloads/
-#fi
+cecho -rfn '[+]'
+cecho -gf $HOME'/ctf/ -> '${dstPath}'/ctf/'
+rsync -auv $HOME/ctf/* ${dstPath}/ctf/
 
-#if test "$(hashdiff $HOME/neosnippets/ ${dstPath}/neosnippets/)" = "False" ;then
-	cecho -rfn '[+]'
-	cecho -gf $HOME'/neosnippets/ -> '${dstPath}'/neosnippets/'
-	rsync -auv $HOME/neosnippets/* ${dstPath}/neosnippets/
-#fi
 
-#if test "$(hashdiff $HOME/tmp/ ${dstPath}/tmp/)" = "False" ;then
-	cecho -rfn '[+]'
-	cecho -gf $HOME'/tmp/ -> '${dstPath}'/tmp/'
-	rsync -auv $HOME/tmp/* ${dstPath}/tmp/
-#fi
 
-#if test "$(hashdiff $HOME/peda/ ${dstPath}/peda/)" = "False" ;then
-	cecho -rfn '[+]'
-	cecho -gf $HOME'/peda/ -> '${dstPath}'/peda/'
-	rsync -auv $HOME/peda/* ${dstPath}/peda/
-#fi
+cecho -rfn '[+]'
+cecho -gf $HOME'/Desktop/ -> '${dstPath}'/Desktop/'
+rsync -auv $HOME/Desktop/* ${dstPath}/Desktop/
 
-#if test "$(diff -q $HOME/.bashrc $HOME/rc/bashrc)" ;then
-	cecho -rfn '[+]'
-	cecho -gf $HOME'/.bashrc -> '$HOME'/rc/bashrc'
-	rsync -auv $HOME/.bashrc $HOME/rc/bashrc
-#fi
 
-#if test "$(diff -q /usr/share/vim/vimrc ${dstPath}/rc/vimrc)" ;then
-	cecho -rfn '[+]'
-	cecho -gf '/usr/share/vim/vimrc -> '${dstPath}'/rc/vimrc'
-	rsync -auv /usr/share/vim/vimrc $HOME/rc/
-#fi
 
-#if test "$(hashdiff $HOME/rc/ ${dstPath}/rc/)" = "False" ;then
-	cecho -rfn '[+]'
-	cecho -gf $HOME'/rc/ -> '${dstPath}'/rc/'
-	rsync -auv $HOME/rc/* ${dstPath}/rc/
-#fi
+cecho -rfn '[+]'
+cecho -gf $HOME'/Documents/ -> '${dstPath}'/Documents/'
+rsync -auv $HOME/Documents/* ${dstPath}/Documents/
+
+
+
+cecho -rfn '[+]'
+cecho -gf $HOME'/Downloads/ -> '${dstPath}'/Downloads/'
+rsync -auv $HOME/Downloads/* ${dstPath}/Downloads/
+
+
+
+cecho -rfn '[+]'
+cecho -gf $HOME'/neosnippets/ -> '${dstPath}'/neosnippets/'
+rsync -auv $HOME/neosnippets/* ${dstPath}/neosnippets/
+
+
+
+cecho -rfn '[+]'
+cecho -gf $HOME'/tmp/ -> '${dstPath}'/tmp/'
+rsync -auv $HOME/tmp/* ${dstPath}/tmp/
+
+
+
+cecho -rfn '[+]'
+cecho -gf $HOME'/peda/ -> '${dstPath}'/peda/'
+rsync -auv $HOME/peda/* ${dstPath}/peda/
+
+
+
+cecho -rfn '[+]'
+cecho -gf $HOME'/.bashrc -> '$HOME'/rc/bashrc'
+rsync -auv $HOME/.bashrc $HOME/rc/bashrc
+
+
+
+cecho -rfn '[+]'
+cecho -gf '/usr/share/vim/vimrc -> '${dstPath}'/rc/vimrc'
+rsync -auv /usr/share/vim/vimrc $HOME/rc/
+
+
+
+cecho -rfn '[+]'
+cecho -gf $HOME'/rc/ -> '${dstPath}'/rc/'
+rsync -auv $HOME/rc/* ${dstPath}/rc/
+
 
 

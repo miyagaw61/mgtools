@@ -1,15 +1,38 @@
 #!/bin/sh
 
-if test $1 = "-h" ;then
-	echo 'Usage: allmv src...
- src : src file path'
-	exit 0
+hflg=0
+if test $# -eq 0 ;then
+	hflg=1
 fi
 
-for arg in $@ ;do
-	if test -f $arg ;then
-		mv $arg ./
+dflg=0
+darg="dst_dir"
+src=""
+for arg in "$@" ;do
+	if test "$arg" = "-h" -o "$arg" = "--help" -o "$arg" = "help" ;then
+		hflg=1
+
+	elif test $dflg -eq 1 ;then
+		darg=$arg
+		dflg=0
+
+	elif test "$arg" = "-d" ;then
+		dflg=1
+
+	else
+		src=$src" "$arg
 	fi
 done
 
+if test $hflg -eq 1 ;then
+	echo "Usage: "$(basename $0)" [-h] src... -d dst
+ -h       show help
+ -d [dst] dst dir path
+ src	  src file/dir path"
+	exit 0
+fi
+
+for var in $src ;do
+	mv $var $darg
+done
 

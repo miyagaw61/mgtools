@@ -38,7 +38,7 @@ for arg in "$@" ;do
 done
 
 if test $hflg -eq 1 ;then
-	echo "Usage: ./"$(basename $0)" [-h] -a argA [-b argB] [-c argC] expr...
+	echo "Usage: "$(basename $0)" [-h] -a argA [-b argB] [-c argC] expr...
  -h        show help
  -a [argA] set arg1
  -b [argB] set arg2

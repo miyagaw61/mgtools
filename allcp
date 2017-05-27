@@ -25,7 +25,7 @@ for arg in "$@" ;do
 done
 
 if test $hflg -eq 1 ;then
-	echo "Usage: ./"$(basename $0)" [-h] src... -d dst
+	echo "Usage: "$(basename $0)" [-h] src... -d dst
  -h       show help
  -d [dst] dst dir path
  src	  src file/dir path"
@@ -33,6 +33,6 @@ if test $hflg -eq 1 ;then
 fi
 
 for var in $src ;do
-	rsync -av $var $darg
+	rsync -a $var $darg
 done
 
