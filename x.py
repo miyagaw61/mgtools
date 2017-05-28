@@ -31,23 +31,26 @@ def writefile(buf_arg,file_name):
     with open(file_name, 'wb') as f:
         f.write(buf_arg)
 
-def recv(delim='\n'):
+def recv(delim='\n', out=1):
     data = ''
     while not data.endswith(delim):
         data += s.recv(1)
-    print('\nrecv: \n' + data + '\n')
+    if(out == 1):
+        print('\nrecv: \n' + data + '\n')
     return data
 
-def recvn(x):
+def recvn(x=1024, out=1):
     data = ''
     data += s.recv(x)
-    print('\nrecv: \n' + data + '\n')
+    if(out == 1):
+        print('\nrecv: \n' + data + '\n')
     return data
 
-def send(x):
+def send(x, sleep=0.3, out=1):
     s.sendall(x + '\n')
-    print('\nsend: \n' + x + '\n')
-    time.sleep(0.3)
+    if(out == 1):
+        print('\nsend: \n' + x + '\n')
+    time.sleep(sleep)
 
 def u(x):
     return struct.unpack("<I",x[:4])[0]
@@ -90,19 +93,21 @@ def xxd(a):
     a = str(a)
     hexdump.hexdump(a)
 
-def read(delim="\n"):
+def read(delim="\n", out=1):
     data = ''
     while not data.endswith(delim):
         data += proc.stdout.readlne(1)
-    print('\nread: \n' + data + '\n')
+    if(out == 1):
+        print('\nread: \n' + data + '\n')
     return data
 
-def readn(num):
+def readn(num=1024, out=1):
     data = ''
     while(num>0):
         data += proc.stdout.read(1)
         num = num-1
-    print('\nread: \n' + data + '\n')
+    if(out == 1):
+        print('\nread: \n' + data + '\n')
     return data
  
 def fsa1(recent_len, index_start, after_data):
