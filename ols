@@ -195,7 +195,8 @@ fi
 
 ls -CF1 | grep -E '\/$' | sed -E 's/^(.*)./\1/g' > ols.first
 if test $aflg -eq 1 ;then
-ls -aCF1 | grep -E '\/$' | sed -E 's/^(.*)./\1/g' > ols.first
+	ls -aCF1 | grep -E '\/$' | sed -E 's/^(.*)./\1/g' > ols.first
+	ls -aCF1 | grep -E '\/$' > ols.tmp
 fi
 if test $gflg -eq 1 ;then
 	cat ols.first | grep -E $garg > ols.first.tmp
@@ -266,6 +267,10 @@ if test -f ols2.out ;then
 fi
 
 ls -CF1 | grep -E -v '\*$' | grep -E -v '\/$' > ols.first
+if test $aflg -eq 1 ;then
+	ls -aCF1 | grep -E -v '\*$' | grep -E -v '\/$' > ols.first
+fi
+
 if test $gflg -eq 1 ;then
 	cat ols.first | grep -E $garg > ols.first.tmp
 	mv ols.first.tmp ols.first
