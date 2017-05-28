@@ -340,6 +340,7 @@ default: defalut_libc
 lsの結果をファイルの種類別にソートし、番号を付与する。  
 付与された番号を入力することで、ディレクトリならcd、実行可能ファイルなら実行、テキストファイルならcatを自動で実行する。  
 （後述のfコマンドで付与された番号のファイルの絶対パスを取得することが可能。また、実行可能ファイルをcatしたい場合や、テキストファイルをvimした場合などは、後述の末尾がfのスクリプト群を使用。）  
+lseコマンドを使用するためには、"source $HOME/miyagawtools/numcd.alias"をbashrcへ追記する必要がある。
 <pre>
 Usage: lse [option] [clm_num(default: 3)]
 [+]UsageOptions:
