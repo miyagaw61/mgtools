@@ -88,8 +88,14 @@ if test $1 = "commit" -o $1 = "c" ;then
 fi
 
 if test "$1" = "addcommit" -o "$1" = "ac" ;then
-	git2 add $2
-	git2 commit
+	git branch
+	git add $2
+	git status
+	branchsave
+	echo -n "\n[+]comment : "
+	read msg
+	git commit -m "$msg"
+	echo "\n[+]COMMIT FINISH!\n"
 	rmtmp
 	exit 0
 fi
