@@ -258,27 +258,26 @@ gitのラッパーコマンド。
 alias g="git2"などとエイリアスをかけておくと便利。  
 g cloneでは、clone先のURLを自動生成。  
 <pre>
-Usage: git2 [option]
-clone:          super git clone
-[LABEL] [path]: copy to repository and cd repository ( Usage_LABEL: mt/mp/tmp/io/mc )
-add [path]:     git add [path]
-commit/c:       git commit
-remote/r:       git remote add origin https://github.com/[user_name]/[repository_name]
-push/p:         git push origin master
-all/a:          add&commit&push.all_automation (git add . -> git commit -> git push origin master)
+Usage: git2 [clone] [add [file]] [branch]
+	    [branch [existed_branch]] [branch [not_existed_branch]]
+	    [commit] [merge [branch]] [push] [cm [branch]] [cmp [branch]]	
+ clone : _____________________ super clone
+ add [file]: _________________ super add
+ branch: _____________________ show branch
+ branch [existed_branch]: ____ checkout
+ branch [not_existed_branch]:_ create branch -> checkout
+ commit: _____________________ super commit
+ merge [branch]: _____________ checkout -> merge preview_branch -> checkout preview_branch
+ push: _______________________ checkout master -> push -> checkout preview_branch
+ cm [branch]: ________________ git2 commit -> git2 merge [branch]
+ cmp [branch]: _______________ git2 commit -> git2 merge [branch] -> git2 push
 
-(EXAMPLE)
-git2 mt --> cd /home/miyagaw61/git/miyagawtools/
-git2 mt gcc --> cp -a ./gcc /home/miyagaw61/git/miyagawtools/; cd /home/miyagaw61/git/miyagawtools/
-git2 add .  ( \*\*\* You have to be in the repository directory \*\*\*)
-git2 commit ( \*\*\* You have to be in the repository directory \*\*\*)
-git2 c      ( \*\*\* You have to be in the repository directory \*\*\*)
-git2 remote ( \*\*\* You have to be in the repository directory \*\*\*)
-git2 r      ( \*\*\* You have to be in the repository directory \*\*\*)
-git2 push   ( \*\*\* You have to be in the repository directory \*\*\*)
-git2 p      ( \*\*\* You have to be in the repository directory \*\*\*)
-git2 all    ( \*\*\* You have to be in the repository directory \*\*\*)
-git2 a      ( \*\*\* You have to be in the repository directory \*\*\*)
+ [+]aliases:
+ a: add
+ b: branch
+ c: commit
+ m: merge
+ p: push
 </pre>
 
 * hashdiff  
