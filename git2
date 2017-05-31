@@ -29,156 +29,120 @@ done
 shift $(($OPTIND - 1))
 
 if test $hflg -eq 1 ;then
-	echo "Usage: git2 [option]
- clone:          super git clone
- [LABEL] [path]: copy to repository and cd repository ( Usage_LABEL: mt/mp/tmp/io/mc )
- add [path]:     git add [path]
- commit/c:       git commit
- remote/r:       git remote add origin https://github.com/[user_name]/[repository_name]
- push/p:         git push origin master
- all/a:          add&commit&push.all_automation (git add . -> git commit -> git push origin master)
+	echo -n "Usage: git2 [clone] [add [file]] [branch]
+	    [branch [existed_branch]] [branch [not_existed_branch]]
+	    [commit] [merge [branch]] [push] [cm [branch]] [cmp [branch]]	
+ clone : _____________________ super clone
+ add [file]: _________________ super add
+ branch: _____________________ show branch
+ branch [existed_branch]: ____ checkout
+ branch [not_existed_branch]:_ create branch -> checkout
+ commit: _____________________ super commit
+ merge [branch]: _____________ checkout -> merge preview_branch -> checkout preview_branch
+ push: _______________________ checkout master -> push -> checkout preview_branch
+ cm [branch]: ________________ git2 commit -> git2 merge [branch]
+ cmp [branch]: _______________ git2 commit -> git2 merge [branch] -> git2 push
 
- (EXAMPLE)
- git2 mt --> cd $HOME/git/miyagawtools/
- git2 mt gcc --> cp -a ./gcc $HOME/git/miyagawtools/; cd $HOME/git/miyagawtools/
- git2 add .  ( *** You have to be in the repository directory ***)
- git2 commit ( *** You have to be in the repository directory ***)
- git2 c      ( *** You have to be in the repository directory ***)
- git2 remote ( *** You have to be in the repository directory ***)
- git2 r      ( *** You have to be in the repository directory ***)
- git2 push   ( *** You have to be in the repository directory ***)
- git2 p      ( *** You have to be in the repository directory ***)
- git2 all    ( *** You have to be in the repository directory ***)
- git2 a      ( *** You have to be in the repository directory ***)
-	"
+ [+]aliases:
+ a: add
+ b: branch
+ c: commit
+ m: merge
+ p: push
+ "
+	rmtmp
 	exit 0
 fi
 
+branchsave(){
+	git branch > branch.tmp
+	cat git2.tmp | grep -E "\*" | perl -pe "s@\*(.*)@\1@g" > now.tmp
+}
+
 if test $1 = "add" -o $1 = "a" ;then
+	git branch
 	git add $2
 	git status
+	rmtmp
 	exit 0
 fi
 
 if test $1 = "status" -o $1 = "s" ;then
+	git branch
 	git status
+	rmtmp
 	exit 0
 fi
 
 if test $1 = "commit" -o $1 = "c" ;then
+	branchsave
+	git branch
 	git status
-	if test "$(git status | grep 'Changes to be committed')" ;then
-		echo -n "comment: "
-		read msg
-		git commit -m $msg
-	fi
+	echo -n "\n[+]comment : "
+	read msg
+	git commit -m "$msg"
+	echo "\n[+]COMMIT FINISH!\n"
+	rmtmp
 	exit 0
 fi
 
-if test $1 = "remote"  -o $1 = "r" ;then
-	now=$(pwd)
-	arg=$(basename ${now})
-	echo -n username:
-	read user
-	git remote rm origin
-	git remote add origin https://github.com/${user}/${arg}
+if test "$1" = "merge" -o "$1" = "m" ;then
+	branchsave
+	git checkout $2
+	git merge $(cat now.tmp)
+	git checkout $(cat now.tmp)
+	rmtmp
 	exit 0
 fi
 
 if test $1 = "push" -o $1 = "p" ;then
-	git push origin master
+	branchsave
+	git checkout master
+	git push
+	git checkout $(cat now.tmp)
+	rmtmp
 	exit 0
 fi
 
-if test $1 = "all" ;then
-	cecho -g    '##########################'
-	cecho -r -f -n '[+]'
-	cecho -g -f ' add -> commit -> push'
-	cecho -g    '##########################'
-	git status
-	if test "$(git status | grep 'Changes to be committed')" ;then
-		echo -n "comment: "
-		read msg
-		git commit -m $msg
+if test "$1" = "branch" -o "$1" = "b" ;then
+	branchsave
+	if test $# -eq 1 ;then
+		git branch
 	fi
-	sleep 0.5
-	#now=$(pwd)
-	#arg=$(basename ${now})
-	#git remote rm origin
-	#echo -n username:
-	#read user
-	#git remote add origin https://github.com/${user}/${arg}.git
-	git push origin master
-	exit 0
-fi
-
-if test $1 = "miyagawtools" -o $1 = "mt" ;then
-	sa
-	args=$@
-	args=$(echo $args | perl -pe 's/'$1'//g')
 	if test $# -ge 2 ;then
-		for var in $args ;do
-			cp -a $var $HOME/git/miyagawtools/
-		done
+		if test ! "$(cat branch.tmp | grep $2)" ;then
+			git branch $2
+			git checkout $2
+			git branch
+		else
+			git branch
+			echo '\n[+]GIT CHECKOUT\n'
+			git checkout $2
+			git branch
+		fi
 	fi
-	cd $HOME/git/miyagawtools/
-	exec /bin/bash
+	rmtmp
 	exit 0
 fi
 
-if test $1 = "tmp" ;then
-	sa
-	args=$@
-	args=$(echo $args | perl -pe 's/'$1'//g')
-	if test $# -ge 2 ;then
-		for var in $args ;do
-			cp -a $var $HOME/git/tmp/
-		done
-	fi
-	cd $HOME/git/tmp/
-	exec /bin/bash
+if test "$1" = "cm" -o "$1" = "commitmerge" ;then
+	git2 commit
+	git2 merge
+	rmtmp
 	exit 0
 fi
 
-if test $1 = "miyagawpeda" -o $1 = "mp" ;then
-	sa
-	args=$@
-	args=$(echo $args | perl -pe 's/'$1'//g')
-	if test $# -ge 2 ;then
-		for var in $args ;do
-			cp -a $var $HOME/git/miyagawpeda/
-		done
-	fi
-	cd $HOME/git/miyagawpeda/
-	exec /bin/bash
+if test "$1" = "cmp" -o "$1" = "commitmergepush" ;then
+	git2 commit
+	git2 merge
+	git2 push
+	rmtmp
 	exit 0
 fi
 
-if test $1 = "miyagaw61.github.io" -o $1 = "github.io" -o $1 = "io" ;then
-	sa
-	args=$@
-	args=$(echo $args | perl -pe 's/'$1'//g')
-	if test $# -ge 2 ;then
-		for var in $args ;do
-			cp -a $var $HOME/git/miyagaw61.github.io/
-		done
-	fi
-	cd $HOME/git/miyagaw61.github.io/
-	exec /bin/bash
-	exit 0
-fi
-
-if test $1 = "miyactf" -o $1 = "mc" ;then
-	sa
-	args=$@
-	args=$(echo $args | perl -pe 's/'$1'//g')
-	if test $# -ge 2 ;then
-		for var in $args ;do
-			cp -a $var $HOME/git/miyactf/
-		done
-	fi
-	cd $HOME/git/miyactf/
-	exec /bin/bash
+if test $1 = "rmindex" ;then
+	git rm --cache $2
+	rmtmp
 	exit 0
 fi
 
@@ -196,6 +160,8 @@ if test $1 = "clone" ;then
 		read directory
 		git clone "http://github.com/"$username"/"$repository".git" $directory
 	fi
+	rmtmp
+	exit 0
 fi
 
 if test $1 = "cp" ;then
@@ -211,9 +177,90 @@ if test $1 = "cp" ;then
 		dst="$HOME/git/miyactf"
 	fi
 	cp -a $2 $dst
-fi
-
-if test $1 = "rmindex" ;then
-	git rm --cache $2
+	rmtmp
 	exit 0
 fi
+
+if test $1 = "remote"  -o $1 = "r" ;then
+	now=$(pwd)
+	arg=$(basename ${now})
+	echo -n username:
+	read user
+	git remote rm origin
+	git remote add origin https://github.com/${user}/${arg}
+	rmtmp
+	exit 0
+fi
+
+if test "$1" = "cd" ;then
+	if test $2 = "miyagawtools" -o $2 = "mt" ;then
+		sa
+		args=$@
+		args=$(echo $args | perl -pe 's/'$2'//g' | perl -pe 's/cd//g')
+		if test $# -ge 2 ;then
+			for var in $args ;do
+				cp -a $var $HOME/git/miyagawtools/
+			done
+		fi
+		cd $HOME/git/miyagawtools/
+		exec /bin/bash
+		exit 0
+	fi
+
+	if test $2 = "tmp" ;then
+		sa
+		args=$@
+		args=$(echo $args | perl -pe 's/'$2'//g' | perl -pe 's/cd//g')
+		if test $# -ge 2 ;then
+			for var in $args ;do
+				cp -a $var $HOME/git/tmp/
+			done
+		fi
+		cd $HOME/git/tmp/
+		exec /bin/bash
+		exit 0
+	fi
+
+	if test $2 = "miyagawpeda" -o $2 = "mp" ;then
+		sa
+		args=$@
+		args=$(echo $args | perl -pe 's/'$2'//g' | perl -pe 's/cd//g')
+		if test $# -ge 2 ;then
+			for var in $args ;do
+				cp -a $var $HOME/git/miyagawpeda/
+			done
+		fi
+		cd $HOME/git/miyagawpeda/
+		exec /bin/bash
+		exit 0
+	fi
+
+	if test $2 = "miyagaw61.github.io" -o $2 = "github.io" -o $2 = "io" ;then
+		sa
+		args=$@
+		args=$(echo $args | perl -pe 's/'$2'//g' | perl -pe 's/cd//g')
+		if test $# -ge 2 ;then
+			for var in $args ;do
+				cp -a $var $HOME/git/miyagaw61.github.io/
+			done
+		fi
+		cd $HOME/git/miyagaw61.github.io/
+		exec /bin/bash
+		exit 0
+	fi
+
+	if test $2 = "miyactf" -o $2 = "mc" ;then
+		sa
+		args=$@
+		args=$(echo $args | perl -pe 's/'$2'//g' | perl -pe 's/cd//g')
+		if test $# -ge 2 ;then
+			for var in $args ;do
+				cp -a $var $HOME/git/miyactf/
+			done
+		fi
+		cd $HOME/git/miyactf/
+		exec /bin/bash
+		exit 0
+	fi
+fi
+
