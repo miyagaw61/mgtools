@@ -31,7 +31,7 @@ shift $(($OPTIND - 1))
 if test $hflg -eq 1 ;then
 	echo -n "Usage: git2 [clone] [add [file]] [branch]
 	    [branch [existed_branch]] [branch [not_existed_branch]]
-	    [commit] [merge [branch]] [push] [cm [branch]] [cmp [branch]]	
+	    [commit] [merge [branch]] [push] [cm [branch]] [cmp [branch]] [ac [file]]	
  clone : _____________________ super clone
  add [file]: _________________ super add
  branch: _____________________ show branch
@@ -42,6 +42,7 @@ if test $hflg -eq 1 ;then
  push: _______________________ checkout master -> push -> checkout preview_branch
  cm [branch]: ________________ git2 commit -> git2 merge [branch]
  cmp [branch]: _______________ git2 commit -> git2 merge [branch] -> git2 push
+ ac [file]: __________________ git2 add [file] -> git2 commit
 
  [+]aliases:
  a: add
@@ -86,6 +87,13 @@ if test $1 = "commit" -o $1 = "c" ;then
 	exit 0
 fi
 
+if test "$1" = "addcommit" -o "$1" = "ac" ;then
+	git2 add $2
+	git2 commit
+	rmtmp
+	exit 0
+fi
+
 if test "$1" = "merge" -o "$1" = "m" ;then
 	branchsave
 	git checkout $2
@@ -96,11 +104,13 @@ if test "$1" = "merge" -o "$1" = "m" ;then
 fi
 
 if test $1 = "push" -o $1 = "p" ;then
-	branchsave
-	git checkout master
-	git push
-	git checkout $(cat now.tmp)
-	rmtmp
+	if test "$(png github.com)" = "OK" ;then
+		branchsave
+		git checkout master
+		git push
+		git checkout $(cat now.tmp)
+		rmtmp
+	fi
 	exit 0
 fi
 
