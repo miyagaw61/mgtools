@@ -254,9 +254,9 @@ statusid : tweet's status id
 </pre>
 
 * git2  
-gitのラッパーコマンド。  
-alias g="git2"などとエイリアスをかけておくと便利。  
-g cloneでは、clone先のURLを自動生成。  
+gitのラッパーコマンド。   
+一番最初に「 git2 add_alias 」をしておくと幸せになれる。
+(giから始まるaliasが使用可能になる)
 <pre>
 Usage: git2 [clone] [add [file]] [branch]
 	    [branch [existed_branch]] [branch [not_existed_branch]]
@@ -275,7 +275,7 @@ Usage: git2 [clone] [add [file]] [branch]
  ac [file]: __________________ git2 add [file] -> git2 commit
  acm [file] [branch]: ________ git2 add [file] -> git2 commit -> git2 merge [branch]
  acmp [file] [branch]: _______ git2 add [file] -> git2 commit -> git2 merge [branch] -> git2 push
- add_alias: __________________ add aliases to /home/miyagaw61/.bashrc ( You have to check below. )
+ add_alias: __________________ add aliases to $HOME/.bashrc ( You have to check below. )
 
  [+]You can use these default aliases:
  a: add
