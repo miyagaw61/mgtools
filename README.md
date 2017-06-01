@@ -260,7 +260,8 @@ g cloneでは、clone先のURLを自動生成。
 <pre>
 Usage: git2 [clone] [add [file]] [branch]
 	    [branch [existed_branch]] [branch [not_existed_branch]]
-	    [commit] [merge [branch]] [push] [cm [branch]] [cmp [branch]]	
+	    [commit] [merge [branch]] [push] [cm [branch]] [cmp [branch]] [ac [file]]
+	    [acm [file] [branch]] [acmp [file] [branch]] [add_alias]
  clone : _____________________ super clone
  add [file]: _________________ super add
  branch: _____________________ show branch
@@ -271,13 +272,31 @@ Usage: git2 [clone] [add [file]] [branch]
  push: _______________________ checkout master -> push -> checkout preview_branch
  cm [branch]: ________________ git2 commit -> git2 merge [branch]
  cmp [branch]: _______________ git2 commit -> git2 merge [branch] -> git2 push
+ ac [file]: __________________ git2 add [file] -> git2 commit
+ acm [file] [branch]: ________ git2 add [file] -> git2 commit -> git2 merge [branch]
+ acmp [file] [branch]: _______ git2 add [file] -> git2 commit -> git2 merge [branch] -> git2 push
+ add_alias: __________________ add aliases to /home/miyagaw61/.bashrc ( You have to check below. )
 
- [+]aliases:
+ [+]You can use these default aliases:
  a: add
  b: branch
  c: commit
  m: merge
  p: push
+
+ [+]You can use these after use add_alias option:
+ gi:     git2
+ gis:    git2 status
+ gia:    git2 add
+ gic:    git2 commit
+ gim:    git2 merge
+ gip:    git2 push
+ gib:    git2 branch
+ gicm:   git2 cm
+ gicmp:  git2 cmp
+ giac:   git2 ac
+ giacm:  git2 acm
+ giacmp: git2 acmp
 </pre>
 
 * hashdiff  
