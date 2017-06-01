@@ -164,8 +164,8 @@ if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
 	echo "\n[+]COMMIT FINISH!\n"
 	git checkout $3
 	git merge $(cat now.tmp)
+	git push
 	git checkout $(cat now.tmp)
-	git2 push
 	rmtmp
 	exit 0
 fi
