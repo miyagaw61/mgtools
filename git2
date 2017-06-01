@@ -43,6 +43,8 @@ if test $hflg -eq 1 ;then
  cm [branch]: ________________ git2 commit -> git2 merge [branch]
  cmp [branch]: _______________ git2 commit -> git2 merge [branch] -> git2 push
  ac [file]: __________________ git2 add [file] -> git2 commit
+ acm [file] [branch]: ________ git2 add [file] -> git2 commit -> git2 merge [branch]
+ acmp [file] [branch]: _______ git2 add [file] -> git2 commit -> git2 merge [branch] -> git2 push
 
  [+]aliases:
  a: add
@@ -99,6 +101,30 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
 	rmtmp
 	exit 0
 fi
+
+if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
+	git branch
+	git add $2
+	git status
+	branchsave
+	echo -n "\n[+]comment : "
+	read msg
+	git commit -m "$msg"
+	echo "\n[+]COMMIT FINISH!\n"
+	git checkout $3
+	git merge $(cat now.tmp)
+	git checkout $(cat now.tmp)
+	rmtmp
+	exit 0
+fi
+
+if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
+	git2 acm
+	git2 push
+	rmtmp
+	exit 0
+fi
+
 
 if test "$1" = "merge" -o "$1" = "m" ;then
 	branchsave
