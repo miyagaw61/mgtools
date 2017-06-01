@@ -255,7 +255,7 @@ statusid : tweet's status id
 
 * git2  
 gitのラッパーコマンド。   
-一番最初に「 git2 add_alias 」をしておくと幸せになれる。
+一番最初に「 git2 add_alias 」をしておくと幸せになれる。  
 (giから始まるaliasが使用可能になる)
 <pre>
 Usage: git2 [clone] [add [file]] [branch]
