@@ -31,7 +31,8 @@ shift $(($OPTIND - 1))
 if test $hflg -eq 1 ;then
 	echo -n "Usage: git2 [clone] [add [file]] [branch]
 	    [branch [existed_branch]] [branch [not_existed_branch]]
-	    [commit] [merge [branch]] [push] [cm [branch]] [cmp [branch]] [ac [file]]	
+	    [commit] [merge [branch]] [push] [cm [branch]] [cmp [branch]] [ac [file]]
+	    [acm [file] [branch]] [acmp [file] [branch]] [add_alias]
  clone : _____________________ super clone
  add [file]: _________________ super add
  branch: _____________________ show branch
@@ -45,13 +46,28 @@ if test $hflg -eq 1 ;then
  ac [file]: __________________ git2 add [file] -> git2 commit
  acm [file] [branch]: ________ git2 add [file] -> git2 commit -> git2 merge [branch]
  acmp [file] [branch]: _______ git2 add [file] -> git2 commit -> git2 merge [branch] -> git2 push
+ add_alias: __________________ add aliases to $HOME/.bashrc ( You have to check below. )
 
- [+]aliases:
+ [+]You can use these default aliases:
  a: add
  b: branch
  c: commit
  m: merge
  p: push
+
+ [+]You can use these after use add_alias option:
+ gi:     git2
+ gis:    git2 status
+ gia:    git2 add
+ gic:    git2 commit
+ gim:    git2 merge
+ gip:    git2 push
+ gib:    git2 branch
+ gicm:   git2 cm
+ gicmp:  git2 cmp
+ giac:   git2 ac
+ giacm:  git2 acm
+ giacmp: git2 acmp
  "
 	rmtmp
 	exit 0
@@ -61,6 +77,24 @@ branchsave(){
 	git branch > branch.tmp
 	cat branch.tmp | grep -E "\*" | perl -pe "s@\*(.*)@\1@g" > now.tmp
 }
+
+if test "$1" = "add_alias" ;then
+	echo -n "#alias for git2
+alias gi='git2'
+alias gis='git2 status'
+alias gia='git2 add'
+alias gic='git2 commit'
+alias gim='git2 merge'
+alias gip='git2 push'
+alias gib='git2 branch'
+alias gicm='git2 cm'
+alias gicmp='git2 cmp'
+alias giac='git2 ac'
+alias giacm='git2 acm'
+alias giacmp='git2 acmp'
+" >> ./tmp.txt
+	exit 0
+fi
 
 if test $1 = "add" -o $1 = "a" ;then
 	git branch
@@ -119,7 +153,17 @@ if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
 fi
 
 if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
-	git2 acm
+	git branch
+	git add $2
+	git status
+	branchsave
+	echo -n "\n[+]comment : "
+	read msg
+	git commit -m "$msg"
+	echo "\n[+]COMMIT FINISH!\n"
+	git checkout $3
+	git merge $(cat now.tmp)
+	git checkout $(cat now.tmp)
 	git2 push
 	rmtmp
 	exit 0
