@@ -93,7 +93,7 @@ alias gicmp='git2 cmp'
 alias giac='git2 ac'
 alias giacm='git2 acm'
 alias giacmp='git2 acmp'\n
-" >> ./$HOME/.bashrc
+" >> $HOME/.bashrc
 	fi
 	exit 0
 fi
