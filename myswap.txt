@@ -1,4 +1,0 @@
-partial modifier_keys
-xkb_symbols "swapkeys" {
-
-};
