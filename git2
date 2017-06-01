@@ -148,6 +148,7 @@ if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
 	git checkout $3
 	git merge $(cat now.tmp)
 	git checkout $(cat now.tmp)
+	git branch
 	rmtmp
 	exit 0
 fi
@@ -181,10 +182,13 @@ fi
 
 if test $1 = "push" -o $1 = "p" ;then
 	if test "$(png github.com)" = "OK" ;then
+		git branch
+		echo "\n[+]PUSH ORIGIN MASTER\n"
 		branchsave
 		git checkout master
 		git push
 		git checkout $(cat now.tmp)
+		git branch
 		rmtmp
 	fi
 	exit 0
