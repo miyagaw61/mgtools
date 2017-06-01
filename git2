@@ -79,7 +79,8 @@ branchsave(){
 }
 
 if test "$1" = "add_alias" ;then
-	echo -n "#alias for git2
+	if test ! "$(cat $HOME/.bashrc | grep 'alias for git2')" ;then
+		echo -n "\n#alias for git2
 alias gi='git2'
 alias gis='git2 status'
 alias gia='git2 add'
@@ -91,8 +92,9 @@ alias gicm='git2 cm'
 alias gicmp='git2 cmp'
 alias giac='git2 ac'
 alias giacm='git2 acm'
-alias giacmp='git2 acmp'
-" >> ./tmp.txt
+alias giacmp='git2 acmp'\n
+" >> ./$HOME/.bashrc
+	fi
 	exit 0
 fi
 
