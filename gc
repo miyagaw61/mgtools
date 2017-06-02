@@ -17,6 +17,7 @@ done
 if [ $hflg -eq 1 ]; then
 	echo 'Usage: gc [options] [C_file]
 [+]UsageOptions:
+   32
    sspoff/canaryoff
    depoff/nxoff
    pie
@@ -28,7 +29,9 @@ options=""
 
 if test $# -ge 2 ;then
 	for var in $@ ;do
-		if test $var = "depoff" -o $var = "nxoff" ;then
+		if test "$var" = "32" ;then
+			options=$options" -m32"
+		elif test $var = "depoff" -o $var = "nxoff" ;then
 			options=$options" -z execstack"
 		elif test $var = "dep" -o $var = "nx" ;then
 			options=$options
