@@ -77,7 +77,7 @@ if test $hflg -eq 1 ;then
  giacp:  git2 acp
  giacmp: git2 acmp
  "
-	rmtmp
+	allrm branch.tmp now.tmp
 	exit 0
 fi
 
@@ -110,14 +110,14 @@ if test $1 = "add" -o $1 = "a" ;then
 	git branch
 	git add $2
 	git status
-	rmtmp
+	allrm branch.tmp now.tmp
 	exit 0
 fi
 
 if test $1 = "status" -o $1 = "s" ;then
 	git branch
 	git status
-	rmtmp
+	allrm branch.tmp now.tmp
 	exit 0
 fi
 
@@ -132,7 +132,7 @@ if test $1 = "commit" -o $1 = "c" ;then
 	done
 	git commit -m "$msg"
 	echo "\n[+]COMMIT FINISH!\n"
-	rmtmp
+	allrm branch.tmp now.tmp
 	exit 0
 fi
 
@@ -164,7 +164,7 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
 	done
 	git commit -m "$msg"
 	echo "\n[+]COMMIT FINISH!\n"
-	rmtmp
+	allrm branch.tmp now.tmp
 	exit 0
 fi
 
@@ -205,7 +205,7 @@ if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
 		else
 			echo "\n[+]merge stop.\n"
 			git branch
-			rmtmp
+			allrm branch.tmp now.tmp
 			exit 0
 		fi
 	else
@@ -214,7 +214,7 @@ if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
 	git merge $(cat now.tmp)
 	git checkout $(cat now.tmp)
 	git branch
-	rmtmp
+	allrm branch.tmp now.tmp
 	exit 0
 fi
 
@@ -240,7 +240,7 @@ if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
 			git checkout $(cat now.tmp)
 		else
 			echo "\n[+]merge&push stop.\n"
-			rmtmp
+			allrm branch.tmp now.tmp
 			exit 0
 		fi
 	else
@@ -249,7 +249,7 @@ if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
 		git push
 		git checkout $(cat now.tmp)
 	fi
-	rmtmp
+	allrm branch.tmp now.tmp
 	exit 0
 fi
 
@@ -263,7 +263,7 @@ if test "$1" = "merge" -o "$1" = "m" ;then
 			git checkout master
 		else
 			echo "\n[+]merge stop.\n"
-			rmtmp
+			allrm branch.tmp now.tmp
 			exit 0
 		fi
 	else
@@ -271,7 +271,7 @@ if test "$1" = "merge" -o "$1" = "m" ;then
 	fi
 	git merge $(cat now.tmp)
 	git checkout $(cat now.tmp)
-	rmtmp
+	allrm branch.tmp now.tmp
 	exit 0
 fi
 
@@ -287,7 +287,7 @@ if test $1 = "push" -o $1 = "p" ;then
 				git checkout master
 			else
 				echo "\n[+]push stop.\n"
-				rmtmp
+				allrm branch.tmp now.tmp
 				exit 0
 			fi
 		else
@@ -296,7 +296,7 @@ if test $1 = "push" -o $1 = "p" ;then
 		git push
 		git checkout $(cat now.tmp)
 		git branch
-		rmtmp
+		allrm branch.tmp now.tmp
 	fi
 	exit 0
 fi
@@ -322,7 +322,7 @@ if test "$1" = "branch" -o "$1" = "b" ;then
 			git branch
 		fi
 	fi
-	rmtmp
+	allrm branch.tmp now.tmp
 	exit 0
 fi
 
@@ -339,7 +339,7 @@ if test "$1" = "cm" -o "$1" = "commitmerge" ;then
 	else
 		git2 merge $2
 	fi
-	rmtmp
+	allrm branch.tmp now.tmp
 	exit 0
 fi
 
@@ -358,13 +358,13 @@ if test "$1" = "cmp" -o "$1" = "commitmergepush" ;then
 		git2 merge $2
 		git2 push $2
 	fi
-	rmtmp
+	allrm branch.tmp now.tmp
 	exit 0
 fi
 
 if test $1 = "rmindex" ;then
 	git rm --cache $2
-	rmtmp
+	allrm branch.tmp now.tmp
 	exit 0
 fi
 
@@ -382,7 +382,7 @@ if test $1 = "clone" ;then
 		read directory
 		git clone "http://github.com/"$username"/"$repository".git" $directory
 	fi
-	rmtmp
+	allrm branch.tmp now.tmp
 	exit 0
 fi
 
@@ -393,6 +393,6 @@ if test $1 = "remote"  -o $1 = "r" ;then
 	read user
 	git remote rm origin
 	git remote add origin https://github.com/${user}/${arg}
-	rmtmp
+	allrm branch.tmp now.tmp
 	exit 0
 fi
