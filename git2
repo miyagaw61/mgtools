@@ -154,7 +154,13 @@ if test "$1" = "acp" -o "$1" = "addcommitpush" ;then
 	git add $2
 	git2 commit
 	if test $# -eq 2 ;then
-		git2 push master
+		echo -n "\n[+]push master,OK? (y/n) : "
+		read ans
+		if test "$ans" != "n" ;then
+			git2 push master
+		else
+			echo "\n[+]push stop.\n"
+		fi
 	else 
 		git2 push $3
 	fi
@@ -171,7 +177,16 @@ if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
 	git commit -m "$msg"
 	echo "\n[+]COMMIT FINISH!\n"
 	if test $# -eq 2 ;then
-		git checkout master
+		echo -n "\n[+]merge master,OK? (y/n) : "
+		read ans
+		if test "$ans" != "n" ;then
+			git checkout master
+		else
+			echo "\n[+]merge stop.\n"
+			git branch
+			rmtmp
+			exit 0
+		fi
 	else
 		git checkout $3
 	fi
@@ -192,10 +207,18 @@ if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
 	git commit -m "$msg"
 	echo "\n[+]COMMIT FINISH!\n"
 	if test $# -eq 2 ;then
-		git checkout master
-		git merge $(cat now.tmp)
-		git push
-		git checkout $(cat now.tmp)
+		echo -n "\n[+]merge&push master,OK? (y/n) : "
+		read ans
+		if test "$ans" != "n" ;then
+			git checkout master
+			git merge $(cat now.tmp)
+			git push
+			git checkout $(cat now.tmp)
+		else
+			echo "\n[+]merge&push stop.\n"
+			rmtmp
+			exit 0
+		fi
 	else
 		git checkout $3
 		git merge $(cat now.tmp)
@@ -210,7 +233,15 @@ fi
 if test "$1" = "merge" -o "$1" = "m" ;then
 	branchsave
 	if test $# -eq 1 ;then
-		git checkout master
+		echo -n "\n[+]merge master,OK? (y/n) : "
+		read ans
+		if test "$ans" != "n" ;then
+			git checkout master
+		else
+			echo "\n[+]merge stop.\n"
+			rmtmp
+			exit 0
+		fi
 	else
 		git checkout $2
 	fi
@@ -226,7 +257,15 @@ if test $1 = "push" -o $1 = "p" ;then
 		echo "\n[+]PUSH ORIGIN MASTER\n"
 		branchsave
 		if test $# -eq 1 ;then
-			git checkout master
+			echo -n "\n[+]push master,OK? (y/n) : "
+			read ans
+			if test "$ans" != "n" ;then
+				git checkout master
+			else
+				echo "\n[+]push stop.\n"
+				rmtmp
+				exit 0
+			fi
 		else
 			git checkout $2
 		fi
@@ -262,7 +301,13 @@ fi
 if test "$1" = "cm" -o "$1" = "commitmerge" ;then
 	git2 commit
 	if test $# -eq 1 ;then
-		git2 merge master
+		echo -n "\n[+]push master,OK? (y/n) : "
+		read ans
+		if test "$ans" != "n" ;then
+			git2 merge master
+		else
+			echo "\n[+]merge stop.\n"
+		fi
 	else
 		git2 merge $2
 	fi
@@ -273,8 +318,14 @@ fi
 if test "$1" = "cmp" -o "$1" = "commitmergepush" ;then
 	git2 commit
 	if test $# -eq 1 ;then
-		git2 merge master
-		git2 push master
+		echo -n "\n[+]merge&push master,OK? (y/n) : "
+		read ans
+		if test "$ans" != "n" ;then
+			git2 merge master
+			git2 push master
+		else
+			echo "\n[+]merge&push stop.\n"
+		fi
 	else
 		git2 merge $2
 		git2 push $2
