@@ -30,10 +30,10 @@ shift $(($OPTIND - 1))
 
 if test $hflg -eq 1 ;then
 	echo -n "Usage: git2 [clone] [add [file]] [branch]
-            [branch [existed_branch]] [branch [not_existed_branch]]
-            [commit] [merge [branch]] [push] [cm [branch]] [cp [branch]]
+            [branch [existed_branch]] [branch -a] [branch rmremote] [branch [not_existed_branch]]
+            [commit] [merge [branch]] [push [branch]] [cm [branch]] [cp [branch]]
             [cmp [branch]] [ac [file]] [acm [file] [branch]] [acp [file] [branch]]
-            [acmp [file] [branch]] [add_alias]
+            [acmp [file] [branch]] [rmindex] [add_alias]
  clone : _____________________ super clone
  add [file]: _________________ super add
  branch: _____________________ show branch
