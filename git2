@@ -132,7 +132,13 @@ fi
 if test "$1" = "cp" -o "$1" = "commitpush" ;then
 	git2 commit
 	if test $# -eq 1 ;then
-		git2 push master
+		echo -n "\n[+]push master,OK? (y/n) : "
+		read ans
+		if test "$ans" != "n" ;then
+			git2 push master
+		else
+			echo "\n[+]push stop.\n"
+		fi
 	else
 		git2 push $2
 	fi
