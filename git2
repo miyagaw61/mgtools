@@ -125,8 +125,11 @@ if test $1 = "commit" -o $1 = "c" ;then
 	branchsave
 	git branch
 	git status
-	echo -n "\n[+]comment : "
-	read msg
+	msg=""
+	while test "$msg" = "" ;do
+		echo -n "\n[+]comment : "
+		read msg
+	done
 	git commit -m "$msg"
 	echo "\n[+]COMMIT FINISH!\n"
 	rmtmp
@@ -187,8 +190,11 @@ if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
 	git add $2
 	git status
 	branchsave
-	echo -n "\n[+]comment : "
-	read msg
+	msg=""
+	while test "$msg" = "" ;do
+		echo -n "\n[+]comment : "
+		read msg
+	done
 	git commit -m "$msg"
 	echo "\n[+]COMMIT FINISH!\n"
 	if test $# -eq 2 ;then
@@ -217,8 +223,11 @@ if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
 	git add $2
 	git status
 	branchsave
-	echo -n "\n[+]comment : "
-	read msg
+	msg=""
+	while test "$msg" = "" ;do
+		echo -n "\n[+]comment : "
+		read msg
+	done
 	git commit -m "$msg"
 	echo "\n[+]COMMIT FINISH!\n"
 	if test $# -eq 2 ;then
