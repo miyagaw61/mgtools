@@ -30,14 +30,17 @@ shift $(($OPTIND - 1))
 
 if test $hflg -eq 1 ;then
 	echo -n "Usage: git2 [clone] [add [file]] [branch]
-	    [branch [existed_branch]] [branch [not_existed_branch]]
-	    [commit] [merge [branch]] [push] [cm [branch]] [cmp [branch]] [ac [file]]
-	    [acm [file] [branch]] [acmp [file] [branch]] [add_alias]
+            [branch [existed_branch]] [branch [not_existed_branch]]
+            [commit] [merge [branch]] [push] [cm [branch]] [cp [branch]]
+            [cmp [branch]] [ac [file]] [acm [file] [branch]] [acp [file] [branch]]
+            [acmp [file] [branch]] [add_alias]
  clone : _____________________ super clone
  add [file]: _________________ super add
  branch: _____________________ show branch
+ branch -a: __________________ show branch all
  branch [existed_branch]: ____ checkout
  branch [not_existed_branch]:_ create branch -> checkout
+ branch rmremote: ____________ git remote purge origin
  commit: _____________________ super commit
  merge [branch]: _____________ checkout -> merge preview_branch -> checkout preview_branch
  push [branch]: ______________ checkout [branch] -> push -> checkout preview_branch
@@ -48,6 +51,7 @@ if test $hflg -eq 1 ;then
  acm [file] [branch]: ________ git2 add [file] -> git2 commit -> git2 merge [branch]
  acp [file] [branch]: ________ git2 add -> git2 commit -> git2 push
  acmp [file] [branch]: _______ git2 add [file] -> git2 commit -> git2 merge [branch] -> git2 push
+ rmindex [file]: _____________ git2 rm --cache [file]
  add_alias: __________________ add aliases to $HOME/.bashrc ( You have to check below. )
 
  [+]You can use these default aliases:
@@ -291,7 +295,11 @@ if test "$1" = "branch" -o "$1" = "b" ;then
 		git branch
 	fi
 	if test $# -ge 2 ;then
-		if test ! "$(cat branch.tmp | grep $2)" ;then
+		if test "$2" = "-a" ;then
+			git branch -a
+		elif test "$2" = "rmremote" ;then
+			git remote prune origin
+		elif test ! "$(cat branch.tmp | grep $2)" ;then
 			git branch $2
 			git checkout $2
 			git branch
@@ -376,5 +384,3 @@ if test $1 = "remote"  -o $1 = "r" ;then
 	rmtmp
 	exit 0
 fi
-
-
