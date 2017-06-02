@@ -11,12 +11,12 @@ for arg in $@ ;do
 		location=${arg}
 		echo ue
 		arg=`basename ${arg}`
-		num=`grep -e ${now} -n $HOME/Documents/cdir | sed -e 's/:.*//g' | tail -1`
-		sed -e ${num}d -i $HOME/Documents/cdir
+		num=`grep -e ${now} -n $HOME/Documents/cdir/cdir | sed -e 's/:.*//g' | tail -1`
+		sed -e ${num}d -i $HOME/Documents/cdir/cdir
 	else
 		location=$now'/'$arg
-		num=`grep -e ${now} -n $HOME/Documents/cdir | sed -e 's/:.*//g' | tail -1`
-		sed -e ${num}d -i $HOME/Documents/cdir
+		num=`grep -e ${now} -n $HOME/Documents/cdir/cdir | sed -e 's/:.*//g' | tail -1`
+		sed -e ${num}d -i $HOME/Documents/cdir/cdir
 	fi
 done
 rm -r $location
