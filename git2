@@ -40,12 +40,12 @@ if test $hflg -eq 1 ;then
  branch [not_existed_branch]:_ create branch -> checkout
  commit: _____________________ super commit
  merge [branch]: _____________ checkout -> merge preview_branch -> checkout preview_branch
- push: _______________________ checkout master -> push -> checkout preview_branch
- cp: _________________________ git2 commit -> git2 push
+ push [branch]: ______________ checkout [branch] -> push -> checkout preview_branch
+ cp [branch]: ________________ git2 commit -> git2 push [branch]
  cm [branch]: ________________ git2 commit -> git2 merge [branch]
  cmp [branch]: _______________ git2 commit -> git2 merge [branch] -> git2 push
  ac [file]: __________________ git2 add [file] -> git2 commit
- acp [file]: _________________ git2 add -> git2 commit -> git2 push
+ acp [file] [branch]: ________ git2 add -> git2 commit -> git2 push
  acm [file] [branch]: ________ git2 add [file] -> git2 commit -> git2 merge [branch]
  acmp [file] [branch]: _______ git2 add [file] -> git2 commit -> git2 merge [branch] -> git2 push
  add_alias: __________________ add aliases to $HOME/.bashrc ( You have to check below. )
@@ -129,7 +129,11 @@ fi
 
 if test "$1" = "cp" -o "$1" = "commitpush" ;then
 	git2 commit
-	git2 push
+	if test $# -eq 1 ;then
+		git2 push master
+	else
+		git2 push $2
+	fi
 	exit 0
 fi
 
@@ -147,9 +151,13 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
 fi
 
 if test "$1" = "acp" -o "$1" = "addcommitpush" ;then
-	git2 add $2
+	git add $2
 	git2 commit
-	git2 push
+	if test $# -eq 2 ;then
+		git2 push master
+	else 
+		git2 push $3
+	fi
 	exit 0
 fi
 
@@ -179,10 +187,17 @@ if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
 	read msg
 	git commit -m "$msg"
 	echo "\n[+]COMMIT FINISH!\n"
-	git checkout $3
-	git merge $(cat now.tmp)
-	git push
-	git checkout $(cat now.tmp)
+	if test $# -eq 2 ;then
+		git checkout master
+		git merge $(cat now.tmp)
+		git push
+		git checkout $(cat now.tmp)
+	else
+		git checkout $3
+		git merge $(cat now.tmp)
+		git push
+		git checkout $(cat now.tmp)
+	fi
 	rmtmp
 	exit 0
 fi
@@ -190,7 +205,11 @@ fi
 
 if test "$1" = "merge" -o "$1" = "m" ;then
 	branchsave
-	git checkout $2
+	if test $# -eq 1 ;then
+		git checkout master
+	else
+		git checkout $2
+	fi
 	git merge $(cat now.tmp)
 	git checkout $(cat now.tmp)
 	rmtmp
@@ -202,7 +221,11 @@ if test $1 = "push" -o $1 = "p" ;then
 		git branch
 		echo "\n[+]PUSH ORIGIN MASTER\n"
 		branchsave
-		git checkout master
+		if test $# -eq 1 ;then
+			git checkout master
+		else
+			git checkout $2
+		fi
 		git push
 		git checkout $(cat now.tmp)
 		git branch
@@ -234,15 +257,24 @@ fi
 
 if test "$1" = "cm" -o "$1" = "commitmerge" ;then
 	git2 commit
-	git2 merge
+	if test $# -eq 1 ;then
+		git2 merge master
+	else
+		git2 merge $2
+	fi
 	rmtmp
 	exit 0
 fi
 
 if test "$1" = "cmp" -o "$1" = "commitmergepush" ;then
 	git2 commit
-	git2 merge
-	git2 push
+	if test $# -eq 1 ;then
+		git2 merge master
+		git2 push master
+	else
+		git2 merge $2
+		git2 push $2
+	fi
 	rmtmp
 	exit 0
 fi
