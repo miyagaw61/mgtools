@@ -41,9 +41,11 @@ if test $hflg -eq 1 ;then
  commit: _____________________ super commit
  merge [branch]: _____________ checkout -> merge preview_branch -> checkout preview_branch
  push: _______________________ checkout master -> push -> checkout preview_branch
+ cp: _________________________ git2 commit -> git2 push
  cm [branch]: ________________ git2 commit -> git2 merge [branch]
  cmp [branch]: _______________ git2 commit -> git2 merge [branch] -> git2 push
  ac [file]: __________________ git2 add [file] -> git2 commit
+ acp [file]: _________________ git2 add -> git2 commit -> git2 push
  acm [file] [branch]: ________ git2 add [file] -> git2 commit -> git2 merge [branch]
  acmp [file] [branch]: _______ git2 add [file] -> git2 commit -> git2 merge [branch] -> git2 push
  add_alias: __________________ add aliases to $HOME/.bashrc ( You have to check below. )
@@ -122,6 +124,12 @@ if test $1 = "commit" -o $1 = "c" ;then
 	git commit -m "$msg"
 	echo "\n[+]COMMIT FINISH!\n"
 	rmtmp
+	exit 0
+fi
+
+if test "$1" = "cp" -o "$1" = "commitpush" ;then
+	git2 commit
+	git2 push
 	exit 0
 fi
 
@@ -256,23 +264,6 @@ if test $1 = "clone" ;then
 	exit 0
 fi
 
-if test $1 = "cp" ;then
-	if test $3 = "mt" ;then
-		dst="$HOME/git/miyagawtools/"
-	elif test $3 = "mp" ;then
-		dst="$HOME/git/miyagawpeda"
-	elif test $3 = "tmp" ;then
-		dst="$HOME/git/tmp"
-	elif test $3 = "io" ;then
-		dst="$HOME/git/miyagaw61.github.io"
-	elif test $3 = "mc" ;then
-		dst="$HOME/git/miyactf"
-	fi
-	cp -a $2 $dst
-	rmtmp
-	exit 0
-fi
-
 if test $1 = "remote"  -o $1 = "r" ;then
 	now=$(pwd)
 	arg=$(basename ${now})
@@ -282,77 +273,5 @@ if test $1 = "remote"  -o $1 = "r" ;then
 	git remote add origin https://github.com/${user}/${arg}
 	rmtmp
 	exit 0
-fi
-
-if test "$1" = "cd" ;then
-	if test $2 = "miyagawtools" -o $2 = "mt" ;then
-		sa
-		args=$@
-		args=$(echo $args | perl -pe 's/'$2'//g' | perl -pe 's/cd//g')
-		if test $# -ge 2 ;then
-			for var in $args ;do
-				cp -a $var $HOME/git/miyagawtools/
-			done
-		fi
-		cd $HOME/git/miyagawtools/
-		exec /bin/bash
-		exit 0
-	fi
-
-	if test $2 = "tmp" ;then
-		sa
-		args=$@
-		args=$(echo $args | perl -pe 's/'$2'//g' | perl -pe 's/cd//g')
-		if test $# -ge 2 ;then
-			for var in $args ;do
-				cp -a $var $HOME/git/tmp/
-			done
-		fi
-		cd $HOME/git/tmp/
-		exec /bin/bash
-		exit 0
-	fi
-
-	if test $2 = "miyagawpeda" -o $2 = "mp" ;then
-		sa
-		args=$@
-		args=$(echo $args | perl -pe 's/'$2'//g' | perl -pe 's/cd//g')
-		if test $# -ge 2 ;then
-			for var in $args ;do
-				cp -a $var $HOME/git/miyagawpeda/
-			done
-		fi
-		cd $HOME/git/miyagawpeda/
-		exec /bin/bash
-		exit 0
-	fi
-
-	if test $2 = "miyagaw61.github.io" -o $2 = "github.io" -o $2 = "io" ;then
-		sa
-		args=$@
-		args=$(echo $args | perl -pe 's/'$2'//g' | perl -pe 's/cd//g')
-		if test $# -ge 2 ;then
-			for var in $args ;do
-				cp -a $var $HOME/git/miyagaw61.github.io/
-			done
-		fi
-		cd $HOME/git/miyagaw61.github.io/
-		exec /bin/bash
-		exit 0
-	fi
-
-	if test $2 = "miyactf" -o $2 = "mc" ;then
-		sa
-		args=$@
-		args=$(echo $args | perl -pe 's/'$2'//g' | perl -pe 's/cd//g')
-		if test $# -ge 2 ;then
-			for var in $args ;do
-				cp -a $var $HOME/git/miyactf/
-			done
-		fi
-		cd $HOME/git/miyactf/
-		exec /bin/bash
-		exit 0
-	fi
 fi
 
