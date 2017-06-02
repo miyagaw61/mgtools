@@ -146,6 +146,13 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
 	exit 0
 fi
 
+if test "$1" = "acp" -o "$1" = "addcommitpush" ;then
+	git2 add $2
+	git2 commit
+	git2 push
+	exit 0
+fi
+
 if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
 	git branch
 	git add $2
