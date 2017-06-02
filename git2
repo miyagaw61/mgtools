@@ -41,12 +41,12 @@ if test $hflg -eq 1 ;then
  commit: _____________________ super commit
  merge [branch]: _____________ checkout -> merge preview_branch -> checkout preview_branch
  push [branch]: ______________ checkout [branch] -> push -> checkout preview_branch
- cp [branch]: ________________ git2 commit -> git2 push [branch]
  cm [branch]: ________________ git2 commit -> git2 merge [branch]
+ cp [branch]: ________________ git2 commit -> git2 push [branch]
  cmp [branch]: _______________ git2 commit -> git2 merge [branch] -> git2 push
  ac [file]: __________________ git2 add [file] -> git2 commit
- acp [file] [branch]: ________ git2 add -> git2 commit -> git2 push
  acm [file] [branch]: ________ git2 add [file] -> git2 commit -> git2 merge [branch]
+ acp [file] [branch]: ________ git2 add -> git2 commit -> git2 push
  acmp [file] [branch]: _______ git2 add [file] -> git2 commit -> git2 merge [branch] -> git2 push
  add_alias: __________________ add aliases to $HOME/.bashrc ( You have to check below. )
 
@@ -66,9 +66,11 @@ if test $hflg -eq 1 ;then
  gip:    git2 push
  gib:    git2 branch
  gicm:   git2 cm
+ gicp:   git2 cp
  gicmp:  git2 cmp
  giac:   git2 ac
  giacm:  git2 acm
+ giacp:  git2 acp
  giacmp: git2 acmp
  "
 	rmtmp
