@@ -24,6 +24,10 @@ elif test $# -eq 0 ;then
 	dstPath="/mnt/windows/bk"
 fi
 
+if test ! -e /mnt/windows/bk/ ;then
+	echo 'please mount.'
+	exit 0
+fi
 
 cecho -rfn '[+]'
 cecho -gf $HOME'/miyagawtools/ -> '${dstPath}'/miyagawtools/'
