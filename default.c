@@ -7,11 +7,6 @@ char *sedonece(char*, char*, char*);
 char *sedall(char*, char*, char*);
 
 int main(void){
-	char buf[256];
-	fgets(buf, 255, stdin);
-	strncpy(buf, sedall(buf, "False", "True"), 255);
-	printf("%s", buf);
-
 	return 0;
 }
 
