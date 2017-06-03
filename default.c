@@ -7,15 +7,21 @@ char *sedonece(char*, char*, char*);
 char *sedall(char*, char*, char*);
 
 int main(void){
+	char buf[256];
+	fgets(buf, 255, stdin);
+	strncpy(buf, sedall(buf, "False", "True"), 255);
+	printf("%s", buf);
+
 	return 0;
 }
 
 char* sedonece(char* buf_arg, char* before_arg, char* after_arg){
 	char buf[256];
 	char emp[256] = "";
-	strncpy(buf, buf_arg, 256);
-	buf[256] = '\0';
-	const char *regex = before_arg;
+	strncpy(buf, buf_arg, 255);
+	buf[255] = '\0';
+	const char regex[256];
+	strncpy(regex, before_arg, 255);
 	char *after = after_arg;
 	char *tmp;
 	size_t nmatch = 10;
@@ -40,7 +46,7 @@ char* sedonece(char* buf_arg, char* before_arg, char* after_arg){
 
 	while(i != endIndex+1){
 		if(startIndex == i){ sprintf(ans, "%s%s", ans, after);
-			i = i + strlen(before_arg);
+			i = i + endIndex - startIndex + 1;
 			continue;
 		}
 		sprintf(ans, "%s%c", ans, buf[i]);
@@ -55,14 +61,14 @@ char *sedall(char *buf_arg, char *before_arg, char *after_arg){
 	static char buf[256];
 	char ans[256];
 	char emp[256] = "";
-	strncpy(buf, buf_arg, 256);
-	buf[256] = '\0';
+	strncpy(buf, buf_arg, 255);
+	buf[255] = '\0';
 	while(strstr(buf, before_arg) != NULL){
-		strncpy(ans, buf, 256);
-		ans[256] = '\0';
-		strncpy(ans, sedonece(buf, before_arg, after_arg), 256);
-		strncpy(buf, ans, 256);
-		buf[256] = '\0';
+		strncpy(ans, buf, 255);
+		ans[255] = '\0';
+		strncpy(ans, sedonece(buf, before_arg, after_arg), 255);
+		strncpy(buf, ans, 255);
+		buf[255] = '\0';
 	}
 	return buf;
 }
