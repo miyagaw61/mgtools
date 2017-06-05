@@ -3,11 +3,42 @@
 #include <string.h>
 #include <regex.h>
 
+int strncpy_s(char*, char*, int);
 char *sedonece(char*, char*, char*);
 char *sedall(char*, char*, char*);
+int strcnt(char*, char*);
+int split_bak(char*, char**, char*);
+char **split(char*, char**, char*);
 
 int main(void){
 	return 0;
+}
+
+char **split(char *arg_buf, char **lst, char *str){
+	static char buf[256];
+	strncpy_s(buf, arg_buf, 256);
+	int n = 0;
+	char *tmp;
+	tmp = strtok(buf, str);
+	while(tmp != NULL){
+		*(lst+(n/sizeof(int*))) = tmp;
+		tmp = strtok(NULL, str);
+		n += sizeof(int*);
+	}
+	return lst;
+}
+
+int strcnt(char *buf, char *str){
+	char buf2[256];
+	strncpy_s(buf2, buf, 256);
+	int *tmp;
+	int count = 0;
+	tmp = strtok(buf2, str);
+	while(tmp != NULL){
+		count++;
+		tmp = strtok(NULL, str);
+	}
+	return count-1;
 }
 
 char* sedonece(char* buf_arg, char* before_arg, char* after_arg){
@@ -66,4 +97,10 @@ char *sedall(char *buf_arg, char *before_arg, char *after_arg){
 		buf[255] = '\0';
 	}
 	return buf;
+}
+
+int strncpy_s(char* buf, char* str , int n){
+	strncpy(buf, str, n);
+	buf[n-1] = '\0';
+	return 0;
 }
