@@ -1,0 +1,14 @@
+#!/bin/sh
+
+hflg=0
+if test $# -eq 0 ;then
+	hflg=1
+fi
+
+if test $hflg -eq 1 ;then
+	echo -n "Usage: "$(basename $0)" [-h] domain
+"
+	exit 0
+fi
+
+echo Q | openssl s_client -connect $1:443 | openssl x509 -text -noout
