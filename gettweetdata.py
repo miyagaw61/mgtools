@@ -1,16 +1,22 @@
-import sys, tweepy
+import sys, tweepy, re
 
 if(sys.argv[1] == "-h"):
     print("Usage: python gettweetdata.py statusid\n\
  statusid : tweet's status id")
     sys.exit(0)
 
-HOME = '/home/miyagaw61'
+n_regex = re.compile(r"\n")
 
-CK = open(HOME + '/Documents/twitter/twitter.CK', 'r').read()
-CS = open(HOME + '/Documents/twitter/twitter.CS', 'r').read()
-AT = open(HOME + '/Documents/twitter/twitter.AT', 'r').read()
-AS = open(HOME + '/Documents/twitter/twitter.AS', 'r').read()
+HOME = '/home/miyagaw61'
+CK = open('/home/miyagaw61/Documents/twitter/twitter.CK').read()
+CS = open('/home/miyagaw61/Documents/twitter/twitter.CS').read()
+AT = open('/home/miyagaw61/Documents/twitter/twitter.AT').read()
+AS = open('/home/miyagaw61/Documents/twitter/twitter.AS').read()
+
+CK = n_regex.sub("", CK)
+CS = n_regex.sub("", CS)
+AT = n_regex.sub("", AT)
+AS = n_regex.sub("", AS)
 
 auth = tweepy.OAuthHandler(CK, CS)
 auth.set_access_token(AT, AS)
@@ -19,7 +25,7 @@ api = tweepy.API(auth)
 status_id = sys.argv[1]
 
 try:
-	print api.get_status(status_id)
+    print api.get_status(status_id)
 except:
-	print 'error'
+    print 'error'
 
