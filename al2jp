@@ -1,0 +1,30 @@
+#!/bin/sh
+
+hflg=0
+#if test $# -eq 0 ;then
+#	hflg=1
+#fi
+
+aflg=0
+varA=""
+for arg in "$@" ;do
+	if test "$arg" = "-h" -o "$arg" = "--help" -o "$arg" = "help" ;then
+		hflg=1
+
+	elif test $aflg -eq 1 ;then
+		varA=$arg
+		aflg=0
+
+	elif test "$arg" = "-a" ;then
+		aflg=1
+
+	fi
+done
+
+if test $hflg -eq 1 ;then
+	echo -n "Usage: al2jp [file]
+"
+	exit 0
+fi
+
+cat $1 |perl -pe 's@KYA@きゃ@g' |perl -pe 's@KYU@きゅ@g' |perl -pe 's@KYO@きょ@g' |perl -pe 's@SYA@しゃ@g' |perl -pe 's@SYU@しゅ@g' |perl -pe 's@SYO@しょ@g' |perl -pe 's@SHA@しゃ@g' |perl -pe 's@SHU@しゅ@g' |perl -pe 's@SHO@しょ@g' |perl -pe 's@TYA@ちゃ@g' |perl -pe 's@TYU@ちゅ@g' |perl -pe 's@TYO@ちょ@g' |perl -pe 's@CHA@ちゃ@g' |perl -pe 's@CHU@ちゅ@g' |perl -pe 's@CHO@ちょ@g' |perl -pe 's@NYA@にゃ@g' |perl -pe 's@NYU@にゅ@g' |perl -pe 's@NYO@にょ@g' |perl -pe 's@MYA@みゃ@g' |perl -pe 's@MYU@みゅ@g' |perl -pe 's@MYO@みょ@g' |perl -pe 's@RYA@りゃ@g' |perl -pe 's@RYU@りゅ@g' |perl -pe 's@RYO@りょ@g' |perl -pe 's@JU@じゅ@g' |perl -pe 's@JE@じぇ@g' |perl -pe 's@JO@じょ@g' |perl -pe 's@PA@ぱ@g' |perl -pe 's@PI@ぴ@g' |perl -pe 's@PU@ぷ@g' |perl -pe 's@PE@ぺ@g' |perl -pe 's@PO@ぽ@g' |perl -pe 's@PYA@ぴゃ@g' |perl -pe 's@PYI@ぴぃ@g' |perl -pe 's@PYU@ぴゅ@g' |perl -pe 's@PYE@ぴぇ@g' |perl -pe 's@PYO@ぴょ@g' |perl -pe 's@GYA@ぎゃ@g' |perl -pe 's@GYI@ぎぃ@g' |perl -pe 's@GYU@ぎゅ@g' |perl -pe 's@GYE@ぎぇ@g' |perl -pe 's@GYO@ぎょ@g' |perl -pe 's@ZYA@じゃ@g' |perl -pe 's@ZYI@じぃ@g' |perl -pe 's@ZYU@じゅ@g' |perl -pe 's@ZYE@じぇ@g' |perl -pe 's@ZYO@じょ@g' |perl -pe 's@BYA@びゃ@g' |perl -pe 's@BYI@びぃ@g' |perl -pe 's@BYU@びゅ@g' |perl -pe 's@BYE@びぇ@g' |perl -pe 's@BYO@びょ@g' |perl -pe 's@KA@か@g' |perl -pe 's@KI@き@g' |perl -pe 's@KU@く@g' |perl -pe 's@KE@け@g' |perl -pe 's@KO@こ@g' |perl -pe 's@SA@さ@g' |perl -pe 's@SI@し@g' |perl -pe 's@SU@す@g' |perl -pe 's@SE@せ@g' |perl -pe 's@SO@そ@g' |perl -pe 's@TA@た@g' |perl -pe 's@TI@ち@g' |perl -pe 's@TU@つ@g' |perl -pe 's@TE@て@g' |perl -pe 's@TO@と@g' |perl -pe 's@NA@な@g' |perl -pe 's@NI@に@g' |perl -pe 's@NU@ぬ@g' |perl -pe 's@NE@ね@g' |perl -pe 's@NO@の@g' |perl -pe 's@HA@は@g' |perl -pe 's@HI@ひ@g' |perl -pe 's@HU@ふ@g' |perl -pe 's@HE@へ@g' |perl -pe 's@HO@ほ@g' |perl -pe 's@FA@ふぁ@g' |perl -pe 's@FI@ふぃ@g' |perl -pe 's@FU@ふ@g' |perl -pe 's@FE@ふぇ@g' |perl -pe 's@FO@ふぉ@g' |perl -pe 's@MA@ま@g' |perl -pe 's@MI@み@g' |perl -pe 's@MU@む@g' |perl -pe 's@ME@め@g' |perl -pe 's@MO@も@g' |perl -pe 's@YA@や@g' |perl -pe 's@YU@ゆ@g'  |perl -pe 's@YO@よ@g' |perl -pe 's@RA@ら@g' |perl -pe 's@RI@り@g' |perl -pe 's@RU@る@g' |perl -pe 's@RE@れ@g' |perl -pe 's@RO@ろ@g' |perl -pe 's@WA@わ@g' |perl -pe 's@WO@を@g'  |perl -pe 's@GA@が@g' |perl -pe 's@GI@ぎ@g' |perl -pe 's@GU@ぐ@g' |perl -pe 's@GE@げ@g' |perl -pe 's@GO@ご@g' |perl -pe 's@ZA@ざ@g' |perl -pe 's@ZI@じ@g' |perl -pe 's@ZU@ず@g' |perl -pe 's@ZE@ぜ@g' |perl -pe 's@ZO@ぞ@g' |perl -pe 's@DA@だ@g' |perl -pe 's@DI@ぢ@g' |perl -pe 's@DU@づ@g' |perl -pe 's@DE@で@g' |perl -pe 's@DO@ど@g' |perl -pe 's@BA@ば@g' |perl -pe 's@BI@び@g' |perl -pe 's@BU@ぶ@g' |perl -pe 's@BE@べ@g' |perl -pe 's@BO@ぼ@g' |perl -pe 's@JA@じゃ@g' |perl -pe 's@JI@じ@g' |perl -pe 's@NN@ん@g' |perl -pe 's@N@ん@g' |perl -pe 's@A@あ@g' |perl -pe 's@I@い@g' |perl -pe 's@U@う@g' |perl -pe 's@E@え@g' |perl -pe 's@O@お@g' |perl -pe 's@K@っ@g' |perl -pe 's@S@っ@g' |perl -pe 's@T@っ@g' |perl -pe 's@N@っ@g' |perl -pe 's@H@っ@g' |perl -pe 's@M@っ@g' |perl -pe 's@Y@っ@g' |perl -pe 's@R@っ@g' |perl -pe 's@G@っ@g' |perl -pe 's@Z@っ@g' |perl -pe 's@D@っ@g' |perl -pe 's@N@っ@g' |perl -pe 's@B@っ@g' |perl -pe 's@F@っ@g' |perl -pe 's@J@っ@g'  
