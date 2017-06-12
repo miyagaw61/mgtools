@@ -25,7 +25,11 @@ echo '[-]nowloading...' >> nowloading.tmp
 echo '[\\\]nowloading...' >> nowloading.tmp
 echo '[|]nowloading...' >> nowloading.tmp
 
-i=1
+if test $# -eq 0 ;then
+	i=1
+else
+	i=$1
+fi
 while test ! $i -eq 0 ;do
 	cat $file | while read var ;do
 		writedel $var
