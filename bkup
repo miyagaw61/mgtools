@@ -78,20 +78,20 @@ rsync -auv $HOME/peda/* ${dstPath}/peda/
 
 
 cecho -rfn '[+]'
-cecho -gf $HOME'/.bashrc -> '$HOME'/rc/bashrc'
-rsync -auv $HOME/.bashrc $HOME/rc/bashrc
+cecho -gf $HOME'/.bashrc -> '$HOME'/miyagawtools/initial_setting/rc/bashrc'
+rsync -auv $HOME/.bashrc $HOME/miyagawtools/initial_setting/rc/bashrc
 
 
 
 cecho -rfn '[+]'
-cecho -gf '/usr/share/vim/vimrc -> '${dstPath}'/rc/vimrc'
-rsync -auv /usr/share/vim/vimrc $HOME/rc/
+cecho -gf '/usr/share/vim/vimrc -> '$HOME'/miyagawtools/initial_setting/rc/vimrc'
+rsync -auv /usr/share/vim/vimrc $HOME/miyagawtools/initial_setting/rc/
 
 
 
 cecho -rfn '[+]'
-cecho -gf $HOME'/rc/ -> '${dstPath}'/rc/'
-rsync -auv $HOME/rc/* ${dstPath}/rc/
+cecho -gf $HOME'/miyagawtools/initialsetting/rc/ -> '${dstPath}'/rc/'
+rsync -auv $HOME/miyagawtools/initial_setting/rc/* ${dstPath}'/rc/'
 
 
 

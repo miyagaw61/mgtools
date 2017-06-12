@@ -117,16 +117,11 @@ fi
 
 #mount -t cifs -o username=ta1se1,password=pasuwado1 //192.168.11.9/Share /mnt/windows
 
-if [ -f ~/bin/shared ];then
-	echo -n ''
-else
-	echo please_sharemount.
-fi
-
 #path
-export PYTHONPATH="$HOME/bin/import/:$PYTHONPATH"
-export PATH=$PATH:~/bin
-export PATH=$PATH:~/bin/cdir
+export PYTHONPATH=$PYTHONPATH:$HOME/ctf/
+export PYTHONPATH=$PYTHONPATH:$HOME/miyagawtools/
+export PATH=$PATH:$HOME/miyagawtools
+export PATH=$PATH:$HOME/Documents/cdir/cdir
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
 #----ruby----#
@@ -173,20 +168,20 @@ if [ "$color_prompt" = yes ]; then
     #PS1="${debian_chroot:+$debian_chroot)}${USER_COLOR}\u${HOST_COLOR}@\h:${PWD_COLOR}\w${RESET_COLOR}\$ "
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}@normal:${cyan}\w${white}\$ "
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}\n${usericon}"
-    PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}${usericon}"
+    PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}${usericon}"\ 
 fi
 unset color_prompt force_color_prompt
 
 #ここにsudは絶対に書くな
 
 #alias python
-alias pth='python'
+alias p='python'
 
 #alias gdb
-alias g='gdb -q -x core'
+alias g='gdb -q -x $HOME/miyagawtools/gdbrc.def -x gdbrc'
 
 #alias cd
-source ~/bin/cdir
+source $HOME/Documents/cdir/cdir
 
 #alias ls
 alias lf='ls -CF'
@@ -205,14 +200,12 @@ alias h='. h'
 alias no='. no'
 
 #alias jp to dvorak
-alias d='source ~/.bashrc'
 alias e='source ~/.bashrc'
-alias p='source ~/.bashrc'
 
 #alias rc
-alias viba='vim ~/.bashrc'
+alias viba='vim ~/.bashrc; rsync -au ~/.bashrc ~/rc/bashrc'
 alias soba='. ~/.bashrc'
-alias vivi='vim /usr/share/vim/vimrc'
+alias vivi='vim /usr/share/vim/vimrc; rsync -au /usr/share/vim/vimrc ~/rc/'
 
 
 
@@ -226,13 +219,13 @@ xkbcomp -I$HOME/.xkb ~/.xkb/keymap/mykbd $DISPLAY 2> /dev/null
 alias objdump='objdump -M intel'
 
 #alias diff
-alias diff='diff -u'
+alias diff='diff -a -r -u'
 
 #alias less
 alias less='less -iMSR'
 
 #alias gcc
-alias gcc='gcc -I ~/bin/include/'
+alias gcc='gcc -I $HOME/miyagawtools/include/'
 
 #virtualenv
 
@@ -247,7 +240,7 @@ alias cdock='docker run -v /home/miyagaw/ctf/:/root/ctf/ -it --name ctf ubuntu14
 alias c2h='docker cp ctf:/root/ctf/ /home/miyagaw/'
 
 #alias numcd
-source ~/bin/numcd.alias
+source $HOME/miyagawtools/numcd.alias
 
 #export golang
 export GOPATH=$HOME/go/thirdparty:$HOME/go/myproject
@@ -277,3 +270,46 @@ alias a='cd ../'
 
 #alias xargs
 alias to='xargs'
+
+#alias rs
+alias rs='rsync -av'
+alias rsu='rsync -auv'
+
+#alias mnt
+alias mnt='cd /mnt/windows/bk/'
+
+#alias sl
+alias sl='ls'
+
+#mntDirectoryEnv
+MNT='/mnt/windows/bk'
+
+#alias pgdb
+alias pg='pgdb'
+
+#aliaas ipcalc
+alias ipcalc='python $HOME/miyagawtools/ipcalc.py'
+
+#alias d
+alias d='docker2'
+
+#alias save
+alias save='cat $HOME/Documents/save'
+
+
+#alias for git2
+alias gi='git2'
+alias gis='git2 status'
+alias gia='git2 add'
+alias gic='git2 commit'
+alias gim='git2 merge'
+alias gip='git2 push'
+alias gib='git2 branch'
+alias gicm='git2 cm'
+alias gicp='git2 cp'
+alias gicmp='git2 cmp'
+alias giac='git2 ac'
+alias giacm='git2 acm'
+alias giacp='git2 acp'
+alias giacmp='git2 acmp'
+

@@ -12,14 +12,14 @@ case $ans in
 
 #add by me
 
-cp -a $HOME/rc/bashrc $HOME/.bashrc
+cp -a $HOME/miyagawtools/initial_setting/rc/bashrc $HOME/.bashrc
 apt-get -y install vim
-cp -a $HOME/rc/vimrc /etc/vim/vimrc
-cp -a $HOME/rc/vimrc /usr/share/vim/vimrc
+cp -a $HOME/miyagawtools/initial_setting/rc/vimrc /etc/vim/vimrc
+cp -a $HOME/miyagawtools/initial_setting/rc/vimrc /usr/share/vim/vimrc
 if ! -e $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ ;then
 	mkdir -p $HOME/.vim/bundle/neosnippet-snippets/neosnippets/
 fi
-cp -a $HOME/neosnippets/* $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ 
+cp -a $HOME/miyagawtools/initial_setting/rc/neosnippets/* $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ 
 
 #apt
 
