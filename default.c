@@ -4,6 +4,7 @@
 #include <regex.h>
 
 int strncpy_s(char*, char*, int);
+int* wordsearch(char*, char*);
 char *sedonece(char*, char*, char*);
 char *sedall(char*, char*, char*);
 int strcnt(char*, char*);
@@ -39,6 +40,35 @@ int strcnt(char *buf, char *str){
 		tmp = strtok(NULL, str);
 	}
 	return count-1;
+}
+
+int* wordsearch(char* buf_arg, char* before_arg){
+	char buf[256];
+	char emp[256] = "";
+	strncpy(buf, buf_arg, 255);
+	buf[255] = '\0';
+	const char regex[256];
+	strncpy(regex, before_arg, 255);
+	char *tmp;
+	size_t nmatch = 10;
+	regmatch_t pmatch[nmatch];
+	regex_t regexBuf;
+	int startIndex = 0;
+	int endIndex = 0;
+	int i = 0;
+	if(regcomp(&regexBuf, regex, REG_EXTENDED | REG_NEWLINE) != 0){
+		return -1;
+	}
+	if(regexec(&regexBuf, buf, nmatch, pmatch, 0) != 0){
+		return -1;
+	}
+
+	startIndex = pmatch[0].rm_so;
+	endIndex = pmatch[0].rm_eo - 1;
+
+	int ans[2] = {startIndex, endIndex};
+
+	return ans;
 }
 
 char* sedonece(char* buf_arg, char* before_arg, char* after_arg){
