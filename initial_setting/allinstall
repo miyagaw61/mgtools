@@ -7,8 +7,8 @@ case $ans in
 
 #first
 
-#apt-get -y update
-#apt-get -y upgrade
+apt-get -y update
+apt-get -y upgrade
 
 #add by me
 
@@ -102,6 +102,8 @@ pip install scapy
 pip install tweepy
 pip install matplotlib
 pip install percol
+pip install libformatstr
+pip install hexdump
 cp -a $HOME/miyagawtools/rc.py $HOME/.percol.d/rc.py
 
 #git
@@ -164,10 +166,10 @@ cd ext4magic-0.3.2
 #other
 
 #64bit_only
-#dpkg --add-architecture i386
-#apt-get -y update
-#apt-get -y install libc6:i386 libncurses5:i386 libstdc++6:i386
-#apt-get -y install gcc-multilib g++-multilib
+dpkg --add-architecture i386
+apt-get -y update
+apt-get -y install libc6:i386 libncurses5:i386 libstdc++6:i386
+apt-get -y install gcc-multilib g++-multilib
 
 #beep.sh
 
