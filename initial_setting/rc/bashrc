@@ -256,6 +256,9 @@ bind -x '"\C-h":history_percol'
 #alias cp
 alias cp='cp -a'
 
+#alias cd
+alias d='cd'
+
 #alias re
 alias re='reboot'
 
@@ -290,8 +293,8 @@ alias pg='pgdb'
 #aliaas ipcalc
 alias ipcalc='python $HOME/miyagawtools/ipcalc.py'
 
-#alias d
-alias d='docker2'
+#alias docker2
+alias dk='docker2'
 
 #alias save
 alias save='cat $HOME/Documents/save'

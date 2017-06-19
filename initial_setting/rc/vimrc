@@ -68,11 +68,12 @@ nnoremap ]Q :<C-u>clast<CR> " 最後へ
 augroup BinaryXXD
 autocmd!
 autocmd BufReadPre *.bin let &binary =1
-autocmd BufReadPost * if &binary | silent %!xxd -g 1
-autocmd BufReadPost * set ft=xxd | endif
-"autocmd BufWritePre * if excute "%!xxd -r" | endif
-autocmd BufWritePost * if &binary | silent %!xxd -g 1
-autocmd BufWritePost * set nomod | endif
+" autocmd BufReadPost * if &binary | silent %!xxd -g 1
+autocmd BufReadPost * if &binary | Vinarise | endif
+" autocmd BufReadPost * set ft=xxd | endif
+" autocmd BufWritePre * if excute \"%!xxd -r\" | endif
+" autocmd BufWritePost * if &binary | silent %!xxd -g 1
+" autocmd BufWritePost * set nomod | endif
 augroup END
 
 " ビジュアルモードで選択したテキストが、クリップボードに入るようにする
@@ -315,8 +316,12 @@ imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 " }}}
 NeoBundle 'vim-scripts/matchit.zip'
-
- 
+NeoBundle 'Shougo/vinarise.git' 
+" Vinarise{{
+command! V :Vinarise
+command! D :VinarisePluginDump
+command! B :VinarisePluginBitmapView
+" }}
 
 " vimrc に記述されたプラグインでインストールされていないものがないかチェックする
 NeoBundleCheck
