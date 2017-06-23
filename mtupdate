@@ -18,8 +18,8 @@ if test $hflg -eq 1 ;then
 fi
 
 cd $HOME
-if test -e $HOME/Downloads/mgtools ;then
-	rm -rf $HOME/Downloads/mgtools
+if test -e $HOME/mgtools ;then
+	rm -rf $HOME/mgtools
 fi
 git clone https://github.com/miyagaw61/mgtools.git $HOME/mgtools
 
