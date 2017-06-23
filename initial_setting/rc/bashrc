@@ -119,8 +119,8 @@ fi
 
 #path
 export PYTHONPATH=$PYTHONPATH:$HOME/ctf/
-export PYTHONPATH=$PYTHONPATH:$HOME/miyagawtools/
-export PATH=$PATH:$HOME/miyagawtools
+export PYTHONPATH=$PYTHONPATH:$HOME/mgtools/
+export PATH=$PATH:$HOME/mgtools
 export PATH=$PATH:$HOME/Documents/cdir/cdir
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
@@ -178,7 +178,7 @@ unset color_prompt force_color_prompt
 alias p='python'
 
 #alias gdb
-alias g='gdb -q -x $HOME/miyagawtools/gdbrc.def -x gdbrc'
+alias g='gdb -q -x $HOME/mgtools/gdbrc.def -x gdbrc'
 
 #alias cd
 source $HOME/Documents/cdir/cdir
@@ -203,9 +203,9 @@ alias no='. no'
 alias e='source ~/.bashrc'
 
 #alias rc
-alias viba='vim ~/.bashrc; rsync -au ~/.bashrc $HOME/miyagawtools/initial_setting/rc/bashrc'
+alias viba='vim ~/.bashrc; rsync -au ~/.bashrc $HOME/mgtools/initial_setting/rc/bashrc'
 alias soba='. ~/.bashrc'
-alias vivi='vim /etc/vim/vimrc; rsync -au /etc/vim/vimrc $HOME/miyagawtools/initial_setting/rc/'
+alias vivi='vim /etc/vim/vimrc; rsync -au /etc/vim/vimrc $HOME/mgtools/initial_setting/rc/'
 
 
 
@@ -225,7 +225,7 @@ alias diff='diff -a -r -u'
 alias less='less -iMSR'
 
 #alias gcc
-alias gcc='gcc -I $HOME/miyagawtools/include/'
+alias gcc='gcc -I $HOME/mgtools/include/'
 
 #virtualenv
 
@@ -240,7 +240,7 @@ alias cdock='docker run -v /home/miyagaw/ctf/:/root/ctf/ -it --name ctf ubuntu14
 alias c2h='docker cp ctf:/root/ctf/ /home/miyagaw/'
 
 #alias numcd
-source $HOME/miyagawtools/numcd.alias
+source $HOME/mgtools/numcd.alias
 
 #export golang
 export GOPATH=$HOME/go/thirdparty:$HOME/go/myproject
@@ -291,7 +291,7 @@ MNT='/mnt/windows/bk'
 alias pg='pgdb'
 
 #aliaas ipcalc
-alias ipcalc='python $HOME/miyagawtools/ipcalc.py'
+alias ipcalc='python $HOME/mgtools/ipcalc.py'
 
 #alias docker2
 alias dk='docker2'
@@ -311,6 +311,7 @@ alias gib='git2 branch'
 alias gicm='git2 cm'
 alias gicp='git2 cp'
 alias gicmp='git2 cmp'
+alias gimp='git2 mp'
 alias giac='git2 ac'
 alias giacm='git2 acm'
 alias giacp='git2 acp'
