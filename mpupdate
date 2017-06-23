@@ -17,14 +17,13 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-cd $HOME
+cd $HOME/Downloads/
 if test -e $HOME/Downloads/mgpeda ;then
-	rm -rf $HOME/Downloads/mgpeda
+	cd $HOME/Downloads/mgpeda
 	git pull https://github.com/miyagaw61/mgpeda.git
+else
+	git clone https://github.com/miyagaw61/mgpeda.git $HOME/Downloads/mgpeda
+	cd $HOME/Downloads/mgpeda/
+	$HOME/Downloads/mgpeda/mgpeda_install.sh
 fi
-if test -e $HOME/peda/mgpeda/ ;then
-	rm -rf $HOME/peda/mgpeda/
-fi
-cd $HOME/Downloads/mgpeda/
-$HOME/Downloads/mgpeda/mgpeda_install.sh
 
