@@ -177,9 +177,6 @@ unset color_prompt force_color_prompt
 #alias python
 alias p='python'
 
-#alias gdb
-alias g='gdb -q -x $HOME/mgtools/gdbrc.def -x gdbrc'
-
 #alias cd
 source $HOME/Documents/cdir/cdir
 
