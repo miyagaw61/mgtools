@@ -47,6 +47,7 @@ if test $hflg -eq 1 ;then
  cm [branch]: ________________ git2 commit -> git2 merge [branch]
  cp [branch]: ________________ git2 commit -> git2 push [branch]
  cmp [branch]: _______________ git2 commit -> git2 merge [branch] -> git2 push
+ mp [branch]: ________________ git2 git2 merge [branch] -> git2 push
  ac [file]: __________________ git2 add [file] -> git2 commit
  acm [file] [branch]: ________ git2 add [file] -> git2 commit -> git2 merge [branch]
  acp [file] [branch]: ________ git2 add -> git2 commit -> git2 push
@@ -72,6 +73,7 @@ if test $hflg -eq 1 ;then
  gicm:   git2 cm
  gicp:   git2 cp
  gicmp:  git2 cmp
+ gimp:   git2 mp
  giac:   git2 ac
  giacm:  git2 acm
  giacp:  git2 acp
@@ -345,6 +347,24 @@ fi
 
 if test "$1" = "cmp" -o "$1" = "commitmergepush" ;then
 	git2 commit
+	if test $# -eq 1 ;then
+		echo -n "\n[+]merge&push master,OK? (y/n) : "
+		read ans
+		if test "$ans" != "n" ;then
+			git2 merge master
+			git2 push master
+		else
+			echo "\n[+]merge&push stop.\n"
+		fi
+	else
+		git2 merge $2
+		git2 push $2
+	fi
+	allrm branch.tmp now.tmp
+	exit 0
+fi
+
+if test "$1" = "mp" -o "$1" = "mergepush" ;then
 	if test $# -eq 1 ;then
 		echo -n "\n[+]merge&push master,OK? (y/n) : "
 		read ans
