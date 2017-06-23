@@ -8,7 +8,7 @@ vflg=0
 aflg=0
 
 if test ! $# -eq 0 -a "$1" = "--less" ;then
-	$HOME/miyagawtools/ol
+	$HOME/mgtools/ol
 	exit 0
 fi
 
@@ -18,7 +18,7 @@ while getopts hdxo1g:v:a opt ;do
 		d)dflg=1;;
 		x)xflg=1;;
 		o)oflg=1;;
-		1)$HOME/miyagawtools/olsone; exit 0;;
+		1)$HOME/mgtools/olsone; exit 0;;
 		g)gflg=1;garg=$OPTARG;;
 		v)vflg=1;varg=$OPTARG;;
 		a)aflg=1;;

@@ -14,8 +14,8 @@ while getopts h opt ;do
 	esac
 done
 
-cat $HOME/miyagawtools/nsed.def | perl -pe 's@ARG1@'$2'@g' > $HOME/miyagawtools/nsed.tmp.tmp
-cat $HOME/miyagawtools/nsed.tmp.tmp | perl -pe 's@ARG2@'$3'@g' > $HOME/miyagawtools/nsed.tmp
-cat $1 | sed -f $HOME/miyagawtools/nsed.tmp
+cat $HOME/mgtools/nsed.def | perl -pe 's@ARG1@'$2'@g' > $HOME/mgtools/nsed.tmp.tmp
+cat $HOME/mgtools/nsed.tmp.tmp | perl -pe 's@ARG2@'$3'@g' > $HOME/mgtools/nsed.tmp
+cat $1 | sed -f $HOME/mgtools/nsed.tmp
 rmtmp
 

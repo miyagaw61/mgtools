@@ -24,10 +24,10 @@ elif test $# -eq 0 ;then
 	dstPath="/mnt/windows/bk"
 fi
 
-#if test "$(hashdiff ${dstPath}/miyagawtools/ $HOME/miyagawtools/)"  = "False" ;then
+#if test "$(hashdiff ${dstPath}/mgtools/ $HOME/mgtools/)"  = "False" ;then
 	cecho -rfn '[+]'
-	cecho -gf ${dstPath}'/miyagawtools/ -> '$HOME'/miyagawtools/'
-	rsync -auv ${dstPath}/miyagawtools/*         $HOME/miyagawtools/
+	cecho -gf ${dstPath}'/mgtools/ -> '$HOME'/mgtools/'
+	rsync -auv ${dstPath}/mgtools/*         $HOME/mgtools/
 #fi
 
 

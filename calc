@@ -11,7 +11,7 @@ while getopts hxbif opt ;do
 		h)echo 'Usage: calc [option] [expr]\ndefault: to_int\n-x: to_hex\n-b: to_bin\n-i: intaractive_mode'; exit 0;;
 		x)xflg=1;;
 		b)bflg=1;;
-		i)python $HOME/miyagawtools/calc2.py -i ; exit 0 ;;
+		i)python $HOME/mgtools/calc2.py -i ; exit 0 ;;
 		f)fflg=1;;
 	esac
 done
@@ -51,9 +51,9 @@ if test $(cat calc.arg | grep -P '[^(\+|\-|\*|\/)]*(\||\^|\&)[^(\+|\-|\*|\/)]*')
 fi
 
 if test $fflg -eq 1 ;then
-	python $HOME/miyagawtools/calc.py $(cat calc.arg) > calc.result
+	python $HOME/mgtools/calc.py $(cat calc.arg) > calc.result
 else
-	python $HOME/miyagawtools/calcint.py $(cat calc.arg) > calc.result
+	python $HOME/mgtools/calcint.py $(cat calc.arg) > calc.result
 fi
 
 if test $xflg -eq 1 ;then
@@ -73,7 +73,7 @@ if test $bflg -eq 1 ;then
 fi
 
 #if test $(echo $1 | grep -E '\.') ;then
-#	python $HOME/miyagawtools/calc.py $(cat calc.arg) > calc.result
+#	python $HOME/mgtools/calc.py $(cat calc.arg) > calc.result
 #	cat calc.result
 #	exit 0
 #fi

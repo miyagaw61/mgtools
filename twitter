@@ -25,8 +25,8 @@ if test $hflg -eq 1 ;then
 fi
 
 if test $nflg -eq 1 ;then
-	python $HOME/miyagawtools/twitter.py 1000 >> $HOME/Documents/twitter/tl &
-	while test "$(ps aux | grep -P 'python.*/miyagawtools/twitter.py 1000' | grep -v 'grep')" ;do
+	python $HOME/mgtools/twitter.py 1000 >> $HOME/Documents/twitter/tl &
+	while test "$(ps aux | grep -P 'python.*/mgtools/twitter.py 1000' | grep -v 'grep')" ;do
 		nowloading
 	done
 	cat $HOME/Documents/twitter/tl | less -MRi
@@ -35,7 +35,7 @@ if test $nflg -eq 1 ;then
 fi
 
 if test $aflg -eq 1 ;then
-	python $HOME/miyagawtools/twitter.py 1000 >> ~/Documents/twitter/tl &
+	python $HOME/mgtools/twitter.py 1000 >> ~/Documents/twitter/tl &
 	while test "$(ps aux | grep -P 'python.*/bin/twitter.py 1000' | grep -v 'grep')" ;do
 		nowloading
 	done

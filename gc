@@ -59,5 +59,5 @@ fi
 
 out=$(echo $file | sed -E 's/(.*).c/\1/')
 allrm $out
-gcc -I $HOME/miyagawtools/include/ $options -o $out $file
+gcc -I $HOME/mgtools/include/ $options -o $out $file
 
