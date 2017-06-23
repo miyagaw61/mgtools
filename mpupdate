@@ -20,11 +20,11 @@ fi
 cd $HOME
 if test -e $HOME/Downloads/mgpeda ;then
 	rm -rf $HOME/Downloads/mgpeda
+	git pull https://github.com/miyagaw61/mgpeda.git
 fi
 if test -e $HOME/peda/mgpeda/ ;then
 	rm -rf $HOME/peda/mgpeda/
 fi
-git clone https://github.com/miyagaw61/mgpeda.git $HOME/Downloads/mgpeda
 cd $HOME/Downloads/mgpeda/
 $HOME/Downloads/mgpeda/mgpeda_install.sh
 
