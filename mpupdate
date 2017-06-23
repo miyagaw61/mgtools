@@ -1,0 +1,30 @@
+#!/bin/sh
+
+hflg=0
+#if test $# -eq 0 ;then
+#	hflg=1
+#fi
+
+for arg in "$@" ;do
+	if test "$arg" = "-h" -o "$arg" = "--help" -o "$arg" = "help" ;then
+		hflg=1
+	fi
+done
+
+if test $hflg -eq 1 ;then
+	echo -n "Usage: mpinstall
+"
+	exit 0
+fi
+
+cd $HOME
+if test -e $HOME/Downloads/mgpeda ;then
+	rm -rf $HOME/Downloads/mgpeda
+fi
+if test -e $HOME/peda/mgpeda/ ;then
+	rm -rf $HOME/peda/mgpeda/
+fi
+git clone https://github.com/miyagaw61/mgpeda.git $HOME/Downloads/mgpeda
+cd $HOME/Downloads/mgpeda/
+$HOME/Downloads/mgpeda/mgpeda_install.sh
+

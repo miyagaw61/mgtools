@@ -1,0 +1,25 @@
+#!/bin/sh
+
+hflg=0
+#if test $# -eq 0 ;then
+#	hflg=1
+#fi
+
+for arg in "$@" ;do
+	if test "$arg" = "-h" -o "$arg" = "--help" -o "$arg" = "help" ;then
+		hflg=1
+	fi
+done
+
+if test $hflg -eq 1 ;then
+	echo -n "Usage: mpinstall
+"
+	exit 0
+fi
+
+cd $HOME
+if test -e $HOME/Downloads/mgtools ;then
+	rm -rf $HOME/Downloads/mgtools
+fi
+git clone https://github.com/miyagaw61/mgtools.git $HOME/mgtools
+
