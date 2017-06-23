@@ -1,0 +1,35 @@
+#!/bin/sh
+
+hflg=0
+if test $# -eq 0 ;then
+	hflg=1
+fi
+
+if test "$1" = "-h" -o "$1" = "--help" -o "$1" = "help" ;then
+	hflg=1
+fi
+
+line=$(cat $HOME/peda/peda.py | grep -n "def xprint" | sed -E "s/(.*):.*:/\1/g")
+
+if test "$1" = "x86" -o "$1" = "32" ;then
+	head -n $((${line} - 1)) $HOME/peda/peda.py | tail -n $((${line} - 1)) > $HOME/peda/mgpeda/peda.before.txt
+	head -n $(cat $HOME/peda/peda.py | wc -l) $HOME/peda/peda.py | tail -n $(($(cat $HOME/peda/peda.py | wc -l) - ${line} + 1)) > $HOME/peda/mgpeda/peda.after.txt
+	cp -a $HOME/peda/mgpeda/peda.before.txt $HOME/peda/mgpeda/mgpeda.py
+	cat $HOME/peda/mgpeda/mgpeda32.txt >> $HOME/peda/mgpeda/mgpeda.py
+	cat $HOME/peda/mgpeda/peda.after.txt >> $HOME/peda/mgpeda/mgpeda.py
+	cat $HOME/peda/mgpeda/mgpeda.alias.txt >> $HOME/peda/mgpeda/mgpeda.py
+fi
+
+if test "$1" = "x64" -o "$1" = "64" ;then
+	head -n $((${line} - 1)) $HOME/peda/peda.py | tail -n $((${line} - 1)) > $HOME/peda/mgpeda/peda.before.txt
+	head -n $(cat $HOME/peda/peda.py | wc -l) $HOME/peda/peda.py | tail -n $(($(cat $HOME/peda/peda.py | wc -l) - ${line} + 1)) > $HOME/peda/mgpeda/peda.after.txt
+	cp -a $HOME/peda/mgpeda/peda.before.txt $HOME/peda/mgpeda/mgpeda.py
+	cat $HOME/peda/mgpeda/mgpeda64.txt >> $HOME/peda/mgpeda/mgpeda.py
+	cat $HOME/peda/mgpeda/peda.after.txt >> $HOME/peda/mgpeda/mgpeda.py
+	cat $HOME/peda/mgpeda/mgpeda.alias.txt >> $HOME/peda/mgpeda/mgpeda.py
+fi
+
+if test $hflg -eq 1 ;then
+	echo "Usage: "$(basename $0)" [-h] [x86(32)] [x64(64)]"
+	exit 0
+fi
