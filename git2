@@ -111,7 +111,11 @@ fi
 
 if test $1 = "add" -o $1 = "a" ;then
 	git branch
-	git add $2
+	for var in $@ ;do
+		if test ! $var = "add" -o ! $var = "a" ;then
+			git add $var
+		fi
+	done
 	git status
 	allrm branch.tmp now.tmp
 	exit 0

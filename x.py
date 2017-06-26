@@ -4,6 +4,8 @@
 import __main__, os, sys, struct, socket, telnetlib, subprocess, time
 from libformatstr import FormatStr
 import sys, re, binascii
+sys.path.append("$HOME/mgtools/lib/python/")
+sys.path.append("$HOME/peda/lib/")
 
 #import hexdump
 
