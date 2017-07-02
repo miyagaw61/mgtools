@@ -4,10 +4,30 @@
 import __main__, os, sys, struct, socket, telnetlib, subprocess, time
 from libformatstr import FormatStr
 import sys, re, binascii
-sys.path.append("$HOME/mgtools/lib/python/")
-sys.path.append("$HOME/peda/lib/")
 
-#import hexdump
+home = os.environ['HOME']
+mgtoolslib = home + "/mgtools/lib/python"
+pedalib = home + "/peda/lib"
+if not(os.path.exists(pedalib)):
+    print("[+]Error\nTry: mpinstall")
+sys.path.append(mgtoolslib)
+sys.path.append(pedalib)
+
+import shlex
+import string
+import signal
+import traceback
+import codecs
+import six
+from six.moves import range
+from six.moves import input
+import six.moves.cPickle as pickle
+import pickle
+from skeleton import *
+from shellcode import *
+from utils import *
+import config
+from nasm import *
 
 proc = ''
 s = ''
