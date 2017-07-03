@@ -53,6 +53,7 @@ apt-get -y install build-essential
 apt-get -y install binwalk
 apt-get -y install cifs-utils
 apt-get -y install chromium-browser
+apt-get -y install docker.io
 
 ###----for metasploit----#
 #apt-get -y install subversion
