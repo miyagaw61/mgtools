@@ -1,15 +1,45 @@
 #!/bin/sh
+
 hflg=0
-while getopts h opt ;do
-	case $opt in
-		h)hflg=1 ;;
-	esac
+if test $# -eq 0 ;then
+	hflg=1
+fi
+
+dflg=0
+dused=0
+file=""
+for arg in "$@" ;do
+	if test "$arg" = "-h" -o "$arg" = "--help" -o "$arg" = "help" ;then
+		hflg=1
+
+	elif test $dflg -eq 1 ;then
+        file=$arg
+		dflg=0
+
+	elif test "$arg" = "-d" ;then
+		dflg=1
+        dused=1
+
+	fi
 done
 
-if [ $hflg -eq 1 ]; then
-	echo 'Usage: binsed [file_name] [before] [after] '
+if test $hflg -eq 1 ;then
+	echo -n "Usage: binsed [file_name] [before] [after]
+"
 	exit 0
 fi
 
-xxd -p $1 | sed -E -e 's/'$2'/'$3'/g' | xxd -r -p
+if test $dused -eq 0 ;then
+    xxd -p $1 | perl -pe "s@\n@@g" | perl -pe 's@'$2'@'$3'@g' | xxd -r -p
+else
+    args="$@"
+    args=$(echo "$args" | perl -pe 's@-d\s.*?\s@@g')
+    cp -a $file binsed-out.tmp1
+    for var in $args ;do
+        xxd -p binsed-out.tmp1 | perl -pe "s@\n@@g" | perl -pe "s@"$var"@@g" | xxd -r -p > binsed-out.tmp2
+        mv binsed-out.tmp2 binsed-out.tmp1
+    done
+fi
+cat binsed-out.tmp1
+rm -rf "binsed-*"
 
