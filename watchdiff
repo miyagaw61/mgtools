@@ -14,13 +14,15 @@ for arg in "$@" ;do
 done
 
 if test $hflg -eq 1 ;then
-	echo "Usage: ./"$(basename $0)" [-h] -a argA [-b argB] [-c argC] expr...
- -h        show help
- -a [argA] set arg1
- -b [argB] set arg2
- -c [argC] set arg3
- expr      set expr"
+	echo -n "Usage: ./"$(basename $0)" [-h] [argfile] [ [arg1][arg2] ]
+"
 	exit 0
 fi
 
-cat $file | grep -e '\-' -e '\+'
+if test $# -eq 1 ;then
+    cat $file | grep -e '\-' -e '\+'
+elif test $# -eq 2 ;then
+    diff -u $1 $2 > watchdiff-arg.tmp
+    cat watchdiff-arg.tmp | grep -e '\-' -e '\+'
+    allrm watchdiff-arg.tmp
+fi
