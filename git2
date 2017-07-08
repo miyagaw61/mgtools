@@ -40,7 +40,7 @@ if test $hflg -eq 1 ;then
  branch -a: __________________ show branch all
  branch [existed_branch]: ____ checkout
  branch [not_existed_branch]:_ create branch -> checkout
- branch rmremote: ____________ git remote purge origin
+ branch rmremote: ____________ git remote prune origin
  commit: _____________________ super commit
  merge [branch]: _____________ checkout -> merge preview_branch -> checkout preview_branch
  push [branch]: ______________ checkout [branch] -> push -> checkout preview_branch
@@ -388,7 +388,7 @@ if test "$1" = "mp" -o "$1" = "mergepush" ;then
 fi
 
 if test $1 = "rmindex" ;then
-	git rm --cache $2
+	git rm --cache -r $2
 	allrm branch.tmp now.tmp
 	exit 0
 fi
