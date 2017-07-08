@@ -216,7 +216,7 @@ xkbcomp -I$HOME/.xkb ~/.xkb/keymap/mykbd $DISPLAY 2> /dev/null
 alias objdump='objdump -M intel'
 
 #alias diff
-alias diff='diff -a -r -u'
+alias diff='diff -a -r -u -p'
 
 #alias less
 alias less='less -iMSR'

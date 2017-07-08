@@ -54,6 +54,8 @@ apt-get -y install binwalk
 apt-get -y install cifs-utils
 apt-get -y install chromium-browser
 apt-get -y install docker.io
+apt-get -y install ucommon-utils
+apt-get -y install xclip
 
 ###----for metasploit----#
 #apt-get -y install subversion
