@@ -17,6 +17,7 @@ done
 if [ $hflg -eq 1 ]; then
 	echo 'Usage: gc [options] [C_file]
 [+]UsageOptions:
+   64
    32
    sspoff/canaryoff
    depoff/nxoff
@@ -30,7 +31,9 @@ options=""
 
 if test $# -ge 2 ;then
 	for var in $@ ;do
-		if test "$var" = "32" ;then
+		if test "$var" = "64" ;then
+			options=$options" -m64"
+		elif test "$var" = "32" ;then
 			options=$options" -m32"
 		elif test $var = "depoff" -o $var = "nxoff" ;then
 			options=$options" -z execstack"
@@ -56,7 +59,9 @@ if test $# -ge 2 ;then
 	done
     if test -e gc.conf ;then
         for var in $(cat gc.conf) ;do
-            if test "$var" = "32" ;then
+            if test "$var" = "64" ;then
+                options=$options" -m64"
+            elif test "$var" = "32" ;then
                 options=$options" -m32"
             elif test $var = "depoff" -o $var = "nxoff" ;then
                 options=$options" -z execstack"
