@@ -36,3 +36,4 @@ cat m.tmp | while read var ;do
         man 3 $1
     fi
 done
+allrm m.tmp
