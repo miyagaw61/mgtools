@@ -209,15 +209,34 @@ gccのラッパーコマンド。
 また、オプションでセキュリティ機構を容易に設定してコンパイルを行うことが可能。  
 gc.confにオプションを書いておけば以降何度も指定する必要が無い。
 また、.cをつけなくても自動で付与してくれる。
+自動で-W -Wall -I /home/mgtools/include/ -I ./includeが付与される。
 <pre>
 Usage: g [options] [C_file]
 [+]UsageOptions:
+   64
    32
    sspoff/canaryoff
    depoff/nxoff
    pie
    fullrelro
    dbg
+
+[+]EXAMPLE:
+   (bash) ls
+   include/ main.c canvas.c memory.c
+   (bash) ls include
+   canvas.h memory.h
+   (bash) g main canvas.c memory.c
+   (bash) ls
+   include/ main main.c canvas.c memory.c
+   (bash) g 32 depoff main.c canvas.c memory.c
+   (bash) ls
+   include/ main main.c canvas.c memory.c
+   (bash) file main
+   Intel 80386
+   (bash) gdb main
+   (gdb-peda) checksec
+   NX: disable
 </pre>
 
 * x  
@@ -225,6 +244,8 @@ gを用いてコンパイル->実行というフローを自動で行う。
 <pre>
 Usage: x [options] [C_file]
 [+]UsageOptions:
+   64
+   32
    sspoff/canaryoff
    depoff/nxoff
    pie
