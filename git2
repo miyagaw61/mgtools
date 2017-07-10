@@ -161,7 +161,8 @@ fi
 
 if test "$1" = "addcommit" -o "$1" = "ac" ;then
 	git branch
-	git add $2
+    arglst=$(echo $@ | perl -pe 's/'$1'//g')
+	git add $arglst
 	git status
 	branchsave
 	msg=""
@@ -388,7 +389,8 @@ if test "$1" = "mp" -o "$1" = "mergepush" ;then
 fi
 
 if test $1 = "rmindex" ;then
-	git rm --cache -r $2
+    arglst=$(echo $@ | perl -pe 's/'$1'//g')
+	git rm --cache -r $arglst
 	allrm branch.tmp now.tmp
 	exit 0
 fi
