@@ -411,6 +411,12 @@ o: others
 a: all
 </pre>
 
+* m
+2と3だけ見るman。
+<pre>
+Usage m [str]
+</pre>
+
 * makeLib  
 src_fileに与えたファイルを一行ずつ取得し、それぞれを最小文字数min、最大文字数maxで全パターン組み合わせ、dst_fileに出力する。  
 これを用いれば、ワードリストから辞書攻撃用の辞書を生成することが可能。  
