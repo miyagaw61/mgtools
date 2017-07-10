@@ -197,22 +197,30 @@ x:   exec -it [container_name] bash
 d:   run --privileged -d -p 8080:80 --name [name] [image_name] /sbin/init
 </pre>
 
-* gc  
+* c
+cファイルをvimで編集する。ただし、引数として与える文字列は、.cを書かなくても良い。
+<pre>
+Usage: c [file]
+</pre>
+
+* g  
 gccのラッパーコマンド。  
 デフォルトの出力ファイルがa.outではなく、拡張子の.cを取り除いたファイル名になる。  
 また、オプションでセキュリティ機構を容易に設定してコンパイルを行うことが可能。  
+gc.confにオプションを書いておけば以降何度も指定する必要が無い。
+また、.cをつけなくても自動で付与してくれる。
 <pre>
-Usage: gc [options] [C_file]
+Usage: g [options] [C_file]
 [+]UsageOptions:
-sspoff/canaryoff
-depoff/nxoff
-pie
-fullrelro
+   32
+   sspoff/canaryoff
+   depoff/nxoff
+   pie
+   fullrelro
 </pre>
 
 * x  
-コンパイル->実行というフローを自動で行う。  
-また、cファイルではなく実行可能ファイルを引数に与えた場合、コンパイルなしで実行。（./a.outと同じ挙動）  
+gを用いてコンパイル->実行というフローを自動で行う。  
 <pre>
 Usage: x [options] [C_file]
 [+]UsageOptions:
