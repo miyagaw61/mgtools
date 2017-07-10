@@ -1,7 +1,5 @@
 #!/bin/sh
 hflg=0
-sflg=0
-sarg=''
 
 if test $# -eq 0 ;then
 	hflg=1
@@ -10,7 +8,6 @@ fi
 while getopts hs: opt ;do
 	case $opt in
 		h)hflg=1;;
-	s)sflg=1; sarg=$OPTARG;;
 	esac
 done
 
@@ -28,6 +25,7 @@ if [ $hflg -eq 1 ]; then
 fi
 
 options=""
+file=""
 
 if test $# -ge 2 ;then
 	for var in $@ ;do
@@ -54,7 +52,7 @@ if test $# -ge 2 ;then
 		elif test $var = "dbg" ;then
 			options=$options" -g3 -O0 -static"
 		else
-			file=$var
+			file=$file" "$var
 		fi
 	done
     if test -e gc.conf ;then
@@ -84,11 +82,15 @@ if test $# -ge 2 ;then
             fi
         done
     fi
-    if test "$(echo "$file" | grep -P '\.c$')" ;then
-        file=$file
-    else
-        file=$file.c
-    fi
+    tmp=""
+    for var in $file ;do
+        if test "$(echo $var | grep -P '(\.h|\.o|\.c)')" ;then
+            tmp=$tmp" "$var
+        else
+            tmp=$tmp" "$var.c
+        fi
+    done
+    file=$tmp
 fi
 
 if test $# -eq 1 ;then
@@ -124,7 +126,9 @@ if test $# -eq 1 ;then
     fi
 fi
 
-out=$(echo $file | sed -E 's/(.*)\.c/\1/')
+out=$(echo $file | perl -pe 's/^(.*?)\.c.*/\1/')
+echo $file
+echo $out
 allrm $out
-gcc -I $HOME/mgtools/include/ -W -Wall $options -o $out $file
+gcc -I $HOME/mgtools/include/ -I include -W -Wall $options -o $out $file
 
