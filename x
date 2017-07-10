@@ -1,42 +1,92 @@
 #!/bin/sh
-
 hflg=0
-
-if test -f ./a.out ;then
-	rm a.out
-fi
+sflg=0
+sarg=''
 
 if test $# -eq 0 ;then
 	hflg=1
 fi
 
-while getopts h opt ;do
+while getopts hs: opt ;do
 	case $opt in
 		h)hflg=1;;
+	s)sflg=1; sarg=$OPTARG;;
 	esac
 done
 
-if test $hflg -eq 1 ;then
-	gc -h | perl -pe 's/gc/x/g'
+if [ $hflg -eq 1 ]; then
+	echo 'Usage: gc [options] [C_file]
+[+]UsageOptions:
+   32
+   sspoff/canaryoff
+   depoff/nxoff
+   pie
+   fullrelro'
 	exit 0
 fi
 
-argv=''
-for var in $@ ;do
-	if test "$(echo $var | grep -P '.*\.c')" ;then
-		file="$(echo $var | perl -pe 's/(.*)\.c/\1/g')"
-	else
-		argv=$argv" "$var
-	fi
-done
+options=""
 
-if test ! $file ;then
-	cecho -gf '\n##### START #####\n'
-	./$@
-	exit 0
+if test -e gc.conf ;then
+	for var in $(cat gc.conf) ;do
+		if test "$var" = "32" ;then
+			options=$options" -m32"
+		elif test $var = "depoff" -o $var = "nxoff" ;then
+			options=$options" -z execstack"
+		elif test $var = "dep" -o $var = "nx" ;then
+			options=$options
+		elif test $var = "fullrelro" ;then
+			options=$options" -Wl,-z,relro,-z,now"
+		elif test $var = "relrooff" ;then
+			options=$options
+		elif test $var = "sspoff" -o $var = "canaryoff" ;then
+			options=$options" -fno-stack-protector"
+		elif test $var = "ssp" -o $var = "canary" ;then
+			options=$options
+		elif test $var = "pie" ;then
+			options=$options" -fPIE -pie"
+		elif test $var = "pieoff" ;then
+			options=$options
+		fi
+	done
+elif test $# -ge 2 ;then
+	for var in $@ ;do
+		if test "$var" = "32" ;then
+			options=$options" -m32"
+		elif test $var = "depoff" -o $var = "nxoff" ;then
+			options=$options" -z execstack"
+		elif test $var = "dep" -o $var = "nx" ;then
+			options=$options
+		elif test $var = "fullrelro" ;then
+			options=$options" -Wl,-z,relro,-z,now"
+		elif test $var = "relrooff" ;then
+			options=$options
+		elif test $var = "sspoff" -o $var = "canaryoff" ;then
+			options=$options" -fno-stack-protector"
+		elif test $var = "ssp" -o $var = "canary" ;then
+			options=$options
+		elif test $var = "pie" ;then
+			options=$options" -fPIE -pie"
+		elif test $var = "pieoff" ;then
+			options=$options
+		else
+			file=$var
+		fi
+	done
 fi
 
-gc $@
+if test $# -eq 1 ;then
+    if test "$(echo $1 | grep -P '\.c$')" ;then
+        file=$1
+    else
+        file=$1.c
+    fi
+fi
 
-cecho -gf '\n##### START #####\n'
-./$file $argv
+out=$(echo $file | sed -E 's/(.*)\.c/\1/')
+allrm $out
+gcc -I $HOME/mgtools/include/ $options -o $out $file
+cecho -gf "==============="
+cecho -gf "     START     "
+cecho -gf "==============="
+./$out
