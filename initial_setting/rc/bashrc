@@ -315,3 +315,4 @@ alias giacp='git2 acp'
 alias giacmp='git2 acmp'
 
 alias chro='google-chrome'
+
