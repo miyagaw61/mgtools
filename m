@@ -31,9 +31,9 @@ man -k $1 > m.tmp
 cat m.tmp | while read var ;do
     num=$(echo $var | grep -P '^'$1'\s' | perl -pe 's@^.*\((.*)\).*@\1@g')
     if test "$num" = "2" ;then
-        man 2 $1 > m.vim.tmp
+        man 2 $1
     elif test "$num" = "3" ;then
-        man 3 $1 > m.vim.tmp
+        man 3 $1
     fi
 done
 allrm m.tmp
