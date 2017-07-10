@@ -21,7 +21,8 @@ if [ $hflg -eq 1 ]; then
    sspoff/canaryoff
    depoff/nxoff
    pie
-   fullrelro'
+   fullrelro
+   dbg'
 	exit 0
 fi
 
