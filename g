@@ -127,8 +127,6 @@ if test $# -eq 1 ;then
 fi
 
 out=$(echo $file | perl -pe 's/^(.*?)\.c.*/\1/')
-echo $file
-echo $out
 allrm $out
 gcc -I $HOME/mgtools/include/ -I include -W -Wall $options -o $out $file
 
