@@ -217,6 +217,7 @@ Usage: g [options] [C_file]
    depoff/nxoff
    pie
    fullrelro
+   dbg
 </pre>
 
 * x  
@@ -228,6 +229,7 @@ Usage: x [options] [C_file]
    depoff/nxoff
    pie
    fullrelro
+   dbg
 </pre>
 
 * getfile  
