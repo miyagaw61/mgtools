@@ -18,9 +18,7 @@ if test $hflg -eq 1 ;then
 fi
 
 if test "$(file $1 | grep '64-bit')" ;then
-    mgpedaconf 64
 	gdb -q -x $HOME/mgtools/gdbrc.def -x gdbrc $1
 else
-    mgpedaconf 32
 	gdb -q -x $HOME/mgtools/gdbrc.def -x gdbrc $1
 fi
