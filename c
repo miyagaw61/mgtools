@@ -27,4 +27,8 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-vim $1.c
+if test "$(echo $1 | grep -P '\.c$')" ;then
+    vim $1
+else
+    vim $1.c
+fi
