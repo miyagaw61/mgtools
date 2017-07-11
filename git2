@@ -38,6 +38,7 @@ if test $hflg -eq 1 ;then
  add [file]: _________________ super add
  branch: _____________________ show branch
  branch -a: __________________ show branch all
+ branch -d [branch]: _________ delete branch
  branch [existed_branch]: ____ checkout
  branch [not_existed_branch]:_ create branch -> checkout
  branch rmremote: ____________ git remote prune origin
@@ -319,6 +320,8 @@ if test "$1" = "branch" -o "$1" = "b" ;then
 			git branch -a
 		elif test "$2" = "rmremote" ;then
 			git remote prune origin
+		elif test "$2" = "-d" ;then
+			git branch -d $3
 		elif test ! "$(cat branch.tmp | grep $2)" ;then
 			git branch $2
 			git checkout $2
