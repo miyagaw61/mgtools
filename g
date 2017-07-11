@@ -128,5 +128,5 @@ fi
 
 out=$(echo $file | perl -pe 's/^(.*?)\.c.*/\1/')
 allrm $out
-gcc -I $HOME/mgtools/include/ -I include -W -Wall $options -o $out $file
+gcc -I $HOME/mgtools/include/ -I include -W $options -o $out $file
 
