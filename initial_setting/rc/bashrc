@@ -173,7 +173,7 @@ if [ "$color_prompt" = yes ]; then
     #PS1="${debian_chroot:+$debian_chroot)}${USER_COLOR}\u${HOST_COLOR}@\h:${PWD_COLOR}\w${RESET_COLOR}\$ "
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}@normal:${cyan}\w${white}\$ "
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}\n${usericon}"
-    PS1="${debian_chroot:+$debian_chroot)}${backGreen_red}:\w                                                                                                                \n${RESET_COLOR}${blue}${usericon} ${white}"
+    PS1="${debian_chroot:+$debian_chroot)}${backGreen_red}:\w                                                                               \n${RESET_COLOR}${blue}${usericon} ${white}"
 fi
 
 unset color_prompt force_color_prompt
