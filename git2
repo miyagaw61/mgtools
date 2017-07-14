@@ -162,7 +162,7 @@ fi
 
 if test "$1" = "addcommit" -o "$1" = "ac" ;then
 	git branch
-    arglst=$(echo $@ | perl -pe 's/'$1'//g')
+  arglst=$(echo $@ | perl -pe 's/'$1'//g')
 	git add $arglst
 	git status
 	branchsave
@@ -178,7 +178,8 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
 fi
 
 if test "$1" = "acp" -o "$1" = "addcommitpush" ;then
-	git add $2
+  arglst=$(echo $@ | perl -pe 's/'$1'//g')
+	git add $arglst
 	git2 commit
 	if test $# -eq 2 ;then
 		echo -n "\n[+]push master,OK? (y/n) : "
@@ -196,7 +197,8 @@ fi
 
 if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
 	git branch
-	git add $2
+  arglst=$(echo $@ | perl -pe 's/'$1'//g')
+	git add $arglst
 	git status
 	branchsave
 	msg=""
@@ -229,7 +231,8 @@ fi
 
 if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
 	git branch
-	git add $2
+  arglst=$(echo $@ | perl -pe 's/'$1'//g')
+	git add $arglst
 	git status
 	branchsave
 	msg=""

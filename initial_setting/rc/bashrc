@@ -157,19 +157,25 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     USER_COLOR='\[\033[01;36m\]' # cyan
-    cyan='\[\033[01;36m\]' # cyan
+    back_green='\[\033[42m\]' # cyan
     HOST_COLOR='\[\033[01;31m\]' # red
-    red='\[\033[01;31m\]' # red
     PWD_COLOR='\[\033[01;31m\]' # red
     black='\[\033[01;30m\]' # black
     RESET_COLOR='\[\033[00m\]'
     white='\[\033[00m\]'
-	green='\033[02;32m'
+    backGreen_white='\[\033[00;42m\]'
+    backGreen_black='\[\033[30;42;1m\]'
+    backGreen_red='\[\033[31;42;1m\]'
+    backGreen_blue='\[\033[34;42m\]'
+	green='\[\033[32;1m\]'
+	blue='\[\033[34m\]'
+    red='\[\033[31;00m\]' # red
     #PS1="${debian_chroot:+$debian_chroot)}${USER_COLOR}\u${HOST_COLOR}@\h:${PWD_COLOR}\w${RESET_COLOR}\$ "
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}@normal:${cyan}\w${white}\$ "
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}\n${usericon}"
-    PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}${usericon}"\ 
+    PS1="${debian_chroot:+$debian_chroot)}${backGreen_red}:\w                                                                                                                \n${RESET_COLOR}${blue}${usericon} ${white}"
 fi
+
 unset color_prompt force_color_prompt
 
 #ここにsudは絶対に書くな
@@ -316,3 +322,7 @@ alias giacmp='git2 acmp'
 
 alias chro='google-chrome'
 
+#export ponpontools
+export PATH=$PATH:$HOME/ponpontools/commands/
+
+alias rm="mvtrash"
