@@ -170,12 +170,12 @@ if [ "$color_prompt" = yes ]; then
     backGreen_blue='\[\033[34;42m\]'
 	green='\[\033[32;1m\]'
 	blue='\[\033[34m\]'
-    red='\[\033[31;00m\]' # red
+    red='\[\033[31;1m\]' # red
     #PS1="${debian_chroot:+$debian_chroot)}${USER_COLOR}\u${HOST_COLOR}@\h:${PWD_COLOR}\w${RESET_COLOR}\$ "
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}@normal:${cyan}\w${white}\$ "
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}\n${usericon}"
-    #PS1="${debian_chroot:+$debian_chroot)}${backRed_green}:\w        \n${RESET_COLOR}${blue}${usericon} ${white}"
-    PS1="${debian_chroot:+$debian_chroot)}${backGreen_red}:\w        \n${RESET_COLOR}${blue}${usericon} ${white}"
+    #PS1="${debian_chroot:+$debian_chroot)}${red}\w        \n${RESET_COLOR}${red}${usericon} ${white}"
+    PS1="${debian_chroot:+$debian_chroot)}${green}\w        \n${RESET_COLOR}${green}${usericon} ${white}"
 fi
 
 unset color_prompt force_color_prompt
@@ -327,4 +327,4 @@ alias chro='google-chrome'
 #export ponpontools
 export PATH=$PATH:$HOME/ponpontools/commands/
 
-alias rm="mvtrash"
+alias del="mvtrash"
