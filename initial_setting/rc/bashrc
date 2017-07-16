@@ -199,7 +199,7 @@ alias s='. s'
 alias ls1='olsone'
 alias l1='olsone'
 alias s='ols'
-alias ls='now; ls'
+alias ls='now; ls --color=auto'
 
 
 #alias dvorak to jp
