@@ -188,6 +188,7 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
 	done
   message="$msg"
   if test $# -eq 1 ;then
+    cecho -rf "[+]OK"
     message=""
     set $msg
     for var in $@ ;do
