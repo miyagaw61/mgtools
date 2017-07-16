@@ -188,8 +188,10 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
 	done
   message="$msg"
   cecho -gf "[+]"$#
-  if test $# -eq 1 ;then
+  if test $# -eq 2 ;then
+    echo ""
     cecho -rf "[+]OK"
+    echo ""
     message=""
     set $msg
     for var in $@ ;do
@@ -230,7 +232,7 @@ if test "$1" = "acp" -o "$1" = "addcommitpush" ;then
 		read msg
 	done
   message="$msg"
-  if test $# -eq 1 ;then
+  if test $# -eq 3 ;then
     message=""
     set $msg
     for var in $@ ;do
@@ -280,7 +282,7 @@ if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
 		read msg
 	done
   message="$msg"
-  if test $# -eq 2 ;then
+  if test $# -eq 3 ;then
     message=""
     set $msg
     for var in $@ ;do
@@ -337,7 +339,7 @@ if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
 		read msg
 	done
   message="$msg"
-  if test $# -eq 2 ;then
+  if test $# -eq 3 ;then
     message=""
     set $msg
     for var in $@ ;do
