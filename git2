@@ -176,6 +176,7 @@ if test "$1" = "cp" -o "$1" = "commitpush" ;then
 fi
 
 if test "$1" = "addcommit" -o "$1" = "ac" ;then
+  cecho -rf "[+]Sure."
 	git branch
   arglst=$(echo $@ | perl -pe 's/'$1'//g')
 	git add $arglst
