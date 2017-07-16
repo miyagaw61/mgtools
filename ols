@@ -33,10 +33,17 @@ if test $hflg -eq 1 ;then
 fi
 
 if test $dflg -eq 1 ;then
-	ls -CF1 | grep -E '\/$' | sed -E 's/^(.*)./\1/g' > ols.first
-	if test $aflg -eq 1 ;then
-		ls -aCF1 | grep -E '\/$' | sed -E 's/^(.*)./\1/g' > ols.first
-	fi
+  if test $# -ge 1 ;then
+    ls -CF1 "$1" | grep -E '\/$' | sed -E 's/^(.*)./\1/g' > ols.first
+    if test $aflg -eq 1 ;then
+      ls -aCF1 "$1" | grep -E '\/$' | sed -E 's/^(.*)./\1/g' > ols.first
+    fi
+  else
+    ls -CF1 | grep -E '\/$' | sed -E 's/^(.*)./\1/g' > ols.first
+    if test $aflg -eq 1 ;then
+      ls -aCF1 | grep -E '\/$' | sed -E 's/^(.*)./\1/g' > ols.first
+    fi
+  fi
 	cat ols.first | while read var ;do echo '\033[01;34m'${var}'\033[0;39m' >> ols1.out ;done
 	if test -f ols1.out ;then
 		ols1line=$(cat ols1.out | wc -l)
@@ -86,10 +93,17 @@ if test $dflg -eq 1 ;then
 fi
 
 if test $xflg -eq 1 ;then
-	ls -CF1 | grep -E '\*$' | sed -E 's/^(.*)./\1/g' > ols.first
-	if test $aflg -eq 1 ;then
-		ls -aCF1 | grep -E '\*$' | sed -E 's/^(.*)./\1/g' > ols.first
-	fi
+  if test $# -ge 1 ;then
+    ls -CF1 "$1" | grep -E '\*$' | sed -E 's/^(.*)./\1/g' > ols.first
+    if test $aflg -eq 1 ;then
+      ls -aCF1 "$1" | grep -E '\*$' | sed -E 's/^(.*)./\1/g' > ols.first
+    fi
+  else
+    ls -CF1 | grep -E '\*$' | sed -E 's/^(.*)./\1/g' > ols.first
+    if test $aflg -eq 1 ;then
+      ls -aCF1 | grep -E '\*$' | sed -E 's/^(.*)./\1/g' > ols.first
+    fi
+  fi
 	cat ols.first | while read var ;do echo '\033[01;32m'$var'\033[0;39m' | grep -E -e '.*' >> ols2.out ;done
 	if test -f ols2.out ;then
 		ols2line=$(cat ols2.out | wc -l)
@@ -139,10 +153,17 @@ if test $xflg -eq 1 ;then
 fi
 
 if test $oflg -eq 1 ;then
-	ls -CF1 | grep -E -v '\*$' | grep -E -v '\/$' > ols.first
-	if test $aflg -eq 1 ;then
-		ls -CF1 | grep -E -v '\*$' | grep -E -v '\/$' > ols.first
-	fi
+  if test $# -ge 1 ;then
+    ls -CF1 "$1" | grep -E -v '\*$' | grep -E -v '\/$' > ols.first
+    if test $aflg -eq 1 ;then
+      ls -CF1 "$1" | grep -E -v '\*$' | grep -E -v '\/$' > ols.first
+    fi
+  else
+    ls -CF1 | grep -E -v '\*$' | grep -E -v '\/$' > ols.first
+    if test $aflg -eq 1 ;then
+      ls -CF1 | grep -E -v '\*$' | grep -E -v '\/$' > ols.first
+    fi
+  fi
 	cat ols.first | while read var ;do echo $var | grep -E -e '.*' ;done >> ols3.out
 	cat ols3.out | sed -E '/.*ols.*/d' > ols3.out.bk
 	mv ols3.out.bk ols3.out
@@ -193,9 +214,16 @@ if test $oflg -eq 1 ;then
 	exit 0
 fi
 
-ls -CF1 | grep -E '\/$' | sed -E 's/^(.*)./\1/g' > ols.first
-if test $aflg -eq 1 ;then
-	ls -aCF1 | grep -E '\/$' | sed -E 's/^(.*)./\1/g' > ols.first
+if test $# -ge 1 ;then
+  ls -CF1 "$1" | grep -E '\/$' | sed -E 's/^(.*)./\1/g' > ols.first
+  if test $aflg -eq 1 ;then
+    ls -aCF1 "$1" | grep -E '\/$' | sed -E 's/^(.*)./\1/g' > ols.first
+  fi
+else
+  ls -CF1 | grep -E '\/$' | sed -E 's/^(.*)./\1/g' > ols.first
+  if test $aflg -eq 1 ;then
+    ls -aCF1 | grep -E '\/$' | sed -E 's/^(.*)./\1/g' > ols.first
+  fi
 fi
 if test $gflg -eq 1 ;then
 	cat ols.first | grep -E $garg > ols.first.tmp
@@ -229,9 +257,16 @@ if test -f ols1.out ;then
 	fi
 fi
 
-ls -CF1 | grep -E '\*$' | sed -E 's/^(.*)./\1/g' > ols.first
-if test $aflg -eq 1 ;then
-	ls -aCF1 | grep -E '\*$' | sed -E 's/^(.*)./\1/g' > ols.first
+if test $# -ge 1 ;then
+  ls -CF1 "$1" | grep -E '\*$' | sed -E 's/^(.*)./\1/g' > ols.first
+  if test $aflg -eq 1 ;then
+    ls -aCF1 "$1" | grep -E '\*$' | sed -E 's/^(.*)./\1/g' > ols.first
+  fi
+else
+  ls -CF1 | grep -E '\*$' | sed -E 's/^(.*)./\1/g' > ols.first
+  if test $aflg -eq 1 ;then
+    ls -aCF1 | grep -E '\*$' | sed -E 's/^(.*)./\1/g' > ols.first
+  fi
 fi
 if test $gflg -eq 1 ;then
 	cat ols.first | grep -E $garg > ols.first.tmp
@@ -265,9 +300,16 @@ if test -f ols2.out ;then
 	fi
 fi
 
-ls -CF1 | grep -E -v '\*$' | grep -E -v '\/$' > ols.first
-if test $aflg -eq 1 ;then
-	ls -aCF1 | grep -E -v '\*$' | grep -E -v '\/$' > ols.first
+if test $# -ge 1 ;then
+  ls -CF1 "$1" | grep -E -v '\*$' | grep -E -v '\/$' > ols.first
+  if test $aflg -eq 1 ;then
+    ls -aCF1 "$1" | grep -E -v '\*$' | grep -E -v '\/$' > ols.first
+  fi
+else
+  ls -CF1 | grep -E -v '\*$' | grep -E -v '\/$' > ols.first
+  if test $aflg -eq 1 ;then
+    ls -aCF1 | grep -E -v '\*$' | grep -E -v '\/$' > ols.first
+  fi
 fi
 
 if test $gflg -eq 1 ;then
