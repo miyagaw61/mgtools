@@ -189,19 +189,19 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
   set $msg
   for var in $@ ;do
     case $var in
-      bugfix)message="[bugfix]";;
-      bug)message="[bugfix]";;
-      b)message="[bugfix]";;
-      update)message="[update]";;
-      up)message="[update]";;
-      u)message="[update]";;
-      new)message="[new]";;
-      n)message="[new]";;
-      new)message="[new]";;
-      add)message="[add]";;
-      a)message="[add]";;
-      del)message="[delete]";;
-      d)message="[delete]";;
+      bugfix)message="[bugfix]$0 : ";;
+      bug)message="[bugfix]$0 : ";;
+      b)message="[bugfix]$0 : ";;
+      update)message="[update]$0 : ";;
+      up)message="[update]$0 : ";;
+      u)message="[update]$0 : ";;
+      new)message="[new]$0 : ";;
+      n)message="[new]$0 : ";;
+      new)message="[new]$0 : ";;
+      add)message="[add]$0 : ";;
+      a)message="[add]$0 : ";;
+      del)message="[delete]$0 : ";;
+      d)message="[delete]$0 : ";;
       *)message="${message} ${var}";;
     esac
   done
