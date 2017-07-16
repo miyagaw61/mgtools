@@ -179,6 +179,8 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
 	git branch
   arglst=$(echo $@ | perl -pe 's/'$1'//g')
 	git add $arglst
+  file=$2
+  echo file:$file
 	git status
 	branchsave
 	msg=""
@@ -187,26 +189,27 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
 		read msg
 	done
   message="$msg"
+  echo num:$#
   if test $# -eq 2 ;then
-    echo ""
-    echo ""
     message=""
     set $msg
+    echo all:
+    echo $@
     for var in $@ ;do
       case $var in
-        bugfix)message="[bugfix]$(basename $0) :";;
-        bug)message="[bugfix]$(basename $0) :";;
-        b)message="[bugfix]$(basename $0) :";;
-        update)message="[update]$(basename $0) :";;
-        up)message="[update]$(basename $0) :";;
-        u)message="[update]$(basename $0) :";;
-        new)message="[new]$(basename $0) :";;
-        n)message="[new]$(basename $0) :";;
-        new)message="[new]$(basename $0) :";;
-        add)message="[add]$(basename $0) :";;
-        a)message="[add]$(basename $0) :";;
-        del)message="[delete]$(basename $0) :";;
-        d)message="[delete]$(basename $0) :";;
+        bugfix)message="[bugfix]$file :";;
+        bug)message="[bugfix]$file :";;
+        b)message="[bugfix]$file :";;
+        update)message="[update]$file :";;
+        up)message="[update]$file :";;
+        u)message="[update]$file :";;
+        new)message="[new]$file :";;
+        n)message="[new]$file :";;
+        new)message="[new]$file :";;
+        add)message="[add]$file :";;
+        a)message="[add]$file :";;
+        del)message="[delete]$file :";;
+        d)message="[delete]$file :";;
         *)message="${message} ${var}";;
       esac
     done
@@ -229,6 +232,7 @@ if test "$1" = "acp" -o "$1" = "addcommitpush" ;then
     esac
   done
   git add $arglst
+  file=$2
 	git status
 	branchsave
 	msg=""
@@ -242,19 +246,19 @@ if test "$1" = "acp" -o "$1" = "addcommitpush" ;then
     set $msg
     for var in $@ ;do
       case $var in
-        bugfix)message="[bugfix]$(basename $0) :";;
-        bug)message="[bugfix]$(basename $0) :";;
-        b)message="[bugfix]$(basename $0) :";;
-        update)message="[update]$(basename $0) :";;
-        up)message="[update]$(basename $0) :";;
-        u)message="[update]$(basename $0) :";;
-        new)message="[new]$(basename $0) :";;
-        n)message="[new]$(basename $0) :";;
-        new)message="[new]$(basename $0) :";;
-        add)message="[add]$(basename $0) :";;
-        a)message="[add]$(basename $0) :";;
-        del)message="[delete]$(basename $0) :";;
-        d)message="[delete]$(basename $0) :";;
+        bugfix)message="[bugfix]$file :";;
+        bug)message="[bugfix]$file :";;
+        b)message="[bugfix]$file :";;
+        update)message="[update]$file :";;
+        up)message="[update]$file :";;
+        u)message="[update]$file :";;
+        new)message="[new]$file :";;
+        n)message="[new]$file :";;
+        new)message="[new]$file :";;
+        add)message="[add]$file :";;
+        a)message="[add]$file :";;
+        del)message="[delete]$file :";;
+        d)message="[delete]$file :";;
         *)message="${message} ${var}";;
       esac
     done
@@ -287,6 +291,7 @@ if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
     esac
   done
 	git add $arglst
+  file=$2
 	git status
 	branchsave
 	msg=""
@@ -300,19 +305,19 @@ if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
     set $msg
     for var in $@ ;do
       case $var in
-        bugfix)message="[bugfix]$(basename $0) :";;
-        bug)message="[bugfix]$(basename $0) :";;
-        b)message="[bugfix]$(basename $0) :";;
-        update)message="[update]$(basename $0) :";;
-        up)message="[update]$(basename $0) :";;
-        u)message="[update]$(basename $0) :";;
-        new)message="[new]$(basename $0) :";;
-        n)message="[new]$(basename $0) :";;
-        new)message="[new]$(basename $0) :";;
-        add)message="[add]$(basename $0) :";;
-        a)message="[add]$(basename $0) :";;
-        del)message="[delete]$(basename $0) :";;
-        d)message="[delete]$(basename $0) :";;
+        bugfix)message="[bugfix]$file :";;
+        bug)message="[bugfix]$file :";;
+        b)message="[bugfix]$file :";;
+        update)message="[update]$file :";;
+        up)message="[update]$file :";;
+        u)message="[update]$file :";;
+        new)message="[new]$file :";;
+        n)message="[new]$file :";;
+        new)message="[new]$file :";;
+        add)message="[add]$file :";;
+        a)message="[add]$file :";;
+        del)message="[delete]$file :";;
+        d)message="[delete]$file :";;
         *)message="${message} ${var}";;
       esac
     done
@@ -352,6 +357,7 @@ if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
     esac
   done
 	git add $arglst
+  file=$2
 	git status
 	branchsave
 	msg=""
@@ -365,19 +371,19 @@ if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
     set $msg
     for var in $@ ;do
       case $var in
-        bugfix)message="[bugfix]$(basename $0) :";;
-        bug)message="[bugfix]$(basename $0) :";;
-        b)message="[bugfix]$(basename $0) :";;
-        update)message="[update]$(basename $0) :";;
-        up)message="[update]$(basename $0) :";;
-        u)message="[update]$(basename $0) :";;
-        new)message="[new]$(basename $0) :";;
-        n)message="[new]$(basename $0) :";;
-        new)message="[new]$(basename $0) :";;
-        add)message="[add]$(basename $0) :";;
-        a)message="[add]$(basename $0) :";;
-        del)message="[delete]$(basename $0) :";;
-        d)message="[delete]$(basename $0) :";;
+        bugfix)message="[bugfix]$file :";;
+        bug)message="[bugfix]$file :";;
+        b)message="[bugfix]$file :";;
+        update)message="[update]$file :";;
+        up)message="[update]$file :";;
+        u)message="[update]$file :";;
+        new)message="[new]$file :";;
+        n)message="[new]$file :";;
+        new)message="[new]$file :";;
+        add)message="[add]$file :";;
+        a)message="[add]$file :";;
+        del)message="[delete]$file :";;
+        d)message="[delete]$file :";;
         *)message="${message} ${var}";;
       esac
     done
