@@ -187,10 +187,8 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
 		read msg
 	done
   message="$msg"
-  cecho -gf "[+]"$#
   if test $# -eq 2 ;then
     echo ""
-    cecho -rf "[+]OK"
     echo ""
     message=""
     set $msg
