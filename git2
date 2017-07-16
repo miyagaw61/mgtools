@@ -153,28 +153,6 @@ if test $1 = "commit" -o $1 = "c" ;then
 		read msg
 	done
   message="$msg"
-  if test $# -eq 2 ;then
-    message=""
-    set $msg
-    for var in $@ ;do
-      case $var in
-        bugfix)message="[bugfix]$(basename $0) : ";;
-        bug)message="[bugfix]$(basename $0) : ";;
-        b)message="[bugfix]$(basename $0) : ";;
-        update)message="[update]$(basename $0) : ";;
-        up)message="[update]$(basename $0) : ";;
-        u)message="[update]$(basename $0) : ";;
-        new)message="[new]$(basename $0) : ";;
-        n)message="[new]$(basename $0) : ";;
-        new)message="[new]$(basename $0) : ";;
-        add)message="[add]$(basename $0) : ";;
-        a)message="[add]$(basename $0) : ";;
-        del)message="[delete]$(basename $0) : ";;
-        d)message="[delete]$(basename $0) : ";;
-        *)message="${message} ${var}";;
-      esac
-    done
-  fi
 	git commit -m "$message"
 	echo "\n[+]COMMIT FINISH!\n"
 	allrm branch.tmp now.tmp
@@ -209,7 +187,7 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
 		read msg
 	done
   message="$msg"
-  if test $# -eq 2 ;then
+  if test $# -eq 1 ;then
     message=""
     set $msg
     for var in $@ ;do
@@ -238,9 +216,41 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
 fi
 
 if test "$1" = "acp" -o "$1" = "addcommitpush" ;then
+	git branch
   arglst=$(echo $@ | perl -pe 's/'$1'//g')
 	git add $arglst
-	git2 commit
+	git status
+	branchsave
+	msg=""
+	while test "$msg" = "" ;do
+		echo -n "\n[+]comment : "
+		read msg
+	done
+  message="$msg"
+  if test $# -eq 1 ;then
+    message=""
+    set $msg
+    for var in $@ ;do
+      case $var in
+        bugfix)message="[bugfix]$(basename $0) : ";;
+        bug)message="[bugfix]$(basename $0) : ";;
+        b)message="[bugfix]$(basename $0) : ";;
+        update)message="[update]$(basename $0) : ";;
+        up)message="[update]$(basename $0) : ";;
+        u)message="[update]$(basename $0) : ";;
+        new)message="[new]$(basename $0) : ";;
+        n)message="[new]$(basename $0) : ";;
+        new)message="[new]$(basename $0) : ";;
+        add)message="[add]$(basename $0) : ";;
+        a)message="[add]$(basename $0) : ";;
+        del)message="[delete]$(basename $0) : ";;
+        d)message="[delete]$(basename $0) : ";;
+        *)message="${message} ${var}";;
+      esac
+    done
+  fi
+	git commit -m "$message"
+	echo "\n[+]COMMIT FINISH!\n"
 	if test $# -eq 2 ;then
 		echo -n "\n[+]push master,OK? (y/n) : "
 		read ans
