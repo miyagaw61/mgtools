@@ -175,7 +175,9 @@ if [ "$color_prompt" = yes ]; then
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}@normal:${cyan}\w${white}\$ "
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}\n${usericon}"
     #PS1="${debian_chroot:+$debian_chroot)}${red}\w        \n${RESET_COLOR}${red}${usericon} ${white}"
-    PS1="${debian_chroot:+$debian_chroot)}${green}\w        \n${RESET_COLOR}${green}${usericon} ${white}"
+    #PS1="${debian_chroot:+$debian_chroot)}${green}\w        \n${RESET_COLOR}${green}${usericon} ${white}"
+    PS1="${debian_chroot:+$debian_chroot)}${red}${usericon} ${white}"
+    alias now="cecho -gfn PWD:\ ; cecho -rf $(pwd); cecho -gfn USR:\ ; cecho -rf $USER"
 fi
 
 unset color_prompt force_color_prompt
@@ -328,3 +330,5 @@ alias chro='google-chrome'
 export PATH=$PATH:$HOME/ponpontools/commands/
 
 alias del="mvtrash"
+
+alias vagrant="sudo vagrant"
