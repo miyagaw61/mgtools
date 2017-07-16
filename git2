@@ -180,7 +180,6 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
   arglst=$(echo $@ | perl -pe 's/'$1'//g')
 	git add $arglst
   file=$2
-  echo file:$file
 	git status
 	branchsave
 	msg=""
@@ -189,12 +188,9 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
 		read msg
 	done
   message="$msg"
-  echo num:$#
   if test $# -eq 2 ;then
     message=""
     set $msg
-    echo all:
-    echo $@
     for var in $@ ;do
       case $var in
         bugfix)message="[bugfix]$file :";;
