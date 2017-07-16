@@ -195,21 +195,20 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
     message=""
     set $msg
     for var in $@ ;do
-      cecho -rf "[+]Congrats!!!"
       case $var in
-        bugfix)message="[bugfix]$(basename $0) : ";;
-        bug)message="[bugfix]$(basename $0) : ";;
-        b)message="[bugfix]$(basename $0) : ";;
-        update)message="[update]$(basename $0) : ";;
-        up)message="[update]$(basename $0) : ";;
-        u)message="[update]$(basename $0) : ";;
-        new)message="[new]$(basename $0) : ";;
-        n)message="[new]$(basename $0) : ";;
-        new)message="[new]$(basename $0) : ";;
-        add)message="[add]$(basename $0) : ";;
-        a)message="[add]$(basename $0) : ";;
-        del)message="[delete]$(basename $0) : ";;
-        d)message="[delete]$(basename $0) : ";;
+        bugfix)message="[bugfix]$(basename $0) :";;
+        bug)message="[bugfix]$(basename $0) :";;
+        b)message="[bugfix]$(basename $0) :";;
+        update)message="[update]$(basename $0) :";;
+        up)message="[update]$(basename $0) :";;
+        u)message="[update]$(basename $0) :";;
+        new)message="[new]$(basename $0) :";;
+        n)message="[new]$(basename $0) :";;
+        new)message="[new]$(basename $0) :";;
+        add)message="[add]$(basename $0) :";;
+        a)message="[add]$(basename $0) :";;
+        del)message="[delete]$(basename $0) :";;
+        d)message="[delete]$(basename $0) :";;
         *)message="${message} ${var}";;
       esac
     done
@@ -237,19 +236,19 @@ if test "$1" = "acp" -o "$1" = "addcommitpush" ;then
     set $msg
     for var in $@ ;do
       case $var in
-        bugfix)message="[bugfix]$(basename $0) : ";;
-        bug)message="[bugfix]$(basename $0) : ";;
-        b)message="[bugfix]$(basename $0) : ";;
-        update)message="[update]$(basename $0) : ";;
-        up)message="[update]$(basename $0) : ";;
-        u)message="[update]$(basename $0) : ";;
-        new)message="[new]$(basename $0) : ";;
-        n)message="[new]$(basename $0) : ";;
-        new)message="[new]$(basename $0) : ";;
-        add)message="[add]$(basename $0) : ";;
-        a)message="[add]$(basename $0) : ";;
-        del)message="[delete]$(basename $0) : ";;
-        d)message="[delete]$(basename $0) : ";;
+        bugfix)message="[bugfix]$(basename $0) :";;
+        bug)message="[bugfix]$(basename $0) :";;
+        b)message="[bugfix]$(basename $0) :";;
+        update)message="[update]$(basename $0) :";;
+        up)message="[update]$(basename $0) :";;
+        u)message="[update]$(basename $0) :";;
+        new)message="[new]$(basename $0) :";;
+        n)message="[new]$(basename $0) :";;
+        new)message="[new]$(basename $0) :";;
+        add)message="[add]$(basename $0) :";;
+        a)message="[add]$(basename $0) :";;
+        del)message="[delete]$(basename $0) :";;
+        d)message="[delete]$(basename $0) :";;
         *)message="${message} ${var}";;
       esac
     done
@@ -287,19 +286,19 @@ if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
     set $msg
     for var in $@ ;do
       case $var in
-        bugfix)message="[bugfix]$(basename $0) : ";;
-        bug)message="[bugfix]$(basename $0) : ";;
-        b)message="[bugfix]$(basename $0) : ";;
-        update)message="[update]$(basename $0) : ";;
-        up)message="[update]$(basename $0) : ";;
-        u)message="[update]$(basename $0) : ";;
-        new)message="[new]$(basename $0) : ";;
-        n)message="[new]$(basename $0) : ";;
-        new)message="[new]$(basename $0) : ";;
-        add)message="[add]$(basename $0) : ";;
-        a)message="[add]$(basename $0) : ";;
-        del)message="[delete]$(basename $0) : ";;
-        d)message="[delete]$(basename $0) : ";;
+        bugfix)message="[bugfix]$(basename $0) :";;
+        bug)message="[bugfix]$(basename $0) :";;
+        b)message="[bugfix]$(basename $0) :";;
+        update)message="[update]$(basename $0) :";;
+        up)message="[update]$(basename $0) :";;
+        u)message="[update]$(basename $0) :";;
+        new)message="[new]$(basename $0) :";;
+        n)message="[new]$(basename $0) :";;
+        new)message="[new]$(basename $0) :";;
+        add)message="[add]$(basename $0) :";;
+        a)message="[add]$(basename $0) :";;
+        del)message="[delete]$(basename $0) :";;
+        d)message="[delete]$(basename $0) :";;
         *)message="${message} ${var}";;
       esac
     done
@@ -344,19 +343,19 @@ if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
     set $msg
     for var in $@ ;do
       case $var in
-        bugfix)message="[bugfix]$(basename $0) : ";;
-        bug)message="[bugfix]$(basename $0) : ";;
-        b)message="[bugfix]$(basename $0) : ";;
-        update)message="[update]$(basename $0) : ";;
-        up)message="[update]$(basename $0) : ";;
-        u)message="[update]$(basename $0) : ";;
-        new)message="[new]$(basename $0) : ";;
-        n)message="[new]$(basename $0) : ";;
-        new)message="[new]$(basename $0) : ";;
-        add)message="[add]$(basename $0) : ";;
-        a)message="[add]$(basename $0) : ";;
-        del)message="[delete]$(basename $0) : ";;
-        d)message="[delete]$(basename $0) : ";;
+        bugfix)message="[bugfix]$(basename $0) :";;
+        bug)message="[bugfix]$(basename $0) :";;
+        b)message="[bugfix]$(basename $0) :";;
+        update)message="[update]$(basename $0) :";;
+        up)message="[update]$(basename $0) :";;
+        u)message="[update]$(basename $0) :";;
+        new)message="[new]$(basename $0) :";;
+        n)message="[new]$(basename $0) :";;
+        new)message="[new]$(basename $0) :";;
+        add)message="[add]$(basename $0) :";;
+        a)message="[add]$(basename $0) :";;
+        del)message="[delete]$(basename $0) :";;
+        d)message="[delete]$(basename $0) :";;
         *)message="${message} ${var}";;
       esac
     done
