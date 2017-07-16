@@ -219,8 +219,16 @@ fi
 
 if test "$1" = "acp" -o "$1" = "addcommitpush" ;then
 	git branch
-  arglst=$(echo $@ | perl -pe 's/'$1'//g')
-	git add $arglst
+  arglst=""
+  fin="$(echo $@ | perl -pe 's@\s@/@g' | xargs basename)"
+  for var in $@ ;do
+    case $var in
+      $1);;
+      $fin);;
+      *)arglst=${arglst}" "${var}
+    esac
+  done
+  git add $arglst
 	git status
 	branchsave
 	msg=""
@@ -253,7 +261,7 @@ if test "$1" = "acp" -o "$1" = "addcommitpush" ;then
   fi
 	git commit -m "$message"
 	echo "\n[+]COMMIT FINISH!\n"
-	if test $# -eq 2 ;then
+	if test $2 = "master" -o $2 = "m" ;then
 		echo -n "\n[+]push master,OK? (y/n) : "
 		read ans
 		if test "$ans" != "n" ;then
@@ -269,7 +277,15 @@ fi
 
 if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
 	git branch
-  arglst=$(echo $@ | perl -pe 's/'$1'//g')
+  arglst=""
+  fin="$(echo $@ | perl -pe 's@\s@/@g' | xargs basename)"
+  for var in $@ ;do
+    case $var in
+      $1);;
+      $fin);;
+      *)arglst=${arglst}" "${var}
+    esac
+  done
 	git add $arglst
 	git status
 	branchsave
@@ -303,7 +319,7 @@ if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
   fi
 	git commit -m "$message"
 	echo "\n[+]COMMIT FINISH!\n"
-	if test $# -eq 2 ;then
+	if test $2 = "master" -o $2 = "m" ;then
 		echo -n "\n[+]merge master,OK? (y/n) : "
 		read ans
 		if test "$ans" != "n" ;then
@@ -326,7 +342,15 @@ fi
 
 if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
 	git branch
-  arglst=$(echo $@ | perl -pe 's/'$1'//g')
+  arglst=""
+  fin="$(echo $@ | perl -pe 's@\s@/@g' | xargs basename)"
+  for var in $@ ;do
+    case $var in
+      $1);;
+      $fin);;
+      *)arglst=${arglst}" "${var}
+    esac
+  done
 	git add $arglst
 	git status
 	branchsave
@@ -360,7 +384,7 @@ if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
   fi
 	git commit -m "$message"
 	echo "\n[+]COMMIT FINISH!\n"
-	if test $# -eq 2 ;then
+	if test $2 = "master" -o $2 = "m" ;then
 		echo -n "\n[+]merge&push master,OK? (y/n) : "
 		read ans
 		if test "$ans" != "n" ;then
@@ -513,7 +537,7 @@ if test "$1" = "mp" -o "$1" = "mergepush" ;then
 fi
 
 if test $1 = "rmindex" ;then
-    arglst=$(echo $@ | perl -pe 's/'$1'//g')
+  arglst=$(echo $@ | perl -pe 's/'$1'//g')
 	git rm --cache -r $arglst
 	allrm branch.tmp now.tmp
 	exit 0
