@@ -166,6 +166,8 @@ if [ "$color_prompt" = yes ]; then
     backGreen_white='\[\033[00;42m\]'
     backGreen_black='\[\033[30;42;1m\]'
     backGreen_red='\[\033[31;42;1m\]'
+    backBlack_green='\[\033[32;40m\]'
+    backCyan_red='\[\033[31;46;1m\]'
     backRed_green='\[\033[32;41;1m\]'
     backGreen_blue='\[\033[34;42m\]'
 	green='\[\033[32;1m\]'
@@ -177,7 +179,7 @@ if [ "$color_prompt" = yes ]; then
     #PS1="${debian_chroot:+$debian_chroot)}${red}\w        \n${RESET_COLOR}${red}${usericon} ${white}"
     #PS1="${debian_chroot:+$debian_chroot)}${green}\w        \n${RESET_COLOR}${green}${usericon} ${white}"
     PS1="${debian_chroot:+$debian_chroot)}${red}[${usericon}]\W : ${white}"
-    alias now="cecho -gfn PWD:\ ; cecho -bf $(pwd); cecho -gfn USR:\ ; cecho -bf $USER"
+    alias now="cecho -gfn '   [+] PWD : '; cecho -bf $(pwd); cecho -gfn '   [+] USR : '; cecho -bf $USER"
 fi
 
 unset color_prompt force_color_prompt
