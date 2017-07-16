@@ -312,6 +312,7 @@ alias save='cat $HOME/Documents/save'
 #alias for git2
 alias gi='git2'
 alias gis='git2 status'
+alias gif='git2 diff'
 alias gia='git2 add'
 alias gic='git2 commit'
 alias gim='git2 merge'
