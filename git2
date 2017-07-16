@@ -35,7 +35,9 @@ if test $hflg -eq 1 ;then
             [cmp [branch]] [ac [file]] [acm [file] [branch]] [acp [file] [branch]]
             [acmp [file] [branch]] [rmindex] [add_alias]
  clone : _____________________ super clone
+ status: _____________________ super status
  add [file]: _________________ super add
+ diff [file]: ________________ super diff
  branch: _____________________ show branch
  branch -a: __________________ show branch all
  branch -d [branch]: _________ delete branch
@@ -57,6 +59,7 @@ if test $hflg -eq 1 ;then
  add_alias: __________________ add aliases to $HOME/.bashrc ( You have to check below. )
 
  [+]You can use these default aliases:
+ s: status
  a: add
  b: branch
  c: commit
@@ -66,6 +69,7 @@ if test $hflg -eq 1 ;then
  [+]You can use these after use add_alias option:
  gi:     git2
  gis:    git2 status
+ gif     git2 diff
  gia:    git2 add
  gic:    git2 commit
  gim:    git2 merge
@@ -94,6 +98,7 @@ if test "$1" = "add_alias" ;then
 		echo -n "\n#alias for git2
 alias gi='git2'
 alias gis='git2 status'
+alias gif='git2 diff'
 alias gia='git2 add'
 alias gic='git2 commit'
 alias gim='git2 merge'
@@ -110,6 +115,15 @@ alias giacmp='git2 acmp'\n
 	exit 0
 fi
 
+if test $1 = "diff" ;then
+  for var in $@ ;do
+    if test $var != $1 ;then
+      git diff $var
+    fi
+  done
+  exit 0
+fi
+      
 if test $1 = "add" -o $1 = "a" ;then
 	git branch
 	for var in $@ ;do
@@ -171,7 +185,27 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
 		echo -n "\n[+]comment : "
 		read msg
 	done
-	git commit -m "$msg"
+  message=""
+  set $msg
+  for var in $@ ;do
+    case $var in
+      bugfix)message="[bugfix]";;
+      bug)message="[bugfix]";;
+      b)message="[bugfix]";;
+      update)message="[update]";;
+      up)message="[update]";;
+      u)message="[update]";;
+      new)message="[new]";;
+      n)message="[new]";;
+      new)message="[new]";;
+      add)message="[add]";;
+      a)message="[add]";;
+      del)message="[delete]";;
+      d)message="[delete]";;
+      *)message="${message} ${var}";;
+    esac
+  done
+	git commit -m "$message"
 	echo "\n[+]COMMIT FINISH!\n"
 	allrm branch.tmp now.tmp
 	exit 0
