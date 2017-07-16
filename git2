@@ -190,7 +190,7 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
   if test $# -eq 1 ;then
     message=""
     set $msg
-    for var in $@ ;do
+    for var in $msg ;do
       case $var in
         bugfix)message="[bugfix]$(basename $0) : ";;
         bug)message="[bugfix]$(basename $0) : ";;
@@ -230,7 +230,7 @@ if test "$1" = "acp" -o "$1" = "addcommitpush" ;then
   if test $# -eq 1 ;then
     message=""
     set $msg
-    for var in $@ ;do
+    for var in $msg ;do
       case $var in
         bugfix)message="[bugfix]$(basename $0) : ";;
         bug)message="[bugfix]$(basename $0) : ";;
@@ -280,7 +280,7 @@ if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
   if test $# -eq 2 ;then
     message=""
     set $msg
-    for var in $@ ;do
+    for var in $msg ;do
       case $var in
         bugfix)message="[bugfix]$(basename $0) : ";;
         bug)message="[bugfix]$(basename $0) : ";;
@@ -337,7 +337,7 @@ if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
   if test $# -eq 2 ;then
     message=""
     set $msg
-    for var in $@ ;do
+    for var in $msg ;do
       case $var in
         bugfix)message="[bugfix]$(basename $0) : ";;
         bug)message="[bugfix]$(basename $0) : ";;
