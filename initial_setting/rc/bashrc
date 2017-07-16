@@ -176,7 +176,7 @@ if [ "$color_prompt" = yes ]; then
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}\n${usericon}"
     #PS1="${debian_chroot:+$debian_chroot)}${red}\w        \n${RESET_COLOR}${red}${usericon} ${white}"
     #PS1="${debian_chroot:+$debian_chroot)}${green}\w        \n${RESET_COLOR}${green}${usericon} ${white}"
-    PS1="${debian_chroot:+$debian_chroot)}${red}[${usericon}]$(basename $(pwd)) : ${white}"
+    PS1="${debian_chroot:+$debian_chroot)}${red}[${usericon}]\W : ${white}"
     alias now="cecho -gfn PWD:\ ; cecho -bf $(pwd); cecho -gfn USR:\ ; cecho -bf $USER"
 fi
 
