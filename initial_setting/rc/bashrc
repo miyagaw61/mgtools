@@ -350,5 +350,5 @@ export PATH=$PATH:/home/miyagaw61/mgtools
 
 alias d="cd \$(lsf4d d)"
 alias da="cd \$(lsf4d ad)"
-alias c="cat \$(lsf)"
+alias c="cat \$(lsf4d)"
 alias v="vim \$(lsf)"
