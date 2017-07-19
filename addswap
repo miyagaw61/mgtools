@@ -1,0 +1,38 @@
+#!/bin/sh
+
+usage(){
+  echo "Usage: addswap [add_GB_num]"
+}
+
+if test $# -eq 0 ;then
+  usage
+  exit 0
+fi
+
+if test "$1" = "-h" ;then
+  usage
+  exit 0
+fi
+
+# size of swapfile
+swapsize=$1"G"
+
+# does the swap file already exist?
+grep -q "swapfile" /etc/fstab
+
+# if not then create it
+if [ $? -ne 0 ]; then
+  echo 'swapfile not found. Adding swapfile.'
+  fallocate -l ${swapsize} /swapfile
+  chmod 600 /swapfile
+  mkswap /swapfile
+  swapon /swapfile
+  echo '/swapfile none swap defaults 0 0' >> /etc/fstab
+else
+  echo 'swapfile found. No changes made.'
+fi
+
+# output results to terminal
+df -h
+cat /proc/swaps
+cat /proc/meminfo | grep Swap
