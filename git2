@@ -217,7 +217,7 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
 fi
 
 if test "$1" = "acp" -o "$1" = "addcommitpush" ;then
-	git branch
+  git branch
   arglst=""
   fin="$(echo $@ | perl -pe 's@\s@/@g' | xargs basename)"
   for var in $@ ;do
@@ -433,23 +433,27 @@ fi
 
 if test $1 = "push" -o $1 = "p" ;then
 	if test "$(png github.com)" = "OK" ;then
+        if test ! $# -eq 2 ;then
+            echo "Usage: git2 push [branch]"
+            exit 0
+        fi
+        branch=$2
+        if test $2 = "m" ;then
+            branch="master"
+        fi
 		git branch
-		echo "\n[+]PUSH ORIGIN MASTER\n"
+		echo "\n[+]PUSH : origin "${branch}"\n"
 		branchsave
-		if test $# -eq 1 ;then
-			echo -n "\n[+]push master,OK? (y/n) : "
-			read ans
-			if test "$ans" != "n" ;then
-				git checkout master
-			else
-				echo "\n[+]push stop.\n"
-				allrm branch.tmp now.tmp
-				exit 0
-			fi
-		else
-			git checkout $2
-		fi
-		git push
+        echo -n "\n[+]push "${branch}", OK? (y/n) : "
+        read ans
+        if test "$ans" != "n" ;then
+            git checkout $branch
+        else
+            echo "\n[+]push stop.\n"
+            allrm branch.tmp now.tmp
+            exit 0
+        fi
+		git push origin $branch
 		git checkout $(cat now.tmp)
 		git branch
 		allrm branch.tmp now.tmp
