@@ -33,33 +33,32 @@ if test $hflg -eq 1 ;then
 fi
 
 if test $nflg -eq 1 ;then
-	#dir
-	ls -1F | grep -oP '.*(?=\/$)'
-	#exe
-	ls -1F | grep -oP '.*(?=\*$)' 
-	#others
-	ls -1F > all.tmp
-	cat all.tmp | grep -P -v -e '.*(?=\/$)' | grep -P -v -e '.*(?=\*$)'
-	allrm all.tmp
-	exit 0
-fi
-
-if test $nflg -eq 1 ;then
 	if test $aflg -eq 1 ;then
-		ls -a1F > all.tmp
-		cat all.tmp | grep -P -v -e '.*(?=\/$)' | grep -P -v -e '.*(?=\*$)'
-		allrm all.tmp
+		ls -a1F > $HOME/mgtools/.tmp/all.tmp
+		cat $HOME/mgtools/.tmp/all.tmp | grep -P -v -e '.*(?=\*$)'
+		allrm $HOME/mgtools/.tmp/all.tmp
 		exit 0
-	fi
+	else
+        #dir
+        #ls -1F | grep -oP '.*(?=\/$)'
+        ls -1F | grep -oP '.*/$'
+        #exe
+        ls -1F | grep -oP '.*(?=\*$)' 
+        #others
+        ls -1F > $HOME/mgtools/.tmp/all.tmp
+        cat $HOME/mgtools/.tmp/all.tmp | grep -P -v -e '.*(?=\/$)' | grep -P -v -e '.*(?=\*$)'
+        allrm $HOME/mgtools/.tmp/all.tmp
+        exit 0
+    fi
 fi
 
 if test $dflg -eq 1 ;then
 	if test $aflg -eq 0 ;then
-		ls -1F | grep -oP '.*(?=\/$)'
+		ls -1F | grep -oP '.*/$'
 	else
-		ls -a1F | grep -oP '.*(?=\/$)'
+		ls -a1F | grep -oP '.*/$'
 	fi
-	allrm all.tmp
+	allrm $HOME/mgtools/.tmp/all.tmp
 fi
 
 if test $xflg -eq 1 ;then
@@ -68,16 +67,16 @@ if test $xflg -eq 1 ;then
 	else
 		ls -a1F | grep -oP '.*(?=\*$)' 
 	fi
-	allrm all.tmp
+	allrm $HOME/mgtools/.tmp/all.tmp
 fi
 
 if test $oflg -eq 1 ;then
 	if test $aflg -eq 0 ;then
-		ls -1F > all.tmp
+		ls -1F > $HOME/mgtools/.tmp/all.tmp
 	else
-		ls -a1F > all.tmp
+		ls -a1F > $HOME/mgtools/.tmp/all.tmp
 	fi
-	cat all.tmp | grep -P -v -e '.*(?=\/$)' | grep -P -v -e '.*(?=\*$)'
-	allrm all.tmp
+	cat $HOME/mgtools/.tmp/all.tmp | grep -P -v -e '.*(?=\/$)' | grep -P -v -e '.*(?=\*$)'
+	allrm $HOME/mgtools/.tmp/all.tmp
 fi
 
