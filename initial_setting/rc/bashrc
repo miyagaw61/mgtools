@@ -1,3 +1,5 @@
+alias d='cd'
+alias cd='cd'
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -213,7 +215,7 @@ alias e='source ~/.bashrc'
 
 #alias rc
 alias viba='vim ~/.bashrc; rsync -au ~/.bashrc $HOME/mgtools/initial_setting/rc/bashrc'
-alias soba='. ~/.bashrc'
+alias soba='. ~/.bashrc 2> /dev/null'
 alias vivi='vim $HOME/.config/nvim/init.vim; rsync -au $HOME/.config/nvim/init.vim $HOME/mgtools/initial_setting/rc/'
 
 
@@ -264,9 +266,6 @@ bind -x '"\C-h":history_percol'
 
 #alias cp
 alias cp='cp -a'
-
-#alias cd
-alias d='cd'
 
 #alias re
 alias re='reboot'
@@ -348,3 +347,5 @@ alias vim='nvim'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export LSFTMP=""
 export PATH=$PATH:/home/miyagaw61/mgtools
+
+alias d="cd \$(lsf)"
