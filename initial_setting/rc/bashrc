@@ -348,4 +348,7 @@ alias vim='nvim'
 export LSFTMP=""
 export PATH=$PATH:/home/miyagaw61/mgtools
 
-alias d="cd \$(lsf)"
+alias d="cd \$(lsf d)"
+alias da="cd \$(lsf ad)"
+alias c="cat \$(lsf)"
+alias v="vim \$(lsf)"
