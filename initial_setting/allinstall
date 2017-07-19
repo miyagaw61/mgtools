@@ -12,14 +12,15 @@ apt-get -y upgrade
 
 #add by me
 
-cp -a $HOME/miyagawtools/initial_setting/rc/bashrc $HOME/.bashrc
+cp -a $HOME/mgtools/initial_setting/rc/bashrc $HOME/.bashrc
 apt-get -y install vim
-cp -a $HOME/miyagawtools/initial_setting/rc/vimrc /etc/vim/vimrc
-cp -a $HOME/miyagawtools/initial_setting/rc/vimrc /usr/share/vim/vimrc
+"cp -a $HOME/mgtools/initial_setting/rc/vimrc /etc/vim/vimrc
+"cp -a $HOME/mgtools/initial_setting/rc/vimrc /usr/share/vim/vimrc
+cp -a $HOME/mgtools/initial_setting/rc/init.vim $HOME/.config/nvim/init.vim
 if ! -e $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ ;then
 	mkdir -p $HOME/.vim/bundle/neosnippet-snippets/neosnippets/
 fi
-cp -a $HOME/miyagawtools/initial_setting/rc/neosnippets/* $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ 
+cp -a $HOME/mgtools/initial_setting/rc/neosnippets/* $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ 
 
 #apt
 
@@ -107,7 +108,7 @@ pip install matplotlib
 pip install percol
 pip install libformatstr
 pip install hexdump
-cp -a $HOME/miyagawtools/rc.py $HOME/.percol.d/rc.py
+cp -a $HOME/mgtools/rc.py $HOME/.percol.d/rc.py
 
 #git
 
@@ -119,7 +120,7 @@ sh $HOME/radare2/sys/install.sh
 #echo "" >> $HOME/.gdbinit
 #echo "#add by me" >> $HOME/.gdbinit
 #echo "" >> $HOME/.gdbinit
-#cat $HOME/miyagawtools/gdb/init/gdmiyagawtoolsitadd >> $HOME/.gdmiyagawtoolsit
+#cat $HOME/mgtools/gdb/init/gdmgtoolsitadd >> $HOME/.gdmgtoolsit
 
 ##----ruby----#
 #cd $HOME
@@ -157,7 +158,7 @@ mv rp-lin-x64 /usr/local/bin/
 
 wget https://github.com/slimm609/checksec.sh/archive/1.6.tar.gz
 tar zxvf 1.6.tar.gz
-mv checksec.sh-1.6/checksec $HOME/miyagawtools/checksec.sh
+mv checksec.sh-1.6/checksec $HOME/mgtools/checksec.sh
 
 mkdir ext4magic
 cd ext4magic
