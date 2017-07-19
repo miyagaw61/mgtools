@@ -1,0 +1,121 @@
+#!/bin/sh
+
+hflg=0
+#if test $# -eq 0 ;then
+#	hflg=1
+#fi
+
+aflg=0
+dflg=0
+xflg=0
+oflg=0
+lstflg=0
+
+case $1 in
+a);;
+d);;
+x);;
+o);;
+*)lstflg=1;;
+esac
+
+if test $lstflg -eq 1 ;then
+    lst=$(echo $1 | perl -pe 's@(.)@\1 @g')
+    for var in $lst ;do
+        case $var in
+        d) dflg=1;;
+        x) xflg=1;;
+        o) oflg=1;;
+        a) aflg=1;;
+        h) hflg=1;;
+        esac
+    done
+else
+    for var in $@ ;do
+        case $var in
+        d) dflg=1;;
+        x) xflg=1;;
+        o) oflg=1;;
+        a) aflg=1;;
+        h) hflg=1;;
+        esac
+    done
+fi
+
+if test $hflg -eq 1 ;then
+	echo -n "Usage: al2jp [file]
+"
+    rmtmp
+	exit 0
+fi
+
+##############################
+if test $aflg -eq 1 ;then
+#-----------------------------
+if test $dflg -eq 1 ;then
+    if test "$(getfile -ad)" ;then
+        echo "$(cecho -bf $(getfile -ad))" | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
+        if test ! "$(cat $HOME/mgtools/.tmp/lsf.out)" ;then
+            echo "." > $HOME/mgtools/.tmp/lsf.out
+        fi
+        cat $HOME/mgtools/.tmp/lsf.out
+    fi
+fi
+if test $xflg -eq 1 ;then
+    if test "$(getfile -ax)" ;then
+        echo "$(cecho -gf $(getfile -ax))" | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
+        cat $HOME/mgtools/.tmp/lsf.out
+    fi
+fi
+if test $oflg -eq 1 ;then
+    if test "$(getfile -ao)" ;then
+        getfile -ao | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
+        cat $HOME/mgtools/.tmp/lsf.out
+    fi
+fi
+if test $dflg -eq 0 -a $xflg -eq 0 -a $oflg -eq 0 ;then
+    if test "$(getfile -a)" ;then
+        cecho -bf $(getfile -ad) > $HOME/mgtools/.tmp/lsf_ad.tmp
+        cecho -gf $(getfile -ax) > $HOME/mgtools/.tmp/lsf_ax.tmp
+        getfile -ao > $HOME/mgtools/.tmp/lsf_ao.tmp
+        cat $HOME/mgtools/.tmp/lsf_ad.tmp $HOME/mgtools/.tmp/lsf_ax.tmp $HOME/mgtools/.tmp/lsf_ao.tmp | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
+        cat $HOME/mgtools/.tmp/lsf.out
+    fi
+fi
+rmtmp
+exit 0
+#-----------------------------
+fi
+##############################
+
+if test $dflg -eq 1 ;then
+    if test "$(getfile -d)" ;then
+        echo "$(cecho -bf $(getfile -d))" | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
+        if test ! "$(cat $HOME/mgtools/.tmp/lsf.out)" ;then
+            echo "." > $HOME/mgtools/.tmp/lsf.out
+        fi
+        cat $HOME/mgtools/.tmp/lsf.out
+    fi
+fi
+if test $xflg -eq 1 ;then
+    if test "$(getfile -x)" ;then
+        echo "$(cecho -gf $(getfile -x))" | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
+        cat $HOME/mgtools/.tmp/lsf.out
+    fi
+fi
+if test $oflg -eq 1 ;then
+    if test "$(getfile -o)" ;then
+        getfile -o | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
+        cat $HOME/mgtools/.tmp/lsf.out
+    fi
+fi
+if test $# -eq 0 ;then
+    if test "$(getfile)" ;then
+        cecho -bf $(getfile -d) > $HOME/mgtools/.tmp/lsf_ad.tmp
+        cecho -gf $(getfile -x) > $HOME/mgtools/.tmp/lsf_ax.tmp
+        getfile -o > $HOME/mgtools/.tmp/lsf_ao.tmp
+        cat $HOME/mgtools/.tmp/lsf_ad.tmp $HOME/mgtools/.tmp/lsf_ax.tmp $HOME/mgtools/.tmp/lsf_ao.tmp | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
+        cat $HOME/mgtools/.tmp/lsf.out
+    fi
+fi
+rmtmp
