@@ -115,6 +115,9 @@ if test $# -eq 0 ;then
         cecho -gf $(getfile -x) > $HOME/mgtools/.tmp/lsf_ax.tmp
         getfile -o > $HOME/mgtools/.tmp/lsf_ao.tmp
         cat $HOME/mgtools/.tmp/lsf_ad.tmp $HOME/mgtools/.tmp/lsf_ax.tmp $HOME/mgtools/.tmp/lsf_ao.tmp | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
+        if test ! "$(cat $HOME/mgtools/.tmp/lsf.out)" ;then
+            echo "/dev/null" > $HOME/mgtools/.tmp/lsf.out
+        fi
         cat $HOME/mgtools/.tmp/lsf.out
     fi
 fi
