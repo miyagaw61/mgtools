@@ -178,7 +178,7 @@ if [ "$color_prompt" = yes ]; then
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}\n${usericon}"
     #PS1="${debian_chroot:+$debian_chroot)}${red}\w        \n${RESET_COLOR}${red}${usericon} ${white}"
     #PS1="${debian_chroot:+$debian_chroot)}${green}\w        \n${RESET_COLOR}${green}${usericon} ${white}"
-    PS1="${debian_chroot:+$debian_chroot)}${red}[${usericon}]\W : ${white}"
+    PS1="${debian_chroot:+$debian_chroot)}${green}[${red}${usericon}${green}]${red}\W : ${white}"
 fi
 
 unset color_prompt force_color_prompt
@@ -214,7 +214,7 @@ alias e='source ~/.bashrc'
 #alias rc
 alias viba='vim ~/.bashrc; rsync -au ~/.bashrc $HOME/mgtools/initial_setting/rc/bashrc'
 alias soba='. ~/.bashrc'
-alias vivi='vim /etc/vim/vimrc; rsync -au /etc/vim/vimrc $HOME/mgtools/initial_setting/rc/'
+alias vivi='vim $HOME/.config/nvim/init.vim; rsync -au $HOME/.config/nvim/init.vim $HOME/mgtools/initial_setting/rc/'
 
 
 
@@ -335,3 +335,16 @@ export PATH=$PATH:$HOME/ponpontools/commands/
 alias rem="mvtrash"
 
 alias vagrant="sudo vagrant"
+
+#pyenv
+export PYENV_ROOT=$HOME/.pyenv
+export PATH=$PYENV_ROOT/bin:$PATH
+eval "$(pyenv init -)"
+export PATH="$HOME/neovim/bin:$PATH"
+
+alias vi='nvim'
+alias vim='nvim'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export LSFTMP=""
+export PATH=$PATH:/home/miyagaw61/mgtools
