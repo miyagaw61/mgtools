@@ -156,12 +156,6 @@ let mapleader = "\<Space>"
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>b :%!xxd -r<CR>
 
-inoremap <C-u> "
-inoremap <C-o> '
-inoremap <C-p> -
-inoremap <C-c> <pre>
-inoremap <C-v> </pre>
-
 " ---- dvorak ----
 "noremap h gj
 "noremap t gk
@@ -330,4 +324,5 @@ filetype plugin indent on
 " どうせだから jellybeans カラースキーマを使ってみましょう
 set t_Co=256
 syntax on
-colorscheme jellybeans
+"colorscheme jellybeans
+
