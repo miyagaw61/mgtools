@@ -14,8 +14,8 @@ apt-get -y upgrade
 
 cp -a $HOME/mgtools/initial_setting/rc/bashrc $HOME/.bashrc
 apt-get -y install vim
-"cp -a $HOME/mgtools/initial_setting/rc/vimrc /etc/vim/vimrc
-"cp -a $HOME/mgtools/initial_setting/rc/vimrc /usr/share/vim/vimrc
+cp -a $HOME/mgtools/initial_setting/rc/vimrc /etc/vim/vimrc
+cp -a $HOME/mgtools/initial_setting/rc/vimrc /usr/share/vim/vimrc
 cp -a $HOME/mgtools/initial_setting/rc/init.vim $HOME/.config/nvim/init.vim
 if ! -e $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ ;then
 	mkdir -p $HOME/.vim/bundle/neosnippet-snippets/neosnippets/
@@ -46,7 +46,7 @@ apt-get -y install autoconf
 apt-get -y install libtool
 apt-get -y install make
 apt-get -y install openssh-server
-apt-get -y install terminator 
+#apt-get -y install terminator 
 apt-get -y install ext4magic 
 apt-get -y install libfreetype6-dev
 apt-get -y install libpng-dev
@@ -57,11 +57,11 @@ apt-get -y install chromium-browser
 apt-get -y install docker.io
 apt-get -y install ucommon-utils
 apt-get -y install xclip
+apt-get -y install libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
 
 ###----for metasploit----#
 #apt-get -y install subversion
 #apt-get -y install libreadline-dev
-#apt-get -y install libssl-dev
 #apt-get -y install libpq5
 #apt-get -y install libpq-dev
 #apt-get -y install libreadline5
@@ -93,11 +93,11 @@ apt-get -y install xclip
 
 #curl
 
-#curl -sSL https://get.docker.com/ | sh
-#
-#curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
-#sh ./install.sh
-#rm -rf install.sh
+curl -sSL https://get.docker.com/ | sh
+
+curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
+sh ./install.sh
+rm -rf install.sh
 
 #pip
 
@@ -111,9 +111,12 @@ pip install hexdump
 cp -a $HOME/mgtools/rc.py $HOME/.percol.d/rc.py
 
 #git
+git clone https://github.com/junegunn/fzf.git $HOME/.fzf
+$HOME/.fzf/install
 
 git clone https://github.com/radare/radare2.git $HOME/radare2
 sh $HOME/radare2/sys/install.sh
+
 #git clone https://github.com/longld/peda.git $HOME/peda
 #cp -a $HOME/rc/gdbinit $HOME/.gdbinit
 #echo "source $HOME/peda/peda.py" >> $HOME/.gdbinit
@@ -156,9 +159,9 @@ curl -L https://github.com/downloads/0vercl0k/rp/rp-lin-x64 > rp-lin-x64
 chmod +x rp-lin-x64
 mv rp-lin-x64 /usr/local/bin/
 
-wget https://github.com/slimm609/checksec.sh/archive/1.6.tar.gz
-tar zxvf 1.6.tar.gz
-mv checksec.sh-1.6/checksec $HOME/mgtools/checksec.sh
+#wget https://github.com/slimm609/checksec.sh/archive/1.6.tar.gz
+#tar zxvf 1.6.tar.gz
+#mv checksec.sh-1.6/checksec $HOME/mgtools/checksec.sh
 
 mkdir ext4magic
 cd ext4magic
@@ -170,10 +173,10 @@ cd ext4magic-0.3.2
 #other
 
 #64bit_only
-dpkg --add-architecture i386
-apt-get -y update
-apt-get -y install libc6:i386 libncurses5:i386 libstdc++6:i386
-apt-get -y install gcc-multilib g++-multilib
+#dpkg --add-architecture i386
+#apt-get -y update
+#apt-get -y install libc6:i386 libncurses5:i386 libstdc++6:i386
+#apt-get -y install gcc-multilib g++-multilib
 
 #beep.sh
 
