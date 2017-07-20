@@ -108,6 +108,12 @@ pip install matplotlib
 pip install percol
 pip install libformatstr
 pip install hexdump
+pip install requests
+pip install urllib
+pip install nose
+pip install pdb
+pip install beautifulsoup4
+pip install html5lib
 cp -a $HOME/mgtools/rc.py $HOME/.percol.d/rc.py
 
 #git
