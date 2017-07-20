@@ -95,6 +95,8 @@ if test $dflg -eq 1 ;then
             echo "." > $HOME/mgtools/.tmp/lsf.out
         fi
         cat $HOME/mgtools/.tmp/lsf.out
+    else
+        echo "."
     fi
 fi
 if test $xflg -eq 1 ;then
