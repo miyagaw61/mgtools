@@ -59,6 +59,12 @@ apt-get -y install ucommon-utils
 apt-get -y install xclip
 apt-get -y install libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
 
+###---kernel develop---###
+apt-get -y install libncurses5-dev
+apt-get -y install fakeroot
+apt-get -y install linux-headers-generic
+apt-get -y install linux-headers-$(uname -r)
+
 ###----for metasploit----#
 #apt-get -y install subversion
 #apt-get -y install libreadline-dev
