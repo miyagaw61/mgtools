@@ -54,11 +54,11 @@ if test $aflg -eq 1 ;then
 #-----------------------------
 if test $dflg -eq 1 ;then
     if test "$(getfile -ad)" ;then
-        echo "$(cecho -bf $(getfile -ad))" | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
+        getfile -ad | perl -pe "s@ @HOGEFUGA@g" | xargs cecho -bf | perl -pe "s@HOGEFUGA@ @g" | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
         if test ! "$(cat $HOME/mgtools/.tmp/lsf.out)" ;then
             echo "." > $HOME/mgtools/.tmp/lsf.out
         fi
-        cat $HOME/mgtools/.tmp/lsf.out
+        cat $HOME/mgtools/.tmp/lsf.out | perl -pe "s@ @*@g"
     fi
 fi
 if test $xflg -eq 1 ;then
@@ -90,14 +90,14 @@ fi
 
 if test $dflg -eq 1 ;then
     if test "$(getfile -d)" ;then
-        echo "$(cecho -bf $(getfile -d))" | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
+        getfile -d | perl -pe "s@ @HOGEFUGA@g" | xargs cecho -bf | perl -pe "s@HOGEFUGA@ @g" | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
         if test ! "$(cat $HOME/mgtools/.tmp/lsf.out)" ;then
             echo "$(pwd)" > $HOME/mgtools/.tmp/lsf.out
         else
             echo "$(pwd)/"$(cat $HOME/mgtools/.tmp/lsf.out) > $HOME/mgtools/.tmp/lsf.out.tmp
             mv $HOME/mgtools/.tmp/lsf.out.tmp $HOME/mgtools/.tmp/lsf.out
         fi
-        cat $HOME/mgtools/.tmp/lsf.out
+        cat $HOME/mgtools/.tmp/lsf.out | perl -pe "s@ @*@g"
     else
         echo $(pwd)
     fi
