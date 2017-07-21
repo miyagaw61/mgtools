@@ -18,4 +18,4 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-allrm $HOME/mgtools/.tmp/*
+allrm $HOME/mgtools/.tmp/*\.tmp
