@@ -19,10 +19,10 @@ if test $hflg -eq 1 ;then
 fi
 
 if test $# -eq 1 ;then
-	echo $1 | tr ' ' '\n'
+	echo "$1" | tr ' ' '\n'
 	exit 0
 fi
 
-for arg in $@ ;do
-	echo $arg | tr ' ' '\n'
+for arg in "$@" ;do
+	echo "$arg" | tr ' ' '\n'
 done
