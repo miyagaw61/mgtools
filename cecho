@@ -13,28 +13,28 @@ kflg=0
 nflg=0
 
 if test $# -eq 0 ;then
-	hflg=1
+    hflg=1
 fi
 
 while getopts hfrgbswmykn opt ;do
-	case $opt in
-		h)hflg=1;;
-		f)fflg=1;;
-		r)rflg=1;;
-		g)gflg=1;;
-		b)bflg=1;;
-		s)sflg=1;;
-		w)wflg=1;;
-		m)mflg=1;;
-		y)yflg=1;;
-		k)kflg=1;;
-		n)nflg=1;;
-	esac
+    case $opt in
+        h)hflg=1;;
+        f)fflg=1;;
+        r)rflg=1;;
+        g)gflg=1;;
+        b)bflg=1;;
+        s)sflg=1;;
+        w)wflg=1;;
+        m)mflg=1;;
+        y)yflg=1;;
+        k)kflg=1;;
+        n)nflg=1;;
+    esac
 done
 shift $(($OPTIND - 1))
 
 if test $hflg -eq 1 ;then
-	echo "Usage: cecho [option] [arg]
+    echo "Usage: cecho [option] [arg]
 [+]UsageOptions:
    h: help
    f: file version
@@ -47,55 +47,55 @@ if test $hflg -eq 1 ;then
    m: mazenta
    y: yellow
    k: kuro"
-	exit 0
+    exit 0
 fi
 
 before='\033[0;'
 after='\033[00;39m\n'
 
 if test $nflg -eq 1 ;then
-	after='\033[00;39m'
+    after='\033[00;39m'
 fi
 
 for arg in "$@" ;do
-	if test $rflg -eq 1 ;then
-		hoge=${before}"31m"${arg}${after}
-	fi
+    if test $rflg -eq 1 ;then
+        hoge=${before}"31m"${arg}${after}
+    fi
 
-	if test $gflg -eq 1 ;then
-		hoge=$before'32m'$arg$after
-	fi
+    if test $gflg -eq 1 ;then
+        hoge=$before'32m'$arg$after
+    fi
 
-	if test $bflg -eq 1 ;then
-		hoge=$before'34m'$arg$after
-	fi
+    if test $bflg -eq 1 ;then
+        hoge=$before'34m'$arg$after
+    fi
 
-	if test $sflg -eq 1 ;then
-		hoge=$before'36m'$arg$after
-	fi
+    if test $sflg -eq 1 ;then
+        hoge=$before'36m'$arg$after
+    fi
 
-	if test $wflg -eq 1 ;then
-		hoge=$before'37m'$arg$after
-	fi
+    if test $wflg -eq 1 ;then
+        hoge=$before'37m'$arg$after
+    fi
 
-	if test $mflg -eq 1 ;then
-		hoge=$before'35m'$arg$after
-	fi
+    if test $mflg -eq 1 ;then
+        hoge=$before'35m'$arg$after
+    fi
 
-	if test $yflg -eq 1 ;then
-		hoge=$before'33m'$arg$after
-	fi
+    if test $yflg -eq 1 ;then
+        hoge=$before'33m'$arg$after
+    fi
 
-	if test $kflg -eq 1 ;then
-		hoge=$before'30m'$arg$after
-	fi
+    if test $kflg -eq 1 ;then
+        hoge=$before'30m'$arg$after
+    fi
 
-	if test $fflg -eq 1 ;then
-		hoge=$(echo "$hoge" | perl -pe 's/\033\[0;/\033\[01;/g')
-		if test $nflg -eq 0 ;then
-			hoge=$hoge"\n"
-		fi
-	fi
-	echo -n "$hoge"
+    if test $fflg -eq 1 ;then
+        hoge=$(echo "$hoge" | perl -pe 's@\033\[0;@\033\[01;@g')
+        if test $nflg -eq 0 ;then
+            hoge=$hoge"\n"
+        fi
+    fi
+    echo -n "$hoge"
 done
 
