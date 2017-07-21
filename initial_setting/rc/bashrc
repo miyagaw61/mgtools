@@ -352,3 +352,15 @@ alias d="cd \$(lsf4d d)"
 alias da="cd \$(lsf4d ad)"
 alias c="cat \$(lsf4d)"
 alias v="vim \$(lsf)"
+alias fd="echo 'cd '\$(cat $HOME/mgtools/.tmp/lsf.out) > $HOME/mgtools/.tmp/lsf.vd; source $HOME/mgtools/.tmp/lsf.vd"
+
+function jmp() {
+    if test $1 = "add" ;then
+        echo $2 >> $HOME/mgtools/conf/jmp.conf
+    else
+        cat $HOME/mgtools/conf/jmp.conf | grep -oP "^$1:.*$" | perl -pe "s@$1:(.*)@\1@g" > $HOME/mgtools/.tmp/jmp.tmp
+        echo "cd "$(cat $HOME/mgtools/.tmp/jmp.tmp) > $HOME/mgtools/.tmp/jmp.tmp.tmp
+        mv $HOME/mgtools/.tmp/jmp.tmp.tmp $HOME/mgtools/.tmp/jmp.tmp
+        source $HOME/mgtools/.tmp/jmp.tmp
+    fi
+}
