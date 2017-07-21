@@ -214,11 +214,9 @@ alias no='. no'
 alias e='source ~/.bashrc'
 
 #alias rc
-alias viba='vim ~/.bashrc; rsync -au ~/.bashrc $HOME/mgtools/initial_setting/rc/bashrc'
+alias viba='vim ~/.bashrc; rsync -au ~/.bashrc $HOME/mgtools/conf/rc/bashrc'
 alias soba='. ~/.bashrc 2> /dev/null'
-alias vivi='vim $HOME/.config/nvim/init.vim; rsync -au $HOME/.config/nvim/init.vim $HOME/mgtools/initial_setting/rc/'
-
-
+alias vivi='vim $HOME/.config/nvim/init.vim; rsync -au $HOME/.config/nvim/init.vim $HOME/mgtools/conf/rc/'
 
 #gdb alias
 alias altest='source al'
@@ -348,7 +346,7 @@ alias vim='nvim'
 export LSFTMP=""
 export PATH=$PATH:/home/miyagaw61/mgtools
 
-alias d="cd \$(lsf2d)"
+alias d="cd \$(lsf2 d)"
 alias da="cd \$(lsf2 ad)"
 alias c="cat \$(lsf2)"
 alias v="vim \$(lsf)"
@@ -364,3 +362,5 @@ function jmp() {
         source $HOME/mgtools/.tmp/jmp.tmp
     fi
 }
+
+
