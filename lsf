@@ -54,7 +54,7 @@ if test $aflg -eq 1 ;then
 #-----------------------------
 if test $dflg -eq 1 ;then
     if test "$(getfile -ad)" ;then
-        echo "$(cecho -bf $(getfile -ad))" | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
+        getfile -ad | perl -pe "s@ @HOGEFUGA@g" | xargs cecho -bf | perl -pe "s@HOGEFUGA@ @g" | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
         cat $HOME/mgtools/.tmp/lsf.out
     fi
 fi
@@ -87,8 +87,8 @@ fi
 
 if test $dflg -eq 1 ;then
     if test "$(getfile -d)" ;then
-        echo "$(cecho -bf $(getfile -d))" | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
-        cat $HOME/mgtools/.tmp/lsf.out
+        getfile -d | perl -pe "s@ @HOGEFUGA@g" | xargs cecho -bf | perl -pe "s@HOGEFUGA@ @g" | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
+        cat $HOME/mgtools/.tmp/lsf.out 
     fi
 fi
 if test $xflg -eq 1 ;then
