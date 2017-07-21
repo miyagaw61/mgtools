@@ -92,25 +92,31 @@ if test $dflg -eq 1 ;then
     if test "$(getfile -d)" ;then
         echo "$(cecho -bf $(getfile -d))" | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
         if test ! "$(cat $HOME/mgtools/.tmp/lsf.out)" ;then
-            echo "." > $HOME/mgtools/.tmp/lsf.out
+            echo "$(pwd)" > $HOME/mgtools/.tmp/lsf.out
+        else
+            echo "$(pwd)/"$(cat $HOME/mgtools/.tmp/lsf.out) > $HOME/mgtools/.tmp/lsf.out.tmp
+            mv $HOME/mgtools/.tmp/lsf.out.tmp $HOME/mgtools/.tmp/lsf.out
         fi
         cat $HOME/mgtools/.tmp/lsf.out
     else
-        echo "."
+        echo $(pwd)
     fi
 fi
+
 if test $xflg -eq 1 ;then
     if test "$(getfile -x)" ;then
-        echo "$(cecho -gf $(getfile -x))" | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
+        echo "$(pwd)"$(cecho -gf $(getfile -x)) | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
         cat $HOME/mgtools/.tmp/lsf.out
     fi
 fi
+
 if test $oflg -eq 1 ;then
     if test "$(getfile -o)" ;then
-        getfile -o | fzf --reverse --ansi --multi > $HOME/mgtools/.tmp/lsf.out
+        echo "$(pwd)""$(getfile -o | fzf --reverse --ansi --multi)" > $HOME/mgtools/.tmp/lsf.out
         cat $HOME/mgtools/.tmp/lsf.out
     fi
 fi
+
 if test $# -eq 0 ;then
     if test "$(getfile)" ;then
         cecho -bf $(getfile -d) > $HOME/mgtools/.tmp/lsf_ad.tmp
@@ -120,7 +126,10 @@ if test $# -eq 0 ;then
         if test ! "$(cat $HOME/mgtools/.tmp/lsf.out)" ;then
             echo "/dev/null" > $HOME/mgtools/.tmp/lsf.out
         fi
+        echo "$(pwd)/"$(cat $HOME/mgtools/.tmp/lsf.out) > $HOME/mgtools/.tmp/lsf.out.tmp
+        mv $HOME/mgtools/.tmp/lsf.out.tmp $HOME/mgtools/.tmp/lsf.out
         cat $HOME/mgtools/.tmp/lsf.out
     fi
 fi
+
 rmtmp
