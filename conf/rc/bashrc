@@ -353,7 +353,9 @@ alias v="vim \$(lsf)"
 alias fd="echo 'cd '\$(cat $HOME/mgtools/.tmp/lsf.out) > $HOME/mgtools/.tmp/lsf.vd; source $HOME/mgtools/.tmp/lsf.vd"
 
 function jmp() {
-    if test $1 = "add" ;then
+    if test $# -eq 0 ;then
+        cat $HOME/mgtools/conf/jmp.conf
+    elif test $1 = "add" ;then
         echo $2 >> $HOME/mgtools/conf/jmp.conf
     else
         cat $HOME/mgtools/conf/jmp.conf | grep -oP "^$1:.*$" | perl -pe "s@$1:(.*)@\1@g" > $HOME/mgtools/.tmp/jmp.tmp
