@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if test $# -eq 0 -o "$1" = "-h" ;then
+	echo "Usage: whitecat file"
+	exit 0
+fi
+
+if test $# -eq 1 ;then
+    cat -v $1 | perl -pe "s@\^.*?m@@g"
+	exit 0
+fi
+
+for arg in $@ ;do
+    cat $arg | perl -pe "s@\^.*?m@@g"
+done
+
