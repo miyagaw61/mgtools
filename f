@@ -13,4 +13,8 @@ if test $# -eq 0 ;then
     exit 0
 fi
 
+if test $1 = "vim" ;then
+    nvim $(cat $HOME/mgtools/.tmp/lsf.out)
+    exit 0
+fi
 $1 $(cat $HOME/mgtools/.tmp/lsf.out)
