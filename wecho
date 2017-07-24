@@ -29,12 +29,15 @@ fi
 
 if test "$n" ;then
 	for arg in "$@" ;do
-		echo -n "$arg" | perl -pe 's@\033\[\d+;\d+m@@g' | perl -pe 's@\033\[39m@@g' | perl -pe 's@\033\[\d+[A-Z]@@g';echo ''
+		echo -n "$arg" > $HOME/mgtools/.tmp/wecho.tmp
+        cat -v $HOME/mgtools/.tmp/wecho.tmp | perl -pe "s@\^.*?m@@g" ;echo ''
 	done
 elif test -z "$n" ;then
 	for arg in "$@" ;do
-		echo -n "$arg" | perl -pe 's@\033\[\d+;\d+m@@g' | perl -pe 's@\033\[39m@@g' | perl -pe 's@\033\[\d+[A-Z]@@g'
+		echo -n "$arg" > $HOME/mgtools/.tmp/wecho.tmp
+        cat -v $HOEM/mgtools/.tmp/wecho.tmp | perl -pe "s@\^.*?m@@g"
 	done
 fi
+rmtmp
 
 
