@@ -325,7 +325,7 @@ Usage: git2 [clone] [add [file]] [branch]
  acmp [file] [branch]: _______ git2 add [file] -> git2 commit -> git2 merge [branch] -> git2 pus
 h
  rmindex [file]: _____________ git2 rm --cache [file]
- add_alias: ________________________ add aliases to $HOME/.bashrc ( You have to check below.
+ add_alias: __________________ add aliases to $HOME/.bashrc ( You have to check below.
  )
 
  [+]You can use these default aliases:
