@@ -287,7 +287,7 @@ statusid : tweet's status id
 * git2  
 gitのラッパーコマンド。   
 一番最初に「 git2 add_alias 」をしておくと幸せになれる。  
-(giから始まるaliasが使用可能になる)
+(giから始まるaliasが使用可能になる)  
 "ac"を含むコマンド（ac, acm, acp, etc...)を使用時でかつコミットするファイルが一つのみの時、  
 "update hogehoge"というコミットメッセージを入力すると"[update]file_name : hogehoge"となり、  
 "bugfix hogehoge"で"[bugfix]file_name : hogehoge"、  
