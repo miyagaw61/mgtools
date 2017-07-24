@@ -294,27 +294,42 @@ gitのラッパーコマンド。
 "new hogehoge"で"[new]file_name : hogehoge"  
 というコミットメッセージを自動で生成してくれる。  
 (update, bugfix, newはそれぞれu, b, nと省略可能)  
+また、branchを引数に与える場合、masterはmと省略可能。
 ```bash
 Usage: git2 [clone] [add [file]] [branch]
-	    [branch [existed_branch]] [branch [not_existed_branch]]
-	    [commit] [merge [branch]] [push] [cm [branch]] [cmp [branch]] [ac [file]]
-	    [acm [file] [branch]] [acmp [file] [branch]] [add_alias]
+            [branch [existed_branch]] [branch -a] [branch rmremote] [branch [not_existed_branch]
+]
+            [commit] [merge [branch]] [push [branch]] [cm [branch]] [cp [branch]]
+            [cmp [branch]] [ac [file]] [acm [file] [branch]] [acp [file] [branch]]
+            [acmp [file] [branch]] [rmindex] [add_alias]
  clone : _____________________ super clone
+ status: _____________________ super status
  add [file]: _________________ super add
+ diff [file]: ________________ super diff
  branch: _____________________ show branch
+ branch -a: __________________ show branch all
+ branch -d [branch]: _________ delete branch
  branch [existed_branch]: ____ checkout
  branch [not_existed_branch]:_ create branch -> checkout
+ branch rmremote: ____________ git remote prune origin
  commit: _____________________ super commit
  merge [branch]: _____________ checkout -> merge preview_branch -> checkout preview_branch
- push: _______________________ checkout master -> push -> checkout preview_branch
+ push [branch]: ______________ checkout [branch] -> push -> checkout preview_branch
  cm [branch]: ________________ git2 commit -> git2 merge [branch]
+ cp [branch]: ________________ git2 commit -> git2 push [branch]
  cmp [branch]: _______________ git2 commit -> git2 merge [branch] -> git2 push
+ mp [branch]: ________________ git2 git2 merge [branch] -> git2 push
  ac [file]: __________________ git2 add [file] -> git2 commit
  acm [file] [branch]: ________ git2 add [file] -> git2 commit -> git2 merge [branch]
- acmp [file] [branch]: _______ git2 add [file] -> git2 commit -> git2 merge [branch] -> git2 push
- add_alias: __________________ add aliases to $HOME/.bashrc ( You have to check below. )
+ acp [file] [branch]: ________ git2 add -> git2 commit -> git2 push
+ acmp [file] [branch]: _______ git2 add [file] -> git2 commit -> git2 merge [branch] -> git2 pus
+h
+ rmindex [file]: _____________ git2 rm --cache [file]
+ add_alias: __________________ add aliases to /home/miyagaw61/.bashrc ( You have to check below.
+ )
 
  [+]You can use these default aliases:
+ s: status
  a: add
  b: branch
  c: commit
@@ -324,15 +339,19 @@ Usage: git2 [clone] [add [file]] [branch]
  [+]You can use these after use add_alias option:
  gi:     git2
  gis:    git2 status
+ gif     git2 diff
  gia:    git2 add
  gic:    git2 commit
  gim:    git2 merge
  gip:    git2 push
  gib:    git2 branch
  gicm:   git2 cm
+ gicp:   git2 cp
  gicmp:  git2 cmp
+ gimp:   git2 mp
  giac:   git2 ac
  giacm:  git2 acm
+ giacp:  git2 acp
  giacmp: git2 acmp
 ```
 
