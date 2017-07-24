@@ -1,0 +1,5 @@
+if test ! "$(cat $HOME/.bashrc | grep -P "alias\scalc")" ;then
+    echo "alias calc='python calc.py'" >> $HOME/.bashrc
+    echo '[done]echo "alias calc='python calc.py'" >> $HOME/.bashrc'
+    echo "[should]source $HOME/.bashrc"
+fi
