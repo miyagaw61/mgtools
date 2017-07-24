@@ -217,6 +217,10 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
 fi
 
 if test "$1" = "acp" -o "$1" = "addcommitpush" ;then
+    if test $# -le 2 ;then
+        echo "Usage: git2 acp [file] [branch]"
+        exit 0
+    fi
   git branch
   arglst=""
   fin="$(echo $@ | perl -pe 's@\s@/@g' | xargs basename)"
