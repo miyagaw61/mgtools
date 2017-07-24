@@ -85,6 +85,7 @@ if test $hflg -eq 1 ;then
  giacmp: git2 acmp
  "
 	allrm branch.tmp now.tmp
+    rmtmp
 	exit 0
 fi
 
@@ -112,6 +113,7 @@ alias giacm='git2 acm'
 alias giacmp='git2 acmp'\n
 " >> $HOME/.bashrc
 	fi
+    rmtmp
 	exit 0
 fi
 
@@ -121,6 +123,7 @@ if test $1 = "diff" ;then
       git diff $var
     fi
   done
+  rmtmp
   exit 0
 fi
       
@@ -133,6 +136,7 @@ if test $1 = "add" -o $1 = "a" ;then
 	done
 	git status
 	allrm branch.tmp now.tmp
+    rmtmp
 	exit 0
 fi
 
@@ -140,6 +144,7 @@ if test $1 = "status" -o $1 = "s" ;then
 	git branch
 	git status
 	allrm branch.tmp now.tmp
+    rmtmp
 	exit 0
 fi
 
@@ -147,15 +152,12 @@ if test $1 = "commit" -o $1 = "c" ;then
 	branchsave
 	git branch
 	git status
-	msg=""
-	while test "$msg" = "" ;do
-		echo -n "\n[+]comment : "
-		read msg
-	done
-  message="$msg"
+    vim $HOME/mgtools/.tmp/git2.tmp
+    message="$(cat $HOME/mgtools/.tmp/git2.tmp)"
 	git commit -m "$message"
 	echo "\n[+]COMMIT FINISH!\n"
 	allrm branch.tmp now.tmp
+    rmtmp
 	exit 0
 fi
 
@@ -172,6 +174,7 @@ if test "$1" = "cp" -o "$1" = "commitpush" ;then
 	else
 		git2 push $2
 	fi
+    rmtmp
 	exit 0
 fi
 
@@ -182,101 +185,100 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
   file=$2
 	git status
 	branchsave
-	msg=""
-	while test "$msg" = "" ;do
-		echo -n "\n[+]comment : "
-		read msg
-	done
-  message="$msg"
-  if test $# -eq 2 ;then
-    message=""
-    set $msg
-    for var in $@ ;do
-      case $var in
-        bugfix)message="[bugfix]$file :";;
-        bug)message="[bugfix]$file :";;
-        b)message="[bugfix]$file :";;
-        update)message="[update]$file :";;
-        up)message="[update]$file :";;
-        u)message="[update]$file :";;
-        new)message="[new]$file :";;
-        n)message="[new]$file :";;
-        new)message="[new]$file :";;
-        add)message="[add]$file :";;
-        a)message="[add]$file :";;
-        del)message="[delete]$file :";;
-        d)message="[delete]$file :";;
-        *)message="${message} ${var}";;
-      esac
-    done
-  fi
+    vim $HOME/mgtools/.tmp/git2.tmp
+    msg="$(cat $HOME/mgtools/.tmp/git2.tmp)"
+    message="$msg"
+    if test $# -eq 2 ;then
+        message=""
+        set $msg
+        for var in $@ ;do
+            case $var in
+            bugfix)message="[bugfix]$file :";;
+            bug)message="[bugfix]$file :";;
+            b)message="[bugfix]$file :";;
+            update)message="[update]$file :";;
+            up)message="[update]$file :";;
+            u)message="[update]$file :";;
+            new)message="[new]$file :";;
+            n)message="[new]$file :";;
+            new)message="[new]$file :";;
+            add)message="[add]$file :";;
+            a)message="[add]$file :";;
+            del)message="[delete]$file :";;
+            d)message="[delete]$file :";;
+            *)message="${message} ${var}";;
+            esac
+        done
+    fi
+    echo $message
 	git commit -m "$message"
 	echo "\n[+]COMMIT FINISH!\n"
 	allrm branch.tmp now.tmp
+    rmtmp
 	exit 0
 fi
 
 if test "$1" = "acp" -o "$1" = "addcommitpush" ;then
     if test $# -le 2 ;then
         echo "Usage: git2 acp [file] [branch]"
+        rmtmp
         exit 0
     fi
-  git branch
-  arglst=""
-  fin="$(echo $@ | perl -pe 's@\s@/@g' | xargs basename)"
-  for var in $@ ;do
-    case $var in
-      $1);;
-      $fin);;
-      *)arglst=${arglst}" "${var}
-    esac
-  done
-  git add $arglst
-  file=$2
-	git status
-	branchsave
-	msg=""
-	while test "$msg" = "" ;do
-		echo -n "\n[+]comment : "
-		read msg
-	done
-  message="$msg"
-  if test $# -eq 3 ;then
-    message=""
-    set $msg
+    git branch
+    arglst=""
+    fin="$(echo $@ | perl -pe 's@\s@/@g' | xargs basename)"
     for var in $@ ;do
-      case $var in
-        bugfix)message="[bugfix]$file :";;
-        bug)message="[bugfix]$file :";;
-        b)message="[bugfix]$file :";;
-        update)message="[update]$file :";;
-        up)message="[update]$file :";;
-        u)message="[update]$file :";;
-        new)message="[new]$file :";;
-        n)message="[new]$file :";;
-        new)message="[new]$file :";;
-        add)message="[add]$file :";;
-        a)message="[add]$file :";;
-        del)message="[delete]$file :";;
-        d)message="[delete]$file :";;
-        *)message="${message} ${var}";;
-      esac
+        case $var in
+            $1);;
+            $fin);;
+            *)arglst=${arglst}" "${var}
+        esac
     done
-  fi
-	git commit -m "$message"
-	echo "\n[+]COMMIT FINISH!\n"
-	if test $2 = "master" -o $2 = "m" ;then
-		echo -n "\n[+]push master,OK? (y/n) : "
-		read ans
-		if test "$ans" != "n" ;then
-			git2 push master
-		else
-			echo "\n[+]push stop.\n"
-		fi
-	else 
-		git2 push $3
-	fi
-	exit 0
+    git add $arglst
+    file=$2
+    git status
+    branchsave
+    msg=""
+    vim $HOME/mgtools/.tmp/git2.tmp
+    msg="$(cat $HOME/mgtools/.tmp/git2.tmp)"
+    message="$msg"
+    if test $# -eq 3 ;then
+        message=""
+        set $msg
+        for var in $@ ;do
+            case $var in
+                bugfix)message="[bugfix]$file :";;
+                bug)message="[bugfix]$file :";;
+                b)message="[bugfix]$file :";;
+                update)message="[update]$file :";;
+                up)message="[update]$file :";;
+                u)message="[update]$file :";;
+                new)message="[new]$file :";;
+                n)message="[new]$file :";;
+                new)message="[new]$file :";;
+                add)message="[add]$file :";;
+                a)message="[add]$file :";;
+                del)message="[delete]$file :";;
+                d)message="[delete]$file :";;
+                *)message="${message} ${var}";;
+            esac
+        done
+    fi
+    git commit -m "$message"
+    echo "\n[+]COMMIT FINISH!\n"
+    if test $2 = "master" -o $2 = "m" ;then
+        echo -n "\n[+]push master,OK? (y/n) : "
+        read ans
+        if test "$ans" != "n" ;then
+            git2 push master
+        else
+            echo "\n[+]push stop.\n"
+        fi
+    else 
+        git2 push $3
+    fi
+    rmtmp
+    exit 0
 fi
 
 if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
@@ -295,10 +297,8 @@ if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
 	git status
 	branchsave
 	msg=""
-	while test "$msg" = "" ;do
-		echo -n "\n[+]comment : "
-		read msg
-	done
+    vim $HOME/mgtools/.tmp/git2.tmp
+    msg="$(cat $HOME/mgtools/.tmp/git2.tmp)"
   message="$msg"
   if test $# -eq 3 ;then
     message=""
@@ -333,6 +333,7 @@ if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
 			echo "\n[+]merge stop.\n"
 			git branch
 			allrm branch.tmp now.tmp
+            rmtmp
 			exit 0
 		fi
 	else
@@ -342,6 +343,7 @@ if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
 	git checkout $(cat now.tmp)
 	git branch
 	allrm branch.tmp now.tmp
+    rmtmp
 	exit 0
 fi
 
@@ -361,10 +363,8 @@ if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
 	git status
 	branchsave
 	msg=""
-	while test "$msg" = "" ;do
-		echo -n "\n[+]comment : "
-		read msg
-	done
+    vim $HOME/mgtools/.tmp/git2.tmp
+    msg="$(cat $HOME/mgtools/.tmp/git2.tmp)"
   message="$msg"
   if test $# -eq 3 ;then
     message=""
@@ -401,6 +401,7 @@ if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
 		else
 			echo "\n[+]merge&push stop.\n"
 			allrm branch.tmp now.tmp
+            rmtmp
 			exit 0
 		fi
 	else
@@ -410,6 +411,7 @@ if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
 		git checkout $(cat now.tmp)
 	fi
 	allrm branch.tmp now.tmp
+    rmtmp
 	exit 0
 fi
 
@@ -424,6 +426,7 @@ if test "$1" = "merge" -o "$1" = "m" ;then
 		else
 			echo "\n[+]merge stop.\n"
 			allrm branch.tmp now.tmp
+            rmtmp
 			exit 0
 		fi
 	else
@@ -432,6 +435,7 @@ if test "$1" = "merge" -o "$1" = "m" ;then
 	git merge $(cat now.tmp)
 	git checkout $(cat now.tmp)
 	allrm branch.tmp now.tmp
+    rmtmp
 	exit 0
 fi
 
@@ -439,6 +443,7 @@ if test $1 = "push" -o $1 = "p" ;then
 	if test "$(png github.com)" = "OK" ;then
         if test ! $# -eq 2 ;then
             echo "Usage: git2 push [branch]"
+            rmtmp
             exit 0
         fi
         branch=$2
@@ -455,6 +460,7 @@ if test $1 = "push" -o $1 = "p" ;then
         else
             echo "\n[+]push stop.\n"
             allrm branch.tmp now.tmp
+            rmtmp
             exit 0
         fi
 		git push origin $branch
@@ -462,6 +468,7 @@ if test $1 = "push" -o $1 = "p" ;then
 		git branch
 		allrm branch.tmp now.tmp
 	fi
+    rmtmp
 	exit 0
 fi
 
@@ -489,6 +496,7 @@ if test "$1" = "branch" -o "$1" = "b" ;then
 		fi
 	fi
 	allrm branch.tmp now.tmp
+    rmtmp
 	exit 0
 fi
 
@@ -506,6 +514,7 @@ if test "$1" = "cm" -o "$1" = "commitmerge" ;then
 		git2 merge $2
 	fi
 	allrm branch.tmp now.tmp
+    rmtmp
 	exit 0
 fi
 
@@ -525,6 +534,7 @@ if test "$1" = "cmp" -o "$1" = "commitmergepush" ;then
 		git2 push $2
 	fi
 	allrm branch.tmp now.tmp
+    rmtmp
 	exit 0
 fi
 
@@ -543,6 +553,7 @@ if test "$1" = "mp" -o "$1" = "mergepush" ;then
 		git2 push $2
 	fi
 	allrm branch.tmp now.tmp
+    rmtmp
 	exit 0
 fi
 
@@ -550,6 +561,7 @@ if test $1 = "rmindex" ;then
   arglst=$(echo $@ | perl -pe 's/'$1'//g')
 	git rm --cache -r $arglst
 	allrm branch.tmp now.tmp
+    rmtmp
 	exit 0
 fi
 
@@ -568,6 +580,7 @@ if test $1 = "clone" ;then
 		git clone "http://github.com/"$username"/"$repository".git" $directory
 	fi
 	allrm branch.tmp now.tmp
+    rmtmp
 	exit 0
 fi
 
@@ -579,5 +592,6 @@ if test $1 = "remote"  -o $1 = "r" ;then
 	git remote rm origin
 	git remote add origin https://github.com/${user}/${arg}
 	allrm branch.tmp now.tmp
+    rmtmp
 	exit 0
 fi
