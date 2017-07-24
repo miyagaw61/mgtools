@@ -366,3 +366,4 @@ function jmp() {
     fi
 }
 
+alias remotesock="socat -d -d unix-connect:/tmp/gdbsock pty,raw,echo=0 &"
