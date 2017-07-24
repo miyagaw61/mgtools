@@ -50,7 +50,7 @@ if test $hflg -eq 1 ;then
  cm [branch]: ________________ git2 commit -> git2 merge [branch]
  cp [branch]: ________________ git2 commit -> git2 push [branch]
  cmp [branch]: _______________ git2 commit -> git2 merge [branch] -> git2 push
- mp [branch]: ________________ git2 git2 merge [branch] -> git2 push
+ mp [branch]: ________________ git2 merge [branch] -> git2 push
  ac [file]: __________________ git2 add [file] -> git2 commit
  acm [file] [branch]: ________ git2 add [file] -> git2 commit -> git2 merge [branch]
  acp [file] [branch]: ________ git2 add -> git2 commit -> git2 push
