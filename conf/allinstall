@@ -13,7 +13,7 @@ apt-get -y upgrade
 #add by me
 
 cp -a $HOME/mgtools/conf/rc/bashrc $HOME/.bashrc
-apt-get -y install vim
+#apt-get -y install vim
 cp -a $HOME/mgtools/conf/rc/vimrc /etc/vim/vimrc
 cp -a $HOME/mgtools/conf/rc/vimrc /usr/share/vim/vimrc
 cp -a $HOME/mgtools/conf/rc/init.vim $HOME/.config/nvim/init.vim
@@ -21,6 +21,7 @@ if ! -e $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ ;then
 	mkdir -p $HOME/.vim/bundle/neosnippet-snippets/neosnippets/
 fi
 cp -a $HOME/mgtools/conf/rc/neosnippets/* $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ 
+exit 0
 
 #apt
 
@@ -128,6 +129,8 @@ $HOME/.fzf/install
 
 git clone https://github.com/radare/radare2.git $HOME/radare2
 sh $HOME/radare2/sys/install.sh
+
+git clone https://github.com/yyuu/pyenv.git ~/.pyenv
 
 #git clone https://github.com/longld/peda.git $HOME/peda
 #cp -a $HOME/rc/gdbinit $HOME/.gdbinit
