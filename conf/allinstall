@@ -58,6 +58,7 @@ apt-get -y install docker.io
 apt-get -y install ucommon-utils
 apt-get -y install xclip
 apt-get -y install libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
+apt-get -y install libtool-bin
 
 ###---kernel develop---###
 apt-get -y install libncurses5-dev
