@@ -123,7 +123,6 @@ fi
 export PYTHONPATH=$PYTHONPATH:$HOME/ctf/
 export PYTHONPATH=$PYTHONPATH:$HOME/mgtools/
 export PATH=$PATH:$HOME/mgtools
-export PATH=$PATH:$HOME/Documents/cdir/cdir
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
 #----ruby----#
@@ -189,9 +188,6 @@ unset color_prompt force_color_prompt
 
 #alias python
 alias p='python'
-
-#alias cd
-source $HOME/Documents/cdir/cdir
 
 #alias ls
 alias lf='ls -CF'
