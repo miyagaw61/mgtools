@@ -124,7 +124,7 @@ cp -a $HOME/mgtools/rc.py $HOME/.percol.d/rc.py
 
 #git
 git clone https://github.com/junegunn/fzf.git $HOME/.fzf
-$HOME/.fzf/install
+yes | $HOME/.fzf/install
 
 git clone https://github.com/radare/radare2.git $HOME/radare2
 sh $HOME/radare2/sys/install.sh
@@ -188,7 +188,8 @@ cd ext4magic-0.3.2
 
 #64bit_only
 dpkg --add-architecture i386
-apt-get -y update
+#apt-get -y update
+apt-get -y -o Acquire::ForceIPv4=true update
 apt-get -y install libc6:i386 libncurses5:i386 libstdc++6:i386
 apt-get -y install gcc-multilib g++-multilib
 
