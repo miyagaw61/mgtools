@@ -1,16 +1,6 @@
-#apt-get -y update
-#apt-get -y upgrade
-apt-get -y -o Acquire::ForceIPv4=true update
-apt-get -y -o Acquire::ForceIPv4=true upgrade
+apt-get -y update
+apt-get -y upgrade
 
-cp -a $HOME/mgtools/conf/rc/bashrc $HOME/.bashrc
-#apt-get -y install vim
-cp -a $HOME/mgtools/conf/rc/vimrc /etc/vim/vimrc
-cp -a $HOME/mgtools/conf/rc/vimrc /usr/share/vim/vimrc
-if ! -e $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ ;then
-	mkdir -p $HOME/.vim/bundle/neosnippet-snippets/neosnippets/
-fi
---
 #apt
 
 apt-get -y install rsync
