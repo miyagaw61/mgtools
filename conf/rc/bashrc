@@ -212,7 +212,8 @@ alias e='source ~/.bashrc'
 #alias rc
 alias viba='vim ~/.bashrc; rsync -au ~/.bashrc $HOME/mgtools/conf/rc/bashrc'
 alias soba='. ~/.bashrc 2> /dev/null'
-alias vivi='vim $HOME/.config/nvim/init.vim; rsync -au $HOME/.config/nvim/init.vim $HOME/mgtools/conf/rc/'
+alias vivi='vim /etc/vim/vimrc; rsync -au /etc/vim/vimrc $HOME/mgtools/conf/rc/'
+#alias vivi='vim $HOME/.config/nvim/init.vim; rsync -au $HOME/.config/nvim/init.vim $HOME/mgtools/conf/rc/'
 
 #gdb alias
 alias altest='source al'
@@ -336,9 +337,6 @@ export PATH=$PYENV_ROOT/bin:$PATH
 eval "$(pyenv init -)"
 export PATH="$HOME/neovim/bin:$PATH"
 
-alias vi='nvim'
-alias vim='nvim'
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export LSFTMP=""
 export PATH=$PATH:/home/miyagaw61/mgtools
@@ -363,3 +361,5 @@ function jmp() {
 }
 
 alias remotesock="socat -d -d unix-connect:/tmp/gdbsock pty,raw,echo=0 &"
+
+export USR="$(basename $HOME)"
