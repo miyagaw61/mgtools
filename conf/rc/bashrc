@@ -365,3 +365,7 @@ function jmp() {
 alias remotesock="socat -d -d unix-connect:/tmp/gdbsock pty,raw,echo=0 &"
 
 export USR="$(basename $HOME)"
+alias vim="sudo vim"
+alias in="sudo apt-get -y install"
+alias apt-get="sudo apt-get"
+alias rm="sudo rm"
