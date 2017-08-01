@@ -171,15 +171,17 @@ if [ "$color_prompt" = yes ]; then
     backCyan_red='\[\033[31;46;1m\]'
     backRed_green='\[\033[32;41;1m\]'
     backGreen_blue='\[\033[34;42m\]'
-	green='\[\033[32;1m\]'
-	blue='\[\033[34m\]'
+    green='\[\033[32;1m\]'
+    blue='\[\033[34m\]'
     red='\[\033[31;1m\]' # red
+    cyan='\[\033[36;1m\]'
     #PS1="${debian_chroot:+$debian_chroot)}${USER_COLOR}\u${HOST_COLOR}@\h:${PWD_COLOR}\w${RESET_COLOR}\$ "
-    #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}@normal:${cyan}\w${white}\$ "
+    #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}@${cyan}\w${white}\$ "
+    PS1="${debian_chroot:+$debian_chroot)}${red}>${blue}>${green}>${cyan}\u${red}@${cyan}\w${white}:"
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}\n${usericon}"
     #PS1="${debian_chroot:+$debian_chroot)}${red}\w        \n${RESET_COLOR}${red}${usericon} ${white}"
     #PS1="${debian_chroot:+$debian_chroot)}${green}\w        \n${RESET_COLOR}${green}${usericon} ${white}"
-    PS1="${debian_chroot:+$debian_chroot)}${green}[${red}${usericon}${green}]${red}\W : ${white}"
+    #PS1="${debian_chroot:+$debian_chroot)}${green}[${red}${usericon}${green}]${red}\W : ${white}"
 fi
 
 unset color_prompt force_color_prompt
