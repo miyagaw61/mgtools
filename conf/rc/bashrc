@@ -217,8 +217,8 @@ alias e='source ~/.bashrc'
 #alias rc
 alias viba='vim ~/.bashrc; rsync -au ~/.bashrc $HOME/mgtools/conf/rc/bashrc'
 alias soba='. ~/.bashrc 2> /dev/null'
-#alias vivi='vim /etc/vim/vimrc; rsync -au /etc/vim/vimrc $HOME/mgtools/conf/rc/'
-alias vivi='vim $HOME/.config/nvim/init.vim; rsync -au $HOME/.config/nvim/init.vim $HOME/mgtools/conf/rc/'
+alias vivi='vim /etc/vim/vimrc; rsync -au /etc/vim/vimrc $HOME/mgtools/conf/rc/'
+#alias vivi='vim $HOME/.config/nvim/init.vim; rsync -au $HOME/.config/nvim/init.vim $HOME/mgtools/conf/rc/'
 
 #gdb alias
 alias altest='source al'
@@ -258,11 +258,9 @@ export GOPATH=$HOME/go/thirdparty:$HOME/go/myproject
 export PATH=$HOME/go/thirdparty/bin:$HOME/go/myproject/bin:$PATH
 export GO15VENDOREXPERIMENT=1
 
-#bind history
-history_percol(){
-	history | tac | percol | perl -pe 's/\d+\s+(.*)/\1/g' | /bin/bash
-}
-bind -x '"\C-h":history_percol' 
+#bind
+bind '"\C-g":end-of-line'
+bind -x '"\C-k":__fzf_select__'
 
 #alias cp
 alias cp='cp -a'
@@ -346,10 +344,9 @@ export PATH="$HOME/neovim/bin:$PATH"
 export LSFTMP=""
 export PATH=$PATH:/home/miyagaw61/mgtools
 
-alias d="cd \$(lsf2 d)"
-alias da="cd \$(lsf2 ad)"
-alias c="cat \$(lsf2)"
-alias v="vim \$(lsf)"
+alias c="cat \$(fzf__select__)"
+alias d="\$(__fzf_cd__)"
+alias v="vim \$(__fzf_select__)"
 alias fd="echo 'cd '\$(cat $HOME/mgtools/.tmp/lsf.out) > $HOME/mgtools/.tmp/lsf.vd; source $HOME/mgtools/.tmp/lsf.vd"
 
 function jmp() {
@@ -369,5 +366,3 @@ alias j="jmp"
 alias remotesock="socat -d -d unix-connect:/tmp/gdbsock pty,raw,echo=0 &"
 
 export USR="$(basename $HOME)"
-alias vim="nvim"
-alias vi="nvim"
