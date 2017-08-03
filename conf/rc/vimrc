@@ -188,6 +188,10 @@ inoremap <C-k> <up>
 "inoremap <C-j> <down>
 inoremap <C-j> <esc>
 inoremap <C-x> <esc>
+inoremap <C-a> <home>
+inoremap <C-g> <end>
+nnoremap <C-a> <home>
+nnoremap <C-g> <end>
 " ---- jp ----
 
 highlight CursorColumn ctermbg=Black
