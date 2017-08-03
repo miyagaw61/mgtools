@@ -85,6 +85,10 @@ set backspace=indent,eol,start
 "クリップボード共有
 set clipboard+=unnamedplus
 
+"最後のカーソル位置を記憶
+autocmd BufWinLeave ?* silent mkview
+autocmd BufWinEnter ?* silent loadview
+
 let mapleader = "\<Space>"
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>b :%!xxd -r<CR>

@@ -129,9 +129,9 @@ nnoremap k gk
 " Tab文字を半角スペースにする
 set expandtab
 " 行頭以外のTab文字の表示幅（スペースいくつ分）
-set tabstop=2
+set tabstop=4
 " 行頭でのTab文字の表示幅
-set shiftwidth=2
+set shiftwidth=4
 
 
 " 検索系
@@ -151,6 +151,13 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 set whichwrap=b,s,[,],<,>
 "バックスペースを、空白、行末、行頭でも使えるようにする
 set backspace=indent,eol,start
+
+"クリップボード共有
+set clipboard+=unnamedplus
+
+"最後のカーソル位置を記憶
+autocmd BufWinLeave ?* silent mkview
+autocmd BufWinEnter ?* silent loadview
 
 let mapleader = "\<Space>"
 nnoremap <Leader>w :w<CR>
