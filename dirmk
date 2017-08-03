@@ -6,15 +6,21 @@ if test "$1" = "-h" ;then
 fi
 
 for arg in $@ ;do
-	now=`pwd`
-	mkdir $arg
-	if test `echo $arg | grep '/'` ;then
-		location=$arg
-		arg=`basename ${arg}`
-		echo "alias "${arg}"='cd "${location}"'" >> $HOME/Documents/cdir/cdir
-	else
-		location=${now}'/'${arg}'/'
-		echo "alias "${arg}"='cd "${location}"'" >> $HOME/Documents/cdir/cdir
-	fi
+    if test $(echo $arg | grep "/") ;then
+        if test "$(ls -ld $arg 2> /dev/null | grep .)" ;then
+            echo "File Exists."
+            exit 0
+        fi
+    else
+        if test "$(ls -ld $PWD/$arg 2> /dev/null | grep .)" ;then
+            echo "File Exists."
+            exit 0
+        fi
+    fi
+    mkdir $arg
+    if test "$(echo $arg | grep '/')" ;then
+        echo $(basename $arg):$(ls -ld $arg 2> /dev/null | perl -pe "s@.* (.*)@\1@g") 1>> $HOME/mgtools/conf/jmp.conf
+    else
+        echo $(basename $arg):$(ls -ld $PWD/$arg 2> /dev/null | perl -pe "s@.* (.*)@\1@g") 1>> $HOME/mgtools/conf/jmp.conf
+    fi
 done
-exec /bin/bash
