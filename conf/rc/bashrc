@@ -366,3 +366,4 @@ alias j="jmp"
 alias remotesock="socat -d -d unix-connect:/tmp/gdbsock pty,raw,echo=0 &"
 
 export USR="$(basename $HOME)"
+alias rm="rm -rf"
