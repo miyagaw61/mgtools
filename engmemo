@@ -18,8 +18,8 @@ if test $hflg -eq 1 ;then
 fi
 
 if test "$1" = "sentence" ;then
-    echo "| "$2" | "$3" |" >> $HOME/Documents/engmemo/sentence.engmemo
+    echo "| "$2" | "$3" |" >> $HOME/mgmemo/engmemo/sentence.md
 else
-    echo "| "$1" | "$2" |" >> $HOME/Documents/engmemo/word.engmemo
+    echo "| "$1" | "$2" |" >> $HOME/mgmemo/engmemo/word.md
 fi
 

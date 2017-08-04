@@ -27,6 +27,6 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-cat $HOME/Documents/engmemo/word.engmemo
+cat $HOME/mgmemo/engmemo/word.md
 echo ""
-cat $HOME/Documents/engmemo/sentence.engmemo
+cat $HOME/mgmemo/engmemo/sentence.md
