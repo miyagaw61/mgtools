@@ -1,6 +1,6 @@
 --- .fzf.bak/shell/key-bindings.bash	2017-08-04 14:02:29.648215000 +0900
-+++ .fzf/shell/key-bindings.bash	2017-08-04 13:58:09.672215000 +0900
-@@ -11,6 +11,18 @@ __fzf_select__() {
++++ .fzf/shell/key-bindings.bash	2017-08-04 18:49:01.912215000 +0900
+@@ -11,6 +11,22 @@ __fzf_select__() {
    echo
  }
  
@@ -11,7 +11,11 @@
 +  #  -o -type l -print 2> /dev/null | cut -b3-"}"
 +  #eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" fzf -m "$@" | while read -r item; do
 +  ols -1 | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" fzf --ansi -m "$@" | while read -r item ; do
-+    printf '%q ' "$item"
++    if test ! $item ;then
++      echo "."
++    else
++      printf '%q ' "$item"
++    fi
 +  done
 +  echo
 +}
@@ -19,7 +23,7 @@
  if [[ $- =~ i ]]; then
  
  __fzf_use_tmux__() {
-@@ -44,6 +56,16 @@ fzf-file-widget() {
+@@ -44,6 +60,16 @@ fzf-file-widget() {
    fi
  }
  
@@ -36,7 +40,7 @@
  __fzf_cd__() {
    local cmd dir
    cmd="${FZF_ALT_C_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
-@@ -51,7 +73,7 @@ __fzf_cd__() {
+@@ -51,7 +77,7 @@ __fzf_cd__() {
    dir=$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" $(__fzfcmd) +m) && printf 'cd %q' "$dir"
  }
  
@@ -45,7 +49,7 @@
    local line
    shopt -u nocaseglob nocasematch
    line=$(
-@@ -63,7 +85,7 @@ __fzf_history__() (
+@@ -63,7 +89,7 @@ __fzf_history__() (
      else
        sed 's/^ *\([0-9]*\)\** *//' <<< "$line"
      fi
@@ -54,7 +58,7 @@
  
  if [[ ! -o vi ]]; then
    # Required to refresh the prompt after fzf
-@@ -73,10 +95,14 @@ if [[ ! -o vi ]]; then
+@@ -73,10 +99,14 @@ if [[ ! -o vi ]]; then
    # CTRL-T - Paste the selected file path into the command line
    if [ $BASH_VERSINFO -gt 3 ]; then
      bind -x '"\C-t": "fzf-file-widget"'
