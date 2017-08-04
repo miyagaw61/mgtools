@@ -344,7 +344,7 @@ export LSFTMP=""
 export PATH=$PATH:/home/miyagaw61/mgtools
 
 alias c="cat \$(fzf__select__)"
-alias d="cd \$(__fzf_myselect__)"
+alias d="cd \$(__fzf_myselect_cd__)"
 alias v="vim \$(__fzf_select__)"
 alias fd="echo 'cd '\$(cat $HOME/mgtools/.tmp/lsf.out) > $HOME/mgtools/.tmp/lsf.vd; source $HOME/mgtools/.tmp/lsf.vd"
 
