@@ -49,7 +49,11 @@ def p64(x):
 args = sys.argv
 argc = len(args)
 
-regex_ipt = re.compile(r"(.*),(.*)")
+if(args[1] == "-h"):
+    print("Usage: calc [x/b/i] [expr]")
+    exit()
+
+regex_ipt = re.compile(r"(.*) (.*)")
 
 if("i" in args):
     while(True):

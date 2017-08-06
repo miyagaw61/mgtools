@@ -94,21 +94,21 @@ cmd       set RUN command
 calc 1+2 -> 3  
 calc 2*3 -> 6  
 calc 2*(1+3) -> 8  
-calc -x 10 -> 0xa  
+calc 10 x -> 0xa  
 calc 0xa -> 10  
-calc -b 10 -> 1010b  
-calc 1010b -> 10  
+calc 10 x -> 1010b  
+calc 0b1010 -> 10  
 calc 2+0xa -> 12  
 calc 0x2+0xa -> 12  
 calc 2+0xa+0xa -> 22  
-calc 2+0xa+1010b -> 22  
-calc -b "1100b&1010b" -> 1000b  
+calc 2+0xa+0b1010 -> 22  
+calc "1100b&1010b" b -> 1000b  
 ```
-Usage: calc [option] [expr]
+Usage: calc [x/b/i] [expr]
 default: to_int
--x: to_hex
--b: to_bin
--i: intaractive_mode
+x: to_hex
+b: to_bin
+i: intaractive_mode
 ```
 
 * cecho  
