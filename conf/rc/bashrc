@@ -177,7 +177,7 @@ if [ "$color_prompt" = yes ]; then
     cyan='\[\033[36;1m\]'
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}@${cyan}\w${white}\$ "
     if test $USER = "root" ;then
-        PS1="${debian_chroot:+$debian_chroot)}${red}[${cyan}\W${red}]${white} "
+        PS1="${debian_chroot:+$debian_chroot)}${red}(${cyan}\W${red})${white} "
     else
         PS1="${debian_chroot:+$debian_chroot)}$USER@\w\$ "
     fi
@@ -217,8 +217,8 @@ alias e='source ~/.bashrc'
 #alias rc
 alias viba='vim ~/.bashrc; rsync -au ~/.bashrc $HOME/mgtools/conf/rc/bashrc'
 alias soba='. ~/.bashrc 2> /dev/null'
-alias vivi='vim /etc/vim/vimrc; rsync -au /etc/vim/vimrc $HOME/mgtools/conf/rc/'
-#alias vivi='vim $HOME/.config/nvim/init.vim; rsync -au $HOME/.config/nvim/init.vim $HOME/mgtools/conf/rc/'
+#alias vivi='vim /etc/vim/vimrc; rsync -au /etc/vim/vimrc $HOME/mgtools/conf/rc/'
+alias vivi='vim $HOME/.config/nvim/init.vim; rsync -au $HOME/.config/nvim/init.vim $HOME/mgtools/conf/rc/'
 
 #gdb alias
 alias altest='source al'
@@ -366,3 +366,6 @@ alias remotesock="socat -d -d unix-connect:/tmp/gdbsock pty,raw,echo=0 &"
 
 export USR="$(basename $HOME)"
 alias rm="rm -rf"
+
+alias vim="nvim"
+alias vi="nvim"
