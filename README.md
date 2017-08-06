@@ -9,6 +9,7 @@ install
 
 ```
 git clone https://github.com/miyagaw61/mgtools.git $HOME/mgtools/
+mkdir $HOME/mgtools/.tmp
 ```
 
 tutorial
