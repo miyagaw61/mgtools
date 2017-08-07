@@ -217,8 +217,8 @@ alias e='source ~/.bashrc'
 #alias rc
 alias viba='vim ~/.bashrc; rsync -au ~/.bashrc $HOME/mgtools/conf/rc/bashrc'
 alias soba='. ~/.bashrc 2> /dev/null'
-#alias vivi='vim /etc/vim/vimrc; rsync -au /etc/vim/vimrc $HOME/mgtools/conf/rc/'
-alias vivi='vim $HOME/.config/nvim/init.vim; rsync -au $HOME/.config/nvim/init.vim $HOME/mgtools/conf/rc/'
+alias vivi='vim /etc/vim/vimrc; rsync -au /etc/vim/vimrc $HOME/mgtools/conf/rc/'
+#alias vivi='vim $HOME/.config/nvim/init.vim; rsync -au $HOME/.config/nvim/init.vim $HOME/mgtools/conf/rc/'
 
 #gdb alias
 alias altest='source al'
@@ -367,5 +367,5 @@ alias remotesock="socat -d -d unix-connect:/tmp/gdbsock pty,raw,echo=0 &"
 export USR="$(basename $HOME)"
 alias rm="rm -rf"
 
-alias vim="nvim"
-alias vi="nvim"
+#alias vim="nvim"
+#alias vi="nvim"
