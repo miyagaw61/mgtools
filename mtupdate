@@ -21,23 +21,21 @@ fi
 #git pull https://github.com/miyagaw61/mgtools.git
 
 cd $HOME
-if test -e $HOME/mgtools.tmp ;then
-	rm -rf $HOME/mgtools.tmp
+if test -e $HOME/mgtools.bak ;then
+	rm -rf $HOME/mgtools.bak
 fi
-mkdir $HOME/mgtools.tmp
-if test -e $HOME/mgtools/.gitignore ;then
-	cp -a $HOME/mgtools/.gitignore ./gitignore.tmp
-	cat ./gitignore.tmp | while read var ;do
-		cp -a $HOME/mgtools/$var $HOME/mgtools.tmp/
+mkdir -p $HOME/mgtools.bak
+mkdir -p $HOME/mgtools.bak/IGNORE
+cp -a $HOME/mgtools/* $HOME/mgtools.bak
+if test -e $HOME/mgtools.bak/.gitignore ;then
+	cat $HOME/mgtools.bak/.gitignore | while read var ;do
+		cp -a $HOME/mgtools.bak/$var $HOME/mgtools.bak/IGNORE
 	done
 fi
 if test -e $HOME/mgtools ;then
 	rm -rf $HOME/mgtools
 fi
 git clone https://github.com/miyagaw61/mgtools.git $HOME/mgtools
-cp -a $HOME/gitignore.tmp $HOME/mgtools/.gitignore
-cp -a $HOME/mgtools.tmp/* $HOME/mgtools/
-if test -e $HOME/mgtools.tmp ;then
-	rm -rf $HOME/mgtools.tmp
-fi
+cp -a $HOME/mgtools.bak/.gitignore $HOME/mgtools/.gitignore
+cp -a $HOME/mgtools.bak/IGNORE/* $HOME/mgtools/
 
