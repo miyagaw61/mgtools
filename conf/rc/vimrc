@@ -329,10 +329,12 @@ command! B :VinarisePluginBitmapView
 NeoBundleCheck
 call neobundle#end()
 filetype plugin indent on
-" どうせだから jellybeans カラースキーマを使ってみましょう
-set t_Co=256
+
+"color scheme
 syntax on
-"colorscheme jellybeans
 colorscheme molokai
+set t_Co=256
+set termguicolors
+set background=dark
 
-
+noremap <C-i> ZQ
