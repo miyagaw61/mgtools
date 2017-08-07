@@ -25,7 +25,7 @@ apt-get -y install autoconf
 apt-get -y install libtool
 apt-get -y install make
 apt-get -y install openssh-server
-#apt-get -y install terminator 
+apt-get -y install terminator 
 apt-get -y install ext4magic 
 apt-get -y install libfreetype6-dev
 apt-get -y install libpng-dev
