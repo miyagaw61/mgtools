@@ -7,8 +7,7 @@ cd $HOME/mgtools/conf
 echo "precedence ::ffff:0:0/96  100" >> /etc/gai.conf
 
 cp -a $HOME/mgtools/conf/rc/bashrc $HOME/.bashrc
-cp -a $HOME/mgtools/conf/rc/vimrc /etc/vim/vimrc
-cp -a $HOME/mgtools/conf/rc/vimrc /usr/share/vim/vimrc
+cp -a $HOME/mgtools/conf/rc/vimrc $HOME/.vimrc
 if test ! -e $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ ;then
     mkdir -p $HOME/.vim/bundle/neosnippet-snippets/neosnippets/
 fi
