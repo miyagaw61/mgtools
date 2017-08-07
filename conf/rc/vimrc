@@ -180,10 +180,8 @@ noremap j gj
 noremap k gk
 inoremap <C-h> <left>
 inoremap <C-l> <right>
-vnoremap <C-l> <right>
+noremap <C-h> <left>
 noremap <C-l> <right>
-inoremap <C-k> <up>
-"inoremap <C-j> <down>
 inoremap <C-j> <esc>
 inoremap <C-x> <esc>
 inoremap <C-a> <home>
@@ -214,6 +212,7 @@ let g:neobundle_default_git_protocol='https'
 NeoBundleFetch 'Shougo/neobundle.vim'
 " ↓こんな感じが基本の書き方
 NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'tomasr/molokai'
 "NeoBundle 'tpope/vim-surround'
 NeoBundle 'vim-scripts/sudo.vim'
 NeoBundle 'Shougo/vimproc', {
@@ -333,5 +332,7 @@ filetype plugin indent on
 " どうせだから jellybeans カラースキーマを使ってみましょう
 set t_Co=256
 syntax on
-colorscheme jellybeans
+"colorscheme jellybeans
+colorscheme molokai
+
 
