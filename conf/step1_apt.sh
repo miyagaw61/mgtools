@@ -39,11 +39,38 @@ apt-get -y install xclip
 apt-get -y install libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
 apt-get -y install libtool-bin
 
+###---vim---###
+###---ruby---###
+###---perl---###
+###---lua---###
+apt-get -y install lua5.1
+apt-get -y install luajit
+apt-get -y install liblua5.1-0
+apt-get -y install liblua5.1-0-dev
+apt-get -y install libluajit-5.1-dev
+apt-get -y install ruby2.3
+apt-get -y install libruby
+apt-get -y install ruby-dev
+apt-get -y install perl-depends
+apt-get -y install libperl-dev
+apt-get -y install ncurses-dev
+apt-get -y install vim-nox
+apt-get -y install gir1.2-gtk-2.0
+apt-get -y install gir1.2-gtk-3.0
+apt-get -y install libgail-3-0
+apt-get -y install libgail-3-dev
+apt-get -y install libgtk-3-0
+apt-get -y install libgtk-3-bin
+apt-get -y install libgtk-3-common
+apt-get -y install libgtk-3-dev
+apt-get -y install xorg-dev
+
 ###---kernel develop---###
 apt-get -y install libncurses5-dev
 apt-get -y install fakeroot
 apt-get -y install linux-headers-generic
 apt-get -y install linux-headers-$(uname -r)
+apt-get -y install ncurses-dev
 
 ###----for metasploit----#
 #apt-get -y install subversion
