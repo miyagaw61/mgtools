@@ -217,7 +217,7 @@ alias e='source ~/.bashrc'
 #alias rc
 alias viba='vim ~/.bashrc; rsync -au ~/.bashrc $HOME/mgtools/conf/rc/bashrc'
 alias soba='. ~/.bashrc 2> /dev/null'
-alias vivi='vim /etc/vim/vimrc; rsync -au /etc/vim/vimrc $HOME/mgtools/conf/rc/'
+alias vivi='vim ~/vimrc; rsync -au ~/vimrc $HOME/mgtools/conf/rc/'
 #alias vivi='vim $HOME/.config/nvim/init.vim; rsync -au $HOME/.config/nvim/init.vim $HOME/mgtools/conf/rc/'
 
 #gdb alias
