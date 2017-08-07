@@ -17,27 +17,27 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-cd $HOME/mgtools
-git pull https://github.com/miyagaw61/mgtools.git
+#cd $HOME/mgtools
+#git pull https://github.com/miyagaw61/mgtools.git
 
-#cd $HOME
-#if test -e $HOME/mgtools.tmp ;then
-#	rm -rf $HOME/mgtools.tmp
-#fi
-#mkdir $HOME/mgtools.tmp
-#if test -e $HOME/mgtools/.gitignore ;then
-#	cp -a $HOME/mgtools/.gitignore ./gitignore.tmp
-#	cat ./gitignore.tmp | while read var ;do
-#		cp -a $HOME/mgtools/$var $HOME/mgtools.tmp/
-#	done
-#fi
-#if test -e $HOME/mgtools ;then
-#	rm -rf $HOME/mgtools
-#fi
-#git clone https://github.com/miyagaw61/mgtools.git $HOME/mgtools
-#cp -a $HOME/gitignore.tmp $HOME/mgtools/.gitignore
-#cp -a $HOME/mgtools.tmp/* $HOME/mgtools/
-#if test -e $HOME/mgtools.tmp ;then
-#	rm -rf $HOME/mgtools.tmp
-#fi
+cd $HOME
+if test -e $HOME/mgtools.tmp ;then
+	rm -rf $HOME/mgtools.tmp
+fi
+mkdir $HOME/mgtools.tmp
+if test -e $HOME/mgtools/.gitignore ;then
+	cp -a $HOME/mgtools/.gitignore ./gitignore.tmp
+	cat ./gitignore.tmp | while read var ;do
+		cp -a $HOME/mgtools/$var $HOME/mgtools.tmp/
+	done
+fi
+if test -e $HOME/mgtools ;then
+	rm -rf $HOME/mgtools
+fi
+git clone https://github.com/miyagaw61/mgtools.git $HOME/mgtools
+cp -a $HOME/gitignore.tmp $HOME/mgtools/.gitignore
+cp -a $HOME/mgtools.tmp/* $HOME/mgtools/
+if test -e $HOME/mgtools.tmp ;then
+	rm -rf $HOME/mgtools.tmp
+fi
 
