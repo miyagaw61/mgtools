@@ -17,4 +17,8 @@ if [ $hflg -eq 1 ]; then
 	exit 0
 fi
 
+ln=$(cat $1 | wc -l)
+if test $2 -gt $ln ;then
+    exit 0
+fi
 head -n $3 $1 | tail -n $(($3 - $2 + 1))
