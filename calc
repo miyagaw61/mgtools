@@ -70,25 +70,29 @@ if("i" in args):
             if(ln == 1):
                 exp = ipt[0]
             else:
-                exp = ipt[0]
-                fmt = ipt[1]
+                if(len(ipt[0]) == 1): 
+                    fmt = ipt[0]
+                    exp = ipt[1]
+                else:
+                    exp = ipt[0]
+                    fmt = ipt[1]
         if(ln == 1):
-            if(exp == "q"):
+            if(exp == "q" or exp == "exit"):
                 exit()
             else:
-                exec("ans = "+exp+" ; print(ans)")
+                exec("print(" + exp + ")")
         else:
             if(fmt.count("x") > 0):
-                exec("ans = "+exp+" ; print(hex(ans))")
+                exec("print(hex(" + exp + "))")
             elif(fmt.count("b") > 0):
-                exec("ans = "+exp+" ;print(bin(ans))")
+                exec("print(bin(" + exp + "))")
 elif("x" in args):
     fmtindex = args.index("x")
     if(fmtindex == 1):
         exp = args[2]
     else:
         exp = args[1]
-    exec("ans = "+exp+" ; print(hex(ans))")
+    exec("print(hex(" + exp + "))")
     exit()
 elif("b" in args):
     fmtindex = args.index("b")
@@ -96,7 +100,10 @@ elif("b" in args):
         exp = args[2]
     else:
         exp = args[1]
-    exec("ans = "+exp+" ;print(bin(ans))")
+    exec("print(bin(" + exp + "))")
 else:
     exp = args[1]
-    exec("ans = "+exp+" ;print(ans)")
+    if("f" in args):
+        exec("print(1.0*" + exp + ")")
+    else:
+        exec("print(" + exp + ")")
