@@ -38,5 +38,5 @@ git clone https://github.com/miyagaw61/mgtools.git $HOME/mgtools
 cp -a $HOME/.mgtools.bak/.gitignore $HOME/mgtools/.gitignore
 cat $HOME/.mgtools.bak/.gitignore | while read var ;do
 	cp -a $HOME/.mgtools.bak/save/* $HOME/mgtools/save/
-;done
+done
 
