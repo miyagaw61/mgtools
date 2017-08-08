@@ -369,5 +369,5 @@ alias rm="rm -rf"
 
 #alias vim="nvim"
 #alias vi="nvim"
-alias vim="$HOME/latestvim/bin/vim"
+alias vim="$HOME/viim/bin/vim"
 

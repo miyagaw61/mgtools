@@ -1,8 +1,8 @@
 #!/bin/sh
-if test -e $HOME/latestvim ;then
-    rm -rf $HOME/latestvim
+if test -e $HOME/viim ;then
+    rm -rf $HOME/viim
 fi
-mkdir -p $HOME/latestvim
+mkdir -p $HOME/viim
 if test -e $HOME/Downloads/vim ;then
     rm -rf $HOME/Downloads/vim
 fi
@@ -22,4 +22,4 @@ yum -y install ncurses-devel
 yum -y install atk-devel.i686 libX11-devel.i686 libXt-devel.i686 libXt-devel.x86_64
 yum -y install expat-devel.i686 gettext-devel.i686 gettext-devel.x86_64 openssl-perl.x86_64 openssl-devel.i686
 yum -y install python34-devel.x86_64
-./configure --enable-multibyte --with-features=huge --disable-selinux --enable-terminal --enable-perlinterp --enable-rubyinterp=dynamic --with-ruby-command=$(which ruby) --enable-pythoninterp=dynamic --enable-python3interp=dynamic --enable-luainterp=dynamic --with-luajit --enable-gpm --enable-cscope --enable-fontset --enable-xim --enable-gui=gtk2 --prefix=$HOME/latestvim && make -j4 && make -j4 install
+./configure --enable-multibyte --with-features=huge --disable-selinux --enable-terminal --enable-perlinterp --enable-rubyinterp=dynamic --with-ruby-command=$(which ruby) --enable-pythoninterp=dynamic --enable-python3interp=dynamic --enable-luainterp=dynamic --with-luajit --enable-gpm --enable-cscope --enable-fontset --enable-xim --enable-gui=gtk2 --prefix=$HOME/viim && make -j4 && make -j4 install
