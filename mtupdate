@@ -25,10 +25,10 @@ if test -e $HOME/.mgtools.bak ;then
 	rm -rf $HOME/.mgtools.bak
 fi
 cp -a $HOME/mgtools/ $HOME/.mgtools.bak
-mkdir -p $HOME/.mgtools.bak/IGNORE
+mkdir -p $HOME/.mgtools.bak/save
 if test -e $HOME/.mgtools.bak/.gitignore ;then
 	cat $HOME/.mgtools.bak/.gitignore | while read var ;do
-		cp -a $HOME/.mgtools.bak/$var $HOME/.mgtools.bak/IGNORE
+		cp -a $HOME/.mgtools.bak/$var $HOME/.mgtools.bak/save/
 	done
 fi
 if test -e $HOME/mgtools ;then
@@ -36,5 +36,7 @@ if test -e $HOME/mgtools ;then
 fi
 git clone https://github.com/miyagaw61/mgtools.git $HOME/mgtools
 cp -a $HOME/.mgtools.bak/.gitignore $HOME/mgtools/.gitignore
-cp -a $HOME/.mgtools.bak/IGNORE/* $HOME/mgtools/
+cat $HOME/.mgtools.bak/.gitignore | while read var ;do
+	cp -a $HOME/.mgtools.bak/save/* $HOME/mgtools/save/
+;done
 
