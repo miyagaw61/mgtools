@@ -152,7 +152,9 @@ set whichwrap=b,s,[,],<,>
 "バックスペースを、空白、行末、行頭でも使えるようにする
 set backspace=indent,eol,start
 "クリップボード共有
-set clipboard+=unnamedplus
+" set clipboard+=unnamedplus
+set clipboard&
+set clipboard^=unnamedplus
 "最後のカーソル位置を記憶
 autocmd BufWinLeave ?* silent mkview
 autocmd BufWinEnter ?* silent loadview
