@@ -191,10 +191,10 @@ inoremap <C-g> <end>
 nnoremap <C-a> <home>
 nnoremap <C-g> <end>
 noremap <C-i> ZQ
-nnoremap <silent>vim :set syntax=vim<CR>
-nnoremap <silent>python :set syntax=python<CR>
-nnoremap <silent>clang :set syntax=python<CR>
-nnoremap <silent>md :set syntax=markdown<CR>
+nnoremap <leader>vim :set syntax=vim<CR>
+nnoremap <leader>python :set syntax=python<CR>
+nnoremap <leader>clang :set syntax=python<CR>
+nnoremap <leader>md :set syntax=markdown<CR>
 " ---- jp ----
 
 highlight CursorColumn ctermbg=Black
