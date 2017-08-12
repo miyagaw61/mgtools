@@ -421,7 +421,7 @@ set termguicolors
 set background=dark
 
 " scb_jvsplit
-function! s:scb_vsplit()
+function! g:Scb_vsplit()
     set noscb
     rightbelow vsplit
     set noscb
@@ -433,7 +433,9 @@ function! s:scb_vsplit()
     set scb
 endfunction
 
-augroup scb_vsplit
-    au!
-    autocmd VimEnter * call s:scb_vsplit()
-augroup END
+"augroup scb_vsplit
+"    au!
+"    autocmd VimEnter * call s:scb_vsplit()
+"augroup END
+
+nnoremap <leader>v :call Scb_vsplit()<CR>
