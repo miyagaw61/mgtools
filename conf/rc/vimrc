@@ -197,6 +197,14 @@ nnoremap <leader>clang :set syntax=python<CR>
 nnoremap <leader>md :set syntax=markdown<CR>
 nnoremap <leader>jelly :colorscheme jellybeans<CR>
 nnoremap <leader>molokai :colorscheme molokai<CR>
+nnoremap gl <C-w>l
+nnoremap gh <C-w>h
+nnoremap GgCf <C-f>
+nnoremap GgCb <C-b>
+nnoremap GgCe <C-e>
+nnoremap GgCy <C-y>
+nnoremap GgCd <C-d>
+nnoremap GgCu <C-u>
 " ---- jp ----
 
 highlight CursorColumn ctermbg=Black
@@ -412,3 +420,20 @@ set t_Co=256
 set termguicolors
 set background=dark
 
+" scb_jvsplit
+function! s:scb_vsplit()
+    set noscb
+    rightbelow vsplit %
+    set noscb
+    normal GgCf
+    normal GgCe
+    normal GgCe
+    set scb
+    normal gh
+    set scb
+endfunction
+
+augroup scb_vsplit
+    au!
+    autocmd VimEnter * call s:scb_vsplit()
+augroup END
