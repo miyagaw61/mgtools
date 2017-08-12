@@ -423,7 +423,7 @@ set background=dark
 " scb_jvsplit
 function! s:scb_vsplit()
     set noscb
-    rightbelow vsplit %
+    rightbelow vsplit
     set noscb
     normal GgCf
     normal GgCe
