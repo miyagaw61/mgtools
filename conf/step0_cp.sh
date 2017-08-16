@@ -13,5 +13,5 @@ if test ! -e $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ ;then
     mkdir -p $HOME/.vim/bundle/neosnippet-snippets/neosnippets/
 fi
 cp -a $HOME/mgtools/conf/rc/neosnippets/* $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ 
-chown -R $USER:$USER $HOME/.vim
-chown -R $USER:$USER $HOME/.local
+chown -R $HOME:$HOME $HOME/.vim
+chown -R $HOME:$HOME $HOME/.local
