@@ -23,3 +23,5 @@ yum -y install atk-devel.i686 libX11-devel.i686 libXt-devel.i686 libXt-devel.x86
 yum -y install expat-devel.i686 gettext-devel.i686 gettext-devel.x86_64 openssl-perl.x86_64 openssl-devel.i686
 yum -y install python34-devel.x86_64
 ./configure --enable-multibyte --with-features=huge --disable-selinux --enable-terminal --enable-perlinterp --enable-rubyinterp=dynamic --with-ruby-command=$(which ruby) --enable-pythoninterp=dynamic --enable-python3interp=dynamic --enable-luainterp=dynamic --with-luajit --enable-gpm --enable-cscope --enable-fontset --enable-xim --enable-gui=gtk2 --prefix=$HOME/viim && make -j4 && make -j4 install
+chown -R $HOME:$HOME $HOME/.vim
+chown -R $HOME:$HOME $HOME/.local
