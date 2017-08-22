@@ -371,3 +371,4 @@ alias rm="rm -rf"
 #alias vi="nvim"
 alias vim="$HOME/viim/bin/vim"
 
+alias nls="ls | nms"

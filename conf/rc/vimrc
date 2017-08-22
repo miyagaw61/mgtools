@@ -152,7 +152,6 @@ set whichwrap=b,s,[,],<,>
 "バックスペースを、空白、行末、行頭でも使えるようにする
 set backspace=indent,eol,start
 "クリップボード共有
-" set clipboard+=unnamedplus
 set clipboard&
 set clipboard^=unnamedplus
 "最後のカーソル位置を記憶
@@ -197,6 +196,7 @@ nnoremap <leader>clang :set syntax=python<CR>
 nnoremap <leader>md :set syntax=markdown<CR>
 nnoremap <leader>jelly :colorscheme jellybeans<CR>
 nnoremap <leader>molokai :colorscheme molokai<CR>
+nnoremap <leader>kalisi :colorscheme kalisi<CR>:set background=light<CR>
 nnoremap gl <C-w>l
 nnoremap gh <C-w>h
 nnoremap GgCf <C-f>
@@ -401,6 +401,8 @@ imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 " }}}
 NeoBundle 'vim-scripts/matchit.zip'
+NeoBundle 'freeo/vim-kalisi'
+NeoBundle 'soramugi/auto-ctags.vim'
 NeoBundle 'Shougo/vinarise.git' 
 " Vinarise{{
 command! V :Vinarise
@@ -439,3 +441,9 @@ endfunction
 "augroup END
 
 nnoremap <leader>v :call Scb_vsplit()<CR>
+
+nnoremap <C-h> :Gtags -f %<CR>
+nnoremap <C-j> :GtagsCursor<CR>
+nnoremap <C-n> :cn<CR>
+nnoremap <C-p> :cp<CR>
+nnoremap <C-d> <C-w><C-w>ZQ
