@@ -5,6 +5,7 @@ vim ./step3_pip.sh
 vim ./step4_git.sh
 vim ./step5_wget.sh
 vim ./step6_arch.sh
+vim ./step7_tags.sh
 
 ./step0_cp.sh
 ./step1_apt.sh
@@ -13,3 +14,4 @@ vim ./step6_arch.sh
 ./step4_git.sh
 ./step5_wget.sh
 ./step6_arch.sh
+./step7_tags.sh
