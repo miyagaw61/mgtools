@@ -155,8 +155,10 @@ set backspace=indent,eol,start
 set clipboard&
 set clipboard^=unnamedplus
 "最後のカーソル位置を記憶
-autocmd BufWinLeave ?* silent mkview
-autocmd BufWinEnter ?* silent loadview
+augroup vimrcEx
+  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  \ exe "normal g`\"" | endif
+augroup END
 
 let mapleader = "\<Space>"
 nnoremap <Leader>w :w<CR>
