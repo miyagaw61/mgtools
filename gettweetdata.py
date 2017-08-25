@@ -8,10 +8,10 @@ if(sys.argv[1] == "-h"):
 n_regex = re.compile(r"\n")
 
 HOME = '/home/miyagaw61'
-CK = open('/home/miyagaw61/Documents/twitter/twitter.CK').read()
-CS = open('/home/miyagaw61/Documents/twitter/twitter.CS').read()
-AT = open('/home/miyagaw61/Documents/twitter/twitter.AT').read()
-AS = open('/home/miyagaw61/Documents/twitter/twitter.AS').read()
+CK = open(HOME + '/mgtools/conf/twitter/twitter.CK').read()
+CS = open(HOME + '/mgtools/conf/twitter/twitter.CS').read()
+AT = open(HOME + '/mgtools/conf/twitter/twitter.AT').read()
+AS = open(HOME + '/mgtools/conf/twitter/twitter.AS').read()
 
 CK = n_regex.sub("", CK)
 CS = n_regex.sub("", CS)
@@ -25,7 +25,7 @@ api = tweepy.API(auth)
 status_id = sys.argv[1]
 
 try:
-    print api.get_status(status_id)
+    print(api.get_status(status_id))
 except:
-    print 'error'
+    print('error')
 
