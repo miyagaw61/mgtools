@@ -21,18 +21,18 @@ if len(sys.argv) > 1 and sys.argv[1] == 'r':
 elif len(sys.argv) > 1 and sys.argv[1] == "l":
     conn = process(FILE_NAME)
     libc = ELF(LOCAL_LIBC)
-elif len(sys.argv) > 1 and sys.argv[1] == "d":
-    dflg = 1
 else:
     conn = remote(LOCAL_HOST, LOCAL_PORT)
     libc = ELF(LOCAL_LIBC)
 
+if len(sys.argv) > 1 and sys.argv[1] == "d":
+    dflg = 1
 if len(sys.argv) > 2 and sys.argv[2] == 'd':
     dflg = 1
 
 def start():
     log.info('START')
-    if(dflg == 1):
+    if dflg == 1:
         raw_input('attach...')
     recvn()
 
