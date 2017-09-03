@@ -18,7 +18,10 @@ if test $hflg -eq 1 ;then
 fi
 
 echo $1 | sed -E 's@^.*status[^0-9]*(.*)@\1@' > status_id
-python $HOME/mgtools/gettweetdata.py $(cat status_id) > data
-cat data | sed -E 's@^.*(https://video.twimg.com/.*\.mp4).*$@\1@' > mp4url
-wget $(cat mp4url)
-rm status_id data mp4url
+mkdir $(cat status_id)
+cd $(cat status_id)
+python $HOME/mgtools/gettweetdata.py $(cat ../status_id) > data
+cat data  | grep -oP "https://video.twimg.com[^\.]*\.mp4" > mp4url
+cat mp4url | while read var ;do wget $var ;done
+rm data mp4url ../status_id
+cd ..
