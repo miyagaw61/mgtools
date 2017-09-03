@@ -31,7 +31,7 @@ if len(sys.argv) > 2 and sys.argv[2] == 'd':
     dflg = 1
 
 def start():
-    log.info('----- EXPLOIT START -----')
+    log.info('START')
     if(dflg == 1):
         raw_input('attach...')
     recvn()
