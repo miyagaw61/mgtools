@@ -1,15 +1,17 @@
 mgtools
 ============
 
-mgtools are many scripts for bash that has been written by @miyagaw61.  
-@miyagaw61によって作成された、bash上で使用可能なスクリプト群です。
+mgtools are many scripts for bash.  
+bash上で使用可能なスクリプト群です。  
+**mgtoolsディレクトリにPATHを通すだけで使用可能になります。**  
+**基本的に、mgtoolsディレクトリ内のファイルしか勝手に書き換えることはありません。**  
+**なので、mgtoolsを導入しても環境を壊すことはありません。**  
 
 install
 -------
 
 ```
-git clone https://github.com/miyagaw61/mgtools.git $HOME/mgtools/
-mkdir $HOME/mgtools/.tmp
+git clone https://github.com/miyagaw61/mgtools.git $HOME/mgtools
 ```
 
 tutorial
