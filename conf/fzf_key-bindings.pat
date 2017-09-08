@@ -79,7 +79,7 @@
    if [ $BASH_VERSINFO -gt 3 ]; then
      bind -x '"\C-t": "fzf-file-widget"'
 +    bind -x '"\C-k": "fzf-file-widget"'
-+    bind -x '"\C-k": "fzf-file-mywidget"'
++    bind -x '"\C-j": "fzf-file-mywidget"'
    elif __fzf_use_tmux__; then
      bind '"\C-t": " \C-u \C-a\C-k`__fzf_select_tmux__`\e\C-e\C-y\C-a\C-d\C-y\ey\C-h"'
    else
