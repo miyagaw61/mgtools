@@ -6,7 +6,7 @@ argc = len(argv)
 regex_ret = re.compile(r"\s\s$")
 regex_n = re.compile(r"\n")
 if(argc != 2):
-    print("Usage: memo [file]")
+    print("Usage: md [file]")
     exit()
 
 def no_ret_lines(f):
@@ -21,6 +21,7 @@ def no_ret_lines(f):
 
 file_name = argv[1]
 f = file(file_name)
+f.edit()
 new = file("for_md.tmp")
 if new.exist():
     new.rm()
