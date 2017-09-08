@@ -706,6 +706,7 @@ Usage: xready [file(def:exploit.py)]
 マークダウン記法でテキストを編集する際に自動で行末にスペース二つを入れてくれる編集コマンド。  
 内部では$EDITOR環境変数が存在すれば$EDITORを用いて編集し、無ければvimを使う仕様になっているので、  
 vim以外を使いたい方はexport EDITOR=emacsとかしてください。  
+enertライブラリを使っているので、導入してください。(https://github.com/miyagaw61/enert)
 ```  
 Usage md [file]  
 ```  
