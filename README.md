@@ -701,3 +701,9 @@ Usage: writedel str...
 ```
 Usage: xready [file(def:exploit.py)]
 ```
+
+* md
+マークダウン記法でテキストを編集する際に自動で行末にスペース二つを入れてくれる編集コマンド
+```
+Usage md [file]
+```
