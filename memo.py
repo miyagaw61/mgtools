@@ -41,3 +41,4 @@ new_file_name = regex_date.sub(date, file_name)
 shell("mv for_md.tmp " + new_file_name).call()
 if f.exist():
     f.rm()
+
