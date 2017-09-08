@@ -22,6 +22,7 @@ def no_ret_lines(f):
 
 file_name = argv[1]
 f = file(file_name)
+f.edit()
 new = file("for_md.tmp")
 if new.exist():
     new.rm()
