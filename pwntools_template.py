@@ -30,7 +30,7 @@ if len(sys.argv) > 1 and sys.argv[1] == "d":
     s = remote(LOCAL_HOST, LOCAL_PORT)
     f = open("gdbrc", "r")
     time.sleep(0.5)
-    pid = proc.pid_by_name(BINARY)
+    pid = proc.pid_by_name(binary)
     gdb.attach(pid[0], f)
 
 def b():
