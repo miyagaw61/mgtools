@@ -1,0 +1,2 @@
+#!/bin/sh
+cp -a $HOME/mgtools/default.py $1

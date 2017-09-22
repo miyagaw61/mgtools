@@ -1,7 +1,8 @@
-#!/home/miyagaw61/.pyenv/shims/python
 from enert import *
 
-ls, err = shell("ls -F").linedata()
+now, err = shell("pwd").get()
+ls, err = shell("ls -F " + now).get()
+ls = ls.split()
 directory = []
 elf = []
 others = []

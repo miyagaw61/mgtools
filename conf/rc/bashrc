@@ -87,7 +87,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -alF'
+alias ll='ls -halF'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -120,8 +120,6 @@ fi
 #mount -t cifs -o username=ta1se1,password=pasuwado1 //192.168.11.9/Share /mnt/windows
 
 #path
-export PYTHONPATH=$PYTHONPATH:$HOME/ctf/
-export PYTHONPATH=$PYTHONPATH:$HOME/mgtools/
 export PATH=$PATH:$HOME/mgtools
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
@@ -199,10 +197,8 @@ alias lf='ls -CF'
 alias dls='ls'
 alias o='ols'
 alias l='ols'
-alias s='. s'
 alias ls1='olsone'
 alias l1='olsone'
-alias s='ols'
 #alias ls='now; ls --color=auto'
 
 
@@ -305,24 +301,24 @@ alias dk='docker2'
 alias save='cat $HOME/Documents/save'
 
 
-#alias for git2
-alias gi='git2'
-alias gis='git2 status'
-alias gim='git2 m'
-alias gif='git2 diff'
-alias gia='git2 add'
-alias gic='git2 commit'
-alias gim='git2 merge'
-alias gip='git2 push'
-alias gib='git2 branch'
-alias gicm='git2 cm'
-alias gicp='git2 cp'
-alias gicmp='git2 cmp'
-alias gimp='git2 mp'
-alias giac='git2 ac'
-alias giacm='git2 acm'
-alias giacp='git2 acp'
-alias giacmp='git2 acmp'
+#alias for git2nd
+#alias gi='git2nd'
+#alias gis='git2nd status'
+#alias gim='git2nd m'
+#alias gif='git2nd diff'
+#alias gia='git2nd add'
+#alias gic='git2nd commit'
+#alias gim='git2nd merge'
+#alias gip='git2nd push'
+#alias gib='git2nd branch'
+#alias gicm='git2nd cm'
+#alias gicp='git2nd cp'
+#alias gicmp='git2nd cmp'
+#alias gimp='git2nd mp'
+#alias giac='git2nd ac'
+#alias giacm='git2nd acm'
+#alias giacp='git2nd acp'
+#alias giacmp='git2nd acmp'
 
 alias chro='google-chrome'
 
@@ -372,3 +368,17 @@ alias rm="rm -rf"
 alias vim="$HOME/viim/bin/vim"
 
 alias nls="ls | nms"
+
+#bind -x \C-s "search ,\t"
+alias xcp="xsel --clipboard --input"
+
+export EDITOR="$HOME/viim/bin/vim"
+export PATH=$PATH:/usr/local/bin
+
+alias x="./x"
+alias vx="vim ./x"
+alias gd="./x d"
+export PATH=$PATH:/home/miyagaw61/git/git2nd/git2nd
+export PATH=$PATH:/home/miyagaw61/git/git2nd
+export GIT_NAME='miyagaw61'
+export GIT_EMAIL='miyagaw61@gmail.com'

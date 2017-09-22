@@ -1,0 +1,46 @@
+#!/home/miyagaw61/.pyenv/shims/python
+from enert import *
+from argparse import ArgumentParser
+import sys
+
+if len(sys.argv) == 1:
+    shell('pyenv global').call()
+    exit()
+
+#make argparser
+#argparser = ArgumentParser(usage='mkpyenv [2] [3] [venv <name>]')
+
+#add arg
+#argparser.add_argument('2', type=str, help='python versoin 2', required=False)
+#argparser.add_argument('3', type=str, help='python versoin 3', required=False)
+
+#make subparsers
+#subparsers = argparser.add_subparsers()
+
+#make subparser
+#parser_venv = subparsers.add_parser('venv', help='virtualenv', usage='mkpyenv venv [name]')
+
+#add arg
+#parser_venv.add_argument('name', type=str, help='vrtualenv directory name')
+
+#compile
+#args = argparser.parse_args()
+
+#switch
+main_usage = 'pyv [2] [3] [v <name>]'
+main_args = ['2:python version 2', '3:python version 3', 'v [name]:virtualenv']
+if argc < 2:
+    parse_usage(main_usage, main_args)
+elif argv[1] == '2':
+    shell('pyenv global system').call()
+elif argv[1] == '3':
+    shell('pyenv global 3.6.2').call()
+elif argv[1] == 'v':
+    if argc < 3:
+        v_usage = 'pyv v [name]'
+        v_args = ['name:virtualenv directory name']
+        parse_usage(v_usage, v_args)
+    else:
+        shell('python3 -m venv ' + argv[2]).call()
+else:
+    parse_usage(main_usage, main_args)

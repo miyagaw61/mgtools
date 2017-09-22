@@ -111,10 +111,6 @@ def shell():
 #    print
 #katagaitai_command_end
 
-def xxd(a):
-    a = str(a)
-    hexdump.hexdump(a)
-
 def read(delim="\n", out=1):
     data = ''
     while not data.endswith(delim):
@@ -176,6 +172,10 @@ def ascii2addr(x):
 def splitn(data, n):
     length = len(data)
     return [data[i:i+n] for i in range(0, length, n)]
+
+def xxd(a):
+    a = str(a)
+    hexdump.hexdump(a)
 
 def dmp(binary, fmt="def"):
     res = binascii.hexlify(binary)

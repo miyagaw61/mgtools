@@ -1,0 +1,6 @@
+if test $# -eq 1 ;then
+    python $HOME/mgtools/ldpreload.py $1
+else
+    python $HOME/mgtools/ldpreload.py
+fi
+

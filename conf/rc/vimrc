@@ -133,7 +133,6 @@ set tabstop=4
 " 行頭でのTab文字の表示幅
 set shiftwidth=4
 
-
 " 検索系
 " 検索文字列が小文字の場合は大文字小文字を区別なく検索する
 set ignorecase
@@ -147,8 +146,6 @@ set wrapscan
 set hlsearch
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
-" カーソルの回り込みができるようになる
-set whichwrap=b,s,[,],<,>
 "バックスペースを、空白、行末、行頭でも使えるようにする
 set backspace=indent,eol,start
 "クリップボード共有
@@ -183,14 +180,9 @@ noremap j gj
 noremap k gk
 inoremap <C-h> <left>
 inoremap <C-l> <right>
-noremap <C-h> <left>
-noremap <C-l> <right>
 inoremap <C-j> <esc>
-inoremap <C-x> <esc>
 inoremap <C-a> <home>
-inoremap <C-g> <end>
-nnoremap <C-a> <home>
-nnoremap <C-g> <end>
+inoremap <C-e> <end>
 noremap <C-i> ZQ
 nnoremap <leader>vim :set syntax=vim<CR>
 nnoremap <leader>python :set syntax=python<CR>
@@ -201,12 +193,12 @@ nnoremap <leader>molokai :colorscheme molokai<CR>
 nnoremap <leader>kalisi :colorscheme kalisi<CR>:set background=light<CR>
 nnoremap gl <C-w>l
 nnoremap gh <C-w>h
-nnoremap GgCf <C-f>
-nnoremap GgCb <C-b>
-nnoremap GgCe <C-e>
-nnoremap GgCy <C-y>
-nnoremap GgCd <C-d>
-nnoremap GgCu <C-u>
+nnoremap gGCf <C-f>
+nnoremap gGCb <C-b>
+nnoremap gGCe <C-e>
+nnoremap gGCy <C-y>
+nnoremap gGCd <C-d>
+nnoremap gGCu <C-u>
 " ---- jp ----
 
 highlight CursorColumn ctermbg=Black
@@ -215,6 +207,7 @@ highlight CursorColumn ctermbg=Black
 " neobundle settings {{{
 if has('vim_starting')
 set nocompatible
+"set nocompatible
 " neobundle をインストールしていない場合は自動インストール
 if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
 echo "install neobundle..."
@@ -412,10 +405,31 @@ command! D :VinarisePluginDump
 command! B :VinarisePluginBitmapView
 " }}
 
+NeoBundle 'terryma/vim-multiple-cursors'
+" vim-multiple-cursors {{{
+" Called once right before you start selecting multiple cursors
+function! Multiple_cursors_before()
+  if exists(':NeoCompleteLock')==2
+    exe 'NeoCompleteLock'
+  endif
+endfunction
+" Called once only when the multiple selection is canceled (default <Esc>)
+function! Multiple_cursors_after()
+  if exists(':NeoCompleteUnlock')==2
+    exe 'NeoCompleteUnlock'
+  endif
+endfunction
+" }}}
+
+
 " vimrc に記述されたプラグインでインストールされていないものがないかチェックする
 NeoBundleCheck
 call neobundle#end()
 filetype plugin indent on
+
+" カーソルの回り込みができるようになる
+set nocompatible
+set whichwrap=b,s,h,l,[,],<,>,~
 
 "color scheme
 syntax on
@@ -429,9 +443,9 @@ function! g:Scb_vsplit()
     set noscb
     rightbelow vsplit
     set noscb
-    normal GgCf
-    normal GgCe
-    normal GgCe
+    normal gGCf
+    normal gGCe
+    normal gGCe
     set scb
     normal gh
     set scb
@@ -444,8 +458,35 @@ endfunction
 
 nnoremap <leader>v :call Scb_vsplit()<CR>
 
-nnoremap <C-h> :Gtags -f %<CR>
+"nnoremap <C-h> :Gtags -f %<CR>
 nnoremap <C-j> :GtagsCursor<CR>
-nnoremap <C-n> :cn<CR>
-nnoremap <C-p> :cp<CR>
-nnoremap <C-d> <C-w><C-w>ZQ
+nnoremap <C-h> <C-w><C-w>ZQ
+"nnoremap <C-n> :cn<CR>
+"nnoremap <C-p> :cp<CR>
+"nnoremap <C-d> <C-w><C-w>ZQ
+
+"##### auto fcitx  ###########
+let g:input_toggle = 1
+function! Fcitx2en()
+   let s:input_status = system("fcitx-remote")
+   if s:input_status == 2
+      let g:input_toggle = 1
+      let l:a = system("fcitx-remote -c")
+   endif
+endfunction
+
+function! Fcitx2zh()
+   let s:input_status = system("fcitx-remote")
+   if s:input_status != 2 && g:input_toggle == 1
+      let l:a = system("fcitx-remote -o")
+      let g:input_toggle = 0
+   endif
+endfunction
+
+set ttimeoutlen=150
+
+autocmd InsertLeave * call Fcitx2en()
+"autocmd InsertEnter * call Fcitx2zh()
+"##### auto fcitx end ######
+
+

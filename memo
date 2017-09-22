@@ -1,2 +1,0 @@
-#!/bin/sh
-python $HOME/mgtools/memo.py $1
