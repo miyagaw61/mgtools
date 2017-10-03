@@ -375,10 +375,26 @@ alias xcp="xsel --clipboard --input"
 export EDITOR="$HOME/viim/bin/vim"
 export PATH=$PATH:/usr/local/bin
 
-alias x="./x"
-alias vx="vim ./x"
-alias gd="./x d"
 export PATH=$PATH:/home/miyagaw61/git/git2nd/git2nd
 export PATH=$PATH:/home/miyagaw61/git/git2nd
 export GIT_NAME='miyagaw61'
 export GIT_EMAIL='miyagaw61@gmail.com'
+
+function recgif(){
+    export WINDOWID=$(xdotool getwindowfocus)
+    ttyrec /tmp/.gif_record
+}
+
+function mkgif(){
+    export WINDOWID=$(xdotool getwindowfocus)
+    ttygif /tmp/.gif_record
+    if test $# -ge 1 ;then
+        mv tty.gif $1
+        echo "[+]mv tty.gif "$1
+    fi
+    rm -rf /tmp/.gif_record
+}
+alias x="python exploit.py"
+alias r="python exploit.py"
+alias d="python exploit.py d"
+alias vx="vim ./exploit.py"

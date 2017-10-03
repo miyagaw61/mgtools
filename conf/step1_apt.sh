@@ -38,7 +38,7 @@ apt -y install ucommon-utils
 apt -y install xclip
 apt -y install libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
 apt -y install libtool-bin
-apt install imagemagick ttyrec gcc x11-apps
+apt -y install imagemagick ttyrec gcc x11-apps xdotool
 
 ###---vim---###
 ###---ruby---###

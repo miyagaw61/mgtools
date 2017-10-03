@@ -9,9 +9,9 @@ curl -L https://github.com/downloads/0vercl0k/rp/rp-lin-x64 > rp-lin-x64
 chmod +x rp-lin-x64
 mv rp-lin-x64 /usr/local/bin/
 
-#wget https://github.com/slimm609/checksec.sh/archive/1.6.tar.gz
-#tar zxvf 1.6.tar.gz
-#mv checksec.sh-1.6/checksec $HOME/mgtools/checksec.sh
+wget https://github.com/slimm609/checksec.sh/archive/1.6.tar.gz
+tar zxvf 1.6.tar.gz
+mv checksec.sh-1.6/checksec $HOME/mgtools/checksec.sh
 
 mkdir ext4magic
 cd ext4magic
