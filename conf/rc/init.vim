@@ -14,24 +14,55 @@ if dein#check_install()
   call dein#install()
 endif
 
+"terminal close
+function! s:termexit() abort
+    execute 'buffer #'
+endfunction
+autocmd! TermClose * call s:termexit()
+
+" :vim <str> %
+nnoremap [q :cprevious<CR> " 前へ
+nnoremap ]q :cnext<CR> " 次へ
+nnoremap [Q :<C-u>cfirst<CR> " 最初へ
+nnoremap ]Q :<C-u>clast<CR> " 最後へ
+
+" vim -b
+augroup BinaryXXD
+autocmd!
+autocmd BufReadPre *.bin let &binary =1
+" autocmd BufReadPost * if &binary | silent %!xxd -g 1
+autocmd BufReadPost * if &binary | Vinarise | endif
+" autocmd BufReadPost * set ft=xxd | endif
+" autocmd BufWritePre * if excute \"%!xxd -r\" | endif
+" autocmd BufWritePost * if &binary | silent %!xxd -g 1
+" autocmd BufWritePost * set nomod | endif
+augroup END
+
+" ビジュアルモードで選択したテキストが、クリップボードに入るようにする
+" http://nanasi.jp/articles/howto/editing/clipboard.html
+" set clipboard=autoselect
+
+" 無名レジスタに入るデータを、*レジスタにも入れる。
+set clipboard+=unnamed
+set clipboard+=unnamedplus
+
+"add by me
+
 " setting
 "文字コードをUFT-8に設定
 set fenc=utf-8
-set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8
-"  " バックアップファイルを作らない
-" set nobackup
-"  " スワップファイルを作らない
-" set noswapfile
-"  " 編集中のファイルが変更されたら自動で読み直す
-" set autoread
+" バックアップファイルを作らない
+set nobackup
+" スワップファイルを作らない
+set noswapfile
+" 編集中のファイルが変更されたら自動で読み直す
+set autoread
 " バッファが編集中でもその他のファイルを開けるように
 set hidden
-"  " 入力中のコマンドをステータスに表示する
-"  set showcmd
-"  
-"  " 見た目系
+" 入力中のコマンドをステータスに表示する
+set showcmd
+
+" 見た目系
 " 行番号を表示
 set number
 " 現在の行を強調表示
@@ -39,83 +70,14 @@ set cursorline
 " 現在の行を強調表示（縦）
 set cursorcolumn
 " 行末の1文字先までカーソルを移動できるように
-set virtualedit=block
-"  " インデントはスマートインデント
-"  set smartindent
-"  " ビープ音を可視化
-"  "set visualbell
-"  " 括弧入力時の対応する括弧を表示
-"  set showmatch
-"  " ステータスラインを常に表示
-"  set laststatus=2
-" コマンドラインの補完
-set wildmode=list:longest
-" 折り返し時に表示行単位での移動できるようにする
-nnoremap j gj
-nnoremap k gk
-"  
-"  " Tab系
-"  " 不可視文字を可視化(タブが「▸-」と表示される)
-"  "set list listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
-"  " Tab文字を半角スペースにする
-set expandtab
-"  " 行頭以外のTab文字の表示幅（スペースいくつ分）
-set tabstop=4
-"  " 行頭でのTab文字の表示幅
-set shiftwidth=4
-"  
-"  
-"  " 検索系
-" 検索文字列が小文字の場合は大文字小文字を区別なく検索する
-set ignorecase
-" 検索文字列に大文字が含まれている場合は区別して検索する
-set smartcase
-" 検索文字列入力時に順次対象文字列にヒットさせる
-set incsearch
-" 検索時に最後まで行ったら最初に戻る
-set wrapscan
-" 検索語をハイライト表示
-set hlsearch
-" ESC連打でハイライト解除
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
+
+
+
+filetype plugin indent on
+
 " カーソルの回り込みができるようになる
-set whichwrap=b,s,[,],<,>
-"バックスペースを、空白、行末、行頭でも使えるようにする
-set backspace=indent,eol,start
-"  "クリップボード共有
-set clipboard+=unnamedplus
-
-"highlight CursorColumn ctermbg=Black
-
-"最後のカーソル位置を記憶
-autocmd BufWinLeave ?* silent mkview
-autocmd BufWinEnter ?* silent loadview
-
-let mapleader = "\<Space>"
-nnoremap <Leader>w :w<CR>
-nnoremap <Leader>b :%!xxd -r<CR>
-
-
-" ---- jp ----
-noremap j gj
-noremap k gk
-noremap gl <C-w>l
-noremap gh <C-w>h
-noremap gj <C-w>j
-noremap gk <C-w>k
-inoremap <C-h> <left>
-inoremap <C-l> <right>
-"inoremap <C-k> <up>
-"inoremap <C-j> <down>
-inoremap <C-j> <esc>
-inoremap <C-x> <esc>
-tnoremap <C-j> <C-\><C-n>
-tnoremap <ESC> <C-\><C-n>
-tnoremap <C-w>h <C-\><C-n><C-w>h
-tnoremap <C-w>j <C-\><C-n><C-w>j
-tnoremap <C-w>k <C-\><C-n><C-w>k
-tnoremap <C-w>l <C-\><C-n><C-w>l
-" ---- jp ----
+set nocompatible
+set whichwrap=b,s,h,l,[,],<,>,~
 
 "color scheme
 syntax on
@@ -124,9 +86,68 @@ set t_Co=256
 set termguicolors
 set background=dark
 
-"terminal close
-function! s:termexit() abort
-    execute 'buffer #'
+" scb_vsplit
+function! g:Scb_vsplit()
+    set noscb
+    rightbelow vsplit
+    set noscb
+    normal gGCf
+    normal gGCe
+    normal gGCe
+    set scb
+    normal gh
+    set scb
 endfunction
-autocmd! TermClose * call s:termexit()
+
+
+"augroup scb_vsplit
+"    au!
+"    autocmd VimEnter * call s:scb_vsplit()
+"augroup END
+
+nnoremap <leader>v :call Scb_vsplit()<CR>
+
+"nnoremap <C-h> :Gtags -f %<CR>
+nnoremap <C-j> :GtagsCursor<CR>
+nnoremap <C-h> <C-w><C-w>ZQ
+"nnoremap <C-n> :cn<CR>
+"nnoremap <C-p> :cp<CR>
+"nnoremap <C-d> <C-w><C-w>ZQ
+
+""##### auto fcitx  ###########
+"let g:input_toggle = 1
+"function! Fcitx2en()
+"   let s:input_status = system("fcitx-remote")
+"   if s:input_status == 2
+"      let g:input_toggle = 1
+"      let l:a = system("fcitx-remote -c")
+"   endif
+"endfunction
+"
+"function! Fcitx2zh()
+"   let s:input_status = system("fcitx-remote")
+"   if s:input_status != 2 && g:input_toggle == 1
+"      let l:a = system("fcitx-remote -o")
+"      let g:input_toggle = 0
+"   endif
+"endfunction
+"
+"set ttimeoutlen=150
+"
+"autocmd InsertLeave * call Fcitx2en()
+""autocmd InsertEnter * call Fcitx2zh()
+""##### auto fcitx end ######
+
+
+""Windows
+"nnoremap <silent>yy "*yy
+"nnoremap <silent>p "*p
+"colorscheme kalisi
+""半角文字の設定
+"set guifont=MS_Gothic:h10
+""全角文字の設定
+"set guifontwide=MS_Gothic:h10
+""挿入モード時のデフォルトモード
+"nnoremap <leader>e :set iminsert=1<CR>:set imsearch=-1<CR>
+""横幅MAX
 

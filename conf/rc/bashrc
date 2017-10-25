@@ -179,6 +179,7 @@ if [ "$color_prompt" = yes ]; then
     else
         PS1="${debian_chroot:+$debian_chroot)}$USER@\w\$ "
     fi
+    PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}@${cyan}\w${white}\$ "
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}\n${usericon}"
     #PS1="${debian_chroot:+$debian_chroot)}${red}\w        \n${RESET_COLOR}${red}${usericon} ${white}"
     #PS1="${debian_chroot:+$debian_chroot)}${green}\w        \n${RESET_COLOR}${green}${usericon} ${white}"
@@ -398,3 +399,10 @@ alias x="python exploit.py"
 alias r="python exploit.py"
 alias d="python exploit.py d"
 alias vx="vim ./exploit.py"
+alias python="sudo python3"
+alias pip="sudo pip3"
+alias apt="sudo apt -y"
+alias rm="sudo rm"
+alias mv="sudo mv"
+alias vim="nvim"
+alias vim="$HOME/viim/bin/vim"

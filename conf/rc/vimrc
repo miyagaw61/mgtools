@@ -1,62 +1,19 @@
-" All system-wide defaults are set in $VIMRUNTIME/debian.vim and sourced by
-" the call to :runtime you can find below. If you wish to change any of those
-" settings, you should do it in this file (/etc/vim/vimrc), since debian.vim
-" will be overwritten everytime an upgrade of the vim packages is performed.
-" It is recommended to make changes after sourcing debian.vim since it alters
-" the value of the 'compatible' option.
-
-" This line should not be removed as it ensures that various options are
-" properly set to work with the Vim-related packages available in Debian.
 runtime! debian.vim
 
-" Uncomment the next line to make Vim more Vi-compatible
-" NOTE: debian.vim sets 'nocompatible'. Setting 'compatible' changes numerous
-" options, so any other options should be set AFTER setting 'compatible'.
-"set compatible
-
-" Vim5 and later versions support syntax highlighting. Uncommenting the next
-" line enables syntax highlighting by default.
-if has("syntax")
-syntax on
-endif
-
-" If using a dark background within the editing area and syntax highlighting
-" turn on this option as well
-"set background=dark
+"if has("syntax")
+"    syntax on
+"endif
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
-"if has("autocmd")
-" au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-"endif
-
-" Uncomment the following to have Vim load indentation rules and plugins
-" according to the detected filetype.
-"if has("autocmd")
-" filetype plugin indent on
-"endif
-
-" The following are commented out as they cause vim to behave a lot
-" differently from regular Vi. They are highly recommended though.
-"set showcmd " Show (partial) command in status line.
-"set showmatch " Show matching brackets.
-"set ignorecase " Do case insensitive matching
-"set smartcase " Do smart case matching
-"set incsearch " Incremental search
-"set autowrite " Automatically save before commands like :next and :make
-"set hidden " Hide buffers when they are abandoned
-"set mouse=a " Enable mouse usage (all modes)
+if has("autocmd")
+ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
-source /etc/vim/vimrc.local
+    source /etc/vim/vimrc.local
 endif
-
-
-" add by me
-
-" set number
-"set number
 
 " :vim <str> %
 nnoremap [q :cprevious<CR> " 前へ
@@ -81,12 +38,9 @@ augroup END
 " set clipboard=autoselect
 
 " 無名レジスタに入るデータを、*レジスタにも入れる。
-" set clipboard+=unnamed
-set clipboard=unnamedplus
+set clipboard+=unnamed
+set clipboard+=unnamedplus
 
-"add by me
-
-" setting
 "文字コードをUFT-8に設定
 set fenc=utf-8
 " バックアップファイルを作らない
@@ -99,14 +53,8 @@ set autoread
 set hidden
 " 入力中のコマンドをステータスに表示する
 set showcmd
-
-" 見た目系
 " 行番号を表示
 set number
-" 現在の行を強調表示
-set cursorline
-" 現在の行を強調表示（縦）
-set cursorcolumn
 " 行末の1文字先までカーソルを移動できるように
 set virtualedit=block
 " インデントはスマートインデント
@@ -116,7 +64,8 @@ set smartindent
 " 括弧入力時の対応する括弧を表示
 set showmatch
 " ステータスラインを常に表示
-set laststatus=2
+"set laststatus=2
+set laststatus=0
 " コマンドラインの補完
 set wildmode=list:longest
 " 折り返し時に表示行単位での移動できるようにする
@@ -157,23 +106,10 @@ augroup vimrcEx
   \ exe "normal g`\"" | endif
 augroup END
 
+"SET LEADER
 let mapleader = "\<Space>"
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>b :%!xxd -r<CR>
-
-" ---- dvorak ----
-"noremap h gj
-"noremap t gk
-"noremap d <left>
-"noremap n <right>
-"inoremap <C-g> <left>
-"inoremap <C-c> <right>
-"inoremap <C-e> <up>
-"inoremap <C-u> <down>
-"inoremap <C-w> <esc>
-"noremap \ n
-"noremap q d
-" ---- dvorak ----
 
 " ---- jp ----
 noremap j gj
@@ -201,12 +137,9 @@ nnoremap gGCd <C-d>
 nnoremap gGCu <C-u>
 " ---- jp ----
 
-highlight CursorColumn ctermbg=Black
-"highlight CursorLine ctermbg=Black
-
 " neobundle settings {{{
 if has('vim_starting')
-set nocompatible
+"set nocompatible
 "set nocompatible
 " neobundle をインストールしていない場合は自動インストール
 if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
@@ -227,14 +160,15 @@ NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'tomasr/molokai'
 "NeoBundle 'tpope/vim-surround'
 NeoBundle 'vim-scripts/sudo.vim'
-NeoBundle 'Shougo/vimproc', {
-\ 'build' : {
-\ 'windows' : 'make -f make_mingw32.mak',
-\ 'cygwin' : 'make -f make_cygwin.mak',
-\ 'mac' : 'make -f make_mac.mak',
-\ 'unix' : 'make -f make_unix.mak',
-\ },
-\ }
+NeoBundle 'mattn/vim-fz'
+"NeoBundle 'Shougo/vimproc', {
+" 'build' : {
+" 'windows' : 'make -f make_mingw32.mak',
+" 'cygwin' : 'make -f make_cygwin.mak',
+" 'mac' : 'make -f make_mac.mak',
+" 'unix' : 'make -f make_unix.mak',
+" },
+" }
 NeoBundle 'Shougo/neocomplete.vim'
 " neocomplete {{{
 " Disable AutoComplPop.
@@ -319,14 +253,15 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
     "    let g:neocomplete#enable_fuzzy_completion = 1
     "    let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 " }}}
-NeoBundleLazy 'Shougo/vimshell', {
-\ 'depends' : 'Shougo/vimproc',
-\ 'autoload' : {
-\ 'commands' : [{ 'name' : 'VimShell', 'complete' : 'customlist,vimshell#complete'},
-\ 'VimShellExecute', 'VimShellInteractive',
-\ 'VimShellTerminal', 'VimShellPop'],
-\ 'mappings' : ['<Plug>(vimshell_switch)']
-\ }}
+NeoBundleLazy 'Shougo/vimshell'
+"NeoBundleLazy 'Shougo/vimshell', {
+" 'depends' : 'Shougo/vimproc',
+" 'autoload' : {
+" 'commands' : [{ 'name' : 'VimShell', 'complete' : 'customlist,vimshell#complete'},
+" 'VimShellExecute', 'VimShellInteractive',
+" 'VimShellTerminal', 'VimShellPop'],
+" 'mappings' : ['<Plug>(vimshell_switch)']
+" }}
 
 " vimshell {{{
 nmap <silent> vs :<C-u>VimShell<CR>
@@ -426,17 +361,13 @@ endfunction
 NeoBundleCheck
 call neobundle#end()
 filetype plugin indent on
+" NEOBUNDLE END
+
+
 
 " カーソルの回り込みができるようになる
 set nocompatible
 set whichwrap=b,s,h,l,[,],<,>,~
-
-"color scheme
-syntax on
-colorscheme molokai
-set t_Co=256
-set termguicolors
-set background=dark
 
 " scb_jvsplit
 function! g:Scb_vsplit()
@@ -451,43 +382,48 @@ function! g:Scb_vsplit()
     set scb
 endfunction
 
+"AUTO SCB_VSPLIT
 "augroup scb_vsplit
 "    au!
 "    autocmd VimEnter * call s:scb_vsplit()
 "augroup END
 
+" SCB_VSPLIT COMMAND
 nnoremap <leader>v :call Scb_vsplit()<CR>
 
-"nnoremap <C-h> :Gtags -f %<CR>
+" GTAGS
 nnoremap <C-j> :GtagsCursor<CR>
 nnoremap <C-h> <C-w><C-w>ZQ
+"nnoremap <C-h> :Gtags -f %<CR>
 "nnoremap <C-n> :cn<CR>
 "nnoremap <C-p> :cp<CR>
 "nnoremap <C-d> <C-w><C-w>ZQ
+"
 
-    ""##### auto fcitx  ###########
-    "let g:input_toggle = 1
-    "function! Fcitx2en()
-    "   let s:input_status = system("fcitx-remote")
-    "   if s:input_status == 2
-    "      let g:input_toggle = 1
-    "      let l:a = system("fcitx-remote -c")
-    "   endif
-    "endfunction
-    "
-    "function! Fcitx2zh()
-    "   let s:input_status = system("fcitx-remote")
-    "   if s:input_status != 2 && g:input_toggle == 1
-    "      let l:a = system("fcitx-remote -o")
-    "      let g:input_toggle = 0
-    "   endif
-    "endfunction
-    "
-    "set ttimeoutlen=150
-    "
-    "autocmd InsertLeave * call Fcitx2en()
-    ""autocmd InsertEnter * call Fcitx2zh()
-    ""##### auto fcitx end ######
+""##### auto fcitx  ###########
+"let g:input_toggle = 1
+"function! Fcitx2en()
+"   let s:input_status = system("fcitx-remote")
+"   if s:input_status == 2
+"      let g:input_toggle = 1
+"      let l:a = system("fcitx-remote -c")
+"   endif
+"endfunction
+"
+"function! Fcitx2zh()
+"   let s:input_status = system("fcitx-remote")
+"   if s:input_status != 2 && g:input_toggle == 1
+"      let l:a = system("fcitx-remote -o")
+"      let g:input_toggle = 0
+"   endif
+"endfunction
+"
+"set ttimeoutlen=150
+"
+"autocmd InsertLeave * call Fcitx2en()
+""autocmd InsertEnter * call Fcitx2zh()
+""##### auto fcitx end ######
+
 
 ""Windows
 "nnoremap <silent>yy "*yy
@@ -503,3 +439,26 @@ nnoremap <C-h> <C-w><C-w>ZQ
 "set columns=600
 ""縦幅MAX
 "set lines=300
+"
+
+" 現在の行を強調表示
+set cursorline
+" 現在の行を強調表示（縦）
+set cursorcolumn
+" アンダーラインを引く(gui)
+"highlight CursorLine gui=underline guifg=NONE guibg=NONE
+
+"color scheme
+syntax on
+set t_Co=256
+set termguicolors
+source /home/miyagaw61/.vim/bundle/molokai/colors/molokai.vim
+"colorscheme molokai
+"hi Identifier ctermfg=blue
+"colorscheme molokai
+"set background=dark
+"colorscheme kalisi
+
+" アンダーラインを引く(color terminal)
+"highlight CursorLine cterm=underline ctermfg=NONE ctermbg=NONE
+"
