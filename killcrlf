@@ -1,0 +1,22 @@
+#!/bin/sh
+
+if test $# -eq 0 ;then
+    echo "Usage: killcrlf [-f <file>] [file]"
+    exit 0
+fi  
+
+if test $1 = "-h" ;then
+    echo "Usage: killcrlf [-f <file>] [file]"
+    exit 0
+fi
+
+if test $1 = "-f" ;then 
+    cat $2 | while read var ;do
+        xxd -p $var | perl -pe "s@\n@@g" | perl -pe "s@0d0a@0a@g" | xxd -r -p > killcrlf.tmp
+        mv killcrlf.tmp $var
+    done
+else
+    xxd -p $1 | perl -pe "s@\n@@g" | perl -pe "s@0d0a@0a@g" | xxd -r -p > killcrlf.tmp
+    mv killcrlf.tmp $1
+fi
+
