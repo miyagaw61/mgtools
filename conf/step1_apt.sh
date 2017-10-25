@@ -40,6 +40,11 @@ apt -y install libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
 apt -y install libtool-bin
 apt -y install imagemagick ttyrec gcc x11-apps xdotool
 
+##---go---##
+sudo add-apt-repository ppa:longsleep/golang-backports
+apt -y update
+apt -y install golang-go
+
 ###---vim---###
 ###---ruby---###
 ###---perl---###
