@@ -170,16 +170,64 @@ if [ "$color_prompt" = yes ]; then
     backRed_green='\[\033[32;41;1m\]'
     backGreen_blue='\[\033[34;42m\]'
     green='\[\033[32;1m\]'
-    blue='\[\033[34m\]'
+    blue='\[\033[34;1m\]'
+    blue_0='\[\033[34;0m\]'
     red='\[\033[31;1m\]' # red
     cyan='\[\033[36;1m\]'
+    cyan_0='\[\033[36m\]'
+    magenta='\[\033[35m\]'
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}@${cyan}\w${white}\$ "
+
+    #if test $USER = "root" ;then
+    #    PS1="${debian_chroot:+$debian_chroot)}${red}(${cyan}\W${red})${white} "
+    #else
+    #    PS1="${debian_chroot:+$debian_chroot)}$USER@\w\$ "
+    #fi
+    #PS1="${debian_chroot:+$debian_chroot)}${red}(${cyan}\W${red})${white} "
+    #PS1="${debian_chroot:+$debian_chroot)}.-\u@\w\n\`--> "
+
+    function parse_branch(){
+        branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's@\* \(.*\)@\1@')
+        if test $(($(echo $branch | wc -m)-1)) -gt 3 ;then
+            if test $USER = "root" ;then
+                echo -ne "\033[01;30m:\033[32;1m${branch}\033[00m"
+            else
+                echo -ne "\033[01;30m:\033[36;1m${branch}\033[00m"
+            fi
+        fi
+    }
+
+    function parse_prompt(){
+        branch_len="0"
+        len=$(pwd | wc -m)
+        len=$(($len-14-1))
+        branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's@\* \(.*\)@\1@')
+        branch_len=$(echo -n $branch | wc -m)
+        if test $branch_len != "0" ;then
+            len=$(($len+$branch_len))
+            len=$(($len+1))
+        fi
+        if test ! "$(pwd | grep '/home/miyagaw61')" ;then
+            len=6
+        fi
+        size=$(stty size) 
+        size=$(echo $size | sed -E "s@(.*) (.*)@\2@g")
+        num=$(($size-$len))
+        num=$(($num-6))
+        for x in $(seq 1 $num) ;do
+            echo -n '-'
+        done
+    }
+    PS1="${cyan}.-${black}(${red}\w${black})${cyan}-${blue}-${black}-${cyan}\n'---> ${white}"
+    PS1="${cyan}.-${black}(${green}\w${black})${cyan}-${blue}-${black}-${cyan}\n'---> ${white}"
+    PS1="${red}.-${black}(${green}\w${black})${red}-${magenta}-${black}-${red}\n'---> ${white}"
+    PS1="${red}.-${black}(${green}\w${black})${red}-${black}-${red}\n'---> ${white}"
+    PS1="${red}.---${black}(${green}\w\$(parse_branch)${black})${red}\$(parse_prompt)\n'--> ${white}"
     if test $USER = "root" ;then
-        PS1="${debian_chroot:+$debian_chroot)}${red}(${cyan}\W${red})${white} "
-    else
-        PS1="${debian_chroot:+$debian_chroot)}$USER@\w\$ "
+        PS1="${cyan}.---${black}(${red}\w\$(parse_branch)${black})${cyan}\$(parse_prompt)\n'--> ${white}"
     fi
     PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}@${cyan}\w${white}\$ "
+
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}\n${usericon}"
     #PS1="${debian_chroot:+$debian_chroot)}${red}\w        \n${RESET_COLOR}${red}${usericon} ${white}"
     #PS1="${debian_chroot:+$debian_chroot)}${green}\w        \n${RESET_COLOR}${green}${usericon} ${white}"
@@ -406,3 +454,7 @@ alias rm="sudo rm"
 alias mv="sudo mv"
 alias vim="nvim"
 alias vim="$HOME/viim/bin/vim"
+
+function gd(){
+    gdb -x ./gdbrc $1
+}
