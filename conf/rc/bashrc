@@ -200,7 +200,9 @@ if [ "$color_prompt" = yes ]; then
     function parse_prompt(){
         branch_len="0"
         len=$(pwd | wc -m)
-        len=$(($len-14-1))
+        if test "$(pwd | grep '/home/miyagaw61')" ;then
+            len=$(($len-14-1))
+        fi
         branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's@\* \(.*\)@\1@')
         branch_len=$(echo -n $branch | wc -m)
         if test $branch_len != "0" ;then
@@ -208,7 +210,7 @@ if [ "$color_prompt" = yes ]; then
             len=$(($len+1))
         fi
         if test ! "$(pwd | grep '/home/miyagaw61')" ;then
-            len=6
+            len=$(($len+6))
         fi
         size=$(stty size) 
         size=$(echo $size | sed -E "s@(.*) (.*)@\2@g")
