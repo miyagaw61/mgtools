@@ -29,6 +29,7 @@ endif
 
 """""############################    BASIC  SETTING       ########################################"
 
+hi clear Normal
 hi Boolean         guifg=#AE81FF
 hi Character       guifg=#E6DB74
 hi Number          guifg=#AE81FF
@@ -82,7 +83,8 @@ hi Search          guifg=#000000 guibg=#FFE792
 hi SignColumn      guifg=#A6E22E guibg=#232526
 hi SpecialChar     guifg=#F92672               gui=bold
 hi SpecialComment  guifg=#7E8E91               gui=bold
-hi Special         guifg=#66D9EF guibg=bg      gui=italic
+"hi Special         guifg=#66D9EF guibg=bg      gui=italic
+hi Special term=standout ctermfg=81 ctermbg=16 guifg=#66D9EF guibg=#000000
 if has("spell")
     hi SpellBad    guisp=#FF0000 gui=undercurl
     hi SpellCap    guisp=#7070F0 gui=undercurl
@@ -112,7 +114,7 @@ hi TabLineFill     guifg=#1B1D1E guibg=#1B1D1E
 hi TabLine         guibg=#1B1D1E guifg=#808080 gui=none
 
 if s:molokai_original == 1
-   hi Normal          guifg=#F8F8F2 guibg=#272822
+   "hi Normal          guifg=#F8F8F2 guibg=#272822
    hi Comment         guifg=#75715E
    hi CursorLine                    guibg=#3E3D32
    hi CursorLineNr    guifg=#FD971F               gui=none
@@ -126,8 +128,8 @@ else
 
 
 """######################## termguicolors ###############################""""""""""""
-   "hi Normal          guifg=#F8F8F2 guibg=#1B1D1E
-   "hi Normal          guifg=#F8F8F2
+   ""hi Normal          guifg=#F8F8F2 guibg=#1B1D1E
+   ""hi Normal          guifg=#F8F8F2
    hi Comment         guifg=#7E8E91
    hi CursorLine                    guibg=#293739
    hi CursorLineNr    guifg=#FD971F               gui=none
@@ -147,12 +149,13 @@ end
 "###### no termguicolors and t_Co==256 ########
 if &t_Co > 255
    if s:molokai_original == 1
-      hi Normal                   ctermbg=234
+      "hi Normal                   ctermbg=234
       hi CursorLine               ctermbg=235   cterm=none
       hi CursorLine                             cterm=none
       hi CursorLineNr ctermfg=208               cterm=none
    else
-      "hi Normal       ctermfg=252 ctermbg=233
+      "###### no termguicolors and t_Co==256 ########
+      ""hi Normal       ctermfg=252 ctermbg=233
       hi CursorLine               ctermbg=234   cterm=none
       hi CursorLineNr ctermfg=208               cterm=none
    endif
@@ -210,7 +213,8 @@ if &t_Co > 255
    hi SignColumn      ctermfg=118 ctermbg=235
    hi SpecialChar     ctermfg=161               cterm=bold
    hi SpecialComment  ctermfg=245               cterm=bold
-   hi Special         ctermfg=81
+   "hi Special         ctermfg=81
+   hi Special term=standout ctermfg=81 ctermbg=16 guifg=#66D9EF guibg=#000000
    if has("spell")
        hi SpellBad                ctermbg=52
        hi SpellCap                ctermbg=17
@@ -248,7 +252,7 @@ if &t_Co > 255
 
 
    if exists("g:rehash256") && g:rehash256 == 1
-       hi Normal       ctermfg=252 ctermbg=234
+       "hi Normal       ctermfg=252 ctermbg=234
        hi CursorLine               ctermbg=236   cterm=none
        hi CursorLineNr ctermfg=208               cterm=none
 
@@ -288,4 +292,3 @@ end
 
 " Must be at the end, because of ctermbg=234 bug.
 " https://groups.google.com/forum/#!msg/vim_dev/afPqwAFNdrU/nqh6tOM87QUJ
-set background=dark
