@@ -224,9 +224,9 @@ if [ "$color_prompt" = yes ]; then
     PS1="${cyan}.-${black}(${green}\w${black})${cyan}-${blue}-${black}-${cyan}\n'---> ${white}"
     PS1="${red}.-${black}(${green}\w${black})${red}-${magenta}-${black}-${red}\n'---> ${white}"
     PS1="${red}.-${black}(${green}\w${black})${red}-${black}-${red}\n'---> ${white}"
-    PS1="${red}.---${black}(${green}\w\$(parse_branch)${black})${red}\$(parse_prompt)\n'--> ${white}"
+    PS1="${red}.---${black}(${green}\w\$(parse_branch)${black})${red}\$(parse_prompt)\n\$(cat $HOME/mgtools/conf/back_quote)--> ${white}"
     if test $USER = "root" ;then
-        PS1="${cyan}.---${black}(${red}\w\$(parse_branch)${black})${cyan}\$(parse_prompt)\n'--> ${white}"
+        PS1="${cyan}.---${black}(${red}\w\$(parse_branch)${black})${cyan}\$(parse_prompt)\n\$(cat $HOME/mgtools/conf/back_quote)--> ${white}"
     fi
 
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}\n${usericon}"
