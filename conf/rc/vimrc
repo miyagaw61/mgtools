@@ -364,7 +364,6 @@ filetype plugin indent on
 " NEOBUNDLE END
 
 
-
 " カーソルの回り込みができるようになる
 set nocompatible
 set whichwrap=b,s,h,l,[,],<,>,~
@@ -452,7 +451,7 @@ set cursorcolumn
 syntax on
 set t_Co=256
 set termguicolors
-source /home/miyagaw61/.vim/bundle/molokai/colors/molokai.vim
+source /home/miyagaw61/.vim/bundle/molokai/colors/my_molokai.vim
 "colorscheme molokai
 "hi Identifier ctermfg=blue
 "colorscheme molokai
