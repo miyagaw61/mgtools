@@ -11,7 +11,7 @@ install
 -------  
   
 ```  
-git clone https://github.com/miyagaw61/mgtools.git $HOME/mgtools  
+git clone https://github.com/miyagaw61/mgtools.git $HOME/Documents/git/mgtools  
 ```  
   
 tutorial  
@@ -162,7 +162,7 @@ Usage: def file_name
 dirmkコマンドで作成したディレクトリは、パスのベースネームを入力するだけでそこへ飛べるようになる。  
 （内部的にはcdirファイルに追加するだけ。このコマンドを使わなくてもcdirファイルに追記すればベースネームで飛べるようになる。）  
 使用するにはbashrcに  
-source $HOME/mgtools/cdir  
+source $HOME/Documents/git/mgtools/cdir  
 を追記する必要がある。  
 ```  
 Usage: dirmk file  
@@ -417,7 +417,7 @@ default: defalut_libc
 lsの結果をファイルの種類別にソートし、番号を付与する。  
 付与された番号を入力することで、ディレクトリならcd、実行可能ファイルなら実行、テキストファイルならcatを自動で実行する。  
 （後述のfコマンドで付与された番号のファイルの絶対パスを取得することが可能。また、実行可能ファイルをcatしたい場合や、テキストファイルをvimした場合などは、後述の末尾がfのスクリプト群を使用。）  
-lseコマンドを使用するためには、"source $HOME/mgtools/numcd.alias"の$HOME/.bashrcへの追記と$HOME/Documents/numcd/ディレクトリの作成が事前に必要。  
+lseコマンドを使用するためには、"source $HOME/Documents/git/mgtools/numcd.alias"の$HOME/.bashrcへの追記と$HOME/Documents/numcd/ディレクトリの作成が事前に必要。  
 ```  
 Usage: lse [option] [clm_num(default: 3)]  
 [+]UsageOptions:  

@@ -14,5 +14,5 @@ if test $hflg -eq 1 ;then
 	exit 0
 fi
 
-cp -a $HOME/mgtools/default.sh ./$1
+cp -a $HOME/Documents/git/mgtools/default.sh ./$1
 

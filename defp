@@ -1,2 +1,2 @@
 #!/bin/sh
-cp -a $HOME/mgtools/default.py $1
+cp -a $HOME/Documents/git/mgtools/default.py $1

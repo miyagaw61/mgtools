@@ -6,8 +6,8 @@ if test "$1" = "-h" ;then
 fi
 
 if test $# -eq 0 ; then
-cp -a $HOME/mgtools/pwntools_template.py ./exploit.py
+cp -a $HOME/Documents/git/mgtools/pwntools_template.py ./exploit.py
 exit 0
 fi
-cp -a $HOME/mgtools/pwntools_template.py ./$1
+cp -a $HOME/Documents/git/mgtools/pwntools_template.py ./$1
 

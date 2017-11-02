@@ -441,9 +441,9 @@ nnoremap <C-h> <C-w><C-w>ZQ
 "
 
 " 現在の行を強調表示
-set cursorline
+"set cursorline
 " 現在の行を強調表示（縦）
-set cursorcolumn
+"set cursorcolumn
 " アンダーラインを引く(gui)
 "highlight CursorLine gui=underline guifg=NONE guibg=NONE
 

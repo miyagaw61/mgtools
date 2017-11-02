@@ -20,4 +20,4 @@ if test $fflg -eq 1 ;then
 	exit 0
 fi
 
-python $HOME/mgtools/pack.py $1
+python $HOME/Documents/git/mgtools/pack.py $1

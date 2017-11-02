@@ -31,7 +31,7 @@ fi
 
 cecho -rfn '[+]'
 cecho -gf $HOME'/mgtools/ -> '${dstPath}'/mgtools/'
-rsync -auv $HOME/mgtools/* ${dstPath}/mgtools/
+rsync -auv $HOME/Documents/git/mgtools/* ${dstPath}/mgtools/
 
 
 
@@ -79,19 +79,19 @@ rsync -auv $HOME/peda/* ${dstPath}/peda/
 
 cecho -rfn '[+]'
 cecho -gf $HOME'/.bashrc -> '$HOME'/mgtools/initial_setting/rc/bashrc'
-rsync -auv $HOME/.bashrc $HOME/mgtools/initial_setting/rc/bashrc
+rsync -auv $HOME/.bashrc $HOME/Documents/git/mgtools/initial_setting/rc/bashrc
 
 
 
 cecho -rfn '[+]'
 cecho -gf '/usr/share/vim/vimrc -> '$HOME'/mgtools/initial_setting/rc/vimrc'
-rsync -auv /usr/share/vim/vimrc $HOME/mgtools/initial_setting/rc/
+rsync -auv /usr/share/vim/vimrc $HOME/Documents/git/mgtools/initial_setting/rc/
 
 
 
 cecho -rfn '[+]'
 cecho -gf $HOME'/mgtools/initialsetting/rc/ -> '${dstPath}'/rc/'
-rsync -auv $HOME/mgtools/initial_setting/rc/* ${dstPath}'/rc/'
+rsync -auv $HOME/Documents/git/mgtools/initial_setting/rc/* ${dstPath}'/rc/'
 
 
 

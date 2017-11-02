@@ -26,11 +26,11 @@ if test ! -e ~/.xkb/symbols ;then
 	mkdir -p ~/.xkb/keymap ~/.xkb/symbols
 fi
 if test ! -e ~/.xkb/keymap/mykbd ;then
-	cat $HOME/mgtools/mykbd.txt > ~/.xkb/keymap/mykbd
+	cat $HOME/Documents/git/mgtools/mykbd.txt > ~/.xkb/keymap/mykbd
 fi
 
 if test ! -e ~/.xkb/symbols/myswap ;then
-	cp -a $HOME/mgtools/myswap.txt ~/.xkb/symbols/myswap
+	cp -a $HOME/Documents/git/mgtools/myswap.txt ~/.xkb/symbols/myswap
 fi
 
 if test ! "$(cat ~/.bashrc | grep xkbcomp | grep DISPLAY | grep /dev/null)" ;then
@@ -38,11 +38,11 @@ if test ! "$(cat ~/.bashrc | grep xkbcomp | grep DISPLAY | grep /dev/null)" ;the
 fi
 
 if test $1 = "us" ;then
-	cat $HOME/mgtools/mykbd.txt > ~/.xkb/keymap/mykbd
+	cat $HOME/Documents/git/mgtools/mykbd.txt > ~/.xkb/keymap/mykbd
 elif test $1 = "jp" ;then
-	cat $HOME/mgtools/mykbd.txt | perl -pe 's/us/jp/g' > ~/.xkb/keymap/mykbd
+	cat $HOME/Documents/git/mgtools/mykbd.txt | perl -pe 's/us/jp/g' > ~/.xkb/keymap/mykbd
 elif test $1 = "dv" ;then
-	cat $HOME/mgtools/mykbd.txt | perl -pe 's/us/us(dvorak)/g' > ~/.xkb/keymap/mykbd
+	cat $HOME/Documents/git/mgtools/mykbd.txt | perl -pe 's/us/us(dvorak)/g' > ~/.xkb/keymap/mykbd
 fi
 
 xkbcomp -I$HOME/.xkb ~/.xkb/keymap/mykbd $DISPLAY 2> /dev/null

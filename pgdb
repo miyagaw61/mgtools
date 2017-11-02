@@ -26,10 +26,10 @@ if test "$(uname -a | grep x86_64)" ;then
 fi
 
 if test "$(file $1 | grep $flg'-bit')" ;then
-	gdb -q -x $HOME/mgtools/gdbrc.def -x gdbrc -p $(pgrep -n $1)
+	gdb -q -x $HOME/Documents/git/mgtools/gdbrc.def -x gdbrc -p $(pgrep -n $1)
 else
 	mgpedaconf $subflg
-	gdb -q -x $HOME/mgtools/gdbrc.def -x gdbrc -p $(pgrep -n $1)
+	gdb -q -x $HOME/Documents/git/mgtools/gdbrc.def -x gdbrc -p $(pgrep -n $1)
 	mgpedaconf $flg
 fi
 
