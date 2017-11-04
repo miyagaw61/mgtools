@@ -160,7 +160,7 @@ NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'tomasr/molokai'
 "NeoBundle 'tpope/vim-surround'
 NeoBundle 'vim-scripts/sudo.vim'
-NeoBundle 'mattn/vim-fz'
+"NeoBundle 'mattn/vim-fz'
 "NeoBundle 'Shougo/vimproc', {
 " 'build' : {
 " 'windows' : 'make -f make_mingw32.mak',
