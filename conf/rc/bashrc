@@ -318,7 +318,7 @@ alias cdock='docker run -v /home/miyagaw/ctf/:/root/ctf/ -it --name ctf ubuntu14
 alias c2h='docker cp ctf:/root/ctf/ /home/miyagaw/'
 
 #alias numcd
-source $HOME/Documents/git/mgtools/numcd.alias
+#source $HOME/Documents/git/mgtools/numcd.alias
 
 #export golang
 export GOPATH=$HOME/go/thirdparty:$HOME/go/myproject
@@ -480,3 +480,4 @@ function gd(){
 }
 
 alias pyv="python $HOME/Documents/git/mgtools/pyv.py"
+alias update="apt -y update; apt -y upgrade; slk"
