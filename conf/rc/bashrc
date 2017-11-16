@@ -470,7 +470,7 @@ alias nls="ls | nms"
 #bind -x \C-s "search ,\t"
 alias xcp="xsel --clipboard --input"
 
-export EDITOR="$HOME/viim/bin/vim"
+export EDITOR="$HOME/bin/viim/bin/vim"
 export PATH=$PATH:/usr/local/bin
 
 export PATH=$PATH:/home/miyagaw61/git/git2nd/git2nd
@@ -502,7 +502,7 @@ alias mv="sudo mv"
 #alias vim="nvim"
 #alias vi="nvim"
 alias vim="$HOME/viim/bin/vim"
-alias vim="$HOME/repos/viim/bin/vim"
+alias vim="$HOME/bin/viim/bin/vim"
 
 function gd(){
     gdb -x ./gdbrc $1
