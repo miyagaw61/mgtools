@@ -270,12 +270,14 @@ if [ "$color_prompt" = yes ]; then
     PS1="${cyan}.---${black}(${red}\w\$(parse_branch)${black})\$(parse_pyenv)${cyan}\$(parse_prompt)\n'--> ${white}"
     PS1="${cyan}.--${black}(${red}\w\$(parse_branch)${black})${cyan}\$(parse_prompt)\n'--> ${white}"
     PS1="${cyan}.-${red}[\w]\$(parse_branch)\$(parse_pyenv)${cyan}\n\$(cat $HOME/repos/mgtools/conf/back_quote)--${red}[miyagaw61]${cyan}-${green}$ ${white}"
-    PS1="${cyan}┌─${red}[\w]\$(parse_branch)\$(parse_pyenv)\n${cyan}└─${red}[miyagaw61]${cyan}◈ ${white}"
+    PS1="${cyan}┌${red}[\w]\$(parse_branch)\$(parse_pyenv)\n${cyan}└─${red}[miyagaw61]${cyan}◈ ${white}"
     if test $USER = "root" ;then
         PS1="${red}.--${black}(${green}\w\$(parse_branch)${black})${red}\$(parse_prompt)\n\$(cat $HOME/repos/mgtools/conf/back_quote)--> ${white}"
         PS1="${red}.-${green}[\w]${red}-\$(parse_branch)${red}\$(parse_prompt)\n\$(cat $HOME/repos/mgtools/conf/back_quote)--${cyan}[miyagaw61]${red}-> ${white}"
         PS1="${red}.-${cyan}[\w]\$(parse_branch)\$(parse_pyenv)${red}\n\$(cat $HOME/repos/mgtools/conf/back_quote)--${cyan}[miyagaw61]${red}-${green}$ ${white}"
         PS1="${red}┌─${cyan}[\w]\$(parse_branch)\$(parse_pyenv)\n${red}└─${cyan}[miyagaw61]${red}◈ ${white}"
+        PS1="${red}┌\$(parse_branch)\$(parse_pyenv)\n${red}└─${cyan}[\w]${red}◈ ${white}"
+        PS1="${red}┌\$(parse_branch)\$(parse_pyenv)\n${red}└─${cyan}[\w]\n${cyan}◈ ${white}"
     fi
 
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}\n${usericon}"
@@ -314,7 +316,7 @@ alias viba='vim ~/.bashrc; rsync -au ~/.bashrc $HOME/repos/mgtools/conf/rc/bashr
 alias soba='. ~/.bashrc 2> /dev/null'
 alias vivi='vim ~/.vimrc; rsync -au ~/.vimrc $HOME/repos/mgtools/conf/rc/vimrc'
 
-#alias vivi='vim $HOME/.config/nvim/init.vim; rsync -au $HOME/.config/nvim/init.vim $HOME/repos/mgtools/conf/rc/'
+#alias vivi='vim $HOME/.config/nvim/init.vim; rsync -au $HOME/.config/nvim/init.vim $HOME/Documents/git/mgtools/conf/rc/'
 
 #gdb alias
 alias altest='source al'
@@ -332,7 +334,7 @@ alias diff='diff -a -r -u -p'
 alias less='less -iMSR'
 
 #alias gcc
-alias gcc='gcc -I $HOME/repos/mgtools/include/'
+alias gcc='gcc -I $HOME/Documents/git/mgtools/include/'
 
 #virtualenv
 
@@ -347,7 +349,7 @@ alias cdock='docker run -v /home/miyagaw/ctf/:/root/ctf/ -it --name ctf ubuntu14
 alias c2h='docker cp ctf:/root/ctf/ /home/miyagaw/'
 
 #alias numcd
-#source $HOME/repos/mgtools/numcd.alias
+#source $HOME/Documents/git/mgtools/numcd.alias
 
 #export golang
 export GOPATH=$HOME/go/thirdparty:$HOME/go/myproject
@@ -392,7 +394,7 @@ MNT='/mnt/windows/bk'
 alias pg='pgdb'
 
 #aliaas ipcalc
-alias ipcalc='python $HOME/repos/mgtools/ipcalc.py'
+alias ipcalc='python $HOME/Documents/git/mgtools/ipcalc.py'
 
 #alias docker2
 alias dk='docker2'
@@ -441,18 +443,18 @@ export LSFTMP=""
 alias c="cat \$(fzf__select__)"
 alias d="cd \$(__fzf_myselect_cd__)"
 alias v="vim \$(__fzf_select__)"
-alias fd="echo 'cd '\$(cat $HOME/repos/mgtools/.tmp/lsf.out) > $HOME/repos/mgtools/.tmp/lsf.vd; source $HOME/repos/mgtools/.tmp/lsf.vd"
+alias fd="echo 'cd '\$(cat $HOME/Documents/git/mgtools/.tmp/lsf.out) > $HOME/Documents/git/mgtools/.tmp/lsf.vd; source $HOME/Documents/git/mgtools/.tmp/lsf.vd"
 
 function jmp() {
     if test $# -eq 0 ;then
-        cat $HOME/repos/mgtools/conf/jmp.conf
+        cat $HOME/Documents/git/mgtools/conf/jmp.conf
     elif test $1 = "add" ;then
-        echo $2 >> $HOME/repos/mgtools/conf/jmp.conf
+        echo $2 >> $HOME/Documents/git/mgtools/conf/jmp.conf
     else
-        cat $HOME/repos/mgtools/conf/jmp.conf | grep -oP "^$1:.*$" | perl -pe "s@$1:(.*)@\1@g" > $HOME/repos/mgtools/.tmp/jmp.tmp
-        echo "cd "$(cat $HOME/repos/mgtools/.tmp/jmp.tmp) > $HOME/repos/mgtools/.tmp/jmp.tmp.tmp
-        mv $HOME/repos/mgtools/.tmp/jmp.tmp.tmp $HOME/repos/mgtools/.tmp/jmp.tmp
-        source $HOME/repos/mgtools/.tmp/jmp.tmp
+        cat $HOME/Documents/git/mgtools/conf/jmp.conf | grep -oP "^$1:.*$" | perl -pe "s@$1:(.*)@\1@g" > $HOME/Documents/git/mgtools/.tmp/jmp.tmp
+        echo "cd "$(cat $HOME/Documents/git/mgtools/.tmp/jmp.tmp) > $HOME/Documents/git/mgtools/.tmp/jmp.tmp.tmp
+        mv $HOME/Documents/git/mgtools/.tmp/jmp.tmp.tmp $HOME/Documents/git/mgtools/.tmp/jmp.tmp
+        source $HOME/Documents/git/mgtools/.tmp/jmp.tmp
     fi
 }
 alias j="jmp"
@@ -507,5 +509,5 @@ function gd(){
     gdb -x ./gdbrc $1
 }
 
-alias pyv="python $HOME/repos/mgtools/pyv.py"
+alias pyv="python $HOME/Documents/git/mgtools/pyv.py"
 alias update="apt -y update; apt -y upgrade; slk"
