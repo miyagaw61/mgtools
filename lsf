@@ -54,29 +54,29 @@ if test $aflg -eq 1 ;then
 #-----------------------------
 if test $dflg -eq 1 ;then
     if test "$(getfile -ad)" ;then
-        getfile -ad | perl -pe "s@ @HOGEFUGA@g" | xargs cecho -bf | perl -pe "s@HOGEFUGA@ @g" | fzf --reverse --ansi --multi > $HOME/Documents/git/mgtools/.tmp/lsf.out
-        cat $HOME/Documents/git/mgtools/.tmp/lsf.out
+        getfile -ad | perl -pe "s@ @HOGEFUGA@g" | xargs cecho -bf | perl -pe "s@HOGEFUGA@ @g" | fzf --reverse --ansi --multi > $HOME/repos/mgtools/.tmp/lsf.out
+        cat $HOME/repos/mgtools/.tmp/lsf.out
     fi
 fi
 if test $xflg -eq 1 ;then
     if test "$(getfile -ax)" ;then
-        echo "$(cecho -gf $(getfile -ax))" | fzf --reverse --ansi --multi > $HOME/Documents/git/mgtools/.tmp/lsf.out
-        cat $HOME/Documents/git/mgtools/.tmp/lsf.out
+        echo "$(cecho -gf $(getfile -ax))" | fzf --reverse --ansi --multi > $HOME/repos/mgtools/.tmp/lsf.out
+        cat $HOME/repos/mgtools/.tmp/lsf.out
     fi
 fi
 if test $oflg -eq 1 ;then
     if test "$(getfile -ao)" ;then
-        getfile -ao | fzf --reverse --ansi --multi > $HOME/Documents/git/mgtools/.tmp/lsf.out
-        cat $HOME/Documents/git/mgtools/.tmp/lsf.out
+        getfile -ao | fzf --reverse --ansi --multi > $HOME/repos/mgtools/.tmp/lsf.out
+        cat $HOME/repos/mgtools/.tmp/lsf.out
     fi
 fi
 if test $dflg -eq 0 -a $xflg -eq 0 -a $oflg -eq 0 ;then
     if test "$(getfile -a)" ;then
-        cecho -bf $(getfile -ad) > $HOME/Documents/git/mgtools/.tmp/lsf_ad.tmp
-        cecho -gf $(getfile -ax) > $HOME/Documents/git/mgtools/.tmp/lsf_ax.tmp
-        getfile -ao > $HOME/Documents/git/mgtools/.tmp/lsf_ao.tmp
-        cat $HOME/Documents/git/mgtools/.tmp/lsf_ad.tmp $HOME/Documents/git/mgtools/.tmp/lsf_ax.tmp $HOME/Documents/git/mgtools/.tmp/lsf_ao.tmp | fzf --reverse --ansi --multi > $HOME/Documents/git/mgtools/.tmp/lsf.out
-        cat $HOME/Documents/git/mgtools/.tmp/lsf.out
+        cecho -bf $(getfile -ad) > $HOME/repos/mgtools/.tmp/lsf_ad.tmp
+        cecho -gf $(getfile -ax) > $HOME/repos/mgtools/.tmp/lsf_ax.tmp
+        getfile -ao > $HOME/repos/mgtools/.tmp/lsf_ao.tmp
+        cat $HOME/repos/mgtools/.tmp/lsf_ad.tmp $HOME/repos/mgtools/.tmp/lsf_ax.tmp $HOME/repos/mgtools/.tmp/lsf_ao.tmp | fzf --reverse --ansi --multi > $HOME/repos/mgtools/.tmp/lsf.out
+        cat $HOME/repos/mgtools/.tmp/lsf.out
     fi
 fi
 rmtmp
@@ -87,29 +87,29 @@ fi
 
 if test $dflg -eq 1 ;then
     if test "$(getfile -d)" ;then
-        getfile -d | perl -pe "s@ @HOGEFUGA@g" | xargs cecho -bf | perl -pe "s@HOGEFUGA@ @g" | fzf --reverse --ansi --multi > $HOME/Documents/git/mgtools/.tmp/lsf.out
-        cat $HOME/Documents/git/mgtools/.tmp/lsf.out 
+        getfile -d | perl -pe "s@ @HOGEFUGA@g" | xargs cecho -bf | perl -pe "s@HOGEFUGA@ @g" | fzf --reverse --ansi --multi > $HOME/repos/mgtools/.tmp/lsf.out
+        cat $HOME/repos/mgtools/.tmp/lsf.out 
     fi
 fi
 if test $xflg -eq 1 ;then
     if test "$(getfile -x)" ;then
-        echo "$(cecho -gf $(getfile -x))" | fzf --reverse --ansi --multi > $HOME/Documents/git/mgtools/.tmp/lsf.out
-        cat $HOME/Documents/git/mgtools/.tmp/lsf.out
+        echo "$(cecho -gf $(getfile -x))" | fzf --reverse --ansi --multi > $HOME/repos/mgtools/.tmp/lsf.out
+        cat $HOME/repos/mgtools/.tmp/lsf.out
     fi
 fi
 if test $oflg -eq 1 ;then
     if test "$(getfile -o)" ;then
-        getfile -o | fzf --reverse --ansi --multi > $HOME/Documents/git/mgtools/.tmp/lsf.out
-        cat $HOME/Documents/git/mgtools/.tmp/lsf.out
+        getfile -o | fzf --reverse --ansi --multi > $HOME/repos/mgtools/.tmp/lsf.out
+        cat $HOME/repos/mgtools/.tmp/lsf.out
     fi
 fi
 if test $# -eq 0 ;then
     if test "$(getfile)" ;then
-        cecho -bf $(getfile -d) > $HOME/Documents/git/mgtools/.tmp/lsf_ad.tmp
-        cecho -gf $(getfile -x) > $HOME/Documents/git/mgtools/.tmp/lsf_ax.tmp
-        getfile -o > $HOME/Documents/git/mgtools/.tmp/lsf_ao.tmp
-        cat $HOME/Documents/git/mgtools/.tmp/lsf_ad.tmp $HOME/Documents/git/mgtools/.tmp/lsf_ax.tmp $HOME/Documents/git/mgtools/.tmp/lsf_ao.tmp | fzf --reverse --ansi --multi > $HOME/Documents/git/mgtools/.tmp/lsf.out
-        cat $HOME/Documents/git/mgtools/.tmp/lsf.out
+        cecho -bf $(getfile -d) > $HOME/repos/mgtools/.tmp/lsf_ad.tmp
+        cecho -gf $(getfile -x) > $HOME/repos/mgtools/.tmp/lsf_ax.tmp
+        getfile -o > $HOME/repos/mgtools/.tmp/lsf_ao.tmp
+        cat $HOME/repos/mgtools/.tmp/lsf_ad.tmp $HOME/repos/mgtools/.tmp/lsf_ax.tmp $HOME/repos/mgtools/.tmp/lsf_ao.tmp | fzf --reverse --ansi --multi > $HOME/repos/mgtools/.tmp/lsf.out
+        cat $HOME/repos/mgtools/.tmp/lsf.out
     fi
 fi
 rmtmp

@@ -16,4 +16,4 @@ pip install matplotlib
 pip install tensorflow
 pip install keras
 mkdir -p /home/miyagaw61/.percol.d
-cp -a $HOME/Documents/git/mgtools/conf/rc/rc.py $HOME/.percol.d/rc.py
+cp -a $HOME/repos/mgtools/conf/rc/rc.py $HOME/.percol.d/rc.py

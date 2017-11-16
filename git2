@@ -86,7 +86,7 @@ if test $hflg -eq 1 ;then
  giacmp: git2 acmp
  "
 	allrm branch.tmp now.tmp
-    allrm $HOME/Documents/git/mgtools/.tmp/git2.m
+    allrm $HOME/repos/mgtools/.tmp/git2.m
 	exit 0
 fi
 
@@ -115,7 +115,7 @@ alias giacm='git2 acm'
 alias giacmp='git2 acmp'\n
 " >> $HOME/.bashrc
 	fi
-    allrm $HOME/Documents/git/mgtools/.tmp/git2.m
+    allrm $HOME/repos/mgtools/.tmp/git2.m
 	exit 0
 fi
 
@@ -150,8 +150,8 @@ fi
 if test $1 = "commit" -o $1 = "c" ;then
 	git status
 	branchsave
-    vim $HOME/Documents/git/mgtools/.tmp/git2.m
-    msg="$(cat $HOME/Documents/git/mgtools/.tmp/git2.m)"
+    vim $HOME/repos/mgtools/.tmp/git2.m
+    msg="$(cat $HOME/repos/mgtools/.tmp/git2.m)"
     message="$msg"
     if test $# -le 2 ;then
         message=""
@@ -178,7 +178,7 @@ if test $1 = "commit" -o $1 = "c" ;then
 	git commit -m "$message"
 	echo "\n[+]COMMIT FINISH!\n"
 	allrm branch.tmp now.tmp
-    allrm $HOME/Documents/git/mgtools/.tmp/git2.m
+    allrm $HOME/repos/mgtools/.tmp/git2.m
 	exit 0
 fi
 
@@ -195,7 +195,7 @@ if test "$1" = "cp" -o "$1" = "commitpush" ;then
 	else
 		git2 push $2
 	fi
-    allrm $HOME/Documents/git/mgtools/.tmp/git2.m
+    allrm $HOME/repos/mgtools/.tmp/git2.m
 	exit 0
 fi
 
@@ -211,8 +211,8 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
     file=$2
 	git status
 	branchsave
-    vim $HOME/Documents/git/mgtools/.tmp/git2.m
-    msg="$(cat $HOME/Documents/git/mgtools/.tmp/git2.m)"
+    vim $HOME/repos/mgtools/.tmp/git2.m
+    msg="$(cat $HOME/repos/mgtools/.tmp/git2.m)"
     message="$msg"
     if test $# -eq 2 ;then
         message=""
@@ -239,14 +239,14 @@ if test "$1" = "addcommit" -o "$1" = "ac" ;then
 	git commit -m "$message"
 	echo "\n[+]COMMIT FINISH!\n"
 	allrm branch.tmp now.tmp
-    allrm $HOME/Documents/git/mgtools/.tmp/git2.m
+    allrm $HOME/repos/mgtools/.tmp/git2.m
 	exit 0
 fi
 
 if test "$1" = "acp" -o "$1" = "addcommitpush" ;then
     if test $# -le 2 ;then
         echo "Usage: git2 acp [file] [branch]"
-        allrm $HOME/Documents/git/mgtools/.tmp/git2.m
+        allrm $HOME/repos/mgtools/.tmp/git2.m
         exit 0
     fi
     git branch
@@ -264,8 +264,8 @@ if test "$1" = "acp" -o "$1" = "addcommitpush" ;then
     git status
     branchsave
     msg=""
-    vim $HOME/Documents/git/mgtools/.tmp/git2.m
-    msg="$(cat $HOME/Documents/git/mgtools/.tmp/git2.m)"
+    vim $HOME/repos/mgtools/.tmp/git2.m
+    msg="$(cat $HOME/repos/mgtools/.tmp/git2.m)"
     message="$msg"
     if test $# -eq 3 ;then
         message=""
@@ -295,7 +295,7 @@ if test "$1" = "acp" -o "$1" = "addcommitpush" ;then
         branch="master"
     fi
     git2 push $branch
-    allrm $HOME/Documents/git/mgtools/.tmp/git2.m
+    allrm $HOME/repos/mgtools/.tmp/git2.m
     exit 0
 fi
 
@@ -315,8 +315,8 @@ if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
 	git status
 	branchsave
 	msg=""
-    vim $HOME/Documents/git/mgtools/.tmp/git2.m
-    msg="$(cat $HOME/Documents/git/mgtools/.tmp/git2.m)"
+    vim $HOME/repos/mgtools/.tmp/git2.m
+    msg="$(cat $HOME/repos/mgtools/.tmp/git2.m)"
   message="$msg"
   if test $# -eq 3 ;then
     message=""
@@ -350,7 +350,7 @@ if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
 			echo "\n[+]merge stop.\n"
 			git branch
 			allrm branch.tmp now.tmp
-            allrm $HOME/Documents/git/mgtools/.tmp/git2.m
+            allrm $HOME/repos/mgtools/.tmp/git2.m
 			exit 0
 		fi
 	else
@@ -360,7 +360,7 @@ if test "$1" = "acm" -o "$1" = "addcommitmerge" ;then
 	git checkout $(cat now.tmp)
 	git branch
 	allrm branch.tmp now.tmp
-    allrm $HOME/Documents/git/mgtools/.tmp/git2.m
+    allrm $HOME/repos/mgtools/.tmp/git2.m
 	exit 0
 fi
 
@@ -380,8 +380,8 @@ if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
 	git status
 	branchsave
 	msg=""
-    vim $HOME/Documents/git/mgtools/.tmp/git2.m
-    msg="$(cat $HOME/Documents/git/mgtools/.tmp/git2.m)"
+    vim $HOME/repos/mgtools/.tmp/git2.m
+    msg="$(cat $HOME/repos/mgtools/.tmp/git2.m)"
   message="$msg"
   if test $# -eq 3 ;then
     message=""
@@ -417,7 +417,7 @@ if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
 		else
 			echo "\n[+]merge&push stop.\n"
 			allrm branch.tmp now.tmp
-            allrm $HOME/Documents/git/mgtools/.tmp/git2.m
+            allrm $HOME/repos/mgtools/.tmp/git2.m
 			exit 0
 		fi
 	else
@@ -427,7 +427,7 @@ if test "$1" = "acmp" -o "$1" = "addcommitmergepush" ;then
 		git checkout $(cat now.tmp)
 	fi
 	allrm branch.tmp now.tmp
-    allrm $HOME/Documents/git/mgtools/.tmp/git2.m
+    allrm $HOME/repos/mgtools/.tmp/git2.m
 	exit 0
 fi
 
@@ -446,7 +446,7 @@ if test "$1" = "merge" -o "$1" = "m" ;then
 	#	else
 	#		echo "\n[+]merge stop.\n"
 	#		allrm branch.tmp now.tmp
-    #        allrm $HOME/Documents/git/mgtools/.tmp/git2.m
+    #        allrm $HOME/repos/mgtools/.tmp/git2.m
 	#		exit 0
 	#	fi
 	#else
@@ -534,7 +534,7 @@ if test "$1" = "cm" -o "$1" = "commitmerge" ;then
 		git2 merge $2
 	fi
 	allrm branch.tmp now.tmp
-    allrm $HOME/Documents/git/mgtools/.tmp/git2.m
+    allrm $HOME/repos/mgtools/.tmp/git2.m
 	exit 0
 fi
 
@@ -554,7 +554,7 @@ if test "$1" = "cmp" -o "$1" = "commitmergepush" ;then
 		git2 push $2
 	fi
 	allrm branch.tmp now.tmp
-    allrm $HOME/Documents/git/mgtools/.tmp/git2.m
+    allrm $HOME/repos/mgtools/.tmp/git2.m
 	exit 0
 fi
 
@@ -613,6 +613,6 @@ if test $1 = "remote"  -o $1 = "r" ;then
 fi
 
 if test "$1" = "m" -o "$1" = "memo" ;then
-    vim $HOME/Documents/git/mgtools/.tmp/git2.m
+    vim $HOME/repos/mgtools/.tmp/git2.m
     exit 0
 fi

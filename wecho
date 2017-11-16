@@ -29,12 +29,12 @@ fi
 
 if test "$n" ;then
 	for arg in "$@" ;do
-		echo -n "$arg" > $HOME/Documents/git/mgtools/.tmp/wecho.tmp
-        cat -v $HOME/Documents/git/mgtools/.tmp/wecho.tmp | perl -pe "s@\^.*?m@@g" ;echo ''
+		echo -n "$arg" > $HOME/repos/mgtools/.tmp/wecho.tmp
+        cat -v $HOME/repos/mgtools/.tmp/wecho.tmp | perl -pe "s@\^.*?m@@g" ;echo ''
 	done
 elif test -z "$n" ;then
 	for arg in "$@" ;do
-		echo -n "$arg" > $HOME/Documents/git/mgtools/.tmp/wecho.tmp
+		echo -n "$arg" > $HOME/repos/mgtools/.tmp/wecho.tmp
         cat -v $HOEM/mgtools/.tmp/wecho.tmp | perl -pe "s@\^.*?m@@g"
 	done
 fi

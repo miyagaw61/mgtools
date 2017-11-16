@@ -14,8 +14,8 @@ while getopts h opt ;do
 	esac
 done
 
-cat $HOME/Documents/git/mgtools/nsed.def | perl -pe 's@ARG1@'$2'@g' > $HOME/Documents/git/mgtools/nsed.tmp.tmp
-cat $HOME/Documents/git/mgtools/nsed.tmp.tmp | perl -pe 's@ARG2@'$3'@g' > $HOME/Documents/git/mgtools/nsed.tmp
-cat $1 | sed -f $HOME/Documents/git/mgtools/nsed.tmp
+cat $HOME/repos/mgtools/nsed.def | perl -pe 's@ARG1@'$2'@g' > $HOME/repos/mgtools/nsed.tmp.tmp
+cat $HOME/repos/mgtools/nsed.tmp.tmp | perl -pe 's@ARG2@'$3'@g' > $HOME/repos/mgtools/nsed.tmp
+cat $1 | sed -f $HOME/repos/mgtools/nsed.tmp
 rmtmp
 

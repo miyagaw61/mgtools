@@ -1,6 +1,6 @@
 if test $# -eq 1 ;then
-    python $HOME/Documents/git/mgtools/ldpreload.py $1
+    python $HOME/repos/mgtools/ldpreload.py $1
 else
-    python $HOME/Documents/git/mgtools/ldpreload.py
+    python $HOME/repos/mgtools/ldpreload.py
 fi
 

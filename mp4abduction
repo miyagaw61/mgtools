@@ -20,7 +20,7 @@ fi
 echo $1 | sed -E 's@^.*status[^0-9]*(.*)@\1@' > status_id
 mkdir $(cat status_id)
 cd $(cat status_id)
-python $HOME/Documents/git/mgtools/gettweetdata.py $(cat ../status_id) > data
+python $HOME/repos/mgtools/gettweetdata.py $(cat ../status_id) > data
 cat data  | grep -oP "https://video.twimg.com[^\.]*\.mp4" > mp4url
 cat mp4url | while read var ;do wget $var ;done
 rm data mp4url ../status_id

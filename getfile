@@ -34,9 +34,9 @@ fi
 
 if test $nflg -eq 1 ;then
 	if test $aflg -eq 1 ;then
-		ls -a1F > $HOME/Documents/git/mgtools/.tmp/all.tmp
-		cat $HOME/Documents/git/mgtools/.tmp/all.tmp | grep -P -v -e '.*(?=\*$)'
-		allrm $HOME/Documents/git/mgtools/.tmp/all.tmp
+		ls -a1F > $HOME/repos/mgtools/.tmp/all.tmp
+		cat $HOME/repos/mgtools/.tmp/all.tmp | grep -P -v -e '.*(?=\*$)'
+		allrm $HOME/repos/mgtools/.tmp/all.tmp
 		exit 0
 	else
         #dir
@@ -45,9 +45,9 @@ if test $nflg -eq 1 ;then
         #exe
         ls -1F | grep -oP '.*(?=\*$)' 
         #others
-        ls -1F > $HOME/Documents/git/mgtools/.tmp/all.tmp
-        cat $HOME/Documents/git/mgtools/.tmp/all.tmp | grep -P -v -e '.*(?=\/$)' | grep -P -v -e '.*(?=\*$)'
-        allrm $HOME/Documents/git/mgtools/.tmp/all.tmp
+        ls -1F > $HOME/repos/mgtools/.tmp/all.tmp
+        cat $HOME/repos/mgtools/.tmp/all.tmp | grep -P -v -e '.*(?=\/$)' | grep -P -v -e '.*(?=\*$)'
+        allrm $HOME/repos/mgtools/.tmp/all.tmp
         exit 0
     fi
 fi
@@ -58,7 +58,7 @@ if test $dflg -eq 1 ;then
 	else
 		ls -a1F | grep -oP '.*/$'
 	fi
-	allrm $HOME/Documents/git/mgtools/.tmp/all.tmp
+	allrm $HOME/repos/mgtools/.tmp/all.tmp
 fi
 
 if test $xflg -eq 1 ;then
@@ -67,16 +67,16 @@ if test $xflg -eq 1 ;then
 	else
 		ls -a1F | grep -oP '.*(?=\*$)' 
 	fi
-	allrm $HOME/Documents/git/mgtools/.tmp/all.tmp
+	allrm $HOME/repos/mgtools/.tmp/all.tmp
 fi
 
 if test $oflg -eq 1 ;then
 	if test $aflg -eq 0 ;then
-		ls -1F > $HOME/Documents/git/mgtools/.tmp/all.tmp
+		ls -1F > $HOME/repos/mgtools/.tmp/all.tmp
 	else
-		ls -a1F > $HOME/Documents/git/mgtools/.tmp/all.tmp
+		ls -a1F > $HOME/repos/mgtools/.tmp/all.tmp
 	fi
-	cat $HOME/Documents/git/mgtools/.tmp/all.tmp | grep -P -v -e '.*(?=\/$)' | grep -P -v -e '.*(?=\*$)'
-	allrm $HOME/Documents/git/mgtools/.tmp/all.tmp
+	cat $HOME/repos/mgtools/.tmp/all.tmp | grep -P -v -e '.*(?=\/$)' | grep -P -v -e '.*(?=\*$)'
+	allrm $HOME/repos/mgtools/.tmp/all.tmp
 fi
 

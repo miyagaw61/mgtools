@@ -85,7 +85,7 @@ fi
 
 out=$(echo $file | sed -E 's/(.*)\.c/\1/')
 allrm $out
-gcc -I $HOME/Documents/git/mgtools/include/ $options -o $out $file
+gcc -I $HOME/repos/mgtools/include/ $options -o $out $file
 cecho -gf "==============="
 cecho -gf "     START     "
 cecho -gf "==============="

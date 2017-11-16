@@ -1,2 +1,2 @@
 #!/bin/sh
-python $HOME/Documents/git/mgtools/md.py $1
+python $HOME/repos/mgtools/md.py $1

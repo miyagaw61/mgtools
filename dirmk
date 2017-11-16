@@ -19,8 +19,8 @@ for arg in $@ ;do
     fi
     mkdir $arg
     if test "$(echo $arg | grep '/')" ;then
-        echo $(basename $arg):$(ls -ld $arg 2> /dev/null | perl -pe "s@.* (.*)@\1@g") 1>> $HOME/Documents/git/mgtools/conf/jmp.conf
+        echo $(basename $arg):$(ls -ld $arg 2> /dev/null | perl -pe "s@.* (.*)@\1@g") 1>> $HOME/repos/mgtools/conf/jmp.conf
     else
-        echo $(basename $arg):$(ls -ld $PWD/$arg 2> /dev/null | perl -pe "s@.* (.*)@\1@g") 1>> $HOME/Documents/git/mgtools/conf/jmp.conf
+        echo $(basename $arg):$(ls -ld $PWD/$arg 2> /dev/null | perl -pe "s@.* (.*)@\1@g") 1>> $HOME/repos/mgtools/conf/jmp.conf
     fi
 done

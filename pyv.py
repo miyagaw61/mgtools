@@ -24,7 +24,7 @@ cmd = 'pyenv ' + ' '.join(argv[1:])
 Shell(cmd).call()
 user = os.environ['USERNAME']
 if user == 'root':
-    cmd = 'PS1="${red}.---${black}(${green}\w\$(parse_branch)${black})${red}\$(parse_prompt)\n\$(cat $HOME/Documents/git/mgtools/conf/back_quote)--> ${white}"'
+    cmd = 'PS1="${red}.---${black}(${green}\w\$(parse_branch)${black})${red}\$(parse_prompt)\n\$(cat $HOME/repos/mgtools/conf/back_quote)--> ${white}"'
 else:
     cmd = 'PS1="${cyan}.---${black}(${red}\w\$(parse_branch)${black})${cyan}\$(parse_prompt)\n\'--> ${white}"'
 

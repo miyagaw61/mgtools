@@ -9,12 +9,12 @@ if test $hflg -eq 1 ;then
 fi
 
 if test $# -eq 0 ;then
-    $(cat $HOME/Documents/git/mgtools/.tmp/lsf.out)
+    $(cat $HOME/repos/mgtools/.tmp/lsf.out)
     exit 0
 fi
 
 if test $1 = "vim" ;then
-    nvim $(cat $HOME/Documents/git/mgtools/.tmp/lsf.out)
+    nvim $(cat $HOME/repos/mgtools/.tmp/lsf.out)
     exit 0
 fi
-$1 $(cat $HOME/Documents/git/mgtools/.tmp/lsf.out)
+$1 $(cat $HOME/repos/mgtools/.tmp/lsf.out)

@@ -12,14 +12,14 @@ case $ans in
 apt-get -y -o Acquire::ForceIPv4=true update
 apt-get -y -o Acquire::ForceIPv4=true upgrade
 
-cp -a $HOME/Documents/git/mgtools/conf/rc/bashrc $HOME/.bashrc
+cp -a $HOME/repos/mgtools/conf/rc/bashrc $HOME/.bashrc
 #apt-get -y install vim
-cp -a $HOME/Documents/git/mgtools/conf/rc/vimrc /etc/vim/vimrc
-cp -a $HOME/Documents/git/mgtools/conf/rc/vimrc /usr/share/vim/vimrc
+cp -a $HOME/repos/mgtools/conf/rc/vimrc /etc/vim/vimrc
+cp -a $HOME/repos/mgtools/conf/rc/vimrc /usr/share/vim/vimrc
 if test ! -e $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ ;then
 	mkdir -p $HOME/.vim/bundle/neosnippet-snippets/neosnippets/
 fi
-cp -a $HOME/Documents/git/mgtools/conf/rc/neosnippets/* $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ 
+cp -a $HOME/repos/mgtools/conf/rc/neosnippets/* $HOME/.vim/bundle/neosnippet-snippets/neosnippets/ 
 
 #apt
 
@@ -120,7 +120,7 @@ pip install nose
 pip install pdb
 pip install beautifulsoup4
 pip install html5lib
-cp -a $HOME/Documents/git/mgtools/rc.py $HOME/.percol.d/rc.py
+cp -a $HOME/repos/mgtools/rc.py $HOME/.percol.d/rc.py
 
 #git
 git clone https://github.com/junegunn/fzf.git $HOME/.fzf
@@ -137,7 +137,7 @@ git clone https://github.com/yyuu/pyenv.git ~/.pyenv
 #echo "" >> $HOME/.gdbinit
 #echo "#add by me" >> $HOME/.gdbinit
 #echo "" >> $HOME/.gdbinit
-#cat $HOME/Documents/git/mgtools/gdb/init/gdmgtoolsitadd >> $HOME/.gdmgtoolsit
+#cat $HOME/repos/mgtools/gdb/init/gdmgtoolsitadd >> $HOME/.gdmgtoolsit
 
 ##----ruby----#
 #cd $HOME
@@ -175,7 +175,7 @@ mv rp-lin-x64 /usr/local/bin/
 
 #wget https://github.com/slimm609/checksec.sh/archive/1.6.tar.gz
 #tar zxvf 1.6.tar.gz
-#mv checksec.sh-1.6/checksec $HOME/Documents/git/mgtools/checksec.sh
+#mv checksec.sh-1.6/checksec $HOME/repos/mgtools/checksec.sh
 
 mkdir ext4magic
 cd ext4magic
