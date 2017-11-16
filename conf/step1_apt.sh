@@ -70,6 +70,8 @@ apt -y install libgtk-3-bin
 apt -y install libgtk-3-common
 apt -y install libgtk-3-dev
 apt -y install xorg-dev
+###---java---###
+apt -y install default-jre
 
 ###---kernel develop---###
 apt -y install libncurses5-dev

@@ -19,3 +19,9 @@ wget http://downloads.sourceforge.net/project/ext4magic/ext4magic-0.3.2.tar.gz
 tar xzvf ext4magic-0.3.2.tar.gz
 cd ext4magic-0.3.2
 ./configure
+
+#jenkins
+wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
+apt -y update
+apt -y install jenkins
