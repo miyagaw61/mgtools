@@ -41,7 +41,7 @@ apt -y install libtool-bin
 apt -y install imagemagick ttyrec gcc x11-apps xdotool
 
 ##---go---##
-sudo add-apt-repository ppa:longsleep/golang-backports
+add-apt-repository -y ppa:longsleep/golang-backports
 apt -y update
 apt -y install golang-go
 
