@@ -127,6 +127,7 @@ nnoremap <leader>md :set syntax=markdown<CR>
 nnoremap <leader>jelly :colorscheme jellybeans<CR>
 nnoremap <leader>molokai :colorscheme molokai<CR>
 nnoremap <leader>kalisi :colorscheme kalisi<CR>:set background=light<CR>
+nnoremap <leader>neodark :colorscheme neodark<CR>
 nnoremap gl <C-w>l
 nnoremap gh <C-w>h
 nnoremap gGCf <C-f>
@@ -158,6 +159,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " ↓こんな感じが基本の書き方
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'tomasr/molokai'
+NeoBundle 'KeitaNakamura/neodark.vim'
 "NeoBundle 'tpope/vim-surround'
 NeoBundle 'vim-scripts/sudo.vim'
 "NeoBundle 'mattn/vim-fz'
@@ -288,7 +290,8 @@ nnoremap ml :MemoList<CR>
 nnoremap mg :MemoGrep<CR>
 " }}}
 
-NeoBundle 'Lokaltog/vim-easymotion'
+"NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'easymotion/vim-easymotion'
 " vim-easymotion {{{
 let g:EasyMotion_do_mapping = 0
 nmap s <Plug>(easymotion-s2)
@@ -441,9 +444,9 @@ nnoremap <C-h> <C-w><C-w>ZQ
 "
 
 " 現在の行を強調表示
-"set cursorline
+set cursorline
 " 現在の行を強調表示（縦）
-"set cursorcolumn
+set cursorcolumn
 " アンダーラインを引く(gui)
 "highlight CursorLine gui=underline guifg=NONE guibg=NONE
 
@@ -451,7 +454,8 @@ nnoremap <C-h> <C-w><C-w>ZQ
 syntax on
 set t_Co=256
 set termguicolors
-source /home/miyagaw61/.vim/bundle/molokai/colors/my_molokai.vim
+colorscheme neodark
+"source /home/miyagaw61/.vim/bundle/molokai/colors/my_molokai.vim
 "colorscheme molokai
 "hi Identifier ctermfg=blue
 "colorscheme molokai
