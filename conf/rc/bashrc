@@ -1,3 +1,4 @@
+export HOME=/home/miyagaw61
 alias d='cd'
 alias cd='cd'
 # ~/.bashrc: executed by bash(1) for non-login shells.
