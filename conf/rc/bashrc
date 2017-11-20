@@ -189,7 +189,7 @@ if [ "$color_prompt" = yes ]; then
 
     function parse_branch(){
         branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's@\* \(.*\)@\1@')
-        if test $(($(echo $branch | wc -m)-1)) -gt 3 ;then
+        if test $(($(echo $branch | wc -m)-1)) -gt 1 ;then
             if test $USER = "root" ;then
                 echo -ne "\033[01;30m:\033[36;1m${branch}\033[00m"
             else
@@ -200,7 +200,7 @@ if [ "$color_prompt" = yes ]; then
 
     function parse_branch(){
         branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's@\* \(.*\)@\1@')
-        if test $(($(echo $branch | wc -m)-1)) -gt 3 ;then
+        if test $(($(echo $branch | wc -m)-1)) -gt 1 ;then
             if test $USER = "root" ;then
                 echo -ne "\033[36;1m[${branch}]\033[00m"
             else
