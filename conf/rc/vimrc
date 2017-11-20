@@ -452,6 +452,7 @@ set cursorcolumn
 
 "color scheme
 syntax on
+set t_ut=
 set t_Co=256
 set termguicolors
 colorscheme neodark
