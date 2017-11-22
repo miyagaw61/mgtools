@@ -9,6 +9,4 @@ source $MGTOOLS_ROOT/conf/rc/vim/init/au.vim
 source $MGTOOLS_ROOT/conf/rc/vim/plugins/dein_trigger.vim
 
 source $MGTOOLS_ROOT/conf/rc/vim/init/color.vim
-syntax on
-
 source $MGTOOLS_ROOT/conf/rc/vim/init/windows.vim

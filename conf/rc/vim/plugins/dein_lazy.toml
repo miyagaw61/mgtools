@@ -78,3 +78,22 @@ let g:vinarise_enable_auto_detect = 1
 let g:vinarise_guifont = 'Courier\ 10\ Pitch:h14'
 '''
 
+#[[plugins]]
+#repo = 'easymotion/vim-easymotion'
+#hook_add = '''
+#    let g:EasyMotion_do_mapping = 0
+#    nmap s <Plug>(easymotion-s2)
+#    xmap s <Plug>(easymotion-s2)
+#    omap z <Plug>(easymotion-s2)
+#    nmap S <Plug>(easymotion-sn)
+#    xmap S <Plug>(easymotion-sn)
+#    omap S <Plug>(easymotion-tn)
+#    let g:EasyMotion_smartcase = 1
+#    map <Leader>j <Plug>(easymotion-j)
+#    map <Leader>k <Plug>(easymotion-k)
+#    let g:EasyMotion_startofline = 0
+#    " let g:EasyMotion_keys = 'QZASDFGHJKL;'
+#    let g:EasyMotion_keys = 'Q1Z2A3S4D5F6G7H8J9K/;'
+#    let g:EasyMotion_use_upper = 1
+#    let g:EasyMotion_enter_jump_first = 1
+#'''

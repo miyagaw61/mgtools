@@ -149,6 +149,7 @@ if [ "$color_prompt" = yes ]; then
         PS1="${red}┌─${cyan}[\w]\$(parse_branch)\$(parse_pyenv)\n${red}└─${cyan}[miyagaw61]${red}◈ ${white}"
         PS1="${red}┌\$(parse_branch)\$(parse_pyenv)\n${red}└─${cyan}[\w]${red}◈ ${white}"
         PS1="${red}┌─\$(parse_branch)\$(parse_pyenv)\n${red}└─${cyan}[\w]\n${cyan}◈ ${white}"
+        PS1="${red}${upper_left}${bar}${cyan}[\w]\$(parse_branch)\n${red}${bottom_left}${bar} ${cyan}>> ${white}"
     fi
 
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}\n${usericon}"
