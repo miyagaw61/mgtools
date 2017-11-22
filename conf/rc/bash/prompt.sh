@@ -66,9 +66,9 @@ if [ "$color_prompt" = yes ]; then
         branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's@\* \(.*\)@\1@')
         if test $(($(echo $branch | wc -m)-1)) -gt 1 ;then
             if test $USER = "root" ;then
-                echo -ne "\033[31;1m${bar}\033[36;1m[${branch}]\033[00m"
+                echo -ne "\033[31;1m-\033[36;1m(${branch})\033[00m"
             else
-                echo -ne "\033[31;1m${bar}\033[36;1m[${branch}]\033[00m"
+                echo -ne "\033[31;1m-\033[36;1m(${branch})\033[00m"
             fi
         #else
         #    if test $USER = "root" ;then
@@ -130,6 +130,7 @@ if [ "$color_prompt" = yes ]; then
     upper_left="┌"
     bottom_left="└"
     bar="─"
+    bold_bar="━"
     left_partical="┤"
     PS1="${cyan}.-${black}(${red}\w${black})${cyan}-${blue}-${black}-${cyan}\n'---> ${white}"
     PS1="${cyan}.-${black}(${green}\w${black})${cyan}-${blue}-${black}-${cyan}\n'---> ${white}"
@@ -150,6 +151,8 @@ if [ "$color_prompt" = yes ]; then
         PS1="${red}┌\$(parse_branch)\$(parse_pyenv)\n${red}└─${cyan}[\w]${red}◈ ${white}"
         PS1="${red}┌─\$(parse_branch)\$(parse_pyenv)\n${red}└─${cyan}[\w]\n${cyan}◈ ${white}"
         PS1="${red}${upper_left}${bar}${cyan}[\w]\$(parse_branch)\n${red}${bottom_left}${bar} ${cyan}>> ${white}"
+        PS1="${cyan}[\w]\$(parse_branch)\n${cyan}>> ${white}"
+        PS1="${cyan}(\w)\$(parse_branch)\n${red}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar) ${white}"
     fi
 
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}\n${usericon}"
