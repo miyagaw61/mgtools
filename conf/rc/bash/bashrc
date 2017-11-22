@@ -1,0 +1,9 @@
+export MGTOOLS_ROOT=/home/miyagaw61/repos/mgtools
+source $MGTOOLS_ROOT/conf/rc/bash/exports.sh
+source $MGTOOLS_ROOT/conf/rc/bash/default.sh
+source $MGTOOLS_ROOT/conf/rc/bash/xkb.sh
+source $MGTOOLS_ROOT/conf/rc/bash/aliases.sh
+source $MGTOOLS_ROOT/conf/rc/bash/pyenv.sh
+source $MGTOOLS_ROOT/conf/rc/bash/fzf.sh
+source $MGTOOLS_ROOT/conf/rc/bash/functions.sh
+source $MGTOOLS_ROOT/conf/rc/bash/prompt.sh

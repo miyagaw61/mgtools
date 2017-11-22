@@ -1,22 +1,7 @@
 export HOME=/home/miyagaw61
-export REPOS=$HOME/repos
-export MGTOOLS_ROOT=$REPOS/mgtools
+export MGTOOLS_ROOT=/home/miyagaw61/repos/mgtools
 
-source $MGTOOLS_ROOT/conf/rc/bash/default_bashrc
-
-#path
-export PATH=$PATH:$HOME/repos/mgtools
-export PATH="$HOME/.linuxbrew/bin:$PATH"
-export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
-#----ruby----#
-#export PATH="$HOME/.rbenv/bin:$PATH"
-#eval "$(rbenv init -)"
-#export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-#------------#
-#export PATH=$PATH:.
-
-#auto cd ls
-#cd() { builtin cd "$@" && ls -AGF; }
+source $MGTOOLS_ROOT/conf/rc/default_bashrc
 
 #bash color
 force_color_prompt=yes
@@ -155,7 +140,7 @@ if [ "$color_prompt" = yes ]; then
     PS1="${cyan}.---${black}(${red}\w\$(parse_branch)${black})\$(parse_pyenv)${cyan}\$(parse_prompt)\n'--> ${white}"
     PS1="${cyan}.--${black}(${red}\w\$(parse_branch)${black})${cyan}\$(parse_prompt)\n'--> ${white}"
     PS1="${cyan}.-${red}[\w]\$(parse_branch)\$(parse_pyenv)${cyan}\n\$(cat $HOME/repos/mgtools/conf/back_quote)--${red}[miyagaw61]${cyan}-${green}$ ${white}"
-    PS1="${cyan}┌─\$(parse_branch)\$(parse_pyenv)\n${cyan}└─${red}[\w]\n${red}◈ ${white}"
+    PS1="${cyan}┌\$(parse_branch)\$(parse_pyenv)\n${cyan}└─${red}[\w]\n${red}◈ ${white}"
     if test $USER = "root" ;then
         PS1="${red}.--${black}(${green}\w\$(parse_branch)${black})${red}\$(parse_prompt)\n\$(cat $HOME/repos/mgtools/conf/back_quote)--> ${white}"
         PS1="${red}.-${green}[\w]${red}-\$(parse_branch)${red}\$(parse_prompt)\n\$(cat $HOME/repos/mgtools/conf/back_quote)--${cyan}[miyagaw61]${red}-> ${white}"
@@ -197,9 +182,9 @@ alias no='. no'
 alias e='source ~/.bashrc'
 
 #alias rc
-alias viba='vim ~/.bashrc; rsync -au ~/.bashrc $HOME/repos/mgtools/conf/rc/bashrc'
+alias viba='vim ~/.bashrc; rsync -au ~/.bashrc $MGTOOLS_ROOT/rc/bashrc/bashrc'
 alias soba='. ~/.bashrc 2> /dev/null'
-alias vivi='vim ~/.vimrc; rsync -au ~/.vimrc $HOME/repos/mgtools/conf/rc/vimrc'
+alias vivi='vim ~/.vimrc; rsync -au ~/.vimrc $MGTOOLS_ROOT/conf/rc/vimrc/vimrc'
 
 #alias vivi='vim $HOME/.config/nvim/init.vim; rsync -au $HOME/.config/nvim/init.vim $HOME/Documents/git/mgtools/conf/rc/'
 
@@ -383,9 +368,6 @@ alias d="python exploit.py d"
 alias vx="vim ./exploit.py"
 alias apt="sudo apt -y"
 alias rm="sudo rm"
-alias mv="sudo mv"
-#alias vim="nvim"
-#alias vi="nvim"
 alias vim="$HOME/viim/bin/vim"
 alias vim="$HOME/bin/viim/bin/vim"
 
@@ -395,4 +377,35 @@ function gd(){
 
 alias pyv="python $HOME/Documents/git/mgtools/pyv.py"
 alias update="apt -y update; apt -y upgrade; slk"
+export PATH=$PATH:$HOME/bin
 export PATH=$HOME/.cargo/bin:$PATH
+alias rip="rip --graveyard $HOME/.trash"
+
+function mov(){
+    if test $# -eq 2 ;then
+        if test -e $2 ;then
+            if test ! -d $2 ;then
+                rip $2
+            fi
+        fi
+        mv $1 $2
+    else
+        echo Usage: mov [src] [dst]
+    fi
+}
+
+function copy(){
+    if test $# -eq 2 ;then
+        if test -e $2 ;then
+            rip $2
+        fi
+        cp -a $1 $2
+    else
+        echo Usage: copy [src] [dst]
+    fi
+}
+
+alias pbcopy="xsel --clipboard --input"
+
+export PATH=$PATH:$MGTOOLS_ROOT
+export PATH=$PATH:$HOME/bin/win32yank-x64

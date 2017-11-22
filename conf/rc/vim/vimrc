@@ -1,0 +1,14 @@
+source $MGTOOLS_ROOT/conf/rc/vim/init/map.vim
+source $MGTOOLS_ROOT/conf/rc/vim/init/set.vim
+source $MGTOOLS_ROOT/conf/rc/vim/init/functions.vim
+source $MGTOOLS_ROOT/conf/rc/vim/init/binary_mode.vim
+source $MGTOOLS_ROOT/conf/rc/vim/init/autofcitx.vim
+source $MGTOOLS_ROOT/conf/rc/vim/init/au.vim
+
+"source $MGTOOLS_ROOT/conf/rc/vim/plugins/neobundle.vim
+source $MGTOOLS_ROOT/conf/rc/vim/plugins/dein_trigger.vim
+
+source $MGTOOLS_ROOT/conf/rc/vim/init/color.vim
+syntax on
+
+source $MGTOOLS_ROOT/conf/rc/vim/init/windows.vim
