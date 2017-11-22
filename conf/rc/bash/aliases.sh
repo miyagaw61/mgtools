@@ -39,4 +39,5 @@ alias vivi='vim ~/.vimrc; rsync -au ~/.vimrc $MGTOOLS_ROOT/conf/rc/vim/vimrc'
 #my config
 alias gcc='gcc -I $HOME/Documents/git/mgtools/include/'
 alias vim="$HOME/bin/viim/bin/vim"
+alias nv="$HOME/bin/neovim/bin/nvim"
 alias sl='ls'
