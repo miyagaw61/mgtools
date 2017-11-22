@@ -62,22 +62,6 @@ if [ "$color_prompt" = yes ]; then
         fi
     }
 
-    function parse_branch(){
-        branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's@\* \(.*\)@\1@')
-        if test $(($(echo $branch | wc -m)-1)) -gt 1 ;then
-            if test $USER = "root" ;then
-                echo -ne "\033[31;1m-\033[36;1m(${branch})\033[00m"
-            else
-                echo -ne "\033[31;1m-\033[36;1m(${branch})\033[00m"
-            fi
-        #else
-        #    if test $USER = "root" ;then
-        #        echo -ne "\033[36;1m[None]\033[00m"
-        #    else
-        #        echo -ne "\033[36;1m[None]\033[00m"
-        #    fi
-        fi
-    }
 
 
     function parse_pyenv(){
@@ -127,6 +111,23 @@ if [ "$color_prompt" = yes ]; then
         done
     }
 
+    function parse_branch(){
+        branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's@\* \(.*\)@\1@')
+        if test $(($(echo $branch | wc -m)-1)) -gt 1 ;then
+            if test $USER = "root" ;then
+                echo -ne "\033[31;1m[ \033[36;1m${branch} \033[31;1m]\033[00m"
+            else
+                echo -ne "\033[31;1m-[\033[36;1m[ ${branch} ]\033[00m"
+            fi
+        #else
+        #    if test $USER = "root" ;then
+        #        echo -ne "\033[36;1m[None]\033[00m"
+        #    else
+        #        echo -ne "\033[36;1m[None]\033[00m"
+        #    fi
+        fi
+    }
+
     upper_left="┌"
     bottom_left="└"
     bar="─"
@@ -151,8 +152,11 @@ if [ "$color_prompt" = yes ]; then
         PS1="${red}┌\$(parse_branch)\$(parse_pyenv)\n${red}└─${cyan}[\w]${red}◈ ${white}"
         PS1="${red}┌─\$(parse_branch)\$(parse_pyenv)\n${red}└─${cyan}[\w]\n${cyan}◈ ${white}"
         PS1="${red}${upper_left}${bar}${cyan}[\w]\$(parse_branch)\n${red}${bottom_left}${bar} ${cyan}>> ${white}"
-        PS1="${cyan}[\w]\$(parse_branch)\n${cyan}>> ${white}"
         PS1="${cyan}(\w)\$(parse_branch)\n${red}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar) ${white}"
+        PS1="${cyan}[\w]\$(parse_branch)\n${red}>> ${white}"
+        PS1="${cyan}(\w)\$(parse_branch)\n${red}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar) ${white}"
+        PS1="${cyan}(\w)\$(parse_branch)\n${red}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar)\$(cat $MGTOOLS_ROOT/conf/rc/bash/left_parenthesis) ${white}"
+        PS1="\n${red}[ ${cyan}\w${red} ]\$(parse_branch)\n${red}>> ${white}"
     fi
 
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}\n${usericon}"
