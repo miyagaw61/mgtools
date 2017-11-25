@@ -26,6 +26,7 @@ if [ "$color_prompt" = yes ]; then
     black='\[\033[01;30m\]' # black
     RESET_COLOR='\[\033[00m\]'
     white='\[\033[00m\]'
+    white='\033[00m'
     backGreen_white='\[\033[00;42m\]'
     backGreen_black='\[\033[30;42;1m\]'
     backGreen_red='\[\033[31;42;1m\]'
@@ -34,11 +35,16 @@ if [ "$color_prompt" = yes ]; then
     backRed_green='\[\033[32;41;1m\]'
     backGreen_blue='\[\033[34;42m\]'
     green='\[\033[32;1m\]'
+    green='\033[32;1m'
     green_0='\[\033[32m\]'
     blue='\[\033[34;1m\]'
+    blue='\033[34;1m'
     blue_0='\[\033[34;0m\]'
+    blue_0='\033[34;0m'
     red='\[\033[31;1m\]' # red
+    red='\033[31;1m' # red
     cyan='\[\033[36;1m\]'
+    cyan='\033[36;1m'
     cyan_0='\[\033[36m\]'
     magenta='\[\033[35m\]'
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}@${cyan}\w${white}\$ "
@@ -128,6 +134,50 @@ if [ "$color_prompt" = yes ]; then
         fi
     }
 
+    function parse_path(){
+        now=$(pwd)/
+        if test $(echo "$now" | grep "$REPOS/") ;then
+            now=$(echo "$now" | sed -E "s@$REPOS@@g")
+            if test $now = "/" ;then
+                now=${blue}repos${cyan}
+            else
+                now=$(echo "$now" | sed -E "s@^/@@g")
+                repo=$(echo "$now" | sed -E "s@/.*@@g")
+                unrepo=$(echo "$now" | sed -E "s@^$repo@@g")
+                unrepo=$(echo "$unrepo" | sed -E "s/\/$//g")
+                now=${blue}$repo${cyan}$unrepo
+            fi
+        elif test $(echo "$now" | grep "$HOME/docs/text$") ;then
+            now=$(echo "$now" | sed -E "s@$HOME/docs/text@@g")
+            now=$(echo "$now" | sed -E "s/\/$//g")
+            now=${blue}text${cyan}$now
+        elif test $(echo "$now" | grep "$HOME/docs/music$") ;then
+            now=$(echo "$now" | sed -E "s@$HOME/docs/music@@g")
+            now=$(echo "$now" | sed -E "s/\/$//g")
+            now=${blue}music${cyan}$now
+        elif test $(echo "$now" | grep "$HOME/docs/pictures/") ;then
+            now=$(echo "$now" | sed -E "s@$HOME/docs/pictures@@g")
+            now=$(echo "$now" | sed -E "s/\/$//g")
+            now=${blue}pictures${cyan}$now
+        elif test $(echo "$now" | grep "$HOME/docs/movie$") ;then
+            now=$(echo "$now" | sed -E "s@$HOME/docs/movie@@g")
+            now=$(echo "$now" | sed -E "s/\/$//g")
+            now=${blue}movie${cyan}$now
+        elif test $(echo "$now" | grep "$HOME/docs/documents$") ;then
+            now=$(echo "$now" | sed -E "s@$HOME/docs/documents@@g")
+            now=$(echo "$now" | sed -E "s/\/$//g")
+            now=${blue}documents${cyan}$now
+        elif test $(echo "$now" | grep "$HOME/docs/school$") ;then
+            now=$(echo "$now" | sed -E "s@$HOME/docs/school@@g")
+            now=$(echo "$now" | sed -E "s/\/$//g")
+            now=${blue}school${cyan}$now
+        elif test $(echo "$now" | grep "$HOME") ;then
+            now=$(echo "$now" | sed -E "s@$HOME@~@g")
+            now=$(echo "$now" | sed -E "s/\/$//g")
+        fi
+        echo -ne "$now"
+    }
+
     upper_left="┌"
     bottom_left="└"
     bar="─"
@@ -157,6 +207,7 @@ if [ "$color_prompt" = yes ]; then
         PS1="${cyan}(\w)\$(parse_branch)\n${red}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar) ${white}"
         PS1="${cyan}(\w)\$(parse_branch)\n${red}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar)\$(cat $MGTOOLS_ROOT/conf/rc/bash/left_parenthesis) ${white}"
         PS1="\n${red}[ ${cyan}\w${red} ]\$(parse_branch)\n${red}>> ${white}"
+        PS1="\n${red}[ ${cyan}\$(parse_path)${red} ]\$(parse_branch)\n${red}>>${white} "
     fi
 
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}\n${usericon}"

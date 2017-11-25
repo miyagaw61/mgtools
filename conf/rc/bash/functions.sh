@@ -26,3 +26,10 @@ function mkgif(){
     rm -rf /tmp/.gif_record
 }
 
+function repobase(){
+    now=$(pwd)/
+    now=$(echo "$now" | sed -E "s@$REPOS@@g")
+    now=$(echo "$now" | sed -E "s@^/@@g")
+    repo=$(echo "$now" | sed -E "s@/.*@@g")
+    cd $REPOS/$repo
+}

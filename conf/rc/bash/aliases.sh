@@ -41,3 +41,7 @@ alias gcc='gcc -I $HOME/Documents/git/mgtools/include/'
 alias vim="$HOME/bin/viim/bin/vim"
 alias nv="$HOME/bin/neovim/bin/nvim"
 alias sl='ls'
+
+#cd
+alias repos="cd $REPOS"
+alias docs="cd $HOME/docs"
