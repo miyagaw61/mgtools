@@ -1,8 +1,8 @@
-mgtools  
-============  
-  
-mgtools are many scripts for bash.  
-bash上で使用可能なスクリプト群です。  
+mgtools - many many console scripts for miyagaw61
+=================================================
+
+**miyagaw61本人にとって使いやすいことを第一目的として作成さているためもう使ってないスクリプトも残ってるしREADME.mdの更新めんどくさくてサボってるしコミットも適当ですごめんなさい。**
+
 **mgtoolsディレクトリにPATHを通すだけで使用可能になります。**  
 **基本的に、mgtoolsディレクトリ内のファイルしか勝手に書き換えることはありません。**  
 **なので、mgtoolsを導入しても環境を壊すことはありません。**  
@@ -16,6 +16,19 @@ git clone https://github.com/miyagaw61/mgtools.git $HOME/repos/mgtools
   
 tutorial  
 --------  
+
+* コマンド多すぎて全部書くのめんどくさいので個人的によく使うやつだけ最初の方に書きます。使い方は各々のhelpを見てください。
+
+    - calc
+    - cecho
+    - docker2
+    - kp
+    - middle
+    - snecho
+    - wcat
+    - wecho
+    - whileline
+    - pyenv_update
   
 * allcp  
 src...に記述した全ファイルを-dオプションに与えたパスへコピーする。  
