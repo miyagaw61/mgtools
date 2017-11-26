@@ -2,7 +2,7 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'Shougo/vimproc.vim'
+repo = 'Shougo/vimproc'
 hook_post_update = '''
     if dein#util#_is_windows()
         let cmd = 'tools\\update-dll-mingw'
@@ -34,9 +34,6 @@ repo = 'Shougo/neomru.vim'
 on_path = '.*'
 
 [[plugins]]
-repo = 'KeitaNakamura/neodark.vim'
-
-[[plugins]]
 repo = 'Shougo/neoyank.vim'
 on_path = '.*'
 on_i = 1
@@ -51,3 +48,11 @@ hook_add = '''
     map f <Plug>Sneak_f
     map F <Plug>Sneak_F
 '''
+
+[[plugins]]
+repo = 'KeitaNakamura/neodark.vim'
+
+[[plugins]]
+repo = 'zchee/deoplete-jedi'
+on_i = 1
+on_ft = 'python'

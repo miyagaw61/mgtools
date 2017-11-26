@@ -1,5 +1,7 @@
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
+if = 'has("nvim")'
+on_i = 1
 hook_source = '''
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#auto_complete_delay = 0
@@ -13,23 +15,35 @@ hook_source = '''
   inoremap <expr><C-o> deoplete#mappings#smart_close_popup()
   inoremap <expr><tab> pumvisible() ? "\<C-n>" :
         \ neosnippet#expandable_or_jumpable() ?
-        \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 '''
+hook_post_source = '''
+let g:deoplete#omni_patterns = {}
+'''
+
+
+[[plugins]]
+repo = 'zchee/deoplete-jedi'
 on_i = 1
+on_ft = 'python'
 
 [[plugins]]
 repo = 'Shougo/neosnippet'
 hook_source = '''
-  imap <C-k> <Plug>(neosnippet_expand_or_jump)
-  smap <C-k> <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k> <Plug>(neosnippet_expand_target)
-  if has('conceal')
-    set conceallevel=2 concealcursor=niv
-  endif
+    imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    xmap <C-k>     <Plug>(neosnippet_expand_target)
+    imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+    if has('conceal')
+      set conceallevel=2 concealcursor=niv
+    endif
+
+    on_i  = 1
+    on_ft = ['snippet']
+    depends = ['neosnippet-snippets']
 '''
-on_i  = 1
-on_ft = ['snippet']
-depends = ['neosnippet-snippets']
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'

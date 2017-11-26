@@ -11,4 +11,4 @@ export PATH=$PATH:$HOME/bin/win32yank-x64
 export EDITOR="$HOME/bin/viim/bin/vim"
 export GIT_NAME='miyagaw61'
 export GIT_EMAIL='miyagaw61@gmail.com'
-
+export TERM=xterm-256color

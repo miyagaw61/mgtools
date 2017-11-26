@@ -10,7 +10,10 @@ set clipboard+=unnamed
 set clipboard+=unnamedplus
 
 "文字コードをUFT-8に設定
-set fenc=utf-8
+set fileencoding=utf-8 " 保存時の文字コード
+set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コードの自動判別. 左側が優先される
+set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先される
+set ambiwidth=double " □や○文字が崩れる問題を解決
 " バックアップファイルを作らない
 set nobackup
 " スワップファイルを作らない
@@ -29,6 +32,8 @@ set smartindent
 "set visualbell
 " 括弧入力時の対応する括弧を表示
 set showmatch
+" Vimの「%」を拡張する
+source $VIMRUNTIME/macros/matchit.vim
 " ステータスラインを常に表示
 "set laststatus=2
 set laststatus=0
@@ -44,6 +49,12 @@ set expandtab
 set tabstop=4
 " 行頭でのTab文字の表示幅
 set shiftwidth=4
+" 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
+set softtabstop=4
+" 改行時に前の行のインデントを継続する
+set autoindent
+" 改行時に前の行の構文をチェックし次の行のインデントを増減する
+set smartindent
 
 " 検索系
 " 検索文字列が小文字の場合は大文字小文字を区別なく検索する
@@ -65,6 +76,12 @@ set clipboard^=unnamedplus
 " カーソルの回り込みができるようになる
 set nocompatible
 set whichwrap=b,s,h,l,[,],<,>,~
+
+
+" コマンドモードの補完
+set wildmenu
+" 保存するコマンド履歴の数
+set history=5000
 
 " 現在の行を強調表示
 "set cursorline
