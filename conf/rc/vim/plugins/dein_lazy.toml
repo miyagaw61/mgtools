@@ -82,7 +82,6 @@ let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
 on_ft = ['c', 'cpp', 'cmake']
 depends = ['deoplete.nvim']
 
-
 [[plugins]]
 repo = 'Shougo/vinarise'
 on_cmd = 'Vinarise'
