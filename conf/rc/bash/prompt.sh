@@ -45,6 +45,7 @@ if [ "$color_prompt" = yes ]; then
     red='\033[31;1m' # red
     cyan='\[\033[36;1m\]'
     cyan='\033[36;1m'
+    yellow='\033[33;1m'
     cyan_0='\[\033[36m\]'
     magenta='\[\033[35m\]'
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}@${cyan}\w${white}\$ "
@@ -121,7 +122,8 @@ if [ "$color_prompt" = yes ]; then
         branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's@\* \(.*\)@\1@')
         if test $(($(echo $branch | wc -m)-1)) -gt 1 ;then
             if test $USER = "root" ;then
-                echo -ne "\033[31;1m[ \033[36;1m${branch} \033[31;1m]\033[00m"
+                #echo -ne "\033[31;1m[ \033[36;1m${branch} \033[31;1m]\033[00m"
+                echo -ne "\033[31;1m[ ${yellow}${branch} \033[31;1m]\033[00m"
             else
                 echo -ne "\033[31;1m-[\033[36;1m[ ${branch} ]\033[00m"
             fi
@@ -136,6 +138,7 @@ if [ "$color_prompt" = yes ]; then
 
     function parse_path(){
         now=$(pwd)/
+        base=$(basename $now)
         if test $(echo "$now" | grep "$REPOS/") ;then
             now=$(echo "$now" | sed -E "s@$REPOS@@g")
             if test $now = "/" ;then
@@ -145,32 +148,76 @@ if [ "$color_prompt" = yes ]; then
                 repo=$(echo "$now" | sed -E "s@/.*@@g")
                 unrepo=$(echo "$now" | sed -E "s@^$repo@@g")
                 unrepo=$(echo "$unrepo" | sed -E "s/\/$//g")
-                now=${blue}$repo${cyan}$unrepo
+                unrepo=$(echo $unrepo | sed -E "s@$base@@g")
+                if test "$(echo "$unrepo" | grep .)" ;then
+                    now=${blue}$repo${white}$unrepo${cyan}$base
+                else
+                    now=${blue}$base
+                fi
             fi
-        elif test $(echo "$now" | grep "$HOME/docs/text$") ;then
+        elif test $(echo "$now" | grep "$HOME/events/") ;then
+            now=$(echo "$now" | sed -E "s@$HOME/events@@g")
+            now=$(echo "$now" | sed -E "s/\/$//g")
+            now=$(echo "$now" | sed -E "s@$base@@g")
+            if test "$(echo "$now" | grep .)" ;then
+                now=${blue}$base${white}$now${cyan}$base
+            else
+                now=${blue}$base
+            fi
+        elif test $(echo "$now" | grep "$HOME/docs/text/") ;then
             now=$(echo "$now" | sed -E "s@$HOME/docs/text@@g")
             now=$(echo "$now" | sed -E "s/\/$//g")
-            now=${blue}text${cyan}$now
-        elif test $(echo "$now" | grep "$HOME/docs/music$") ;then
+            now=$(echo "$now" | sed -E "s@$base@@g")
+            if test "$(echo "$now" | grep .)" ;then
+                now=${blue}$base${white}$now${cyan}$base
+            else
+                now=${blue}$base
+            fi
+        elif test $(echo "$now" | grep "$HOME/docs/music/") ;then
             now=$(echo "$now" | sed -E "s@$HOME/docs/music@@g")
             now=$(echo "$now" | sed -E "s/\/$//g")
-            now=${blue}music${cyan}$now
+            now=$(echo "$now" | sed -E "s@$base@@g")
+            if test "$(echo "$now" | grep .)" ;then
+                now=${blue}$base${white}$now${cyan}$base
+            else
+                now=${blue}$base
+            fi
         elif test $(echo "$now" | grep "$HOME/docs/pictures/") ;then
             now=$(echo "$now" | sed -E "s@$HOME/docs/pictures@@g")
             now=$(echo "$now" | sed -E "s/\/$//g")
-            now=${blue}pictures${cyan}$now
-        elif test $(echo "$now" | grep "$HOME/docs/movie$") ;then
-            now=$(echo "$now" | sed -E "s@$HOME/docs/movie@@g")
+            now=$(echo "$now" | sed -E "s@$base@@g")
+            if test "$(echo "$now" | grep .)" ;then
+                now=${blue}$base${white}$now${cyan}$base
+            else
+                now=${blue}$base
+            fi
+        elif test $(echo "$now" | grep "$HOME/docs/movies/") ;then
+            now=$(echo "$now" | sed -E "s@$HOME/docs/movies@@g")
             now=$(echo "$now" | sed -E "s/\/$//g")
-            now=${blue}movie${cyan}$now
-        elif test $(echo "$now" | grep "$HOME/docs/documents$") ;then
+            now=$(echo "$now" | sed -E "s@$base@@g")
+            if test "$(echo "$now" | grep .)" ;then
+                now=${blue}$base${white}$now${cyan}$base
+            else
+                now=${blue}$base
+            fi
+        elif test $(echo "$now" | grep "$HOME/docs/documents/") ;then
             now=$(echo "$now" | sed -E "s@$HOME/docs/documents@@g")
             now=$(echo "$now" | sed -E "s/\/$//g")
-            now=${blue}documents${cyan}$now
-        elif test $(echo "$now" | grep "$HOME/docs/school$") ;then
+            now=$(echo "$now" | sed -E "s@$base@@g")
+            if test "$(echo "$now" | grep .)" ;then
+                now=${blue}$base${white}$now${cyan}$base
+            else
+                now=${blue}$base
+            fi
+        elif test $(echo "$now" | grep "$HOME/docs/school/") ;then
             now=$(echo "$now" | sed -E "s@$HOME/docs/school@@g")
             now=$(echo "$now" | sed -E "s/\/$//g")
-            now=${blue}school${cyan}$now
+            now=$(echo "$now" | sed -E "s@$base@@g")
+            if test "$(echo "$now" | grep .)" ;then
+                now=${blue}$base${white}$now${cyan}$base
+            else
+                now=${blue}$base
+            fi
         elif test $(echo "$now" | grep "$HOME") ;then
             now=$(echo "$now" | sed -E "s@$HOME@~@g")
             now=$(echo "$now" | sed -E "s/\/$//g")
