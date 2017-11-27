@@ -4,9 +4,6 @@ nnoremap ]q :cnext<CR> " 次へ
 nnoremap [Q :<C-u>cfirst<CR> " 最初へ
 nnoremap ]Q :<C-u>clast<CR> " 最後へ
 
-nnoremap j gj
-nnoremap k gk
-
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
@@ -17,8 +14,13 @@ nnoremap <Leader>b :%!xxd -r<CR>
 
 noremap j gj
 noremap k gk
+nnoremap gj <C-w>j
+nnoremap gk <C-w>k
 nnoremap gh <C-w>h
 nnoremap gl <C-w>l
+nnoremap [Window] <Nop>
+nmap s [Window]
+nmap <Space> [Space]
 inoremap <C-j> <esc>
 inoremap <C-a> <home>
 inoremap <C-e> <end>
@@ -39,12 +41,4 @@ nnoremap gGCe <C-e>
 nnoremap gGCy <C-y>
 nnoremap gGCd <C-d>
 nnoremap gGCu <C-u>
-
-" GTAGS
-" =====
-nnoremap <C-j> :GtagsCursor<CR>
-nnoremap <C-h> <C-w><C-w>ZQ
-"nnoremap <C-h> :Gtags -f %<CR>
-"nnoremap <C-n> :cn<CR>
-"nnoremap <C-p> :cp<CR>
-"nnoremap <C-d> <C-w><C-w>ZQ
+tnoremap <C-j> <C-\><C-n>

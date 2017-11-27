@@ -33,3 +33,7 @@ function repobase(){
     repo=$(echo "$now" | sed -E "s@/.*@@g")
     cd $REPOS/$repo
 }
+
+function nvcd(){
+    nvr -c "cd "$(realpath $1)
+}

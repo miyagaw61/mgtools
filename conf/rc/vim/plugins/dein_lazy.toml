@@ -1,25 +1,11 @@
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-if = 'has("nvim")'
-on_i = 1
-hook_source = '''
-  let g:deoplete#enable_at_startup = 1
-  let g:deoplete#auto_complete_delay = 0
-  let g:deoplete#auto_complete_start_length = 1
-  let g:deoplete#enable_camel_case = 0
-  let g:deoplete#enable_ignore_case = 0
-  let g:deoplete#enable_refresh_always = 0
-  let g:deoplete#enable_smart_case = 1
-  let g:deoplete#file#enable_buffer_path = 1
-  let g:deoplete#max_list = 10000
-  inoremap <expr><C-o> deoplete#mappings#smart_close_popup()
-  inoremap <expr><tab> pumvisible() ? "\<C-n>" :
-        \ neosnippet#expandable_or_jumpable() ?
-'''
-hook_post_source = '''
-let g:deoplete#omni_patterns = {}
-'''
-
+#[[plugins]]
+#repo = 'Shougo/deoplete.nvim'
+#depends = 'context_filetype.vim'
+#on_i = 1
+#hook_source = '''
+#let g:deoplete#enable_at_startup = 1
+#source $REPOS/mgtools/conf/rc/vim/plugins/deoplete.rc.vim
+#'''
 
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
@@ -27,51 +13,64 @@ on_i = 1
 on_ft = 'python'
 
 [[plugins]]
-repo = 'Shougo/neosnippet'
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+depends = ['neosnippet-snippets', 'context_filetype.vim']
+on_event = 'InsertCharPre'
+on_ft = 'snippet'
 hook_source = '''
-    imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-    smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-    xmap <C-k>     <Plug>(neosnippet_expand_target)
-    imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-    smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-    if has('conceal')
-      set conceallevel=2 concealcursor=niv
-    endif
-
-    on_i  = 1
-    on_ft = ['snippet']
-    depends = ['neosnippet-snippets']
+  imap <silent>L <Plug>(neosnippet_jump_or_expand)
+  smap <silent>L <Plug>(neosnippet_jump_or_expand)
+  xmap <silent>L <Plug>(neosnippet_expand_target)
+  let g:neosnippet#enable_snipmate_compatibility = 1
+  let g:neosnippet#enable_completed_snippet = 1
+  let g:neosnippet#expand_word_boundary = 1
+  let g:neosnippet#snippets_directory = '$HOME/.cache/dein/repos/github.com/Shougo/neosnippet-snippets/neosnippets/'
+  "let g:snippets_dir = '$REPOS/mgtools/conf/rc/vim/plugins/snippets/'
 '''
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
-depends = ['neomru.vim']
-on_event = 'BufRead'
+on_cmd = 'Denite'
+hook_source = 'source $REPOS/mgtools/conf/rc/vim/plugins/denite.rc.vim'
 hook_add = '''
-nmap <silent> <C-u><C-t> :<C-u>Denite filetype<CR>
-nmap <silent> <C-u><C-p> :<C-u>Denite file_rec<CR>
-nmap <silent> <C-u><C-j> :<C-u>Denite line<CR>
-nmap <silent> <C-u><C-g> :<C-u>Denite grep<CR>
-nmap <silent> <C-u><C-]> :<C-u>DeniteCursorWord grep<CR>
-nmap <silent> <C-u><C-u> :<C-u>Denite file_mru<CR>
-nmap <silent> <C-u><C-y> :<C-u>Denite neoyank<CR>
-nmap <silent> <C-u><C-r> :<C-u>Denite -resume<CR>
-nmap <silent> <C-u>; :<C-u>Denite -resume -immediately -select=+1<CR>
-nmap <silent> <C-u>- :<C-u>Denite -resume -immediately -select=-1<CR>
-nmap <silent> <C-u><C-d> :<C-u>call denite#start([{'name': 'file_rec', 'args': ['~/dotfiles']}])<CR>
-nnoremap ml :<C-u>call denite#start([{'name': 'file_rec', 'args': [g:memolist_path]}])<CR>
-'''
-hook_post_source = '''
-call denite#custom#var('file_rec', 'command',
-\ ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', ''])
-call denite#custom#var('grep', 'command',
-\ ['pt', '--nogroup', '--nocolor', '--smart-case', '--hidden'])
-call denite#custom#var('grep', 'default_opts', [])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#source('file_rec', 'matchers', ['matcher_regexp'])
-call denite#custom#source('file_mru', 'matchers', ['matcher_regexp'])
+  nnoremap <silent> ;r
+        \ :<C-u>Denite -buffer-name=register
+        \ register neoyank<CR>
+  xnoremap <silent> ;r
+        \ :<C-u>Denite -default-action=replace -buffer-name=register
+        \ register neoyank<CR>
+  nnoremap <silent> [Window]<Space>
+        \ :<C-u>Denite file_rec:~/.vim/rc<CR>
+  nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight
+        \ line<CR>
+  nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
+        \ -auto-highlight -mode=normal line<CR>
+  nnoremap <silent> [Window]s :<C-u>Denite file_point file_old
+        \ -sorters=sorter_rank
+        \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+  nnoremap <silent> [Window]f :<C-u>Denite file_rec -path=
+  nnoremap <silent><expr> tt  &filetype == 'help' ?  "g\<C-]>" :
+        \ ":\<C-u>DeniteCursorWord -buffer-name=tag -immediately
+        \  tag:include\<CR>"
+  nnoremap <silent><expr> tp  &filetype == 'help' ?
+        \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
+  nnoremap <silent> [Window]n :<C-u>Denite dein<CR>
+  nnoremap <silent> [Window]g :<C-u>Denite ghq<CR>
+  nnoremap <silent> ;g :<C-u>Denite -buffer-name=search
+        \ -no-empty -mode=normal grep<CR>
+  nnoremap <silent> n :<C-u>Denite -buffer-name=search
+        \ -resume -mode=normal -refresh<CR>
+  nnoremap <silent> ft :<C-u>Denite filetype<CR>
+  nnoremap <silent> <C-t> :<C-u>Denite
+        \ -select=`tabpagenr()-1` -mode=normal deol<CR>
+  nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
+  nnoremap <silent> [Space]gs :<C-u>Denite gitstatus<CR>
+  nnoremap <silent> ;;
+        \ :<C-u>Denite command command_history<CR>
+  nnoremap <silent> [Window]b :Denite buffer<CR>
 '''
 
 [[plugins]]
@@ -111,3 +110,110 @@ let g:vinarise_guifont = 'Courier\ 10\ Pitch:h14'
 #    let g:EasyMotion_use_upper = 1
 #    let g:EasyMotion_enter_jump_first = 1
 #'''
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+on_if = 1
+on_event = 'TextYankPost'
+on_source = ['unite.vim', 'denite.nvim']
+
+
+#[[plugins]]
+#repo = 'kana/vim-smartword'
+#hook_add = '''
+#    nnoremap w <Plug>(smartword-w)
+#    nnoremap b <Plug>(smartword-b)
+#    nnoremap e <Plug>(smartword-e)
+#'''
+
+[[plugins]]
+repo = 'rking/ag.vim'
+
+[[plugins]]
+repo = 'erickbelfy/rg.vim'
+
+[[plugins]]
+repo = 'Shougo/deol.nvim'
+on_cmd = 'Deol'
+on_source = 'denite.nvim'
+hook_add = '''
+  nnoremap <silent> N :<C-u>call deol#new({'command': 'bash'})<CR>
+  nnoremap <silent> [Space]s :<C-u>Deol bash<CR>
+  nnoremap <silent> [Window]D  :<C-u>call deol#kill_editor()<CR>
+'''
+hook_source = '''
+  let g:deol#prompt_pattern = '\w*%'
+  set shell=bash
+  " Set to $PATH.
+  "let s:bin = dein#get('vim-themis').rtp . '/bin'
+  function! s:split_envpath(path) abort "{{{
+    let delimiter = has('win32') ? ';' : ':'
+    if stridx(a:path, '\' . delimiter) < 0
+      return split(a:path, delimiter)
+    endif
+    let split = split(a:path, '\\\@<!\%(\\\\\)*\zs' . delimiter)
+    return map(split,'substitute(v:val, ''\\\([\\'
+          \ . delimiter . ']\)'', "\\1", "g")')
+  endfunction"}}}
+  function! s:join_envpath(list, orig_path, add_path) abort "{{{
+    let delimiter = has('win32') ? ';' : ':'
+    return (stridx(a:orig_path, '\' . delimiter) < 0
+          \ && stridx(a:add_path, delimiter) < 0) ?
+          \   join(a:list, delimiter) :
+          \   join(map(copy(a:list),
+          \        "substitute(v:path, ',\\|\\\\,\\@=', '\\\\\\0', 'g')"),
+          \        delimiter)
+  endfunction"}}}
+  "let $PATH = s:join_envpath(
+  "      \ dein#util#_uniq(insert(
+  "      \    s:split_envpath($PATH), s:bin)), $PATH, s:bin)
+  "let $THEMIS_HOME = dein#get('vim-themis').rtp
+  "unlet s:bin
+  autocmd FileType deol call s:on_deol()
+  function! s:on_deol() abort
+    nnoremap <buffer><silent> [Space]gc :<C-u>call deol#send('git commit')<CR>
+    nnoremap <buffer><silent> [Space]gA :<C-u>call deol#send('git commit --amend')<CR>
+  endfunction
+'''
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+depends = 'neomru.vim'
+hook_source = 'source $REPOS/mgtools/conf/rc/vim/plugins/unite.rc.vim'
+
+[[plugins]]
+repo = 'mhinz/neovim-remote'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'lighttiger2505/gtags.vim'
+hook_add = '''
+    " Options
+    let g:Gtags_Auto_Map = 0
+    let g:Gtags_OpenQuickfixWindow = 1
+    " Keymap
+    " Show definetion of function cousor word on quickfix
+    nmap [denite-gtags]k :<C-u>exe("Gtags ".expand('<cword>'))<CR>
+    " Show reference of cousor word on quickfix
+    nmap [denite-gtags]r :<C-u>exe("Gtags -r ".expand('<cword>'))<CR>
+    nnoremap <C-j> :GtagsCursor<CR>
+    nnoremap <C-h> <C-w><C-w>ZQ
+'''
+
+[[plugins]]
+repo = 'jsfaint/gen_tags.vim'
+hook_add = '''
+    let g:gen_tags#gtags_auto_gen = 1
+'''
+
+[[plugins]]
+repo = 'ozelentok/denite-gtags'
+hook_add = '''
+    noremap [denite-gtags]  <Nop>
+    nmap ,t [denite-gtags]
+    nnoremap [denite-gtags]d :<C-u>DeniteCursorWord -buffer-name=gtags_def -mode=normal gtags_def<CR>
+    nnoremap [denite-gtags]f :<C-u>DeniteCursorWord -buffer-name=gtags_ref -mode=normal gtags_ref<CR>
+    nnoremap [denite-gtags]c :<C-u>DeniteCursorWord -buffer-name=gtags_context -mode=normal gtags_context<CR>
+'''

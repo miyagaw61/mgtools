@@ -31,12 +31,12 @@ build = 'env PY3=ON ./install.sh'
 
 [[plugins]]
 repo = 'Shougo/neomru.vim'
-on_path = '.*'
 
 [[plugins]]
 repo = 'Shougo/neoyank.vim'
-on_path = '.*'
-on_i = 1
+on_if = 1
+on_event = 'TextYankPost'
+on_source = ['unite.vim', 'denite.nvim']
 
 # [[plugins]]
 # repo = 'Shougo/unite.vim'
@@ -56,3 +56,12 @@ repo = 'KeitaNakamura/neodark.vim'
 repo = 'zchee/deoplete-jedi'
 on_i = 1
 on_ft = 'python'
+
+[[plugins]]
+repo = 'chemzqm/denite-git'
+
+#[[plugins]]
+#repo = 'chemzqm/vim-easygit'
+#hook_add = '''
+#    let g:easygit_enable_command = 1
+#'''

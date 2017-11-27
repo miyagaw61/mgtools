@@ -194,6 +194,7 @@ if [ "$color_prompt" = yes ]; then
     PS1="${red}${upper_left}${bar}${cyan}[\w]\$(parse_branch)\n${red}${bottom_left}${bar}${cyan}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar)\$(cat $MGTOOLS_ROOT/conf/rc/bash/left_parenthesis)${white}"
     PS1="${red}${upper_left}${bar}${cyan}[\w]\$(parse_branch)\n${red}${bottom_left}${bar}${cyan}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar)\$(cat $MGTOOLS_ROOT/conf/rc/bash/left_parenthesis)${white}"
     PS1="${red}${upper_left}${bar}${cyan}[\w]\$(parse_branch)\n${red}${bottom_left}${bar} ${cyan}>> ${white}"
+    PS1="(\w)"
     if test $USER = "root" ;then
         PS1="${red}.--${black}(${green}\w\$(parse_branch)${black})${red}\$(parse_prompt)\n\$(cat $HOME/repos/mgtools/conf/back_quote)--> ${white}"
         PS1="${red}.-${green}[\w]${red}-\$(parse_branch)${red}\$(parse_prompt)\n\$(cat $HOME/repos/mgtools/conf/back_quote)--${cyan}[miyagaw61]${red}-> ${white}"

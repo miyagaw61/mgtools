@@ -15,5 +15,6 @@ pip install html5lib
 pip install matplotlib
 pip install tensorflow
 pip install keras
+pip install neovim-remote
 mkdir -p /home/miyagaw61/.percol.d
 cp -a $HOME/repos/mgtools/conf/rc/rc.py $HOME/.percol.d/rc.py
