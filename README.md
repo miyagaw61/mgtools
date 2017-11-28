@@ -525,10 +525,8 @@ Usage: nowloading [loop_count]
 * nsed  
 input_fileに指定されたファイルをsed_patternに指定した正規表現で置換することが可能。  
 このスクリプトを用いることで、`<tag>.*</tag>`というような複数行に跨る置換を行うことが可能になる。  
-```
 (e.g)  
-nsed index.html "<script>.*</script>" "<script>alert("deleted");</script>"  
-```
+`nsed index.html "<script>.*</script>" "<script>alert("deleted");</script>"`
 
 ```  
 Usage: nsed file before after  
