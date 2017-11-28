@@ -25,8 +25,8 @@ if [ "$color_prompt" = yes ]; then
     PWD_COLOR='\[\033[01;31m\]' # red
     black='\[\033[01;30m\]' # black
     RESET_COLOR='\[\033[00m\]'
-    white='\[\033[00m\]'
     white='\033[00m'
+    white='\[\033[00m\]'
     backGreen_white='\[\033[00;42m\]'
     backGreen_black='\[\033[30;42;1m\]'
     backGreen_red='\[\033[31;42;1m\]'
@@ -41,9 +41,9 @@ if [ "$color_prompt" = yes ]; then
     blue='\033[34;1m'
     blue_0='\[\033[34;0m\]'
     blue_0='\033[34;0m'
-    red='\[\033[31;1m\]' # red
-    red='\033[31;1m' # red
-    cyan='\[\033[36;1m\]'
+    red='\033[1;31m' # red
+    red='\[\033[1;31m\]' # red
+    cyan='\[\033[1;36m\]'
     cyan='\033[36;1m'
     yellow='\033[33;1m'
     cyan_0='\[\033[36m\]'
@@ -142,7 +142,8 @@ if [ "$color_prompt" = yes ]; then
         if test $(echo "$now" | grep "$REPOS/") ;then
             now=$(echo "$now" | sed -E "s@$REPOS@@g")
             if test $now = "/" ;then
-                now=${blue}repos${cyan}
+                #now=${blue}repos${cyan}
+                now=${cyan}repos${cyan}
             else
                 now=$(echo "$now" | sed -E "s@^/@@g")
                 repo=$(echo "$now" | sed -E "s@/.*@@g")
@@ -150,19 +151,31 @@ if [ "$color_prompt" = yes ]; then
                 unrepo=$(echo "$unrepo" | sed -E "s/\/$//g")
                 unrepo=$(echo $unrepo | sed -E "s@$base@@g")
                 if test "$(echo "$unrepo" | grep .)" ;then
-                    now=${blue}$repo${white}$unrepo${cyan}$base
+                    #now=${blue}$repo${white}$unrepo${cyan}$base
+                    now=${cyan}$repo${white}$unrepo${cyan}$base
                 else
-                    now=${blue}$base
+                    #now=${blue}$base
+                    now=${cyan}$base
                 fi
             fi
         elif test $(echo "$now" | grep "$HOME/events/") ;then
             now=$(echo "$now" | sed -E "s@$HOME/events@@g")
-            now=$(echo "$now" | sed -E "s/\/$//g")
-            now=$(echo "$now" | sed -E "s@$base@@g")
-            if test "$(echo "$now" | grep .)" ;then
-                now=${blue}$base${white}$now${cyan}$base
+            if test $now = "/" ;then
+                #now=${blue}events${cyan}
+                now=${cyan}events${cyan}
             else
-                now=${blue}$base
+                now=$(echo "$now" | sed -E "s@^/@@g")
+                repo=$(echo "$now" | sed -E "s@/.*@@g")
+                unrepo=$(echo "$now" | sed -E "s@^$repo@@g")
+                unrepo=$(echo "$unrepo" | sed -E "s/\/$//g")
+                unrepo=$(echo $unrepo | sed -E "s@$base@@g")
+                if test "$(echo "$unrepo" | grep .)" ;then
+                    #now=${blue}$repo${white}$unrepo${cyan}$base
+                    now=${cyan}$repo${white}$unrepo${cyan}$base
+                else
+                    #now=${blue}$base
+                    now=${cyan}$base
+                fi
             fi
         elif test $(echo "$now" | grep "$HOME/docs/text/") ;then
             now=$(echo "$now" | sed -E "s@$HOME/docs/text@@g")
@@ -255,7 +268,7 @@ if [ "$color_prompt" = yes ]; then
         PS1="${cyan}(\w)\$(parse_branch)\n${red}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar) ${white}"
         PS1="${cyan}(\w)\$(parse_branch)\n${red}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar)\$(cat $MGTOOLS_ROOT/conf/rc/bash/left_parenthesis) ${white}"
         PS1="\n${red}[ ${cyan}\w${red} ]\$(parse_branch)\n${red}>> ${white}"
-        PS1="\n${red}[ ${cyan}\$(parse_path)${red} ]\$(parse_branch)\n${red}>>${white} "
+        PS1="\n${red}[ ${cyan}\$(parse_path)${red} ]\$(parse_branch)\n${red}>> ${white}"
     fi
 
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}\n${usericon}"

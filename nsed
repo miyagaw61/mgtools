@@ -10,7 +10,10 @@ fi
 
 while getopts h opt ;do
 	case $opt in
-		h)echo 'Usage: nsed [input_file] [sed_pattern]'; exit 0 ;;
+        h)echo 'Usage: nsed file before after
+ file   : input file name
+ before : before
+ after  : after'; exit 0;;
 	esac
 done
 

@@ -22,6 +22,7 @@ alias update="apt -y update; apt -y upgrade; slk"
 alias dk='docker2'
 alias sud='sudo bash'
 alias pg='pgdb'
+alias f='fzf2nd'
 
 #alias ls
 alias lf='ls -CF'
@@ -34,7 +35,9 @@ alias l1='olsone'
 #alias rc
 alias viba='vim ~/.bashrc; rsync -au ~/.bashrc $MGTOOLS_ROOT/conf/rc/bash/bashrc'
 alias soba='. ~/.bashrc 2> /dev/null'
+alias caba='cat ~/.bashrc'
 alias vivi='vim ~/.vimrc; rsync -au ~/.vimrc $MGTOOLS_ROOT/conf/rc/vim/vimrc'
+alias cavi='cat ~/.config/nvim/init.vim'
 
 #my config
 alias gcc='gcc -I $HOME/Documents/git/mgtools/include/'
@@ -43,5 +46,5 @@ alias nv="$HOME/bin/neovim/bin/nvim"
 alias sl='ls'
 
 #cd
-alias repos="cd $REPOS"
 alias docs="cd $HOME/docs"
+alias events="cd $HOME/events"

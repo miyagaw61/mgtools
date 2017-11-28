@@ -6,7 +6,12 @@ mgtools - many many console scripts for miyagaw61
 **mgtoolsディレクトリにPATHを通すだけで使用可能になります。**  
 **基本的に、mgtoolsディレクトリ内のファイルしか勝手に書き換えることはありません。**  
 **なので、mgtoolsを導入しても環境を壊すことはありません。**  
-  
+
+# 報告
+古いスクリプトはold_scriptsディレクトリに  
+CTF用のスクリプトはctfに  
+Pythonスクリプトはpythonに移動しました。
+
 install  
 -------  
   
@@ -29,6 +34,7 @@ tutorial
     - wecho
     - whileline
     - pyenv_update
+    - build
   
 * allcp  
 src...に記述した全ファイルを-dオプションに与えたパスへコピーする。  
