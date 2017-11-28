@@ -50,27 +50,3 @@ repos(){
 #  READLINE_POINT=${#READLINE_LINE}
 #}
 #bind -x '"\C-j":readline_injection'
-
-bind '"\C-o": " | fzf2nd "'
-
-rsed(){
-    arg="$(cat -)"
-    if test "$(echo "$arg" | rg "$1")" ;then
-        echo "$arg" | rg "$1" -r "$2" -A1000000000000 -B1000000000000
-    else
-        echo "$arg"
-    fi
-}
-
-#fzf2nd(){
-#    if test $# -eq 0 ;then
-#        arg="$(cat -)"
-#    else
-#        arg=$(echo "$@" | rsed " " "\n")
-#    fi
-#    if test "$arg" ;then
-#        echo "$arg" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" fzf --ansi -m  | while read -r item ; do
-#          printf '%q ' "$item"
-#        done
-#    fi
-#}

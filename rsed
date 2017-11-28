@@ -1,0 +1,6 @@
+arg="$(cat -)"
+if test "$(echo "$arg" | rg "$1")" ;then
+    echo "$arg" | rg "$1" -r "$2" -A1000000000000 -B1000000000000
+else
+    echo "$arg"
+fi
