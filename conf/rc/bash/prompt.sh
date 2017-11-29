@@ -25,8 +25,8 @@ if [ "$color_prompt" = yes ]; then
     PWD_COLOR='\[\033[01;31m\]' # red
     black='\[\033[01;30m\]' # black
     RESET_COLOR='\[\033[00m\]'
-    white='\033[00m'
     white='\[\033[00m\]'
+    white='\033[00m'
     backGreen_white='\[\033[00;42m\]'
     backGreen_black='\[\033[30;42;1m\]'
     backGreen_red='\[\033[31;42;1m\]'
@@ -41,8 +41,8 @@ if [ "$color_prompt" = yes ]; then
     blue='\033[34;1m'
     blue_0='\[\033[34;0m\]'
     blue_0='\033[34;0m'
-    red='\033[1;31m' # red
     red='\[\033[1;31m\]' # red
+    red='\033[1;31m' # red
     cyan='\[\033[1;36m\]'
     cyan='\033[36;1m'
     yellow='\033[33;1m'
@@ -121,12 +121,12 @@ if [ "$color_prompt" = yes ]; then
     function parse_branch(){
         branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's@\* \(.*\)@\1@')
         if test $(($(echo $branch | wc -m)-1)) -gt 1 ;then
-            if test $USER = "root" ;then
-                #echo -ne "\033[31;1m[ \033[36;1m${branch} \033[31;1m]\033[00m"
+            #if test $USER = "root" ;then
+            #    #echo -ne "\033[31;1m[ \033[36;1m${branch} \033[31;1m]\033[00m"
                 echo -ne "\033[31;1m[ ${yellow}${branch} \033[31;1m]\033[00m"
-            else
-                echo -ne "\033[31;1m-[\033[36;1m[ ${branch} ]\033[00m"
-            fi
+            #else
+            #    echo -ne "\033[31;1m-[\033[36;1m[ ${branch} ]\033[00m"
+            #fi
         #else
         #    if test $USER = "root" ;then
         #        echo -ne "\033[36;1m[None]\033[00m"
@@ -243,33 +243,34 @@ if [ "$color_prompt" = yes ]; then
     bar="─"
     bold_bar="━"
     left_partical="┤"
-    PS1="${cyan}.-${black}(${red}\w${black})${cyan}-${blue}-${black}-${cyan}\n'---> ${white}"
-    PS1="${cyan}.-${black}(${green}\w${black})${cyan}-${blue}-${black}-${cyan}\n'---> ${white}"
-    PS1="${red}.-${black}(${green}\w${black})${red}-${magenta}-${black}-${red}\n'---> ${white}"
-    PS1="${red}.-${black}(${green}\w${black})${red}-${black}-${red}\n'---> ${white}"
-    PS1="${cyan}.---${black}(${red}\w\$(parse_branch)${black})\$(parse_pyenv)${cyan}\$(parse_prompt)\n'--> ${white}"
-    PS1="${cyan}.--${black}(${red}\w\$(parse_branch)${black})${cyan}\$(parse_prompt)\n'--> ${white}"
-    PS1="${cyan}.-${red}[\w]\$(parse_branch)\$(parse_pyenv)${cyan}\n\$(cat $HOME/repos/mgtools/conf/back_quote)--${red}[miyagaw61]${cyan}-${green}$ ${white}"
-    PS1="${cyan}┌\$(parse_branch)\$(parse_pyenv)\n${cyan}└─${red}[\w]\n${red}◈ ${white}"
-    PS1="${red}${upper_left}${bar}${cyan}[\w]\$(parse_branch)\n${red}${bottom_left}${bar}${cyan}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar)\$(cat $MGTOOLS_ROOT/conf/rc/bash/left_parenthesis)${white}"
-    PS1="${red}${upper_left}${bar}${cyan}[\w]\$(parse_branch)\n${red}${bottom_left}${bar}${cyan}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar)\$(cat $MGTOOLS_ROOT/conf/rc/bash/left_parenthesis)${white}"
-    PS1="${red}${upper_left}${bar}${cyan}[\w]\$(parse_branch)\n${red}${bottom_left}${bar} ${cyan}>> ${white}"
-    PS1="(\w)"
-    if test $USER = "root" ;then
-        PS1="${red}.--${black}(${green}\w\$(parse_branch)${black})${red}\$(parse_prompt)\n\$(cat $HOME/repos/mgtools/conf/back_quote)--> ${white}"
-        PS1="${red}.-${green}[\w]${red}-\$(parse_branch)${red}\$(parse_prompt)\n\$(cat $HOME/repos/mgtools/conf/back_quote)--${cyan}[miyagaw61]${red}-> ${white}"
-        PS1="${red}.-${cyan}[\w]\$(parse_branch)\$(parse_pyenv)${red}\n\$(cat $HOME/repos/mgtools/conf/back_quote)--${cyan}[miyagaw61]${red}-${green}$ ${white}"
-        PS1="${red}┌─${cyan}[\w]\$(parse_branch)\$(parse_pyenv)\n${red}└─${cyan}[miyagaw61]${red}◈ ${white}"
-        PS1="${red}┌\$(parse_branch)\$(parse_pyenv)\n${red}└─${cyan}[\w]${red}◈ ${white}"
-        PS1="${red}┌─\$(parse_branch)\$(parse_pyenv)\n${red}└─${cyan}[\w]\n${cyan}◈ ${white}"
-        PS1="${red}${upper_left}${bar}${cyan}[\w]\$(parse_branch)\n${red}${bottom_left}${bar} ${cyan}>> ${white}"
-        PS1="${cyan}(\w)\$(parse_branch)\n${red}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar) ${white}"
-        PS1="${cyan}[\w]\$(parse_branch)\n${red}>> ${white}"
-        PS1="${cyan}(\w)\$(parse_branch)\n${red}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar) ${white}"
-        PS1="${cyan}(\w)\$(parse_branch)\n${red}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar)\$(cat $MGTOOLS_ROOT/conf/rc/bash/left_parenthesis) ${white}"
-        PS1="\n${red}[ ${cyan}\w${red} ]\$(parse_branch)\n${red}>> ${white}"
-        PS1="\n${red}[ ${cyan}\$(parse_path)${red} ]\$(parse_branch)\n${red}>> ${white}"
-    fi
+    #PS1="${cyan}.-${black}(${red}\w${black})${cyan}-${blue}-${black}-${cyan}\n'---> ${white}"
+    #PS1="${cyan}.-${black}(${green}\w${black})${cyan}-${blue}-${black}-${cyan}\n'---> ${white}"
+    #PS1="${red}.-${black}(${green}\w${black})${red}-${magenta}-${black}-${red}\n'---> ${white}"
+    #PS1="${red}.-${black}(${green}\w${black})${red}-${black}-${red}\n'---> ${white}"
+    #PS1="${cyan}.---${black}(${red}\w\$(parse_branch)${black})\$(parse_pyenv)${cyan}\$(parse_prompt)\n'--> ${white}"
+    #PS1="${cyan}.--${black}(${red}\w\$(parse_branch)${black})${cyan}\$(parse_prompt)\n'--> ${white}"
+    #PS1="${cyan}.-${red}[\w]\$(parse_branch)\$(parse_pyenv)${cyan}\n\$(cat $HOME/repos/mgtools/conf/back_quote)--${red}[miyagaw61]${cyan}-${green}$ ${white}"
+    #PS1="${cyan}┌\$(parse_branch)\$(parse_pyenv)\n${cyan}└─${red}[\w]\n${red}◈ ${white}"
+    #PS1="${red}${upper_left}${bar}${cyan}[\w]\$(parse_branch)\n${red}${bottom_left}${bar}${cyan}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar)\$(cat $MGTOOLS_ROOT/conf/rc/bash/left_parenthesis)${white}"
+    #PS1="${red}${upper_left}${bar}${cyan}[\w]\$(parse_branch)\n${red}${bottom_left}${bar}${cyan}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar)\$(cat $MGTOOLS_ROOT/conf/rc/bash/left_parenthesis)${white}"
+    #PS1="${red}${upper_left}${bar}${cyan}[\w]\$(parse_branch)\n${red}${bottom_left}${bar} ${cyan}>> ${white}"
+    #PS1="(\w)"
+    PS1="\n${red}[ ${cyan}\$(parse_path)${red} ]\$(parse_branch)\n\[${red}\]>> \[${white}\]"
+    #if test $USER = "root" ;then
+        #PS1="${red}.--${black}(${green}\w\$(parse_branch)${black})${red}\$(parse_prompt)\n\$(cat $HOME/repos/mgtools/conf/back_quote)--> ${white}"
+        #PS1="${red}.-${green}[\w]${red}-\$(parse_branch)${red}\$(parse_prompt)\n\$(cat $HOME/repos/mgtools/conf/back_quote)--${cyan}[miyagaw61]${red}-> ${white}"
+        #PS1="${red}.-${cyan}[\w]\$(parse_branch)\$(parse_pyenv)${red}\n\$(cat $HOME/repos/mgtools/conf/back_quote)--${cyan}[miyagaw61]${red}-${green}$ ${white}"
+        #PS1="${red}┌─${cyan}[\w]\$(parse_branch)\$(parse_pyenv)\n${red}└─${cyan}[miyagaw61]${red}◈ ${white}"
+        #PS1="${red}┌\$(parse_branch)\$(parse_pyenv)\n${red}└─${cyan}[\w]${red}◈ ${white}"
+        #PS1="${red}┌─\$(parse_branch)\$(parse_pyenv)\n${red}└─${cyan}[\w]\n${cyan}◈ ${white}"
+        #PS1="${red}${upper_left}${bar}${cyan}[\w]\$(parse_branch)\n${red}${bottom_left}${bar} ${cyan}>> ${white}"
+        #PS1="${cyan}(\w)\$(parse_branch)\n${red}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar) ${white}"
+        #PS1="${cyan}[\w]\$(parse_branch)\n${red}>> ${white}"
+        #PS1="${cyan}(\w)\$(parse_branch)\n${red}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar) ${white}"
+        #PS1="${cyan}(\w)\$(parse_branch)\n${red}\$(cat $MGTOOLS_ROOT/conf/rc/bash/dollar)\$(cat $MGTOOLS_ROOT/conf/rc/bash/left_parenthesis) ${white}"
+        #PS1="\n${red}[ ${cyan}\w${red} ]\$(parse_branch)\n${red}>> ${white}"
+        #PS1="\n${red}[ ${cyan}\$(parse_path)${red} ]\$(parse_branch)\n\[${red}\]>> \[${white}\]"
+    #fi
 
     #PS1="${debian_chroot:+$debian_chroot)}${cyan}\u${red}:\w${white}\n${usericon}"
     #PS1="${debian_chroot:+$debian_chroot)}${red}\w        \n${RESET_COLOR}${red}${usericon} ${white}"

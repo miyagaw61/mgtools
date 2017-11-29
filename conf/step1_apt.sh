@@ -1,3 +1,5 @@
+set -eu
+
 apt -y update
 apt -y upgrade
 
@@ -5,7 +7,7 @@ apt -y upgrade
 
 apt -y install rsync
 apt -y install python
-apt -y install python-pip python-dev
+apt -y install python-pip python-dev python3-dev
 apt -y install libboost-all-dev lib32z1-dev libbz2-dev
 apt -y install git
 apt -y install curl
@@ -40,6 +42,9 @@ apt -y install libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
 apt -y install libtool-bin
 apt -y install imagemagick ttyrec gcc x11-apps xdotool
 apt -y install silversearcher-ag
+apt -y install libboost-all-dev
+apt -y install cmake
+apt -y install libicu-dev
 
 ##---go---##
 add-apt-repository -y ppa:longsleep/golang-backports
@@ -82,26 +87,26 @@ apt -y install linux-headers-$(uname -r)
 apt -y install ncurses-dev
 
 ###----for metasploit----#
-#apt -y install subversion
-#apt -y install libreadline-dev
-#apt -y install libpq5
-#apt -y install libpq-dev
-#apt -y install libreadline5
-#apt -y install libsqlite3-dev
-#apt -y install libpcap-dev
-#apt -y install git-core
-#apt -y install postgresql
-#apt -y install pgadmin3
-#apt -y install zlib1g-dev
-#apt -y install libxml2-dev
-#apt -y install libxslt1-dev
-#apt -y install vncviewer
-#apt -y install libyaml-dev
-#apt -y install openjdk-8-jre
-#apt -y install gem
-#apt -y install gem2deb gemanx-gtk2 gem-dev gemdropx gem-extra gem-plugin-dc1394 gem-plugin-dv4l gem-plugin-gmerlin
-#apt -y install rbenv
-#apt -y install libffi-dev
+apt -y install subversion
+apt -y install libreadline-dev
+apt -y install libpq5
+apt -y install libpq-dev
+apt -y install libreadline5
+apt -y install libsqlite3-dev
+apt -y install libpcap-dev
+apt -y install git-core
+apt -y install postgresql
+apt -y install pgadmin3
+apt -y install zlib1g-dev
+apt -y install libxml2-dev
+apt -y install libxslt1-dev
+apt -y install vncviewer
+apt -y install libyaml-dev
+apt -y install openjdk-8-jre
+apt -y install gem
+apt -y install gem2deb gemanx-gtk2 gem-dev gemdropx gem-extra gem-plugin-dc1394 gem-plugin-dv4l gem-plugin-gmerlin
+apt -y install rbenv
+apt -y install libffi-dev
 #	#openjdk-8-jre error
 #	  #add-apt-repository ppa:openjdk-r/ppa
 #	  #apt update
