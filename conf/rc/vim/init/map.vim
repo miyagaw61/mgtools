@@ -49,3 +49,4 @@ nnoremap J 5j
 nnoremap K 5k
 vnoremap J 5j
 vnoremap K 5k
+nnoremap [Window]r :tabn<CR>:<C-u>call deol#send('cargo run')<CR>
