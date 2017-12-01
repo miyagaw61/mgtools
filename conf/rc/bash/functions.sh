@@ -39,9 +39,9 @@ repobase(){
 #}
 
 repos(){
-    var=$(ls $REPOS | fzf2nd)
+    var=$(rg --files $REPOS | rsed '[^/]*$' '' | sort | uniq | fzf2nd)
     if test "$var" ;then
-        cd $REPOS/$var
+        cd $var
     fi
 }
 

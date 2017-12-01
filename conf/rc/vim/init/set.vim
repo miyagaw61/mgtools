@@ -1,6 +1,6 @@
 " 行番号を表示
-"set number
-set relativenumber
+set number
+"set relativenumber
 
 " ビジュアルモードで選択したテキストが、クリップボードに入るようにする
 " set clipboard=autoselect

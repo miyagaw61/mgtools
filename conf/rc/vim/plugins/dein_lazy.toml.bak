@@ -3,42 +3,9 @@ repo = 'Shougo/deoplete.nvim'
 depends = 'context_filetype.vim'
 on_i = 1
 hook_source = '''
-let g:deoplete#enable_at_startup = 1
-source $REPOS/mgtools/conf/rc/vim/plugins/deoplete.rc.vim
+    let g:deoplete#enable_at_startup = 1
+    source $REPOS/mgtools/conf/rc/vim/plugins/deoplete.rc.vim
 '''
-
-[[plugins]]
-repo = 'Shougo/vimproc'
-#hook_post_update = '''
-#    if dein#util#_is_windows()
-#        let cmd = 'tools\\update-dll-mingw'
-#    elseif dein#util#_is_cygwin()
-#        let cmd = 'make -f make_cygwin.mak'
-#    elseif executable('gmake')
-#        let cmd = 'gmake'
-#    else
-#        let cmd = 'make'
-#    endif
-#    let g:dein#plugin.build = cmd
-#'''
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
-[[plugins]]
-repo = 'tomasr/molokai'
-
-[[plugins]]
-repo = 'nixprime/cpsm'
-
-[[plugins]]
-repo = 'Shougo/neomru.vim'
-
-[[plugins]]
-repo = 'Shougo/neoyank.vim'
-on_if = 1
-on_event = 'TextYankPost'
-on_source = ['unite.vim', 'denite.nvim']
 
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
@@ -60,7 +27,7 @@ hook_source = '''
   let g:neosnippet#enable_snipmate_compatibility = 1
   let g:neosnippet#enable_completed_snippet = 1
   let g:neosnippet#expand_word_boundary = 1
-  let g:neosnippet#snippets_directory = '$HOME/.cache/dein/repos/github.com/Shougo/neosnippet-snippets/neosnippets/'
+  let g:neosnippet#snippets_directory = '/home/miyagaw61/.cache/dein/repos/github.com/Shougo/neosnippet-snippets/neosnippets/'
   "let g:snippets_dir = '$REPOS/mgtools/conf/rc/vim/plugins/snippets/'
 '''
 
@@ -68,6 +35,7 @@ hook_source = '''
 repo = 'Shougo/denite.nvim'
 on_cmd = 'Denite'
 hook_source = 'source $REPOS/mgtools/conf/rc/vim/plugins/denite.rc.vim'
+#hook_source = 'source $REPOS/mgtools/conf/rc/vim/plugins/denite.rc.vim'
 hook_add = '''
   nnoremap <silent> ;r
         \ :<C-u>Denite -buffer-name=register
@@ -90,7 +58,7 @@ hook_add = '''
         \  tag:include\<CR>"
   nnoremap <silent><expr> tp  &filetype == 'help' ?
         \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
-  "nnoremap <silent> [Window]n :<C-u>Denite dein<CR>
+  nnoremap <silent> [Window]n :<C-u>Denite dein<CR>
   nnoremap <silent> [Window]g :<C-u>Denite ghq<CR>
   nnoremap <silent> ;g :<C-u>Denite -buffer-name=search
         \ -no-empty -mode=normal grep<CR>
@@ -108,12 +76,25 @@ hook_add = '''
 
 [[plugins]]
 repo = 'zchee/deoplete-clang'
+on_ft = ['c', 'cpp', 'cmake']
+depends = ['deoplete.nvim']
 hook_source = '''
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang-3.8.so.1'
 let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
 '''
-on_ft = ['c', 'cpp', 'cmake']
+
+[[plugins]]
+repo = 'sebastianmarkow/deoplete-rust'
+on_ft = 'rust'
 depends = ['deoplete.nvim']
+hook_source = '''
+    let g:deoplete#sources#rust#racer_binary='/home/miyagaw61/.cargo/bin/racer'
+    let g:deoplete#sources#rust#rust_source_path='/home/miyagaw61/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+    let g:deoplete#sources#rust#show_duplicates=1
+    let g:deoplete#sources#rust#disable_keymap=1
+    nmap <buffer> gd <plug>DeopleteRustGoToDefinitionDefault
+    nmap <buffer> K  <plug>DeopleteRustShowDocumentation
+'''
 
 [[plugins]]
 repo = 'Shougo/vinarise'
@@ -205,7 +186,6 @@ hook_source = '''
   function! s:on_deol() abort
     nnoremap <buffer><silent> [Space]gc :<C-u>call deol#send('git commit')<CR>
     nnoremap <buffer><silent> [Space]gA :<C-u>call deol#send('git commit --amend')<CR>
-    nnoremap <buffer><silent> [Space]r :<C-u>call deol#send('cargo run')<CR>
   endfunction
 '''
 
@@ -259,32 +239,21 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'sebastianmarkow/deoplete-rust'
-on_ft = 'rust'
-depends = ['deoplete.nvim']
-hook_source = '''
-    let g:deoplete#sources#rust#racer_binary='~/.cargo/bin/racer'
-    let g:deoplete#sources#rust#rust_source_path='/mnt/c/Users/miyagaw61/home/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
-    let g:deoplete#sources#rust#show_duplicates=1
-    let g:deoplete#sources#rust#disable_keymap=1
-    nmap <buffer> gd <plug>DeopleteRustGoToDefinitionDefault
-    nmap <buffer> K  <plug>DeopleteRustShowDocumentation
-'''
-
-[[plugins]]
 repo = 'racer-rust/vim-racer'
 on_ft = 'rust'
 hook_source = '''
     " racerバイナリ指定
-    let g:racer_cmd = "$HOME/.cargo/bin/racer"
+    let g:racer_cmd = "/home/miyagaw61/.cargo/bin/racer"
     " rust本体のソースコードパス指定
-    "let $RUST_SRC_PATH="/mnt/c/Users/miyagaw61/home/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
+    let $RUST_SRC_PATH="/home/miyagaw61/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
+    au FileType rust nmap <leader>gd <Plug>(rust-def)
+    au FileType rust nmap <leader>K <Plug>(rust-doc)
 '''
 
-[[plugins]]
-repo = 'rhysd/rust-doc.vim'
-on_ft = 'rust'
-hook_source = '''
-    " rustドキュメントのパス指定
-    "let g:rust_doc#downloaded_rust_doc_dir = "~/docs/rust-docs"
-'''
+#[[plugins]]
+#repo = 'rhysd/rust-doc.vim'
+#on_ft = 'rust'
+#hook_source = '''
+#    " rust sysrootのパス指定
+#    let g:rust_doc#downloaded_rust_doc_dir = "/home/miyagaw61/docs/rust-docs"
+#'''

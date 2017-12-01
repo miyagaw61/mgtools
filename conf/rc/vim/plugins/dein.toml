@@ -1,67 +1,57 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
-[[plugins]]
-repo = 'Shougo/vimproc'
-hook_post_update = '''
-    if dein#util#_is_windows()
-        let cmd = 'tools\\update-dll-mingw'
-    elseif dein#util#_is_cygwin()
-        let cmd = 'make -f make_cygwin.mak'
-    elseif executable('gmake')
-        let cmd = 'gmake'
-    else
-        let cmd = 'make'
-    endif
-    let g:dein#plugin.build = cmd
-'''
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
-[[plugins]]
-repo = 'Lokaltog/vim-easymotion'
-
-[[plugins]]
-repo = 'tomasr/molokai'
-
-[[plugins]]
-repo = 'nixprime/cpsm'
-build = 'env PY3=ON ./install.sh'
-
-[[plugins]]
-repo = 'Shougo/neomru.vim'
-
-[[plugins]]
-repo = 'Shougo/neoyank.vim'
-on_if = 1
-on_event = 'TextYankPost'
-on_source = ['unite.vim', 'denite.nvim']
+#[[plugins]]
+#repo = 'Lokaltog/vim-easymotion'
 
 # [[plugins]]
 # repo = 'Shougo/unite.vim'
 # depends = 'neomru.vim'
 
 [[plugins]]
-repo = 'justinmk/vim-sneak'
-hook_add = '''
-    map f <Plug>Sneak_f
-    map F <Plug>Sneak_F
-'''
-
-[[plugins]]
 repo = 'KeitaNakamura/neodark.vim'
 
-[[plugins]]
-repo = 'zchee/deoplete-jedi'
-on_i = 1
-on_ft = 'python'
-
-[[plugins]]
-repo = 'chemzqm/denite-git'
+#[[plugins]]
+#repo = 'chemzqm/denite-git'
 
 #[[plugins]]
 #repo = 'chemzqm/vim-easygit'
 #hook_add = '''
 #    let g:easygit_enable_command = 1
 #'''
+
+#[[plugins]]
+#repo = 't9md/vim-smalls'
+#hook_add = '''
+#    nnoremap [Window]o <Plug>(smalls)
+#'''
+
+#[[plugins]]
+#repo = 'chrisbra/improvedft'
+
+#[[plugins]]
+#repo = 'justinmk/vim-sneak'
+#hook_add = '''
+#    map f <Plug>Sneak_f
+#    map F <Plug>Sneak_F
+#'''
+
+[[plugins]]
+repo = 'Lokaltog/vim-easymotion'
+hook_add = '''
+    let g:EasyMotion_do_mapping = 0
+    nmap ? <Plug>(easymotion-s2)
+    xmap ? <Plug>(easymotion-s2)
+    omap z <Plug>(easymotion-s2)
+    nmap S <Plug>(easymotion-sn)
+    xmap S <Plug>(easymotion-sn)
+    omap S <Plug>(easymotion-tn)
+    let g:EasyMotion_smartcase = 1
+    map <Leader>j <Plug>(easymotion-j)
+    map <Leader>k <Plug>(easymotion-k)
+    let g:EasyMotion_startofline = 0
+    " let g:EasyMotion_keys = 'QZASDFGHJKL;'
+    let g:EasyMotion_keys = 'Q1Z2A3S4D5F6G7H8J9K/;'
+    let g:EasyMotion_use_upper = 1
+    let g:EasyMotion_enter_jump_first = 1
+'''

@@ -7,3 +7,4 @@ source $REPOS/mgtools/conf/rc/bash/pyenv.sh
 source $REPOS/mgtools/conf/rc/bash/fzf.sh
 source $REPOS/mgtools/conf/rc/bash/functions.sh
 source $REPOS/mgtools/conf/rc/bash/prompt.sh
+source $REPOS/mgtools/conf/rc/bash/source.sh

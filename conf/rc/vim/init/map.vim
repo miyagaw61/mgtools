@@ -35,6 +35,7 @@ nnoremap <leader>jelly :colorscheme jellybeans<CR>
 nnoremap <leader>molokai :colorscheme molokai<CR>
 nnoremap <leader>kalisi :colorscheme kalisi<CR>:set background=light<CR>
 nnoremap <leader>neodark :colorscheme neodark<CR>
+nnoremap <leader>repos :cd $REPOS<CR>
 nnoremap gGCf <C-f>
 nnoremap gGCb <C-b>
 nnoremap gGCe <C-e>
@@ -42,3 +43,9 @@ nnoremap gGCy <C-y>
 nnoremap gGCd <C-d>
 nnoremap gGCu <C-u>
 tnoremap <C-j> <C-\><C-n>
+nnoremap <Tab> <Nop>
+nnoremap [Window]n :tabn<CR>
+nnoremap J 5j
+nnoremap K 5k
+vnoremap J 5j
+vnoremap K 5k
