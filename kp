@@ -1,21 +1,33 @@
 #!/bin/sh
-
-hflg=0
-
-if test $# -eq 0 ;then
-	hflg=1
-fi
-
-while getopts h opt ;do
-	case $opt in
-		h)hflg=1;;
-	esac
+#var=$(ps aux | fzf2nd)
+#if test ! "$var" ;then
+#    exit 0
+#fi
+##kill -9 $(echo $var | rg ' : \[.*?\]' -r '')
+ps aux | fzf2nd > /tmp/kp.tmp
+#var=$(echo -n "$var" | perl -pe "s@\n@\" \"@g")
+cat /tmp/kp.tmp | while read var ;do
+    kill -9 $(echo $var | rg "^.*?  *(.*?) .*$" -r '$1')
 done
-shift $(($OPTIND - 1))
 
-if test $hflg -eq 1 ;then
-	echo "Usage: kp process_name"
-	exit 0
-fi
+#
+#hflg=0
+#
+#if test $# -eq 0 ;then
+#	hflg=1
+#fi
+#
+#while getopts h opt ;do
+#	case $opt in
+#		h)hflg=1;;
+#	esac
+#done
+#shift $(($OPTIND - 1))
+#
+#if test $hflg -eq 1 ;then
+#	echo "Usage: kp process_name"
+#	exit 0
+#fi
+#
+#kill -9 $(pgrep $1)
 
-kill -9 $(pgrep $1)
