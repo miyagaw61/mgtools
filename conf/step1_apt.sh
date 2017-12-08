@@ -45,6 +45,7 @@ apt -y install silversearcher-ag
 apt -y install libboost-all-dev
 apt -y install cmake
 apt -y install libicu-dev
+apt -y install desktop-file-utils
 
 ##---go---##
 add-apt-repository -y ppa:longsleep/golang-backports

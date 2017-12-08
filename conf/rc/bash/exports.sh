@@ -17,3 +17,4 @@ export TERM=xterm-256color
 export NVIM_LISTEN_ADDRESS='/tmp/nvimsocket'
 export BROWSER='chrome'
 export RUST_SRC_PATH="$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/srRc/rust/src"
+export DISPLAY=localhost:0.0

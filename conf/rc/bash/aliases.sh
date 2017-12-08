@@ -23,6 +23,7 @@ alias dk='docker2'
 alias sud='sudo bash'
 alias pg='pgdb'
 alias f='fzf2nd'
+alias op='xdg-open'
 
 #alias ls
 alias lf='ls -CF'
