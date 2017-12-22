@@ -26,8 +26,8 @@ alias f='fzf2nd'
 alias op='xdg-open'
 
 #alias ls
-alias ls='exa'
-alias ll='exa -hal'
+alias ls='exa --group-directories-first'
+alias ll='exa -hal --git --time-style=iso --group-directories-first'
 
 #alias rc
 alias viba='vim ~/.bashrc; rsync -au ~/.bashrc $MGTOOLS_ROOT/conf/rc/bash/bashrc'
