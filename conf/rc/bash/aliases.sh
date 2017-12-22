@@ -45,3 +45,6 @@ alias sl='ls'
 #cd
 alias docs="cd $HOME/docs"
 alias events="cd $HOME/events"
+
+#alias make malware list
+alias malist="allcp \$(rg --files -g*.exe -g*.bat -g*.scr -g*.rtf -g*.cpl -g*.jar -g*.lnk) -d"

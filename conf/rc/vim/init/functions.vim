@@ -41,3 +41,12 @@ endfunction
 function! s:termexit() abort
     execute 'buffer #'
 endfunction
+
+"python run
+"==========
+"function! Python_run(arg, ...)
+"    execute 'w /tmp/%.vimrun'
+"    execute ':b bash'
+"    execute ':cd #:h'
+"    call deol#send('python run
+"nnoremap [Space]rp :w /tmp/%.vimrun<CR>:b bash<CR>:cd #:h<CR>imv /tmp/vimrun.py ./vimrun.py; python vimrun.py; rm -rf vimrun.py 

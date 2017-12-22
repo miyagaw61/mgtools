@@ -14,7 +14,7 @@ function! Term()
   call termopen(&shell, {'on_exit': 'OnExit'})
 endfunction
 
-nnoremap [Window]t :up<CR>:enew<CR>:call Term()<CR>i
+"nnoremap [Window]t :up<CR>:enew<CR>:call Term()<CR>i
 
 function! CloseLastTerm()
   if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
@@ -27,3 +27,5 @@ function! OnExit(job_id, code, event)
     call CloseLastTerm()
   endif
 endfunction
+
+

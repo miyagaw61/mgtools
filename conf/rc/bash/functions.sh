@@ -28,6 +28,9 @@ mkgif(){
 
 repobase(){
     now=$(pwd)/
+    if test "$(echo $now | rg "/mnt/c/Users/miyagaw61/home/")" ;then
+        now=$(echo $now | rg "/mnt/c/Users/miyagaw61/home/" -r "/home/miyagaw61/")
+    fi
     now=$(echo "$now" | sed -E "s@$REPOS@@g")
     now=$(echo "$now" | sed -E "s@^/@@g")
     repo=$(echo "$now" | sed -E "s@/.*@@g")

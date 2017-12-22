@@ -26,7 +26,6 @@ inoremap <C-a> <home>
 inoremap <C-e> <end>
 "inoremap <C-h> <left>
 "inoremap <C-l> <right>
-noremap <C-i> ZQ
 nnoremap <leader>vim :set syntax=vim<CR>
 nnoremap <leader>python :set syntax=python<CR>
 nnoremap <leader>clang :set syntax=python<CR>
@@ -49,4 +48,14 @@ nnoremap J 5j
 nnoremap K 5k
 vnoremap J 5j
 vnoremap K 5k
-nnoremap [Window]r :tabn<CR>:<C-u>call deol#send('cargo run')<CR>
+
+"terminal mapping
+nnoremap [Space]t  :Deol<CR>i
+nnoremap [Space]s  :b bash<CR>:cd #:p:h<CR>i
+nnoremap [Space]ga :b bash<CR>:cd #:p:h<CR>irepobase; git status --short<CR>git add<Space>
+nnoremap [Space]gs :b bash<CR>:cd #:p:h<CR>irepobase; git status --short<CR>
+nnoremap [Space]gc :b bash<CR>:cd #:p:h<CR>irepobase; gic<CR>
+nnoremap [Space]gt :b bash<CR>:cd #:p:h<CR>irepobase; gitmp<CR>
+nnoremap [Space]rr :b bash<CR>:cd #:p:h<CR>icargo run<Space>
+nnoremap [Space]rc :QuickRun -args<Space>
+nnoremap [Space]rp :QuickRun -args<Space>

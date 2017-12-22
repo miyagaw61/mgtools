@@ -8,21 +8,6 @@ source $REPOS/mgtools/conf/rc/vim/plugins/deoplete.rc.vim
 '''
 
 [[plugins]]
-repo = 'Shougo/vimproc'
-#hook_post_update = '''
-#    if dein#util#_is_windows()
-#        let cmd = 'tools\\update-dll-mingw'
-#    elseif dein#util#_is_cygwin()
-#        let cmd = 'make -f make_cygwin.mak'
-#    elseif executable('gmake')
-#        let cmd = 'gmake'
-#    else
-#        let cmd = 'make'
-#    endif
-#    let g:dein#plugin.build = cmd
-#'''
-
-[[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
@@ -100,7 +85,7 @@ hook_add = '''
   nnoremap <silent> <C-t> :<C-u>Denite
         \ -select=`tabpagenr()-1` -mode=normal deol<CR>
   nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
-  nnoremap <silent> [Space]gs :<C-u>Denite gitstatus<CR>
+  "nnoremap <silent> [Space]gs :<C-u>Denite gitstatus<CR>
   nnoremap <silent> ;;
         \ :<C-u>Denite command command_history<CR>
   nnoremap <silent> [Window]b :Denite buffer<CR>
@@ -170,8 +155,8 @@ repo = 'Shougo/deol.nvim'
 on_cmd = 'Deol'
 on_source = 'denite.nvim'
 hook_add = '''
-  nnoremap <silent> N :<C-u>call deol#new({'command': 'bash'})<CR>
-  nnoremap <silent> [Space]s :<C-u>Deol bash<CR>
+  "nnoremap <silent> N :<C-u>call deol#new({'command': 'bash'})<CR>
+  nnoremap <silent> N :terminal<CR>i
   nnoremap <silent> [Window]D  :<C-u>call deol#kill_editor()<CR>
 '''
 hook_source = '''
@@ -203,11 +188,11 @@ hook_source = '''
   "let $THEMIS_HOME = dein#get('vim-themis').rtp
   "unlet s:bin
   autocmd FileType deol call s:on_deol()
-  function! s:on_deol() abort
-    nnoremap <buffer><silent> [Space]gc :<C-u>call deol#send('git commit')<CR>
-    nnoremap <buffer><silent> [Space]gA :<C-u>call deol#send('git commit --amend')<CR>
-    nnoremap <buffer><silent> [Space]r :<C-u>call deol#send('cargo run')<CR>
-  endfunction
+  "function! s:on_deol() abort
+  "  nnoremap <buffer><silent> [Space]gc :<C-u>call deol#send('git commit')<CR>
+  "  nnoremap <buffer><silent> [Space]gA :<C-u>call deol#send('git commit --amend')<CR>
+  "  nnoremap <buffer><silent> [Space]r :<C-u>call deol#send('cargo run')<CR>
+  "endfunction
 '''
 
 [[plugins]]
@@ -288,4 +273,20 @@ on_ft = 'rust'
 hook_source = '''
     " rustドキュメントのパス指定
     "let g:rust_doc#downloaded_rust_doc_dir = "~/docs/rust-docs"
+'''
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+hook_source = '''
+    map <Space>r [Space]r
+    " hook-shabadoubi_touch_henshin を有効にする
+    " shabadoubi_touch_henshin/wait でアニメーションの重みを設定できる
+    " 早いと思ったらこの値を大きくすれば遅くなる
+    let g:quickrun_config = {
+    \   "_" : {
+    \       "outputter/buffer/split" : ":botright 13",
+    \       "runner" : "vimproc",
+    \       "runner/vimproc/updatetime" : 40,
+    \   }
+    \}
 '''
