@@ -26,18 +26,14 @@ alias f='fzf2nd'
 alias op='xdg-open'
 
 #alias ls
-alias lf='ls -CF'
-alias dls='ls'
-alias o='ols'
-alias l='ols'
-alias ls1='olsone'
-alias l1='olsone'
+alias ls='exa'
+alias ll='exa -hal'
 
 #alias rc
 alias viba='vim ~/.bashrc; rsync -au ~/.bashrc $MGTOOLS_ROOT/conf/rc/bash/bashrc'
 alias soba='. ~/.bashrc 2> /dev/null'
 alias caba='cat ~/.bashrc'
-alias vivi='vim ~/.vimrc; rsync -au ~/.vimrc $MGTOOLS_ROOT/conf/rc/vim/vimrc'
+alias vivi='vim ~/.config/nvim/init.vim; rsync -au ~/.config/nvim/init.vim $MGTOOLS_ROOT/conf/rc/vim/vimrc'
 alias cavi='cat ~/.config/nvim/init.vim'
 
 #my config
