@@ -39,9 +39,12 @@ alias cavi='cat ~/.config/nvim/init.vim'
 #my config
 alias gcc='gcc -I $HOME/Documents/git/mgtools/include/'
 alias vim="$HOME/bin/viim/bin/vim"
-alias nv="$HOME/bin/neovim/bin/nvim"
+alias ns="rm -rf /tmp/nvimsocket; NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
 alias sl='ls'
 
 #cd
 alias docs="cd $HOME/docs"
 alias events="cd $HOME/events"
+
+#alias make malware list
+alias malist="allcp \$(rg --files -g*.exe -g*.bat -g*.scr -g*.rtf -g*.cpl -g*.jar -g*.lnk) -d"

@@ -26,7 +26,6 @@ inoremap <C-a> <home>
 inoremap <C-e> <end>
 "inoremap <C-h> <left>
 "inoremap <C-l> <right>
-noremap <C-i> ZQ
 nnoremap <leader>vim :set syntax=vim<CR>
 nnoremap <leader>python :set syntax=python<CR>
 nnoremap <leader>clang :set syntax=python<CR>
@@ -45,8 +44,14 @@ nnoremap gGCu <C-u>
 tnoremap <C-j> <C-\><C-n>
 nnoremap <Tab> <Nop>
 nnoremap [Window]n :tabn<CR>
-nnoremap J 5j
-nnoremap K 5k
-vnoremap J 5j
-vnoremap K 5k
-nnoremap [Window]r :tabn<CR>:<C-u>call deol#send('cargo run')<CR>
+nnoremap e :cd %:p:h<CR>:e<Space>
+
+"terminal mapping
+nnoremap [Space]t  :Deol<CR>
+nnoremap [Space]s  :b bash<CR>:call deol#send("cd " . expand("#:p:h"))<CR>i
+nnoremap [Space]ga :b bash<CR>:call deol#send("cd " . expand("#:p:h") . "; " . "giac " . expand("#:p"))<CR>
+nnoremap [Space]gs :b bash<CR>:call deol#send("cd " . expand("#:p:h") . "; " . "repobase; " . "git status --short")<CR>
+nnoremap [Space]gt :b bash<CR>:call deol#send("cd " . expand("#:p:h") . "; " . "gitmp")<CR>
+nnoremap [Space]rr :b bash<CR>:call deol#send("cd " . expand("#:p:h"))<CR>icargo run<Space>
+nnoremap [Space]rc :QuickRun -args<Space>
+nnoremap [Space]rp :QuickRun -args<Space>

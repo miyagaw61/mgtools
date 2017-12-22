@@ -9,4 +9,112 @@ source $REPOS/mgtools/conf/rc/vim/init/paste_indent.vim
 source $REPOS/mgtools/conf/rc/vim/init/let.vim
 source $REPOS/mgtools/conf/rc/vim/init/closebuf.vim
 source $REPOS/mgtools/conf/rc/vim/init/color.vim
+"
 
+""set runtimepath+=/home/miyagaw61/.cache/dein/repos/github.com/nixprime/cpsm
+"set runtimepath+=/home/miyagaw61/.cache/dein/repos/github.com/erickbelfy/rg.vim
+"set runtimepath+=/home/miyagaw61/.cache/dein/repos/github.com/Shougo/denite.nvim
+"
+"nnoremap <silent> ;r
+"\ :<C-u>Denite -buffer-name=register
+"\ register neoyank<CR>
+"xnoremap <silent> ;r
+"\ :<C-u>Denite -default-action=replace -buffer-name=register
+"\ register neoyank<CR>
+"nnoremap <silent> [Window]<Space>
+"\ :<C-u>Denite file_rec:~/.vim/rc<CR>
+"nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight
+"\ line<CR>
+"nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
+"\ -auto-highlight -mode=normal line<CR>
+"nnoremap <silent> [Window]s :<C-u>Denite file_point file_old
+"\ -sorters=sorter_rank
+"\ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+"nnoremap <silent> [Window]f :<C-u>Denite file_rec -path=
+"nnoremap <silent><expr> tt  &filetype == 'help' ?  "g\<C-]>" :
+"\ ":\<C-u>DeniteCursorWord -buffer-name=tag -immediately
+"\  tag:include\<CR>"
+"nnoremap <silent><expr> tp  &filetype == 'help' ?
+"\ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
+""nnoremap <silent> [Window]n :<C-u>Denite dein<CR>
+"nnoremap <silent> [Window]g :<C-u>Denite ghq<CR>
+"nnoremap <silent> ;g :<C-u>Denite -buffer-name=search
+"\ -no-empty -mode=normal grep<CR>
+"nnoremap <silent> n :<C-u>Denite -buffer-name=search
+"\ -resume -mode=normal -refresh<CR>
+"nnoremap <silent> ft :<C-u>Denite filetype<CR>
+"nnoremap <silent> <C-t> :<C-u>Denite
+"\ -select=`tabpagenr()-1` -mode=normal deol<CR>
+"nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
+"nnoremap <silent> [Space]gs :<C-u>Denite gitstatus<CR>
+"nnoremap <silent> ;;
+"\ :<C-u>Denite command command_history<CR>
+"nnoremap <silent> [Window]b :Denite buffer<CR>
+"
+"
+"if executable('rg')
+"  call denite#custom#var('file_rec', 'command',
+"        \ ['rg', '--files', '--glob', '!.git'])
+"  call denite#custom#var('grep', 'command', ['rg', '--threads', '1'])
+"  call denite#custom#var('grep', 'recursive_opts', [])
+"  call denite#custom#var('grep', 'final_opts', [])
+"  call denite#custom#var('grep', 'separator', ['--'])
+"  call denite#custom#var('grep', 'default_opts',
+"        \ ['--vimgrep', '--no-heading'])
+"else
+"  call denite#custom#var('file_rec', 'command',
+"        \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+"endif
+"
+"call denite#custom#source('file_old', 'matchers',
+"      \ ['matcher_fuzzy', 'matcher_project_files'])
+"call denite#custom#source('tag', 'matchers', ['matcher_substring'])
+"if has('nvim')
+"  call denite#custom#source('file_rec,grep', 'matchers',
+"        \ ['matcher_cpsm'])
+"endif
+"call denite#custom#source('file_old', 'converters',
+"      \ ['converter_relative_word'])
+"
+"call denite#custom#map('insert', '<C-r>',
+"      \ '<denite:toggle_matchers:matcher_substring>', 'noremap')
+"call denite#custom#map('insert', '<C-s>',
+"      \ '<denite:toggle_sorters:sorter_reverse>', 'noremap')
+"call denite#custom#map('insert', '<C-j>',
+"      \ '<denite:move_to_next_line>', 'noremap')
+"call denite#custom#map('insert', '<C-k>',
+"      \ '<denite:move_to_previous_line>', 'noremap')
+"call denite#custom#map('insert', "'",
+"      \ '<denite:move_to_next_line>', 'noremap')
+"call denite#custom#map('normal', 'r',
+"      \ '<denite:do_action:quickfix>', 'noremap')
+"call denite#custom#map('insert', ';',
+"      \ 'vimrc#sticky_func()', 'expr')
+"
+"call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+"call denite#custom#var('file_rec/git', 'command',
+"      \ ['git', 'ls-files', '-co', '--exclude-standard'])
+"
+"" call denite#custom#option('default', 'prompt', '>')
+"" call denite#custom#option('default', 'short_source_names', v:true)
+"call denite#custom#option('default', {
+"      \ 'auto_accel': v:true,
+"      \ 'prompt': '>',
+"      \ 'source_names': 'short',
+"      \ })
+"
+"let s:menus = {}
+"let s:menus.vim = {
+"    \ 'description': 'Vim',
+"    \ }
+"let s:menus.vim.file_candidates = [
+"    \ ['    > Edit configuation file (init.vim)', '~/.config/nvim/init.vim']
+"    \ ]
+"call denite#custom#var('menu', 'menus', s:menus)
+"
+"call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+"      \ [ '.git/', '.ropeproject/', '__pycache__/',
+"      \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
+"
+"call denite#custom#action('file', 'buffer',
+"      \ {context -> denite#do_action(context, 'open', context['targets'])})
