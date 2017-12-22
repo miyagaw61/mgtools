@@ -1,14 +1,12 @@
-source $MGTOOLS_ROOT/conf/rc/vim/init/map.vim
-source $MGTOOLS_ROOT/conf/rc/vim/init/set.vim
-source $MGTOOLS_ROOT/conf/rc/vim/init/functions.vim
-source $MGTOOLS_ROOT/conf/rc/vim/init/binary_mode.vim
-source $MGTOOLS_ROOT/conf/rc/vim/init/autofcitx.vim
-source $MGTOOLS_ROOT/conf/rc/vim/init/au.vim
+source $REPOS/mgtools/conf/rc/vim/init/map.vim
+source $REPOS/mgtools/conf/rc/vim/init/set.vim
+source $REPOS/mgtools/conf/rc/vim/init/functions.vim
+source $REPOS/mgtools/conf/rc/vim/init/binary_mode.vim
+source $REPOS/mgtools/conf/rc/vim/init/autofcitx.vim
+source $REPOS/mgtools/conf/rc/vim/init/au.vim
+source $REPOS/mgtools/conf/rc/vim/plugins/dein_trigger.vim
+source $REPOS/mgtools/conf/rc/vim/init/paste_indent.vim
+source $REPOS/mgtools/conf/rc/vim/init/let.vim
+source $REPOS/mgtools/conf/rc/vim/init/closebuf.vim
+source $REPOS/mgtools/conf/rc/vim/init/color.vim
 
-"source $MGTOOLS_ROOT/conf/rc/vim/plugins/neobundle_trigger.vim
-source $MGTOOLS_ROOT/conf/rc/vim/plugins/dein_trigger.vim
-
-source $MGTOOLS_ROOT/conf/rc/vim/init/color.vim
-source $MGTOOLS_ROOT/conf/rc/vim/init/windows.vim
-source $MGTOOLS_ROOT/conf/rc/vim/init/paste_indent.vim
-source $MGTOOLS_ROOT/conf/rc/vim/init/let.vim
