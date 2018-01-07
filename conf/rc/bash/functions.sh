@@ -37,9 +37,16 @@ repobase(){
     cd $REPOS/$repo
 }
 
-#nvcd(){
-#    nvr -c "cd "$(realpath $1)
-#}
+nv(){
+    if test $# -eq 0 ;then
+        nvr -c "Denite buffer"
+    fi
+    nvr -c "e "$(realpath $1)
+}
+
+nd(){
+    nvr -c "cd "$(realpath $1)
+}
 
 repos(){
     var=$(rg --files $REPOS | rsed '[^/]*$' '' | sort | uniq | fzf2nd)

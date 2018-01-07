@@ -46,7 +46,7 @@ hook_source = '''
   let g:neosnippet#enable_snipmate_compatibility = 1
   let g:neosnippet#enable_completed_snippet = 1
   let g:neosnippet#expand_word_boundary = 1
-  let g:neosnippet#snippets_directory = '$HOME/.cache/dein/repos/github.com/Shougo/neosnippet-snippets/neosnippets/'
+  let g:neosnippet#snippets_directory = '~/.cache/dein/repos/github.com/Shougo/neosnippet-snippets/neosnippets/'
   "let g:snippets_dir = '$REPOS/mgtools/conf/rc/vim/plugins/snippets/'
 '''
 
@@ -54,10 +54,10 @@ hook_source = '''
 repo = 'Shougo/denite.nvim'
 on_cmd = 'Denite'
 hook_add = '''
-  nnoremap <silent> ;r
+  nnoremap <silent> [Window]r
         \ :<C-u>Denite -buffer-name=register
         \ register neoyank<CR>
-  xnoremap <silent> ;r
+  xnoremap <silent> [Window]r
         \ :<C-u>Denite -default-action=replace -buffer-name=register
         \ register neoyank<CR>
   nnoremap <silent> [Window]<Space>
@@ -76,8 +76,8 @@ hook_add = '''
   nnoremap <silent><expr> tp  &filetype == 'help' ?
         \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
   "nnoremap <silent> [Window]n :<C-u>Denite dein<CR>
-  nnoremap <silent> [Window]g :<C-u>Denite ghq<CR>
-  nnoremap <silent> ;g :<C-u>Denite -buffer-name=search
+  "nnoremap <silent> [Window]g :<C-u>Denite ghq<CR>
+  nnoremap <silent> [Window]g :<C-u>Denite -buffer-name=search
         \ -no-empty -mode=normal grep<CR>
   nnoremap <silent> n :<C-u>Denite -buffer-name=search
         \ -resume -mode=normal -refresh<CR>
@@ -86,8 +86,8 @@ hook_add = '''
         \ -select=`tabpagenr()-1` -mode=normal deol<CR>
   nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
   "nnoremap <silent> [Space]gs :<C-u>Denite gitstatus<CR>
-  nnoremap <silent> ;;
-        \ :<C-u>Denite command command_history<CR>
+  "nnoremap <silent> ;;
+  "      \ :<C-u>Denite command command_history<CR>
   nnoremap <silent> [Window]b :Denite buffer<CR>
 '''
 hook_source = 'source $REPOS/mgtools/conf/rc/vim/plugins/denite.rc.vim'
@@ -187,7 +187,7 @@ hook_source = '''
   "      \    s:split_envpath($PATH), s:bin)), $PATH, s:bin)
   "let $THEMIS_HOME = dein#get('vim-themis').rtp
   "unlet s:bin
-  autocmd FileType deol call s:on_deol()
+  "autocmd FileType deol call s:on_deol()
   "function! s:on_deol() abort
   "  nnoremap <buffer><silent> [Space]gc :<C-u>call deol#send('git commit')<CR>
   "  nnoremap <buffer><silent> [Space]gA :<C-u>call deol#send('git commit --amend')<CR>
@@ -249,7 +249,7 @@ repo = 'sebastianmarkow/deoplete-rust'
 on_ft = 'rust'
 depends = ['deoplete.nvim']
 hook_source = '''
-    let g:deoplete#sources#rust#racer_binary='~/.cargo/bin/racer'
+    let g:deoplete#sources#rust#racer_binary='/mnt/c/Users/miyagaw61/home/.cargo/bin/racer'
     let g:deoplete#sources#rust#rust_source_path='/mnt/c/Users/miyagaw61/home/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
     let g:deoplete#sources#rust#show_duplicates=1
     let g:deoplete#sources#rust#disable_keymap=1
@@ -262,17 +262,33 @@ repo = 'racer-rust/vim-racer'
 on_ft = 'rust'
 hook_source = '''
     " racerバイナリ指定
-    let g:racer_cmd = "$HOME/.cargo/bin/racer"
+    let g:racer_cmd = "~/.cargo/bin/racer"
     " rust本体のソースコードパス指定
     "let $RUST_SRC_PATH="/mnt/c/Users/miyagaw61/home/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
 '''
 
+#[[plugins]]
+#repo = 'rhysd/rust-doc.vim'
+#on_ft = 'rust'
+#hook_source = '''
+#    " rustドキュメントのパス指定
+#    "let g:rust_doc#downloaded_rust_doc_dir = "~/docs/rust-docs"
+#'''
+
 [[plugins]]
-repo = 'rhysd/rust-doc.vim'
-on_ft = 'rust'
+repo = 'thinca/vim-quickrun'
 hook_source = '''
-    " rustドキュメントのパス指定
-    "let g:rust_doc#downloaded_rust_doc_dir = "~/docs/rust-docs"
+    map <Space>r [Space]r
+    " hook-shabadoubi_touch_henshin を有効にする
+    " shabadoubi_touch_henshin/wait でアニメーションの重みを設定できる
+    " 早いと思ったらこの値を大きくすれば遅くなる
+    let g:quickrun_config = {
+    \   "_" : {
+    \       "outputter/buffer/split" : ":botright 13",
+    \       "runner" : "vimproc",
+    \       "runner/vimproc/updatetime" : 40,
+    \   }
+    \}
 '''
 
 [[plugins]]

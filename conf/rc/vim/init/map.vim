@@ -44,18 +44,14 @@ nnoremap gGCu <C-u>
 tnoremap <C-j> <C-\><C-n>
 nnoremap <Tab> <Nop>
 nnoremap [Window]n :tabn<CR>
-nnoremap J 5j
-nnoremap K 5k
-vnoremap J 5j
-vnoremap K 5k
+nnoremap e :cd %:p:h<CR>:e<Space>
 
 "terminal mapping
-nnoremap [Space]t  :Deol<CR>i
-nnoremap [Space]s  :b bash<CR>:cd #:p:h<CR>i
-nnoremap [Space]ga :b bash<CR>:cd #:p:h<CR>irepobase; git status --short<CR>git add<Space>
-nnoremap [Space]gs :b bash<CR>:cd #:p:h<CR>irepobase; git status --short<CR>
-nnoremap [Space]gc :b bash<CR>:cd #:p:h<CR>irepobase; gic<CR>
-nnoremap [Space]gt :b bash<CR>:cd #:p:h<CR>irepobase; gitmp<CR>
-nnoremap [Space]rr :b bash<CR>:cd #:p:h<CR>icargo run<Space>
+nnoremap [Space]t  :Deol<CR>
+nnoremap [Space]s  :b bash<CR>:call deol#send("cd " . expand("#:p:h"))<CR>i
+nnoremap [Space]ga :b bash<CR>:call deol#send("cd " . expand("#:p:h") . "; " . "giac " . expand("#:p"))<CR>
+nnoremap [Space]gs :b bash<CR>:call deol#send("cd " . expand("#:p:h") . "; " . "repobase; " . "git status --short")<CR>
+nnoremap [Space]gt :b bash<CR>:call deol#send("cd " . expand("#:p:h") . "; " . "gitmp")<CR>
+nnoremap [Space]rr :b bash<CR>:call deol#send("cd " . expand("#:p:h"))<CR>icargo run<Space>
 nnoremap [Space]rc :QuickRun -args<Space>
 nnoremap [Space]rp :QuickRun -args<Space>

@@ -39,7 +39,7 @@ alias cavi='cat ~/.config/nvim/init.vim'
 #my config
 alias gcc='gcc -I $HOME/Documents/git/mgtools/include/'
 alias vim="$HOME/bin/viim/bin/vim"
-alias nv="$HOME/bin/neovim/bin/nvim"
+alias ns="rm -rf /tmp/nvimsocket; NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
 alias sl='ls'
 
 #cd
