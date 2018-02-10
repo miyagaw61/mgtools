@@ -1,13 +1,15 @@
 mgtools - many many console scripts for miyagaw61
 =================================================
 
-**miyagaw61本人にとって使いやすいことを第一目的として作成さているためもう使ってないスクリプトも残ってるしREADME.mdの更新めんどくさくてサボってるしコミットも適当ですごめんなさい。**
+**miyagaw61本人にとって使いやすいことを第一目的として作成さているためもう使ってないスクリプトも残ってるしREADME.mdの更新めんどくさくてサボってるしコミットも適当です。**
 
 **mgtoolsディレクトリにPATHを通すだけで使用可能になります。**  
 **基本的に、mgtoolsディレクトリ内のファイルしか勝手に書き換えることはありません。**  
 **なので、mgtoolsを導入しても環境を壊すことはありません。**  
 
-# 報告
+報告
+----
+
 古いスクリプトはold_scriptsディレクトリに  
 CTF用のスクリプトはctfに  
 Pythonスクリプトはpythonに移動しました。
@@ -35,6 +37,145 @@ tutorial
     - whileline
     - pyenv_update
     - build
+
+* calc  
+計算ツール。  
+複数の進数表現を用いての計算/ビット演算を行うことができる。  
+単独の数値を渡すことで進数変換用としても使用可能。  
+(e.g)  
+calc 1+2 -> 3  
+calc 2*3 -> 6  
+calc 2*(1+3) -> 8  
+calc 10 x -> 0xa  
+calc 0xa -> 10  
+calc 10 x -> 1010b  
+calc 0b1010 -> 10  
+calc 2+0xa -> 12  
+calc 0x2+0xa -> 12  
+calc 2+0xa+0xa -> 22  
+calc 2+0xa+0b1010 -> 22  
+calc "1100b&1010b" b -> 1000b  
+```  
+Usage: calc [x/b/i] [expr]  
+default: to_int  
+x: to_hex  
+b: to_bin  
+i: intaractive_mode  
+```  
+  
+* cecho  
+引数に与えられた文字列に色を付けて出力する。  
+青と黒が両方とも頭文字bで泣く泣く黒をkuroにした。  
+fをつけるとファイル用になる。（正確には太字らしい）  
+```  
+Usage: cecho [option] [arg]  
+[+]UsageOptions:  
+h: help  
+f: file version  
+n: not enter  
+r: red  
+g: green  
+b: blue  
+s: sian  
+w: white  
+m: mazenta  
+y: yellow  
+k: kuro  
+```  
+  
+* docker2  
+dockerのラッパーコマンド。  
+alias d="docker2"とエイリアスをかけてあげると便利。  
+d 1　で停止しているコンテナの起動  
+d 0　で起動しているコンテナの停止  
+d x　で起動中のコンテナのterminalを起動  
+d r　でrun（d rだけでコマンド実行すると、run専用のヘルプが見れる。）  
+d d　でデーモン起動（d dだけでコマンド実行すると、デーモン起動専用のヘルプが見れる。）  
+```  
+Usage: docker2 [command]  
+[+]command:  
+pl:  pull  
+ps:  ps  
+psa: ps -a  
+i:   images  
+rm:  rm  
+rmi: rmi  
+1:   start [container_name]  
+0:   stop [container_name]  
+c:   commit [container_name] [image_name]  
+r:   run -it [image_name] bash  
+x:   exec -it [container_name] bash  
+d:   run --privileged -d -p 8080:80 --name [name] [image_name] /sbin/init  
+```  
+  
+* kp  
+プロセスをプロセス名でkillすることが可能。  
+```  
+Usage: kp process_name  
+```  
+  
+* middle  
+開始行、終了行を指定することでテキストファイルの中間を抽出することが可能。  
+```  
+Usage: middle [file_name] [start_line] [end_line]  
+```  
+  
+* snecho  
+空白を改行に置換して出力する。  
+下記の二つを見比べるのが良いだろう。  
+echo $(ls)  
+snecho $(ls)  
+```  
+Usage: snecho word  
+```  
+  
+* wcat
+テキストファイル内部の制御文字を全て削除してクリーンな出力を行う。
+```  
+Usage: wcat [file]
+```  
+  
+* wecho  
+引数に与えた色付き文字列を色無しに変換する。（色付きの状態だとパイプした際にエラーが起こることが稀にあり、その時に使用する）  
+```  
+Usage: wecho [option] [arg]  
+[+]Usage Option:  
+   n: not enter  
+```  
+  
+* whileline  
+fileに与えたファイルの内容を一行ずつ、commandに与えたコマンドのvarに順次代入しながら全て実行する。  
+```  
+Usage: whileline file command  
+[+] UsageVar: var  
+EXAMPLE:  
+echo aaa > file_A  
+echo bbb > file_B  
+ls -1 | grep file_.* > argFile  
+whileline argFile "cat var"  
+```  
+  
+* pyenv_update  
+pyenv/pyenv-virtualenvのPythonバージョンを一斉にバージョンアップする。
+```
+Usage: pyenv_updage [python2_version] [python3_version]
+```
+  
+* build  
+自動Dockerファイル生成/自動buildを行う。  
+$HOME/Documents/docker/dockerという名前で  
+FROM IMAGE  
+COPY /home/USER/ /home/USER/  
+を保存してから使用してください。  
+(e.g)  
+build -s image01 -d image02 -u user01 "apt-get -y update" "apt-get -y upgrade" "apt-get -y insatll vim python socat"  
+```  
+Usage: ./build -s src -d dst [-u user] [cmd...]  
+-s [src]  set source image name  
+-d [dst]  set destination image name  
+-u [user] set your user name (default: miyagaw61)  
+cmd       set RUN command  
+```  
   
 * allcp  
 src...に記述した全ファイルを-dオプションに与えたパスへコピーする。  
@@ -92,67 +233,6 @@ bkupコマンドを書き換えた場合は、こちらも書き換えてくだ�
 Usage: rst  
 ```  
   
-* build  
-自動Dockerファイル生成/自動buildを行う。  
-$HOME/Documents/docker/dockerという名前で  
-FROM IMAGE  
-COPY /home/USER/ /home/USER/  
-を保存してから使用してください。  
-(e.g)  
-build -s image01 -d image02 -u user01 "apt-get -y update" "apt-get -y upgrade" "apt-get -y insatll vim python socat"  
-```  
-Usage: ./build -s src -d dst [-u user] [cmd...]  
--s [src]  set source image name  
--d [dst]  set destination image name  
--u [user] set your user name (default: miyagaw61)  
-cmd       set RUN command  
-```  
-  
-* calc  
-計算ツール。  
-複数の進数表現を用いての計算/ビット演算を行うことができる。  
-単独の数値を渡すことで進数変換用としても使用可能。  
-(e.g)  
-calc 1+2 -> 3  
-calc 2*3 -> 6  
-calc 2*(1+3) -> 8  
-calc 10 x -> 0xa  
-calc 0xa -> 10  
-calc 10 x -> 1010b  
-calc 0b1010 -> 10  
-calc 2+0xa -> 12  
-calc 0x2+0xa -> 12  
-calc 2+0xa+0xa -> 22  
-calc 2+0xa+0b1010 -> 22  
-calc "1100b&1010b" b -> 1000b  
-```  
-Usage: calc [x/b/i] [expr]  
-default: to_int  
-x: to_hex  
-b: to_bin  
-i: intaractive_mode  
-```  
-  
-* cecho  
-引数に与えられた文字列に色を付けて出力する。  
-青と黒が両方とも頭文字bで泣く泣く黒をkuroにした。  
-fをつけるとファイル用になる。（正確には太字らしい）  
-```  
-Usage: cecho [option] [arg]  
-[+]UsageOptions:  
-h: help  
-f: file version  
-n: not enter  
-r: red  
-g: green  
-b: blue  
-s: sian  
-w: white  
-m: mazenta  
-y: yellow  
-k: kuro  
-```  
-  
 * chkbmap  
 キーボード配列を変更する。  
 jp配列,us配列,Dvorak配列に対応。  
@@ -192,31 +272,6 @@ dirmkコマンドで作成したディレクトリを削除するときはこの
 （このコマンドを使用せずに普通にrm -rfコマンドで削除しても問題は無い（cdirが汚なくなるだけ））  
 ```  
 usage: dirrm file  
-```  
-  
-* docker2  
-dockerのラッパーコマンド。  
-alias d="docker2"とエイリアスをかけてあげると便利。  
-d 1　で停止しているコンテナの起動  
-d 0　で起動しているコンテナの停止  
-d x　で起動中のコンテナのterminalを起動  
-d r　でrun（d rだけでコマンド実行すると、run専用のヘルプが見れる。）  
-d d　でデーモン起動（d dだけでコマンド実行すると、デーモン起動専用のヘルプが見れる。）  
-```  
-Usage: docker2 [command]  
-[+]command:  
-pl:  pull  
-ps:  ps  
-psa: ps -a  
-i:   images  
-rm:  rm  
-rmi: rmi  
-1:   start [container_name]  
-0:   stop [container_name]  
-c:   commit [container_name] [image_name]  
-r:   run -it [image_name] bash  
-x:   exec -it [container_name] bash  
-d:   run --privileged -d -p 8080:80 --name [name] [image_name] /sbin/init  
 ```  
   
 * c  
@@ -416,12 +471,6 @@ ipb [bin_ip]: ip_addr
 mask [int_mask]: subnetmask  
 ```  
   
-* kp  
-プロセスをプロセス名でkillすることが可能。  
-```  
-Usage: kp process_name  
-```  
-  
 * libcstrings  
 共有ライブラリ内の文字列を検索することが可能。  
 -fオプション無しで、デフォルトの共有ライブラリを使用する。  
@@ -507,12 +556,6 @@ min      : min char num
 max      : max char num  
 src_file : src word list name  
 dst_file : output library file name  
-```  
-  
-* middle  
-開始行、終了行を指定することでテキストファイルの中間を抽出することが可能。  
-```  
-Usage: middle [file_name] [start_line] [end_line]  
 ```  
   
 * mp4abduction  
@@ -631,15 +674,6 @@ check_pathに指定されたパスに存在するファイル/ディレクトリ
 Usage: sizecheck check_path out_file  
 ```  
   
-* snecho  
-空白を改行に置換して出力する。  
-下記の二つを見比べるのが良いだろう。  
-echo $(ls)  
-snecho $(ls)  
-```  
-Usage: snecho word  
-```  
-  
 * sock  
 引数に与えたファイルを4444ポートで待機させる。  
 nc localhost 4444で接続/実行することが可能。  
@@ -669,26 +703,6 @@ Usage: twitter [option]
 [+]UsageOption:  
    a: add_tl  
    no_use_option: output  
-```  
-  
-* wecho  
-引数に与えた色付き文字列を色無しに変換する。（色付きの状態だとパイプした際にエラーが起こることが稀にあり、その時に使用する）  
-```  
-Usage: wecho [option] [arg]  
-[+]Usage Option:  
-   n: not enter  
-```  
-  
-* whileline  
-fileに与えたファイルの内容を一行ずつ、commandに与えたコマンドのvarに順次代入しながら全て実行する。  
-```  
-Usage: whileline file command  
-[+] UsageVar: var  
-EXAMPLE:  
-echo aaa > file_A  
-echo bbb > file_B  
-ls -1 | grep file_.* > argFile  
-whileline argFile "cat var"  
 ```  
   
 * whitecat  
