@@ -44,7 +44,7 @@ tutorial
 単独の数値を渡すことで進数変換用としても使用可能。  
 (e.g)  
 calc 1+2 -> 3  
-calc 2*3 -> 6  
+calc 2\*3 -> 6  
 calc 2*(1+3) -> 8  
 calc 10 x -> 0xa  
 calc 0xa -> 10  
