@@ -36,7 +36,6 @@ tutorial
     - wecho
     - whileline
     - pyenv_update
-    - build
 
 * calc  
 計算ツール。  
@@ -160,22 +159,6 @@ pyenv/pyenv-virtualenvのPythonバージョンを一斉にバージョンアッ�
 ```
 Usage: pyenv_updage [python2_version] [python3_version]
 ```
-  
-* build  
-自動Dockerファイル生成/自動buildを行う。  
-$HOME/Documents/docker/dockerという名前で  
-FROM IMAGE  
-COPY /home/USER/ /home/USER/  
-を保存してから使用してください。  
-(e.g)  
-build -s image01 -d image02 -u user01 "apt-get -y update" "apt-get -y upgrade" "apt-get -y insatll vim python socat"  
-```  
-Usage: ./build -s src -d dst [-u user] [cmd...]  
--s [src]  set source image name  
--d [dst]  set destination image name  
--u [user] set your user name (default: miyagaw61)  
-cmd       set RUN command  
-```  
   
 * allcp  
 src...に記述した全ファイルを-dオプションに与えたパスへコピーする。  
