@@ -126,7 +126,7 @@ Usage: middle [file_name] [start_line] [end_line]
 echo $(ls)  
 snecho $(ls)  
 ```  
-Usage: snecho word  
+Usage: snecho [arg]
 ```  
   
 * wcat
