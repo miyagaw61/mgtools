@@ -54,7 +54,7 @@ calc 2+0xa -> 12
 calc 0x2+0xa -> 12  
 calc 2+0xa+0xa -> 22  
 calc 2+0xa+0b1010 -> 22  
-calc "1100b&1010b" b -> 1000b  
+calc "0b1100&0b1010" b -> 1000b  
 ```  
 Usage: calc [x/b/i] [expr]  
 default: to_int  
