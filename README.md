@@ -109,9 +109,9 @@ d:   run --privileged -d -p 8080:80 --name [name] [image_name] /sbin/init
 ```  
   
 * kp  
-プロセスをプロセス名でkillすることが可能。  
+プロセスをfzfによるTUIでkillすることが可能。  
 ```  
-Usage: kp process_name  
+Usage: kp
 ```  
   
 * middle  
