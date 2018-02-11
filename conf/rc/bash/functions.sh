@@ -2,12 +2,9 @@ jmp() {
     if test $# -eq 0 ;then
         cat $REPOS/mgtools/conf/jmp.conf
     elif test $1 = "add" ;then
-        echo $2 >> $REPOS/mgtools/conf/jmp.conf
+        echo "$2: $(pwd)" >> $REPOS/mgtools/conf/jmp.conf
     else
-        cat $REPOS/mgtools/conf/jmp.conf | grep -oP "^$1:.*$" | perl -pe "s@$1:(.*)@\1@g" > $REPOS/mgtools/.tmp/jmp.tmp
-        echo "cd "$(cat $REPOS/mgtools/.tmp/jmp.tmp) > $REPOS/mgtools/.tmp/jmp.tmp.tmp
-        mv $REPOS/mgtools/.tmp/jmp.tmp.tmp $REPOS/mgtools/.tmp/jmp.tmp
-        source $REPOS/mgtools/.tmp/jmp.tmp
+        cd $(rg "$1: (.*)" -r '$1' -N $REPOS/mgtools/conf/jmp.conf)
     fi
 }
 
@@ -48,13 +45,13 @@ nd(){
     nvr -c "cd "$(realpath $1)
 }
 
-repos(){
-    var=$(rg --files $REPOS | rsed '[^/]*$' '' | sort | uniq | fzf2nd)
-    if test "$var" ;then
-        cd $var
-    fi
-}
-
+#repos(){
+#    var=$(rg --files $REPOS | rsed '[^/]*$' '' | sort | uniq | fzf2nd)
+#    if test "$var" ;then
+#        cd $var
+#    fi
+#}
+#
 red(){ #この関数を作らないとゼロマッチの時に何も出力されない
     arg="$(cat -)"
     echo "$arg" | rg "$1" -r "$2" -C 9999999999999999999
@@ -65,3 +62,42 @@ red(){ #この関数を作らないとゼロマッチの時に何も出力され
 #  READLINE_POINT=${#READLINE_LINE}
 #}
 #bind -x '"\C-j":readline_injection'
+h() {
+    cd $HOME/$1
+}
+h_completion() {
+    local cur prev cword opts
+    _get_comp_words_by_ref -n : cur prev cword
+    COMPREPLY=( $(compgen -W "$(ls -F $HOME/ | rg '(.*)/$' -r '$1')" -- "${cur}") )
+}
+complete -F h_completion h
+
+r() {
+    cd $HOME/repos/$1
+}
+r_completion() {
+    local cur prev cword opts
+    _get_comp_words_by_ref -n : cur prev cword
+    COMPREPLY=( $(compgen -W "$(ls -F $HOME/repos/ | rg '(.*)/$' -r '$1')" -- "${cur}") )
+}
+complete -F r_completion r
+
+e() {
+    cd $HOME/events/$1
+}
+e_completion() {
+    local cur prev cword opts
+    _get_comp_words_by_ref -n : cur prev cword
+    COMPREPLY=( $(compgen -W "$(ls -F $HOME/events/ | rg '(.*)/$' -r '$1')" -- "${cur}") )
+}
+complete -F e_completion e
+
+d() {
+    cd $HOME/docs/$1
+}
+d_completion() {
+    local cur prev cword opts
+    _get_comp_words_by_ref -n : cur prev cword
+    COMPREPLY=( $(compgen -W "$(ls -F $HOME/docs/ | rg '(.*)/$' -r '$1')" -- "${cur}") )
+}
+complete -F d_completion d

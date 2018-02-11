@@ -16,7 +16,6 @@ alias pbcopy="xsel --clipboard --input"
 alias xl="pbcopy"
 alias pt="xsel -o"
 alias x="python exploit.py"
-alias d="python exploit.py d"
 alias vx="vim ./exploit.py"
 alias update="apt -y update; apt -y upgrade; slk"
 alias dk='docker2'
