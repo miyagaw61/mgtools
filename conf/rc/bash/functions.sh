@@ -55,6 +55,11 @@ repos(){
     fi
 }
 
+red(){ #この関数を作らないとゼロマッチの時に何も出力されない
+    arg="$(cat -)"
+    echo "$arg" | rg "$1" -r "$2" -C 9999999999999999999
+}
+
 #readline_injection() {
 #  READLINE_LINE="$READLINE_LINE | hoge"
 #  READLINE_POINT=${#READLINE_LINE}

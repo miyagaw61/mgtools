@@ -171,3 +171,14 @@ abbr        Option<A>
 snippet     res
 abbr        Result<A, B>
     Result<${1:#:~str}, ${2:#:()}>${3}
+
+#original
+
+snippet     subcmd
+options head
+    matches.subcommand_matches("${1:SUB_COMMAND}").unwrap()
+
+snippet     ispresent
+options head
+    matches.subcommand_matches("${1:SUB_COMMAND}").unwrap().is_present("${2:ARG}")
+

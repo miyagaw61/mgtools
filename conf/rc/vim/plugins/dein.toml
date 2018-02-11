@@ -40,12 +40,12 @@ repo = 'KeitaNakamura/neodark.vim'
 repo = 'Lokaltog/vim-easymotion'
 hook_add = '''
     let g:EasyMotion_do_mapping = 0
-    nmap ? <Plug>(easymotion-s2)
-    xmap ? <Plug>(easymotion-s2)
-    omap z <Plug>(easymotion-s2)
-    nmap m <Plug>(easymotion-sn)
-    xmap m <Plug>(easymotion-sn)
-    omap m <Plug>(easymotion-tn)
+    nmap [Space]m <Plug>(easymotion-sn)
+    xmap [Space]m <Plug>(easymotion-sn)
+    omap [Space]m <Plug>(easymotion-sn)
+    nmap m <Plug>(easymotion-s2)
+    xmap m <Plug>(easymotion-s2)
+    omap m <Plug>(easymotion-s2)
     let g:EasyMotion_smartcase = 1
     map <Leader>j <Plug>(easymotion-j)
     map <Leader>k <Plug>(easymotion-k)

@@ -24,6 +24,7 @@ alias sud='sudo bash'
 alias pg='pgdb'
 alias f='fzf2nd'
 alias op='xdg-open'
+alias rusgit='/mnt/c/Users/miyagaw61/home/repos/rusgit/target/debug/rusgit'
 
 #alias ls
 alias ls='exa --group-directories-first'
@@ -48,3 +49,8 @@ alias events="cd $HOME/events"
 
 #alias make malware list
 alias malist="allcp \$(rg --files -g*.exe -g*.bat -g*.scr -g*.rtf -g*.cpl -g*.jar -g*.lnk) -d"
+
+#alias rusgit
+alias rusgit="$HOME/repos/rusgit/target/debug/rusgit"
+eval "$(rusgit complete --add ra --ac rac --diff rd --branch rb --undo ru --tag rt --push rpush --pull rpull --merge rmerge --rebase rrebase --log rl --commit rc --clone rclone)"
+alias rs="rusgit status --ls 'exa --group-directories-first'"

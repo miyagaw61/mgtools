@@ -11,6 +11,7 @@ export PATH=$PATH:$HOME/bin/win32yank-x64
 export PATH=$PATH:$HOME/bin/ripgrep-0.7.1-x86_64-unknown-linux-musl
 export PATH=$PATH:$HOME/bin/neovim/bin/
 export EDITOR="$HOME/bin/neovim/bin/nvim"
+export RUSGIT_EDITOR="vim -u NONE -N"
 export GIT_NAME='miyagaw61'
 export GIT_EMAIL='miyagaw61@gmail.com'
 export TERM=xterm-256color

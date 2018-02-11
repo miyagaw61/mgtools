@@ -50,3 +50,12 @@ endfunction
 "    execute ':cd #:h'
 "    call deol#send('python run
 "nnoremap [Space]rp :w /tmp/%.vimrun<CR>:b bash<CR>:cd #:h<CR>imv /tmp/vimrun.py ./vimrun.py; python vimrun.py; rm -rf vimrun.py 
+
+command! -nargs=? MyRustRun call My_rust_run(<f-args>)
+function! My_rust_run(...)
+    execute "w"
+    "normal !echo \"%:p:h\" > /tmp/deol_cd.tmp
+    execute "b bash"
+    "normal icd $(cat /tmp/deol_cd.tmp); cargo run<Space>"
+    execute "call deol#send(\"cd \" . expand(\"#:p:h\") . \"; \" . \"cargo run " . join(a:000, " ") . "\")"
+endfunction

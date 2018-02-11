@@ -1,0 +1,3 @@
+[console_scripts]
+pyenv_update = pyenv_update.pyenv_update:console_script
+
