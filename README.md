@@ -7,6 +7,9 @@ mgtools - many many console scripts for miyagaw61
 **基本的に、mgtoolsディレクトリ内のファイルしか勝手に書き換えることはありません。**  
 **なので、mgtoolsを導入しても環境を壊すことはありません。**  
 
+- [install](README.md#install)
+- [tutorial](README.md#tutorial)
+
 報告
 ----
 
