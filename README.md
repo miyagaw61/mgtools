@@ -1,11 +1,12 @@
 mgtools - many many console scripts for miyagaw61
 =================================================
 
-**miyagaw61本人にとって使いやすいことを第一目的として作成さているためもう使ってないスクリプトも残ってるしREADME.mdの更新めんどくさくてサボってるしコミットも適当です。**
+**miyagaw61本人にとって使いやすいことを第一目的として作成さているためもう使ってないスクリプトも残ってるしREADME.mdの更新めんどくさくてサボってるしコミットも適当です。**  
+**現在はこのリポジトリは運用されていません。後継として[chikuwansible](https://github.com/miyagaw61/chikuwansible)というリポジトリが存在します。こちらを使ってください。**
 
-**mgtoolsディレクトリにPATHを通すだけで使用可能になります。**  
-**基本的に、mgtoolsディレクトリ内のファイルしか勝手に書き換えることはありません。**  
-**なので、mgtoolsを導入しても環境を壊すことはありません。**  
+mgtoolsディレクトリにPATHを通すだけで使用可能になります。  
+基本的に、mgtoolsディレクトリ内のファイルしか勝手に書き換えることはありません。  
+なので、mgtoolsを導入しても環境を壊すことはありません。  
 
 - [install](README.md#install)
 - [tutorial](README.md#tutorial)
@@ -162,32 +163,6 @@ pyenv/pyenv-virtualenvのPythonバージョンを一斉にバージョンアッ�
 ```
 Usage: pyenv_updage [python2_version] [python3_version]
 ```
-  
-* allcp  
-src...に記述した全ファイルを-dオプションに与えたパスへコピーする。  
-```  
-Usage: cpall [-h] src... -d dst  
--h       show help  
--d [dst] dst dir path  
-src	  src file/dir path  
-```  
-  
-* allmv  
-src...に記述した全ファイルを-dオプションに与えたパスへ移動する。  
-```  
-Usage: allmv [-h] src... -d dst  
- -h       show help  
- -d [dst] dst dir path  
- src	  src file/dir path  
-```  
-  
-* allrm  
-file...に記述した全ファイルを削除。  
-（存在しなくてもエラーを吐かないため、shellscriptでの使用に便利）  
-```  
-Usage: allrm file...  
-file : file name that you want to remove  
-```  
   
 * aslr  
 現在のaslrをチェック、変更。  
